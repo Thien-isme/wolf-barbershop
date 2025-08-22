@@ -17,8 +17,15 @@ namespace barbershop.Repositorys.implements
         {
             return await _context.Products
                 .Include(p => p.ProductType)
-                //.Where(p => p.IsActive == true)
+                .Where(p => p.IsActive == true)
                 .ToListAsync();
+        }
+
+        public async Task<Product> GetProductByIdAsync(int id)
+        {
+            return await _context.Products
+                .Include(p => p.ProductType)
+                .FirstAsync(p => p.ProductId == id);
         }
 
     }

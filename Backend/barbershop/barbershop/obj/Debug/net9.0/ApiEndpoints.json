@@ -1,8 +1,24 @@
 [
   {
     "ContainingType": "barbershop.Controllers.ProductController",
+    "Method": "GetProductById",
+    "RelativePath": "api/Product/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.ProductController",
     "Method": "GetAllProducts",
-    "RelativePath": "api/Product",
+    "RelativePath": "api/Product/products",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

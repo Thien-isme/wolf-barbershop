@@ -2,8 +2,10 @@
 {
     public class BaseResponse
     {
-        public string? Status { get; set; }
-        public string? Message { get; set; }
+        public int? Status { get; set; }
+        public string? MessageShow { get; set; } = "Hệ thống có lỗi, Vui lòng thử lại trong giây lát!";
+
+        public string? MessageHide { get; set; } = "None";
         public object? Data { get; set; }
     }
 }

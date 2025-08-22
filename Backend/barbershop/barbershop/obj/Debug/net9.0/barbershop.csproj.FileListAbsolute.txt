@@ -166,3 +166,4 @@ F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\runtimes\
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+F:\MyProject\BarberShop\Backend\Barbershop\barbershop\obj\Debug\net9.0\barbershop.sourcelink.json
