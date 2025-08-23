@@ -5,7 +5,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/wolf-barbershop/" element={<HomePage />} />
         <Route path="/booking" element={<BookingPage />} />
         {/* Có thể thêm các Route khác ở đây */}
       </Routes>

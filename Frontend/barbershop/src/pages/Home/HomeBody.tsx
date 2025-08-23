@@ -68,12 +68,14 @@ const HomeBody = () => {
   return (
     <>
       {/* Banner */}
-      <Slider autoplay {...sliderSettings(1)} style={{ marginBottom: 32 }}>
-        <div>
-          <img src="/src/assets/banner.webp" alt="Banner" style={{ width: '100%', height: 750, objectFit: 'cover' }} />
-        </div>
-        {/* Thêm các banner khác nếu muốn */}
-      </Slider>
+      <div style={{ marginBottom: 32 }}>
+        <Slider autoplay {...sliderSettings(1)}>
+          <div>
+            <img src="/wolf-barbershop/src/assets/banner.webp" alt="Banner" style={{ width: '100%', height: 750, objectFit: 'cover' }} />
+          </div>
+          {/* Thêm các banner khác nếu muốn */}
+        </Slider>
+      </div>
       {/* Giới thiệu */}
       <div style={{ textAlign: 'center', marginBottom: 32 }}>
         <h1>Chào mừng đến với WOLF BarberShop!</h1>

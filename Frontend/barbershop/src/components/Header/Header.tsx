@@ -39,7 +39,7 @@ const BarberShopHeader = () => {
   const handleMenuClick = (e : {key: string}) => {
     switch (e.key) {
       case 'home':
-        navigate('/');
+        navigate('/wolf-barbershop');
         break;
       case 'booking':
         navigate('/booking');
@@ -79,12 +79,12 @@ const BarberShopHeader = () => {
           cursor: 'pointer', // Đổi con trỏ khi hover
           transition: 'transform 0.2s',
         }}
-        onClick={() => navigate('/')}
+        onClick={() => navigate('/wolf-barbershop')}
         onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.08)')}
         onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
       >
         <img
-          src="/src/assets/logo6.png"
+          src="/wolf-barbershop/src/assets/logo6.png"
           alt="BarberShop Logo"
           style={{
             height: 70,

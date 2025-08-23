@@ -30,7 +30,7 @@ const services = [
 export default function BookingBody() {
   const [loading, setLoading] = useState(false);
 
-  const onFinish = (values: any) => {
+  const onFinish = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
