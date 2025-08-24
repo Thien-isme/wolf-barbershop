@@ -13,7 +13,7 @@ const Footer = () => (
       {/* Logo ở giữa */}
       <Col>
         {/* Chèn logo của bạn vào đây */}
-        <img src="/src/assets/logo6.png" alt="Logo" style={{ height: 120 }} />
+        <img src="https://res.cloudinary.com/duzh5dnul/image/upload/v1755951808/logo6_nqy39c.png" alt="Logo" style={{ height: 120 }} />
       </Col>
       {/* Thông tin công ty bên phải */}
       <Col style={{ textAlign: 'left' }}>

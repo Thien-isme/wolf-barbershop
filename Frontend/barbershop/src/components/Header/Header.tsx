@@ -84,7 +84,7 @@ const BarberShopHeader = () => {
         onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
       >
         <img
-          src="/wolf-barbershop/src/assets/logo6.png"
+          src="https://res.cloudinary.com/duzh5dnul/image/upload/v1755951808/logo6_nqy39c.png"
           alt="BarberShop Logo"
           style={{
             height: 70,

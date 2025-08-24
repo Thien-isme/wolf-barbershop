@@ -1,0 +1,102 @@
+.barber-bubble-card {
+  transition: box-shadow 0.3s, transform 0.3s, rotate 0.3s;
+  border: 2px solid;
+  border-image: linear-gradient(90deg, #222, #ff9800) 1;
+  background: rgba(30,30,30,0.85);
+}
+.barber-bubble-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 0 16px #ff9800;
+  transform: translateY(-8px) scale(1.05) rotate(-2deg);
+  border-image: linear-gradient(90deg, #ff9800, #222) 1;
+}
+.barber-logo-corner {
+  position: absolute;
+  top: -14px;
+  left: 4px;
+  width: 80px;
+  height: 80px;
+  z-index: 2;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px #ffd600) drop-shadow(0 0 16px #ff9800);
+}
+.barber-img-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.add-barber-btn {
+  background: linear-gradient(90deg, #ff9800 0%, #222 100%);
+  color: #fff !important;
+  font-weight: bold;
+  font-size: 17px;
+  border-radius: 32px;
+  border: none;
+  box-shadow: 0 4px 16px #ff9800a0, 0 0 8px #222a;
+  padding: 0 28px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+  text-shadow: 0 2px 8px #222, 0 0px 16px #ff9800;
+  font-family: 'Oswald', 'Montserrat', Arial, sans-serif;
+}
+.add-barber-btn:hover {
+  transform: scale(1.09);
+  background: linear-gradient(90deg, #222 0%, #ff9800 100%);
+  box-shadow: 0 8px 32px #ff9800cc, 0 0 16px #222a;
+  filter: brightness(1.1) drop-shadow(0 0 8px #ffd600);
+}
+.add-barber-btn:active {
+  animation: ripple 0.4s linear;
+}
+@keyframes ripple {
+  0% { box-shadow: 0 0 0 0 #ff9800a0; }
+  100% { box-shadow: 0 0 0 16px #ff980000; }
+}
+.search-barber-wrapper {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, #ffd600 0%, #ff9800 100%);
+  border-radius: 32px;
+  box-shadow: 0 4px 24px #ff980080, 0 0 8px #222a;
+  padding: 2px 18px 2px 12px;
+  max-width: 370px;
+  margin-left: 12px;
+  margin-right: auto;
+  position: relative;
+}
+.search-barber {
+  border: none !important;
+  background: transparent !important;
+  color: #222 !important;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: none !important;
+  padding-left: 8px !important;
+  outline: none;
+}
+.search-barber::placeholder {
+  color: #fff;
+  font-style: italic;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+.search-barber-icon {
+  font-size: 22px;
+  color: #fff;
+  margin-right: 8px;
+  margin-left: 2px;
+  filter: drop-shadow(0 0 6px #ff9800);
+}
+@keyframes bubbleUpDown {
+ from { opacity: 0; transform: scale(0.95) translateY(24px);}
+to { opacity: 1; transform: scale(1) translateY(0);}
+}
+
+.bubble-animate {
+  animation: bubbleUpDown 0.7s cubic-bezier(.4,2,.3,1) both;
+}
+

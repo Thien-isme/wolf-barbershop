@@ -44,7 +44,7 @@ export default function BookingBody() {
         style={{ borderRadius: 16, boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}
         cover={
           <img
-            src="/src/assets/banner.webp"
+            src="https://res.cloudinary.com/duzh5dnul/image/upload/v1755951798/banner_lmlmue.webp"
             alt="Barber Banner"
             style={{ height: 220, objectFit: "cover", borderRadius: "16px 16px 0 0" }}
           />

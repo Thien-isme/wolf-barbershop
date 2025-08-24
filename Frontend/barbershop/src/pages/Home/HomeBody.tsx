@@ -71,7 +71,7 @@ const HomeBody = () => {
       <div style={{ marginBottom: 32 }}>
         <Slider autoplay {...sliderSettings(1)}>
           <div>
-            <img src="/wolf-barbershop/src/assets/banner.webp" alt="Banner" style={{ width: '100%', height: 750, objectFit: 'cover' }} />
+            <img src="https://res.cloudinary.com/duzh5dnul/image/upload/v1755951798/banner_lmlmue.webp" alt="Banner" style={{ width: '100%', height: 750, objectFit: 'cover' }} />
           </div>
           {/* Thêm các banner khác nếu muốn */}
         </Slider>
