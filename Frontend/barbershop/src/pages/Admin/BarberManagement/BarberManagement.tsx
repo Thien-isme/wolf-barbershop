@@ -130,7 +130,7 @@ function BarberItem({ barber, bubble }: { barber: typeof initialBarbers[0], bubb
 
 
 export default function BarberManagement() {
-  const [barbers, setBarbers] = useState(initialBarbers);
+  const [barbers] = useState(initialBarbers);
   const [search, setSearch] = useState("");
   const [bubble, setBubble] = useState(true);
 

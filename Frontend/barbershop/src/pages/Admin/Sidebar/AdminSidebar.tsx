@@ -3,9 +3,9 @@ import { UserOutlined, HomeOutlined, ShopOutlined } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const items = [
-  { key: "dashboard", icon: <HomeOutlined />, label: "Dashboard", path: "/wolf-barbershop/admin" },
-  { key: "barber", icon: <UserOutlined />, label: "Barber", path: "/wolf-barbershop/admin/barber" },
-  { key: "branch", icon: <ShopOutlined />, label: "Chi nhánh", path: "/wolf-barbershop/admin/branch" },
+  { key: "dashboard", icon: <HomeOutlined />, label: "Dashboard", path: "/admin" },
+  { key: "barber", icon: <UserOutlined />, label: "Barber", path: "/admin/barber" },
+  { key: "branch", icon: <ShopOutlined />, label: "Chi nhánh", path: "/admin/branch" },
   // Thêm các mục khác nếu cần
 ];
 
