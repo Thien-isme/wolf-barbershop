@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-
-namespace barbershop.Models.Entitys;
 //dotnet ef dbcontext scaffold "Server=(local);Database=barbershop;uid=sa;pwd=12345;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models/Entitys --force
+namespace barbershop.Models.Entitys;
+
 public partial class BarbershopContext : DbContext
 {
     public BarbershopContext()
@@ -19,6 +19,8 @@ public partial class BarbershopContext : DbContext
 
     public virtual DbSet<AppointmentService> AppointmentServices { get; set; }
 
+    public virtual DbSet<Branch> Branchs { get; set; }
+
     public virtual DbSet<Employee> Employees { get; set; }
 
     public virtual DbSet<EmployeeImgHair> EmployeeImgHairs { get; set; }
@@ -26,8 +28,6 @@ public partial class BarbershopContext : DbContext
     public virtual DbSet<EmployeeSkill> EmployeeSkills { get; set; }
 
     public virtual DbSet<Inventory> Inventories { get; set; }
-
-    public virtual DbSet<Location> Locations { get; set; }
 
     public virtual DbSet<Payment> Payments { get; set; }
 
@@ -53,21 +53,10 @@ public partial class BarbershopContext : DbContext
 
     public virtual DbSet<Voucher> Vouchers { get; set; }
 
-
-    private string GetConnectionString()
-    {
-        IConfiguration config = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json", true, true)
-                    .Build();
-        var strConn = config["ConnectionStrings:DefaultConnection"];
-
-        return strConn;
-    }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer(GetConnectionString());
-    }
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=(local);Database=barbershop;uid=sa;pwd=12345;TrustServerCertificate=True;");
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Appointment>(entity =>
@@ -80,10 +69,10 @@ public partial class BarbershopContext : DbContext
                 .HasPrecision(0)
                 .HasColumnName("appointment_time");
             entity.Property(e => e.BarberId).HasColumnName("barber_id");
+            entity.Property(e => e.BranchId).HasColumnName("branch_id");
             entity.Property(e => e.CreatedAt)
                 .HasPrecision(0)
                 .HasColumnName("created_at");
-            entity.Property(e => e.LocationId).HasColumnName("location_id");
             entity.Property(e => e.Note)
                 .HasColumnType("text")
                 .HasColumnName("note");
@@ -99,8 +88,8 @@ public partial class BarbershopContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_appointments_barber_id");
 
-            entity.HasOne(d => d.Location).WithMany(p => p.Appointments)
-                .HasForeignKey(d => d.LocationId)
+            entity.HasOne(d => d.Branch).WithMany(p => p.Appointments)
+                .HasForeignKey(d => d.BranchId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_appointments_location_id");
 
@@ -129,6 +118,40 @@ public partial class BarbershopContext : DbContext
                 .HasConstraintName("FK_appointment_service_service_id");
         });
 
+        modelBuilder.Entity<Branch>(entity =>
+        {
+            entity.HasKey(e => e.BranchId).HasName("PK_locations");
+
+            entity.ToTable("branchs");
+
+            entity.Property(e => e.BranchId).HasColumnName("branch_id");
+            entity.Property(e => e.BranchName)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("branch_name");
+            entity.Property(e => e.BranchUrl)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("branch_url");
+            entity.Property(e => e.IsActive)
+                .HasDefaultValue(true)
+                .HasColumnName("is_active");
+            entity.Property(e => e.LocationDetail)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("location_detail");
+            entity.Property(e => e.ProvinceCity)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("province_city");
+            entity.Property(e => e.TimeOff).HasColumnName("time_off");
+            entity.Property(e => e.TimeOn).HasColumnName("time_on");
+            entity.Property(e => e.WardCommune)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("ward_commune");
+        });
+
         modelBuilder.Entity<Employee>(entity =>
         {
             entity.ToTable("employees");
@@ -138,11 +161,11 @@ public partial class BarbershopContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("avatar_url");
+            entity.Property(e => e.BranchId).HasColumnName("branch_id");
             entity.Property(e => e.ExperienceYears).HasColumnName("experience_years");
             entity.Property(e => e.IsActive)
                 .HasDefaultValue(true)
                 .HasColumnName("is_active");
-            entity.Property(e => e.LocationId).HasColumnName("location_id");
             entity.Property(e => e.QuantityRate)
                 .HasDefaultValue(0)
                 .HasColumnName("quantity_rate");
@@ -151,8 +174,8 @@ public partial class BarbershopContext : DbContext
                 .HasColumnType("decimal(8, 2)")
                 .HasColumnName("rating");
 
-            entity.HasOne(d => d.Location).WithMany(p => p.Employees)
-                .HasForeignKey(d => d.LocationId)
+            entity.HasOne(d => d.Branch).WithMany(p => p.Employees)
+                .HasForeignKey(d => d.BranchId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_employees_location_id");
         });
@@ -219,28 +242,6 @@ public partial class BarbershopContext : DbContext
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_inventory_product_id");
-        });
-
-        modelBuilder.Entity<Location>(entity =>
-        {
-            entity.ToTable("locations");
-
-            entity.Property(e => e.LocationId).HasColumnName("location_id");
-            entity.Property(e => e.IsActive)
-                .HasDefaultValue(true)
-                .HasColumnName("is_active");
-            entity.Property(e => e.LocationDetail)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("location_detail");
-            entity.Property(e => e.ProvinceCity)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("province_city");
-            entity.Property(e => e.WardCommune)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("ward_commune");
         });
 
         modelBuilder.Entity<Payment>(entity =>

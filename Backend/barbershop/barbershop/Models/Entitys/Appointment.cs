@@ -11,7 +11,7 @@ public partial class Appointment
 
     public int BarberId { get; set; }
 
-    public int LocationId { get; set; }
+    public int BranchId { get; set; }
 
     public DateOnly? AppointmentDate { get; set; }
 
@@ -27,7 +27,7 @@ public partial class Appointment
 
     public virtual Employee Barber { get; set; } = null!;
 
-    public virtual Location Location { get; set; } = null!;
+    public virtual Branch Branch { get; set; } = null!;
 
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 

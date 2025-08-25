@@ -1,5 +1,72 @@
 [
   {
+    "ContainingType": "barbershop.Controllers.BranchController",
+    "Method": "AddBrancwh",
+    "RelativePath": "api/Branch/ad2d",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "form",
+        "Type": "barbershop.Models.RequestDTOs.Test",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.BranchController",
+    "Method": "AddBranch",
+    "RelativePath": "api/Branch/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "BranchName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProvinceCity",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "WardCommune",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "LocationDetail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BranchUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TimeOn",
+        "Type": "System.Nullable\u00601[[System.TimeOnly, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "TimeOff",
+        "Type": "System.Nullable\u00601[[System.TimeOnly, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "BranchImage",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "barbershop.Controllers.ProductController",
     "Method": "GetProductById",
     "RelativePath": "api/Product/{id}",

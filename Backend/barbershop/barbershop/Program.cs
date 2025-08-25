@@ -5,9 +5,12 @@ builder.Services.AddControllers();
 
 // Thêm dòng này để đăng ký Swagger
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{   
+    c.OperationFilter<SwaggerFileOperationFilter>();
+});
 
-var app = builder.Build();
+var app = builder.Build();  
 
 //app.UseHttpsRedirection();
 app.UseAuthorization();

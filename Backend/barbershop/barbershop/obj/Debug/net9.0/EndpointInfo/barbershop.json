@@ -5,6 +5,113 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Branch/add": {
+      "post": {
+        "tags": [
+          "Branch"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "BranchName": {
+                    "type": "string"
+                  },
+                  "ProvinceCity": {
+                    "type": "string"
+                  },
+                  "WardCommune": {
+                    "type": "string"
+                  },
+                  "LocationDetail": {
+                    "type": "string"
+                  },
+                  "BranchUrl": {
+                    "type": "string"
+                  },
+                  "TimeOn": {
+                    "type": "string",
+                    "format": "time"
+                  },
+                  "TimeOff": {
+                    "type": "string",
+                    "format": "time"
+                  },
+                  "BranchImage": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "BranchName": {
+                  "style": "form"
+                },
+                "ProvinceCity": {
+                  "style": "form"
+                },
+                "WardCommune": {
+                  "style": "form"
+                },
+                "LocationDetail": {
+                  "style": "form"
+                },
+                "BranchUrl": {
+                  "style": "form"
+                },
+                "TimeOn": {
+                  "style": "form"
+                },
+                "TimeOff": {
+                  "style": "form"
+                },
+                "BranchImage": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Branch/ad2d": {
+      "post": {
+        "tags": [
+          "Branch"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Test"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Test"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Test"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Product/products": {
       "get": {
         "tags": [
@@ -41,5 +148,22 @@
       }
     }
   },
-  "components": { }
+  "components": {
+    "schemas": {
+      "Test": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "namsssse": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
 }
