@@ -93,6 +93,18 @@
         }
       }
     },
+    "/api/Employee/GetBarbers": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Product/products": {
       "get": {
         "tags": [

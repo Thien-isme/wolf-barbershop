@@ -25,6 +25,8 @@ public partial class BarbershopContext : DbContext
 
     public virtual DbSet<EmployeeImgHair> EmployeeImgHairs { get; set; }
 
+    public virtual DbSet<EmployeeRole> EmployeeRoles { get; set; }
+
     public virtual DbSet<EmployeeSkill> EmployeeSkills { get; set; }
 
     public virtual DbSet<Inventory> Inventories { get; set; }
@@ -171,6 +173,7 @@ public partial class BarbershopContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("avatar_url");
             entity.Property(e => e.BranchId).HasColumnName("branch_id");
+            entity.Property(e => e.EmployeeRoleId).HasColumnName("employee_role_id");
             entity.Property(e => e.ExperienceYears).HasColumnName("experience_years");
             entity.Property(e => e.IsActive)
                 .HasDefaultValue(true)
@@ -187,6 +190,10 @@ public partial class BarbershopContext : DbContext
             entity.HasOne(d => d.Branch).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.BranchId)
                 .HasConstraintName("FK_employees_location_id");
+
+            entity.HasOne(d => d.EmployeeRole).WithMany(p => p.Employees)
+                .HasForeignKey(d => d.EmployeeRoleId)
+                .HasConstraintName("FK_Employees_Employees_Role");
 
             entity.HasOne(d => d.User).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.UserId)
@@ -218,6 +225,21 @@ public partial class BarbershopContext : DbContext
                 .HasForeignKey(d => d.EmployeeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("employee_img_hair_img_url_foreign");
+        });
+
+        modelBuilder.Entity<EmployeeRole>(entity =>
+        {
+            entity.HasKey(e => e.EmployeeRoleId).HasName("PK__employee__AF99BE5B682EDB1F");
+
+            entity.ToTable("employee_role");
+
+            entity.Property(e => e.EmployeeRoleId).HasColumnName("employee_role_id");
+            entity.Property(e => e.EmployeeRoleName)
+                .HasMaxLength(100)
+                .HasColumnName("employee_role_name");
+            entity.Property(e => e.IsActive)
+                .HasDefaultValue(true)
+                .HasColumnName("is_active");
         });
 
         modelBuilder.Entity<EmployeeSkill>(entity =>

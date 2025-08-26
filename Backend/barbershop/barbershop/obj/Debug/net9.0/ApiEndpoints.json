@@ -61,6 +61,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "barbershop.Controllers.EmployeeController",
+    "Method": "GetAllBarbers",
+    "RelativePath": "api/Employee/GetBarbers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "barbershop.Controllers.ProductController",
     "Method": "GetProductById",
     "RelativePath": "api/Product/{id}",

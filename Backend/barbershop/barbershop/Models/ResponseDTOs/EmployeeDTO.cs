@@ -1,0 +1,18 @@
+using System;
+
+namespace barbershop.Models.ResponseDTOs
+{
+    public class EmployeeDTO
+    {
+        public int? EmployeeId { get; set; }
+        public int? UserId { get; set; }
+        public int? BranchId { get; set; }
+        public DateOnly? ExperienceYears { get; set; }
+        public decimal? Rating { get; set; }
+        public int? QuantityRate { get; set; }
+        public bool IsActive { get; set;    }
+        public string? AvatarUrl { get; set; }
+        public int? EmployeeRoleId { get; set; }
+        public UserDTO? UserDTO { get; set; }
+    }
+}

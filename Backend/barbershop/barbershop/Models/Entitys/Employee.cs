@@ -21,11 +21,15 @@ public partial class Employee
 
     public string? AvatarUrl { get; set; }
 
+    public int? EmployeeRoleId { get; set; }
+
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
     public virtual Branch? Branch { get; set; }
 
     public virtual ICollection<EmployeeImgHair> EmployeeImgHairs { get; set; } = new List<EmployeeImgHair>();
+
+    public virtual EmployeeRole? EmployeeRole { get; set; }
 
     public virtual ICollection<EmployeeSkill> EmployeeSkills { get; set; } = new List<EmployeeSkill>();
 

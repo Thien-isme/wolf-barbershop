@@ -22,17 +22,9 @@ namespace barbershop.Repositorys.implements
 
         public async Task<List<Branch>?> GetAllBranchesAsync()
         {
-            try
-            {
-                return _context.Branchs
-                    .Include(barbershop => barbershop.Employees)
-                    .ToList();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi khi lấy danh sách chi nhánh: {ex.Message}");
-                return null; // hoặc có thể trả về thông báo lỗi tùy ý
-            }
+            return _context.Branchs
+                .Include(barbershop => barbershop.Employees)
+                .ToList();
         }
     }
 }
