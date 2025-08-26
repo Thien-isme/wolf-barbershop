@@ -1,0 +1,16 @@
+// Bạn có thể đặt ở: f:\MyProject\BarberShop\Frontend\barbershop\src\types\UserDTO.ts
+export type UserDTO = {
+  userId?: number;
+  email?: string;
+  userName?: string;
+  password?: string;
+  fullName?: string;
+  phone?: string;
+  dateOfBirth: Date;
+  address?: string;
+  cccd?: string;
+  roleId?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+  isActive?: boolean;
+};
