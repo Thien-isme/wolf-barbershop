@@ -10,8 +10,12 @@ builder.Services.AddSwaggerGen(c =>
     c.OperationFilter<SwaggerFileOperationFilter>();
 });
 
-var app = builder.Build();  
 
+var app = builder.Build();
+app.UseCors(builder =>
+    builder.WithOrigins("http://localhost:5173")
+           .AllowAnyMethod()
+           .AllowAnyHeader());
 //app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

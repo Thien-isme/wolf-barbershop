@@ -1,22 +1,6 @@
 [
   {
     "ContainingType": "barbershop.Controllers.BranchController",
-    "Method": "AddBrancwh",
-    "RelativePath": "api/Branch/ad2d",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "form",
-        "Type": "barbershop.Models.RequestDTOs.Test",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "barbershop.Controllers.BranchController",
     "Method": "AddBranch",
     "RelativePath": "api/Branch/add",
     "HttpMethod": "POST",
@@ -64,6 +48,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.BranchController",
+    "Method": "GetAllBranches",
+    "RelativePath": "api/Branch/getAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

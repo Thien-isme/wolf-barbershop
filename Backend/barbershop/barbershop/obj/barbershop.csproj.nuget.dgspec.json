@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\MyProject\\BarberShop\\Backend\\Barbershop\\barbershop\\barbershop.csproj": {}
+    "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\barbershop.csproj": {}
   },
   "projects": {
-    "F:\\MyProject\\BarberShop\\Backend\\Barbershop\\barbershop\\barbershop.csproj": {
+    "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\barbershop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\MyProject\\BarberShop\\Backend\\Barbershop\\barbershop\\barbershop.csproj",
+        "projectUniqueName": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\barbershop.csproj",
         "projectName": "barbershop",
-        "projectPath": "F:\\MyProject\\BarberShop\\Backend\\Barbershop\\barbershop\\barbershop.csproj",
+        "projectPath": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\barbershop.csproj",
         "packagesPath": "C:\\Users\\thien\\.nuget\\packages\\",
-        "outputPath": "F:\\MyProject\\BarberShop\\Backend\\Barbershop\\barbershop\\obj\\",
+        "outputPath": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

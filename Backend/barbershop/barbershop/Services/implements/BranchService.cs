@@ -35,7 +35,7 @@ namespace barbershop.Services.implements
                     BranchUrl = imageUrl,
                     TimeOn = request.TimeOn,
                     TimeOff = request.TimeOff,
-                    IsActive = true
+                    IsActive = false
                 };
 
                 var branch = await branchRepository.AddBranchAsync(newBranch);
@@ -53,6 +53,51 @@ namespace barbershop.Services.implements
                 baseResponse.MessageHide = "Lỗi hệ thống: " + ex.Message;
                 baseResponse.Data = null;
             }
+            Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(baseResponse));
+            return baseResponse;
+        }
+
+        public async Task<BaseResponse?> GetAllBranchesAsync()
+        {
+            try
+            {
+                var branches = await branchRepository.GetAllBranchesAsync();
+
+                if (branches != null && branches.Count > 0)
+                {
+
+                    List<BranchDTO> branchDTOs = branches.Select(b => new BranchDTO
+                    {
+                        BranchId = b.BranchId,
+                        BranchName = b.BranchName,
+                        ProvinceCity = b.ProvinceCity,
+                        WardCommune = b.WardCommune,
+                        LocationDetail = b.LocationDetail,
+                        BranchUrl = b.BranchUrl,
+                        TimeOn = b.TimeOn,
+                        TimeOff = b.TimeOff,
+                        IsActive = b.IsActive,
+                        Barbers = b.Employees.Count(e => e.IsActive == true)
+                    }).ToList();
+
+                    baseResponse.Status = StatusCodes.Status200OK;
+                    baseResponse.MessageShow = "Thành công";
+                    baseResponse.Data = branchDTOs;
+                }
+                else
+                {
+                    baseResponse.Status = StatusCodes.Status404NotFound;
+                    baseResponse.MessageShow = "Không có chi nhánh nào";
+                    baseResponse.Data = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                baseResponse.Status = StatusCodes.Status500InternalServerError;
+                baseResponse.MessageHide = "Lỗi hệ thống: " + ex.Message;
+                baseResponse.Data = null;
+            }
+
             return baseResponse;
         }
     }

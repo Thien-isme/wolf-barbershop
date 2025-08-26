@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-//dotnet ef dbcontext scaffold "Server=(local);Database=barbershop;uid=sa;pwd=12345;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models/Entitys --force
+
 namespace barbershop.Models.Entitys;
 
 public partial class Branch
 {
     public int BranchId { get; set; }
 
-    public string ProvinceCity { get; set; } = null!;
+    public string? ProvinceCity { get; set; }
 
-    public string WardCommune { get; set; } = null!;
+    public string? WardCommune { get; set; }
 
     public string? LocationDetail { get; set; }
 

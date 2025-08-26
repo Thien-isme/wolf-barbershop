@@ -168,4 +168,4 @@ F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\refint\ba
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\barbershop.pdb
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\barbershop.genruntimeconfig.cache
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\ref\barbershop.dll
-F:\MyProject\BarberShop\Backend\Barbershop\barbershop\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

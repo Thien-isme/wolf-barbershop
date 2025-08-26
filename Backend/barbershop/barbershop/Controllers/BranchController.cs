@@ -1,4 +1,5 @@
-﻿using barbershop.Models.RequestDTOs;
+﻿using Azure.Core;
+using barbershop.Models.RequestDTOs;
 using barbershop.Models.ResponseDTOs;
 using barbershop.Services.implements;
 using Microsoft.AspNetCore.Mvc;
@@ -28,10 +29,11 @@ namespace barbershop.Controllers
             return Ok(response);
         }
 
-        [HttpPost("ad2d")]
-        public async Task<IActionResult> AddBrancwh([FromBody] Test form)
+        [HttpGet("getAll")]
+        public async Task<IActionResult> GetAllBranches()
         {
-            return null;
+            var response = await branchService.GetAllBranchesAsync();
+            return Ok(response);
         }
     }
 }

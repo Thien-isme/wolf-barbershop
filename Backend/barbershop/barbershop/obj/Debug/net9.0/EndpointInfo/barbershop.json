@@ -81,30 +81,11 @@
         }
       }
     },
-    "/api/Branch/ad2d": {
-      "post": {
+    "/api/Branch/getAll": {
+      "get": {
         "tags": [
           "Branch"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Test"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Test"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Test"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "OK"
@@ -148,22 +129,5 @@
       }
     }
   },
-  "components": {
-    "schemas": {
-      "Test": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "namsssse": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      }
-    }
-  }
+  "components": { }
 }

@@ -11,5 +11,7 @@ namespace barbershop.Models.ResponseDTOs
         public string? BranchUrl { get; set; }
         public TimeOnly? TimeOn { get; set; }
         public TimeOnly? TimeOff { get; set; }
+
+        public int Barbers { get; set; } = 0;
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-//dotnet ef dbcontext scaffold "Server=(local);Database=barbershop;uid=sa;pwd=12345;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models/Entitys --force
+
 namespace barbershop.Models.Entitys;
 
 public partial class BarbershopContext : DbContext
@@ -59,9 +59,17 @@ public partial class BarbershopContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.UseCollation("Vietnamese_CI_AS");
+
         modelBuilder.Entity<Appointment>(entity =>
         {
             entity.ToTable("appointments");
+
+            entity.HasIndex(e => e.BarberId, "IX_appointments_barber_id");
+
+            entity.HasIndex(e => e.BranchId, "IX_appointments_branch_id");
+
+            entity.HasIndex(e => e.UserId, "IX_appointments_user_id");
 
             entity.Property(e => e.AppointmentId).HasColumnName("appointment_id");
             entity.Property(e => e.AppointmentDate).HasColumnName("appointment_date");
@@ -103,6 +111,10 @@ public partial class BarbershopContext : DbContext
         {
             entity.ToTable("appointment_service");
 
+            entity.HasIndex(e => e.AppointmentId, "IX_appointment_service_appointment_id");
+
+            entity.HasIndex(e => e.ServiceId, "IX_appointment_service_service_id");
+
             entity.Property(e => e.AppointmentServiceId).HasColumnName("appointment_service_id");
             entity.Property(e => e.AppointmentId).HasColumnName("appointment_id");
             entity.Property(e => e.ServiceId).HasColumnName("service_id");
@@ -127,34 +139,31 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.BranchId).HasColumnName("branch_id");
             entity.Property(e => e.BranchName)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("branch_name");
             entity.Property(e => e.BranchUrl)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("branch_url");
             entity.Property(e => e.IsActive)
                 .HasDefaultValue(true)
                 .HasColumnName("is_active");
             entity.Property(e => e.LocationDetail)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("location_detail");
             entity.Property(e => e.ProvinceCity)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("province_city");
             entity.Property(e => e.TimeOff).HasColumnName("time_off");
             entity.Property(e => e.TimeOn).HasColumnName("time_on");
             entity.Property(e => e.WardCommune)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("ward_commune");
         });
 
         modelBuilder.Entity<Employee>(entity =>
         {
             entity.ToTable("employees");
+
+            entity.HasIndex(e => e.BranchId, "IX_employees_branch_id");
 
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.AvatarUrl)
@@ -170,14 +179,18 @@ public partial class BarbershopContext : DbContext
                 .HasDefaultValue(0)
                 .HasColumnName("quantity_rate");
             entity.Property(e => e.Rating)
-                .HasDefaultValue(0m)
+                .HasDefaultValue(0.0m)
                 .HasColumnType("decimal(8, 2)")
                 .HasColumnName("rating");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
 
             entity.HasOne(d => d.Branch).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.BranchId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_employees_location_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Employees)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_Users_Employees");
         });
 
         modelBuilder.Entity<EmployeeImgHair>(entity =>
@@ -185,6 +198,8 @@ public partial class BarbershopContext : DbContext
             entity.HasKey(e => e.EmployeeImgHairId).HasName("employee_img_hair_employee_img_hair_id_primary");
 
             entity.ToTable("employee_img_hair");
+
+            entity.HasIndex(e => e.EmployeeId, "IX_employee_img_hair_employee_id");
 
             entity.Property(e => e.EmployeeImgHairId)
                 .ValueGeneratedNever()
@@ -209,6 +224,10 @@ public partial class BarbershopContext : DbContext
         {
             entity.ToTable("employee_skill");
 
+            entity.HasIndex(e => e.EmployeeId, "IX_employee_skill_employee_id");
+
+            entity.HasIndex(e => e.SkillId, "IX_employee_skill_skill_id");
+
             entity.Property(e => e.EmployeeSkillId).HasColumnName("employee_skill_id");
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.IsActive)
@@ -231,6 +250,8 @@ public partial class BarbershopContext : DbContext
         {
             entity.ToTable("inventory");
 
+            entity.HasIndex(e => e.ProductId, "IX_inventory_product_id");
+
             entity.Property(e => e.InventoryId).HasColumnName("inventory_id");
             entity.Property(e => e.LastUpdated)
                 .HasPrecision(0)
@@ -247,6 +268,16 @@ public partial class BarbershopContext : DbContext
         modelBuilder.Entity<Payment>(entity =>
         {
             entity.ToTable("payments");
+
+            entity.HasIndex(e => e.AppointmentId, "IX_payments_appointment_id");
+
+            entity.HasIndex(e => e.CasherId, "IX_payments_casher_id");
+
+            entity.HasIndex(e => e.CustomerId, "IX_payments_customer_id");
+
+            entity.HasIndex(e => e.PaymentMethodId, "IX_payments_payment_method_id");
+
+            entity.HasIndex(e => e.VoucherId, "IX_payments_voucher_id");
 
             entity.Property(e => e.PaymentId).HasColumnName("payment_id");
             entity.Property(e => e.AppointmentId).HasColumnName("appointment_id");
@@ -298,6 +329,14 @@ public partial class BarbershopContext : DbContext
         modelBuilder.Entity<PaymentService>(entity =>
         {
             entity.ToTable("payment_service");
+
+            entity.HasIndex(e => e.BarberId, "IX_payment_service_barber_id");
+
+            entity.HasIndex(e => e.PaymentId, "IX_payment_service_payment_id");
+
+            entity.HasIndex(e => e.ProductId, "IX_payment_service_product_id");
+
+            entity.HasIndex(e => e.ServiceId, "IX_payment_service_service_id");
 
             entity.Property(e => e.PaymentServiceId).HasColumnName("payment_service_id");
             entity.Property(e => e.BarberId).HasColumnName("barber_id");
@@ -354,6 +393,8 @@ public partial class BarbershopContext : DbContext
         {
             entity.ToTable("products");
 
+            entity.HasIndex(e => e.ProductTypeId, "IX_products_product_type_id");
+
             entity.Property(e => e.ProductId).HasColumnName("product_id");
             entity.Property(e => e.Discount).HasColumnName("discount");
             entity.Property(e => e.Instruction)
@@ -391,6 +432,8 @@ public partial class BarbershopContext : DbContext
             entity.HasKey(e => e.ReviewId).HasName("reviews_review_id_primary");
 
             entity.ToTable("reviews");
+
+            entity.HasIndex(e => e.AppointmentId, "IX_reviews_appointment_id");
 
             entity.Property(e => e.ReviewId)
                 .ValueGeneratedNever()
@@ -436,6 +479,8 @@ public partial class BarbershopContext : DbContext
         modelBuilder.Entity<Service>(entity =>
         {
             entity.ToTable("services");
+
+            entity.HasIndex(e => e.ServiceTypeId, "IX_services_service_type_id");
 
             entity.Property(e => e.ServiceId).HasColumnName("service_id");
             entity.Property(e => e.Description)
@@ -494,6 +539,8 @@ public partial class BarbershopContext : DbContext
         {
             entity.ToTable("users");
 
+            entity.HasIndex(e => e.RoleId, "IX_users_role_id");
+
             entity.Property(e => e.UserId).HasColumnName("user_id");
             entity.Property(e => e.Address)
                 .HasMaxLength(255)
@@ -537,7 +584,6 @@ public partial class BarbershopContext : DbContext
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.RoleId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("roles_role_id_foreign");
         });
 

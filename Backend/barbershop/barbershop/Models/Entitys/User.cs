@@ -5,7 +5,7 @@ namespace barbershop.Models.Entitys;
 
 public partial class User
 {
-    public long UserId { get; set; }
+    public int UserId { get; set; }
 
     public string? Email { get; set; }
 
@@ -23,7 +23,7 @@ public partial class User
 
     public string? Cccd { get; set; }
 
-    public int RoleId { get; set; }
+    public int? RoleId { get; set; }
 
     public DateTime? CreateAt { get; set; }
 
@@ -33,7 +33,9 @@ public partial class User
 
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
+    public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
+
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 
-    public virtual Role Role { get; set; } = null!;
+    public virtual Role? Role { get; set; }
 }
