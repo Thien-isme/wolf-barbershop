@@ -1,51 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input, Button, Card, Row, Col, Typography } from "antd";
 import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined, EnvironmentOutlined, UserOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import SidebarLayout from "../Sidebar/AdminSidebarLayout";
 import styles from "./BranchManagement.module.css";
 import AddBranchModal from "./AddBranchModal"; // Import modal component
-
-// Thêm thuộc tính img vào initialBranches
-const initialBranches = [
-  {
-    name: "Wolf Quận 1",
-    address: "77 Yersin, Quận 1, TP. HCM",
-    barbers: 8,
-    open: "09:00 - 21:00",
-    img: "https://4rau.vn/storage/branches/2qg8KUa9i0iiTcP5O2OI81Qn41QutgrX0rEWzQty.jpg",
-  },
-  {
-    name: "Wolf Quận 4",
-    address: "P.1, Quận 4, TP. HCM",
-    barbers: 5,
-    open: "09:00 - 20:30",
-    img: "https://4rau.vn/storage/branches/DWrmqJ61jwelhVtH3jARGmuqDNaZFTXtDGMblj3Q.jpg",
-  },
-  {
-    name: "Wolf Quận 3",
-    address: "P.5, Quận 3, TP. HCM",
-    barbers: 4,
-    open: "10:00 - 20:00",
-    img: "https://4rau.vn/storage/branches/vwFWFLHFzXPdF5fdQPfsTmXjheMF6dp6Ka0wcJEL.jpg",
-  },
-  {
-    name: "Wolf Quận 9",
-    address: "P.1, Quận 9, TP. HCM",
-    barbers: 3,
-    open: "09:30 - 20:00",
-    img: "https://4rau.vn/storage/branches/KgZQYomaIAQ15pFQYVbv178XGNnnS1s98nS4OGpj.jpg",
-  },
-];
-
+import { getBranchs } from "../../../api/branchApi";
+import type { Branch } from "../../../types/branch";
 export default function BranchManagement() {
+  const [branches, setBranches] = useState<Branch[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [branches, setBranches] = useState(initialBranches);
   const [search, setSearch] = useState("");
 
+  useEffect(() => {
+    getBranchs().then(res => {
+      // Nếu res.data là mảng chi nhánh
+      setBranches(res.data);
+      // Nếu res.data.data là mảng chi nhánh
+      // setBranches(res.data.data);
+    }).catch(console.error);
+  }, []);
+
   const filteredBranches = branches.filter(b =>
-    b.name.toLowerCase().includes(search.toLowerCase()) ||
-    b.address.toLowerCase().includes(search.toLowerCase())
+    b.branchName.toLowerCase().includes(search.toLowerCase()) ||
+    (b.locationDetail ?? "").toLowerCase().includes(search.toLowerCase())
   );
+
+  
 
   return (
     <SidebarLayout>
@@ -123,8 +103,8 @@ export default function BranchManagement() {
                 }}
               >
                 <img
-                  src={branch.img}
-                  alt={branch.name}
+                  src={branch.branchUrl}
+                  alt={branch.branchName}
                   style={{
                     width: 500,
                     height: 500,
@@ -135,19 +115,19 @@ export default function BranchManagement() {
               </div>
               <div style={{ padding: 18 }}>
                 <Typography.Title level={4} style={{ color: "#ff9800", marginBottom: 8, fontWeight: 700 }}>
-                  {branch.name}
+                  {branch.branchName}
                 </Typography.Title>
                 <div style={{ display: "flex", alignItems: "center", marginBottom: 6 }}>
                   <EnvironmentOutlined style={{ color: "#ffd600", marginRight: 8 }} />
-                  <span style={{ color: "#fff", fontWeight: 500 }}>{branch.address}</span>
+                  <span style={{ color: "#fff", fontWeight: 500 }}>{branch.locationDetail}</span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", marginBottom: 6 }}>
                   <UserOutlined style={{ color: "#ff9800", marginRight: 8 }} />
-                  <span style={{ color: "#fff" }}>Barber: <b>{branch.barbers}</b></span>
+                  <span style={{ color: "#fff" }}>Barber: <b>{branch.barbers || 0}</b></span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <ClockCircleOutlined style={{ color: "#ffd600", marginRight: 8 }} />
-                  <span style={{ color: "#fff" }}>Giờ mở cửa: <b>{branch.open}</b></span>
+                  <span style={{ color: "#fff" }}>Giờ mở cửa: <b>{branch.timeOn?.slice(0,5)} : {branch.timeOff?.slice(0,5)}</b></span>
                 </div>
               </div>
             </Card>
@@ -157,7 +137,7 @@ export default function BranchManagement() {
       <AddBranchModal
         open={modalOpen}
         onCancel={() => setModalOpen(false)}
-        onAdd={branch => setBranches([...branches, branch])}
+        onAdd={branch => setBranches([branch, ...branches])}
       />
     </SidebarLayout>
   );

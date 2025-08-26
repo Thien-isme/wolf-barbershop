@@ -1,6 +1,8 @@
-import { Modal, Form, Input, Select, Upload, Button, message, Row, Col, Divider } from "antd";
+import { Modal, Form, Input, Select, Upload, Button, Row, Col, Divider } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import React from "react";
+import { addBranch } from "../../../api/branchApi";
+import { toast } from "react-toastify"; // Thêm dòng này
 
 interface AddBranchModalProps {
   open: boolean;
@@ -17,7 +19,7 @@ const cities = [
 
 const wards = [
   { value: "Quận 1", label: "Quận 1" },
-  { value: "Quận 4", label: "Quận 4" },
+  { value: "Quận npm install react-toastify4", label: "Quận 4" },
   { value: "Quận 3", label: "Quận 3" },
   { value: "Quận 9", label: "Quận 9" },
   // ...thêm các phường/xã khác
@@ -26,16 +28,33 @@ const wards = [
 const AddBranchModal: React.FC<AddBranchModalProps> = ({ open, onCancel, onAdd }) => {
   const [form] = Form.useForm();
 
-  const handleFinish = (values: any) => {
-    onAdd({
-      ...values,
-      img: values.img?.[0]?.url || "",
-      barbers: values.barbers || 0,
-      open: values.open || "09:00 - 21:00",
-    });
-    form.resetFields();
-    message.success("Thêm chi nhánh thành công!");
-    onCancel();
+  const handleFinish = async (values: any) => {
+    const formData = new FormData();
+    formData.append("BranchName", values.name);
+    formData.append("ProvinceCity", values.city);
+    formData.append("WardCommune", values.ward);
+    formData.append("LocationDetail", values.address);
+    formData.append("BranchUrl", ""); // Nếu có url riêng, truyền vào
+    formData.append("TimeOn", values.openStart);
+    formData.append("TimeOff", values.openEnd);
+
+    if (values.img && values.img[0] && values.img[0].originFileObj) {
+      formData.append("BranchImage", values.img[0].originFileObj);
+    }
+
+    try {
+      const result = await addBranch(formData);
+      if (result.status === 200) {
+        toast.success("Thêm chi nhánh thành công!"); // Thông báo thành công
+        form.resetFields();
+        onCancel();
+        onAdd(result.data); // Nếu muốn cập nhật danh sách chi nhánh
+      } else {
+        toast.error(result.messageShow || "Có lỗi xảy ra!"); // Thông báo lỗi từ backend
+      }
+    } catch (error: any) {
+      toast.error(error?.message || "Có lỗi xảy ra khi gọi API!"); // Thông báo lỗi mạng hoặc exception
+    }
   };
 
   return (
@@ -179,7 +198,7 @@ const AddBranchModal: React.FC<AddBranchModalProps> = ({ open, onCancel, onAdd }
             listType="picture-card"
             maxCount={1}
             showUploadList={true}
-            customRequest={({ onSuccess, file }) => {
+            customRequest={({ onSuccess}) => {
               setTimeout(() => {
                 onSuccess && onSuccess("ok");
               }, 500);
@@ -187,7 +206,7 @@ const AddBranchModal: React.FC<AddBranchModalProps> = ({ open, onCancel, onAdd }
             beforeUpload={file => {
               const isImage = file.type.startsWith("image/");
               if (!isImage) {
-                message.error("Chỉ được chọn ảnh!");
+                toast.error("Chỉ được chọn ảnh!");
               }
               return isImage;
             }}
