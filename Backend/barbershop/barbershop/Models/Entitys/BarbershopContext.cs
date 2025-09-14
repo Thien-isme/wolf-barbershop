@@ -25,8 +25,6 @@ public partial class BarbershopContext : DbContext
 
     public virtual DbSet<EmployeeImgHair> EmployeeImgHairs { get; set; }
 
-    public virtual DbSet<EmployeeRole> EmployeeRoles { get; set; }
-
     public virtual DbSet<EmployeeSkill> EmployeeSkills { get; set; }
 
     public virtual DbSet<Inventory> Inventories { get; set; }
@@ -61,8 +59,6 @@ public partial class BarbershopContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.UseCollation("Vietnamese_CI_AS");
-
         modelBuilder.Entity<Appointment>(entity =>
         {
             entity.ToTable("appointments");
@@ -83,13 +79,9 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.CreatedAt)
                 .HasPrecision(0)
                 .HasColumnName("created_at");
-            entity.Property(e => e.Note)
-                .HasColumnType("text")
-                .HasColumnName("note");
+            entity.Property(e => e.Note).HasColumnName("note");
             entity.Property(e => e.Status)
                 .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasDefaultValue("BOOKED")
                 .HasColumnName("status");
             entity.Property(e => e.UserId).HasColumnName("user_id");
 
@@ -170,10 +162,8 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.AvatarUrl)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("avatar_url");
             entity.Property(e => e.BranchId).HasColumnName("branch_id");
-            entity.Property(e => e.EmployeeRoleId).HasColumnName("employee_role_id");
             entity.Property(e => e.ExperienceYears).HasColumnName("experience_years");
             entity.Property(e => e.IsActive)
                 .HasDefaultValue(true)
@@ -191,13 +181,9 @@ public partial class BarbershopContext : DbContext
                 .HasForeignKey(d => d.BranchId)
                 .HasConstraintName("FK_employees_location_id");
 
-            entity.HasOne(d => d.EmployeeRole).WithMany(p => p.Employees)
-                .HasForeignKey(d => d.EmployeeRoleId)
-                .HasConstraintName("FK_Employees_Employees_Role");
-
             entity.HasOne(d => d.User).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK_Users_Employees");
+                .HasConstraintName("FK_Employee_User");
         });
 
         modelBuilder.Entity<EmployeeImgHair>(entity =>
@@ -214,7 +200,6 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.ImgUrl)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("img_url");
             entity.Property(e => e.IsActive)
                 .IsRequired()
@@ -225,21 +210,6 @@ public partial class BarbershopContext : DbContext
                 .HasForeignKey(d => d.EmployeeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("employee_img_hair_img_url_foreign");
-        });
-
-        modelBuilder.Entity<EmployeeRole>(entity =>
-        {
-            entity.HasKey(e => e.EmployeeRoleId).HasName("PK__employee__AF99BE5B682EDB1F");
-
-            entity.ToTable("employee_role");
-
-            entity.Property(e => e.EmployeeRoleId).HasColumnName("employee_role_id");
-            entity.Property(e => e.EmployeeRoleName)
-                .HasMaxLength(100)
-                .HasColumnName("employee_role_name");
-            entity.Property(e => e.IsActive)
-                .HasDefaultValue(true)
-                .HasColumnName("is_active");
         });
 
         modelBuilder.Entity<EmployeeSkill>(entity =>
@@ -315,7 +285,6 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.PaymentMethodId).HasColumnName("payment_method_id");
             entity.Property(e => e.Status)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasDefaultValue("PENDING")
                 .HasColumnName("status");
             entity.Property(e => e.Subtotal)
@@ -400,14 +369,12 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.PaymentMethodId).HasColumnName("payment_method_id");
             entity.Property(e => e.ImgUrl)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("img_url");
             entity.Property(e => e.IsActive)
                 .HasDefaultValue(true)
                 .HasColumnName("is_active");
             entity.Property(e => e.MethodName)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("method_name");
         });
 
@@ -419,16 +386,13 @@ public partial class BarbershopContext : DbContext
 
             entity.Property(e => e.ProductId).HasColumnName("product_id");
             entity.Property(e => e.Discount).HasColumnName("discount");
-            entity.Property(e => e.Instruction)
-                .HasColumnType("text")
-                .HasColumnName("instruction");
+            entity.Property(e => e.Instruction).HasColumnName("instruction");
             entity.Property(e => e.IsActive).HasColumnName("is_active");
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(8, 2)")
                 .HasColumnName("price");
             entity.Property(e => e.ProductName)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("product_name");
             entity.Property(e => e.ProductTypeId).HasColumnName("product_type_id");
 
@@ -445,7 +409,6 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.ProductTypeId).HasColumnName("product_type_id");
             entity.Property(e => e.ProductTypeName)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("product_type_name");
         });
 
@@ -461,15 +424,12 @@ public partial class BarbershopContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("review_id");
             entity.Property(e => e.AppointmentId).HasColumnName("appointment_id");
-            entity.Property(e => e.Comment)
-                .HasColumnType("text")
-                .HasColumnName("comment");
+            entity.Property(e => e.Comment).HasColumnName("comment");
             entity.Property(e => e.CreateAt)
                 .HasColumnType("datetime")
                 .HasColumnName("create_at");
             entity.Property(e => e.ImgUrl)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("img_url");
             entity.Property(e => e.IsActive)
                 .IsRequired()
@@ -505,9 +465,7 @@ public partial class BarbershopContext : DbContext
             entity.HasIndex(e => e.ServiceTypeId, "IX_services_service_type_id");
 
             entity.Property(e => e.ServiceId).HasColumnName("service_id");
-            entity.Property(e => e.Description)
-                .HasColumnType("text")
-                .HasColumnName("description");
+            entity.Property(e => e.Description).HasColumnName("description");
             entity.Property(e => e.DurationMin).HasColumnName("duration_min");
             entity.Property(e => e.IsActive)
                 .HasDefaultValue(true)
@@ -515,31 +473,30 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(8, 2)")
                 .HasColumnName("price");
+            entity.Property(e => e.ServiceImage)
+                .HasColumnType("text")
+                .HasColumnName("service_image");
             entity.Property(e => e.ServiceName)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("service_name");
             entity.Property(e => e.ServiceTypeId).HasColumnName("service_type_id");
 
             entity.HasOne(d => d.ServiceType).WithMany(p => p.Services)
                 .HasForeignKey(d => d.ServiceTypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("services_service_type_id_foreign");
+                .HasConstraintName("FK_service_serviceType");
         });
 
         modelBuilder.Entity<ServiceType>(entity =>
         {
-            entity.HasKey(e => e.ServiceTypeId).HasName("service_type_service_type_id_primary");
+            entity.HasKey(e => e.ServiceTypeId).HasName("PK__service___288B52C6B84870CB");
 
             entity.ToTable("service_type");
 
-            entity.Property(e => e.ServiceTypeId)
-                .ValueGeneratedNever()
-                .HasColumnName("service_type_id");
+            entity.Property(e => e.ServiceTypeId).HasColumnName("service_type_id");
             entity.Property(e => e.IsActive).HasColumnName("is_active");
             entity.Property(e => e.ServiceTypeName)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("service_type_name");
         });
 
@@ -553,7 +510,6 @@ public partial class BarbershopContext : DbContext
                 .HasColumnName("is_active");
             entity.Property(e => e.SkillName)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("skill_name");
         });
 
@@ -566,11 +522,9 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.UserId).HasColumnName("user_id");
             entity.Property(e => e.Address)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("address");
             entity.Property(e => e.Cccd)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("cccd");
             entity.Property(e => e.CreateAt)
                 .HasPrecision(0)
@@ -578,22 +532,18 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.Dob).HasColumnName("dob");
             entity.Property(e => e.Email)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("email");
             entity.Property(e => e.FullName)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("full_name");
             entity.Property(e => e.IsActive)
                 .HasDefaultValue(true)
                 .HasColumnName("is_active");
             entity.Property(e => e.Password)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("password");
             entity.Property(e => e.Phone)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("phone");
             entity.Property(e => e.RoleId).HasColumnName("role_id");
             entity.Property(e => e.UpdatedAt)
@@ -601,11 +551,11 @@ public partial class BarbershopContext : DbContext
                 .HasColumnName("updated_at");
             entity.Property(e => e.Username)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("username");
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.RoleId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("roles_role_id_foreign");
         });
 
@@ -616,11 +566,9 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.VoucherId).HasColumnName("voucher_id");
             entity.Property(e => e.Description)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("description");
             entity.Property(e => e.DiscountType)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("discount_type");
             entity.Property(e => e.DiscountValue)
                 .HasColumnType("decimal(8, 2)")
@@ -635,15 +583,12 @@ public partial class BarbershopContext : DbContext
                 .HasColumnName("startdate");
             entity.Property(e => e.VoucherCode)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("voucher_code");
             entity.Property(e => e.VoucherName)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("voucher_name");
             entity.Property(e => e.VoucherUrl)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("voucher_url");
         });
 

@@ -9,6 +9,17 @@ namespace barbershop.Controllers
     public class ServiceTypeController : ControllerBase
     {
     private readonly ServiceTypeService serviceTypeService = new ServiceTypeService();
-    // TODO: Implement API methods
+        // TODO: Implement API methods
+
+        [HttpGet("GetAllTypeServices")]
+        public async Task<IActionResult> GetAllTypeServices()
+        {
+            var response = await serviceTypeService.GetAllTypeServices();
+            return Ok(response);
+        }
+
+
+
+
     }
 }

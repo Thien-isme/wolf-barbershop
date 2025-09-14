@@ -9,6 +9,18 @@ namespace barbershop.Controllers
     public class EmployeeImgHairController : ControllerBase
     {
     private readonly EmployeeImgHairService employeeImgHairService = new EmployeeImgHairService();
-    // TODO: Implement API methods
+        // TODO: Implement API methods
+
+        [HttpGet("GetAllByEmployeeId")]
+        public async Task<IActionResult> GetAllByEmployeeId(int employeeId)
+        {
+             var response = await employeeImgHairService.GetAllByEmployeeId(employeeId);
+             return Ok(response);
+        }
+
+
+
+
+
     }
 }

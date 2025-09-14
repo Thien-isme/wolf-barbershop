@@ -6,5 +6,7 @@ namespace barbershop.Models.ResponseDTOs
     {
         public int ServiceTypeId { get; set; }
         public string ServiceTypeName { get; set; }
+        public bool IsActive { get; set; }
+        public List<ServiceDTO> Services { get; set; }
     }
 }

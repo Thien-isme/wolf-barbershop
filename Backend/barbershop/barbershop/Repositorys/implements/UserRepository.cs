@@ -9,6 +9,13 @@ namespace barbershop.Repositorys.implements
         {
             _context = new BarbershopContext();
         }
+
+        public async Task<User?> AddUser(User user)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+            return user;
+        }
         // TODO: Implement repository methods for User
     }
 }

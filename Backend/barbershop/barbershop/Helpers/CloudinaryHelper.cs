@@ -1,4 +1,4 @@
-using CloudinaryDotNet;
+﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 
 public static class CloudinaryHelper
@@ -8,6 +8,9 @@ public static class CloudinaryHelper
 
     public static async Task<string?> UploadImageAsync(IFormFile file)
     {
+        if (file == null)
+            throw new ArgumentNullException(nameof(file), "File upload không được null!");
+
         using var stream = file.OpenReadStream();
         var uploadParams = new ImageUploadParams
         {

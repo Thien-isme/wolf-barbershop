@@ -17,6 +17,7 @@ namespace barbershop.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .UseCollation("Vietnamese_CI_AS")
                 .HasAnnotation("ProductVersion", "9.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -66,17 +67,17 @@ namespace barbershop.Migrations
                         .HasDefaultValue("BOOKED")
                         .HasColumnName("status");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint")
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
                         .HasColumnName("user_id");
 
                     b.HasKey("AppointmentId");
 
-                    b.HasIndex("BarberId");
+                    b.HasIndex(new[] { "BarberId" }, "IX_appointments_barber_id");
 
-                    b.HasIndex("BranchId");
+                    b.HasIndex(new[] { "BranchId" }, "IX_appointments_branch_id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex(new[] { "UserId" }, "IX_appointments_user_id");
 
                     b.ToTable("appointments", (string)null);
                 });
@@ -100,9 +101,9 @@ namespace barbershop.Migrations
 
                     b.HasKey("AppointmentServiceId");
 
-                    b.HasIndex("AppointmentId");
+                    b.HasIndex(new[] { "AppointmentId" }, "IX_appointment_service_appointment_id");
 
-                    b.HasIndex("ServiceId");
+                    b.HasIndex(new[] { "ServiceId" }, "IX_appointment_service_service_id");
 
                     b.ToTable("appointment_service", (string)null);
                 });
@@ -118,14 +119,12 @@ namespace barbershop.Migrations
 
                     b.Property<string>("BranchName")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("branch_name");
 
                     b.Property<string>("BranchUrl")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("branch_url");
 
                     b.Property<bool>("IsActive")
@@ -136,15 +135,12 @@ namespace barbershop.Migrations
 
                     b.Property<string>("LocationDetail")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("location_detail");
 
                     b.Property<string>("ProvinceCity")
-                        .IsRequired()
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("province_city");
 
                     b.Property<TimeOnly?>("TimeOff")
@@ -156,10 +152,8 @@ namespace barbershop.Migrations
                         .HasColumnName("time_on");
 
                     b.Property<string>("WardCommune")
-                        .IsRequired()
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("ward_commune");
 
                     b.HasKey("BranchId")
@@ -183,12 +177,16 @@ namespace barbershop.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("avatar_url");
 
-                    b.Property<int>("BranchId")
+                    b.Property<int?>("BranchId")
                         .HasColumnType("int")
                         .HasColumnName("branch_id");
 
-                    b.Property<int>("ExperienceYears")
+                    b.Property<int?>("EmployeeRoleId")
                         .HasColumnType("int")
+                        .HasColumnName("employee_role_id");
+
+                    b.Property<DateOnly>("ExperienceYears")
+                        .HasColumnType("date")
                         .HasColumnName("experience_years");
 
                     b.Property<bool>("IsActive")
@@ -206,12 +204,20 @@ namespace barbershop.Migrations
                     b.Property<decimal?>("Rating")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("decimal(8, 2)")
-                        .HasDefaultValue(0m)
+                        .HasDefaultValue(0.0m)
                         .HasColumnName("rating");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("user_id");
 
                     b.HasKey("EmployeeId");
 
-                    b.HasIndex("BranchId");
+                    b.HasIndex("EmployeeRoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex(new[] { "BranchId" }, "IX_employees_branch_id");
 
                     b.ToTable("employees", (string)null);
                 });
@@ -241,9 +247,36 @@ namespace barbershop.Migrations
                     b.HasKey("EmployeeImgHairId")
                         .HasName("employee_img_hair_employee_img_hair_id_primary");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex(new[] { "EmployeeId" }, "IX_employee_img_hair_employee_id");
 
                     b.ToTable("employee_img_hair", (string)null);
+                });
+
+            modelBuilder.Entity("barbershop.Models.Entitys.EmployeeRole", b =>
+                {
+                    b.Property<int>("EmployeeRoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("employee_role_id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeRoleId"));
+
+                    b.Property<string>("EmployeeRoleName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("employee_role_name");
+
+                    b.Property<bool?>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.HasKey("EmployeeRoleId")
+                        .HasName("PK__employee__AF99BE5B682EDB1F");
+
+                    b.ToTable("employee_role", (string)null);
                 });
 
             modelBuilder.Entity("barbershop.Models.Entitys.EmployeeSkill", b =>
@@ -271,9 +304,9 @@ namespace barbershop.Migrations
 
                     b.HasKey("EmployeeSkillId");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex(new[] { "EmployeeId" }, "IX_employee_skill_employee_id");
 
-                    b.HasIndex("SkillId");
+                    b.HasIndex(new[] { "SkillId" }, "IX_employee_skill_skill_id");
 
                     b.ToTable("employee_skill", (string)null);
                 });
@@ -302,7 +335,7 @@ namespace barbershop.Migrations
 
                     b.HasKey("InventoryId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex(new[] { "ProductId" }, "IX_inventory_product_id");
 
                     b.ToTable("inventory", (string)null);
                 });
@@ -329,8 +362,8 @@ namespace barbershop.Migrations
                         .HasColumnType("datetime2(0)")
                         .HasColumnName("created_at");
 
-                    b.Property<long>("CustomerId")
-                        .HasColumnType("bigint")
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int")
                         .HasColumnName("customer_id");
 
                     b.Property<DateTime?>("ExpdateDate")
@@ -369,15 +402,15 @@ namespace barbershop.Migrations
 
                     b.HasKey("PaymentId");
 
-                    b.HasIndex("AppointmentId");
+                    b.HasIndex(new[] { "AppointmentId" }, "IX_payments_appointment_id");
 
-                    b.HasIndex("CasherId");
+                    b.HasIndex(new[] { "CasherId" }, "IX_payments_casher_id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex(new[] { "CustomerId" }, "IX_payments_customer_id");
 
-                    b.HasIndex("PaymentMethodId");
+                    b.HasIndex(new[] { "PaymentMethodId" }, "IX_payments_payment_method_id");
 
-                    b.HasIndex("VoucherId");
+                    b.HasIndex(new[] { "VoucherId" }, "IX_payments_voucher_id");
 
                     b.ToTable("payments", (string)null);
                 });
@@ -417,13 +450,13 @@ namespace barbershop.Migrations
 
                     b.HasKey("PaymentServiceId");
 
-                    b.HasIndex("BarberId");
+                    b.HasIndex(new[] { "BarberId" }, "IX_payment_service_barber_id");
 
-                    b.HasIndex("PaymentId");
+                    b.HasIndex(new[] { "PaymentId" }, "IX_payment_service_payment_id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex(new[] { "ProductId" }, "IX_payment_service_product_id");
 
-                    b.HasIndex("ServiceId");
+                    b.HasIndex(new[] { "ServiceId" }, "IX_payment_service_service_id");
 
                     b.ToTable("payment_service", (string)null);
                 });
@@ -499,7 +532,7 @@ namespace barbershop.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("ProductTypeId");
+                    b.HasIndex(new[] { "ProductTypeId" }, "IX_products_product_type_id");
 
                     b.ToTable("products", (string)null);
                 });
@@ -562,7 +595,7 @@ namespace barbershop.Migrations
                     b.HasKey("ReviewId")
                         .HasName("reviews_review_id_primary");
 
-                    b.HasIndex("AppointmentId");
+                    b.HasIndex(new[] { "AppointmentId" }, "IX_reviews_appointment_id");
 
                     b.ToTable("reviews", (string)null);
                 });
@@ -629,7 +662,7 @@ namespace barbershop.Migrations
 
                     b.HasKey("ServiceId");
 
-                    b.HasIndex("ServiceTypeId");
+                    b.HasIndex(new[] { "ServiceTypeId" }, "IX_services_service_type_id");
 
                     b.ToTable("services", (string)null);
                 });
@@ -686,12 +719,12 @@ namespace barbershop.Migrations
 
             modelBuilder.Entity("barbershop.Models.Entitys.User", b =>
                 {
-                    b.Property<long>("UserId")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .HasColumnName("user_id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("UserId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<string>("Address")
                         .HasMaxLength(255)
@@ -746,7 +779,7 @@ namespace barbershop.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("phone");
 
-                    b.Property<int>("RoleId")
+                    b.Property<int?>("RoleId")
                         .HasColumnType("int")
                         .HasColumnName("role_id");
 
@@ -763,7 +796,7 @@ namespace barbershop.Migrations
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex(new[] { "RoleId" }, "IX_users_role_id");
 
                     b.ToTable("users", (string)null);
                 });
@@ -888,10 +921,23 @@ namespace barbershop.Migrations
                     b.HasOne("barbershop.Models.Entitys.Branch", "Branch")
                         .WithMany("Employees")
                         .HasForeignKey("BranchId")
-                        .IsRequired()
                         .HasConstraintName("FK_employees_location_id");
 
+                    b.HasOne("barbershop.Models.Entitys.EmployeeRole", "EmployeeRole")
+                        .WithMany("Employees")
+                        .HasForeignKey("EmployeeRoleId")
+                        .HasConstraintName("FK_Employees_Employees_Role");
+
+                    b.HasOne("barbershop.Models.Entitys.User", "User")
+                        .WithMany("Employees")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_Users_Employees");
+
                     b.Navigation("Branch");
+
+                    b.Navigation("EmployeeRole");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("barbershop.Models.Entitys.EmployeeImgHair", b =>
@@ -1047,7 +1093,6 @@ namespace barbershop.Migrations
                     b.HasOne("barbershop.Models.Entitys.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
-                        .IsRequired()
                         .HasConstraintName("roles_role_id_foreign");
 
                     b.Navigation("Role");
@@ -1080,6 +1125,11 @@ namespace barbershop.Migrations
                     b.Navigation("PaymentServices");
 
                     b.Navigation("Payments");
+                });
+
+            modelBuilder.Entity("barbershop.Models.Entitys.EmployeeRole", b =>
+                {
+                    b.Navigation("Employees");
                 });
 
             modelBuilder.Entity("barbershop.Models.Entitys.Payment", b =>
@@ -1129,6 +1179,8 @@ namespace barbershop.Migrations
             modelBuilder.Entity("barbershop.Models.Entitys.User", b =>
                 {
                     b.Navigation("Appointments");
+
+                    b.Navigation("Employees");
 
                     b.Navigation("Payments");
                 });

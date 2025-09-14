@@ -168,4 +168,13 @@ F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\refint\ba
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\barbershop.pdb
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\barbershop.genruntimeconfig.cache
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\ref\barbershop.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Serilog.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Serilog.AspNetCore.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Serilog.Extensions.Hosting.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Serilog.Extensions.Logging.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Serilog.Formatting.Compact.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Serilog.Settings.Configuration.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Serilog.Sinks.Console.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Serilog.Sinks.Debug.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Serilog.Sinks.File.dll
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
