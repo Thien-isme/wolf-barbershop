@@ -1,15 +1,63 @@
-import { Modal, Form, Input, Button } from "antd";
+import { Modal, Form, Input, Button, Select, Upload } from "antd";
 import { UploadOutlined, CloseOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./AddBarberModalWolf.module.css";
+import { getBranchs } from "../../../api/branchApi";
+import type { BranchDTO } from "../../../types/branchDTO";
+import { addBarber } from "../../../api/barbersApi";
+
 
 interface AddBarberModalProps {
   visible: boolean;
   onClose: () => void;
+  onAddSuccess?: (barber: any) => void; // Thêm prop này
 }
-export default function AddBarberModal({ visible, onClose }: AddBarberModalProps) {
+export default function AddBarberModal({ visible, onClose, onAddSuccess }: AddBarberModalProps) {
   const [form] = Form.useForm();
   const [avatarUrl, setAvatarUrl] = useState<string>("");
+  const [branches, setBranches] = useState<BranchDTO[]>([]);
+
+  useEffect(() => {
+    if (visible) {
+      getBranchs().then(res => {
+        setBranches(res.data); // hoặc res nếu API trả về mảng trực tiếp
+      });
+    }
+  }, [visible]);
+
+  const handleFinish = async (values: any) => {
+    const formData = new FormData();
+    formData.append("FullName", values.full_name);
+    formData.append("Phone", values.phone);
+    formData.append("Dob", values.dob);
+    formData.append("CCCD", values.cccd);
+    formData.append("ExperienceYears", values.experience_years.toString());
+    formData.append("Username", values.username);
+    formData.append("Email", values.email);
+    formData.append("Password", values.password);
+    if (values.branchId) {
+      formData.append("BranchId", values.branchId.toString());
+    }
+    if (values.img && values.img[0] && values.img[0].originFileObj) {
+      formData.append("Avatar", values.img[0].originFileObj);
+    }
+
+    try {
+      const result = await addBarber(formData);
+      if (result.status === 200) {
+        alert("Thêm barber thành công!");
+        form.resetFields();
+        setAvatarUrl("");
+        console.log("Barber mới:", result.data);
+          onAddSuccess?.(result.data); // Gọi callback với barber mới
+          onClose();
+      } else {
+        alert(result.messageShow || "Có lỗi xảy ra!");
+      }
+    } catch (error: any) {
+      alert(error?.message || "Có lỗi xảy ra khi gọi API!");
+    }
+  };
 
   return (
     <Modal
@@ -29,34 +77,44 @@ export default function AddBarberModal({ visible, onClose }: AddBarberModalProps
           form={form}
           layout="vertical"
           className={styles.form}
+          onFinish={handleFinish}
         >
           <div className={styles.gridThreeCol}>
             {/* Cột 1: Avatar */}
             <div className={styles.colAvatar}>
               <label className={styles.label}>Ảnh đại diện</label>
-              <div className={styles.avatarUpload}>
-                <input
-                  style={{ display: "none" }}
-                  type="file"
-                  id="avatar"
-                  accept="image/*"
-                  className={styles.fileInput}
-                  onChange={e => {
-                    if (e.target.files && e.target.files[0]) {
-                      setAvatarUrl(URL.createObjectURL(e.target.files[0]));
+              <Form.Item
+                name="img"
+                valuePropName="fileList"
+                getValueFromEvent={e => Array.isArray(e) ? e : e && e.fileList}
+                className={styles.formItem}
+                rules={[{ required: true, message: "Vui lòng chọn ảnh đại diện!" }]}
+              >
+                <Upload
+                  listType="picture-card"
+                  beforeUpload={() => false} // Ngăn upload tự động
+                  onChange={info => {
+                    if (info.fileList && info.fileList[0]) {
+                      setAvatarUrl(URL.createObjectURL(info.fileList[0].originFileObj));
+                    } else {
+                      setAvatarUrl("");
                     }
                   }}
-                />
-                <label htmlFor="avatar" className={styles.uploadBtn}>
-                  <UploadOutlined /> Chọn ảnh
-                </label>
-                <div className={styles.avatarPreviewBox}>
-                  {avatarUrl ? (
-                    <img src={avatarUrl} alt="avatar" className={styles.avatarPreview} />
-                  ) : (
-                    <div className={styles.avatarPlaceholder}>Preview</div>
-                  )}
-                </div>
+                  maxCount={1}
+                  accept="image/*"
+                  showUploadList={false}
+                >
+                  <div className={styles.uploadBtn}>
+                    <UploadOutlined /> Chọn ảnh
+                  </div>
+                </Upload>
+              </Form.Item>
+              <div className={styles.avatarPreviewBox}>
+                {avatarUrl ? (
+                  <img src={avatarUrl} alt="avatar" className={styles.avatarPreview} />
+                ) : (
+                  <div className={styles.avatarPlaceholder}>Preview</div>
+                )}
               </div>
             </div>
             {/* Cột 2: Thông tin cá nhân */}
@@ -103,11 +161,28 @@ export default function AddBarberModal({ visible, onClose }: AddBarberModalProps
               </Form.Item>
               <Form.Item
                 className={styles.formItem}
-                label={<span className={styles.label}>Địa chỉ chi tiết</span>}
-                name="address"
-                rules={[{ required: true, message: "Vui lòng nhập địa chỉ!" }]}
+                label={
+                  <span className={styles.label}>
+                    <span style={{ color: "#ffd600", marginRight: 6 }}>🏢</span>
+                    Chi nhánh làm việc
+                  </span>
+                }
+                name="branchId"
               >
-                <Input className={styles.input} placeholder="Nhập địa chỉ chi tiết" />
+                <Select
+                  className={styles.select}
+                  style={{ width: "100%" }}
+                  placeholder="Chọn chi nhánh làm việc (có thể bỏ trống)"
+                  allowClear
+                  showSearch
+                  options={branches.map(branch => ({
+                    label: branch.branchName,
+                    value: branch.branchId,
+                  }))}
+                  filterOption={(input, option) =>
+                    (option?.label as string).toLowerCase().includes(input.toLowerCase())
+                  }
+                />
               </Form.Item>
               
             </div>
@@ -147,8 +222,7 @@ export default function AddBarberModal({ visible, onClose }: AddBarberModalProps
                 block
                 className={styles.submitBtn}
                 style={{ marginTop: 18 }}
-                onClick={() => form.submit()}
-                >
+              >
                 Thêm barber
               </Button>
                   </div>

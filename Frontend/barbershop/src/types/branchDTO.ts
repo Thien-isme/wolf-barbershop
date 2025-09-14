@@ -1,4 +1,4 @@
-export interface Branch {
+export interface BranchDTO {
   branchId: number;
   branchName: string;
   provinceCity?: string;

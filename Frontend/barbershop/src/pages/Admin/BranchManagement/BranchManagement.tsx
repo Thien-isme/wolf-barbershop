@@ -5,9 +5,9 @@ import SidebarLayout from "../Sidebar/AdminSidebarLayout";
 import styles from "./BranchManagement.module.css";
 import AddBranchModal from "./AddBranchModal"; // Import modal component
 import { getBranchs } from "../../../api/branchApi";
-import type { Branch } from "../../../types/branch";
+import type { BranchDTO } from "../../../types/branchDTO";
 export default function BranchManagement() {
-  const [branches, setBranches] = useState<Branch[]>([]);
+  const [branches, setBranches] = useState<BranchDTO[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -87,10 +87,10 @@ export default function BranchManagement() {
               }}
               bodyStyle={{ padding: 0 }}
               hoverable
-              actions={[
-                <EditOutlined key="edit" style={{ color: "#ffd600", fontSize: 20 }} />,
-                <DeleteOutlined key="delete" style={{ color: "#ff4d4f", fontSize: 20 }} />,
-              ]}
+              // actions={[
+              //   <EditOutlined key="edit" style={{ color: "#ffd600", fontSize: 20 }} />,
+              //   <DeleteOutlined key="delete" style={{ color: "#ff4d4f", fontSize: 20 }} />,
+              // ]}
             >
               <div
                 style={{

@@ -9,6 +9,7 @@ import AddBarberModal from "./AddBarberModal";
 import {getBarbers} from "../../../api/barbersApi";
 import type { EmployeeDTO } from "../../../types/employeeDTO";
 
+
 function BarberItem({ barber, bubble }: { barber: EmployeeDTO, bubble?: boolean }) {
   
   return (
@@ -77,6 +78,12 @@ export default function BarberManagement() {
   const [bubble, setBubble] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
 
+  // Hàm này sẽ được gọi khi thêm thành công
+  const handleAddBarberSuccess = (newBarber: EmployeeDTO) => {
+    setBarbers([newBarber,...barbers]);
+    setShowAddModal(false);
+  };
+
   useEffect(() => {
       getBarbers().then(res => {
         // Nếu res.data là mảng barber
@@ -93,7 +100,7 @@ export default function BarberManagement() {
     return () => clearTimeout(timer);
   }, []);
 
-  const filteredBarbers = barbers.filter(b =>
+  const filteredBarbers = barbers?.filter(b =>
     b.userDTO?.fullName?.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -159,7 +166,7 @@ export default function BarberManagement() {
         </Button>
       </div>
       <Row gutter={[12, 12]} justify="center">
-        {filteredBarbers.map((barber, idx) => (
+        {filteredBarbers?.map((barber, idx) => (
           <Col xs={24} sm={12} md={8} lg={6} xl={4} key={idx}>
             <BarberItem barber={barber} bubble={bubble} />
           </Col>
@@ -168,6 +175,7 @@ export default function BarberManagement() {
       <AddBarberModal
         visible={showAddModal}
         onClose={() => setShowAddModal(false)}
+        onAddSuccess={handleAddBarberSuccess}
       />
     </SidebarLayout>
   );

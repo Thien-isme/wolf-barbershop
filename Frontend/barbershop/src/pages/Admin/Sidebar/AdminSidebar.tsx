@@ -33,7 +33,7 @@ export default function AdminSidebar() {
           src="https://res.cloudinary.com/duzh5dnul/image/upload/v1755951808/logo6_nqy39c.png"
           alt="BarberShop Logo"
           style={{ height: 150, marginBottom: 8, cursor: "pointer" }}
-          onClick={() => navigate("/wolf-barbershop/admin")}
+          onClick={() => navigate("/admin")}
         />
       </div>
       <Menu
