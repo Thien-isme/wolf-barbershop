@@ -4,6 +4,8 @@ namespace barbershop.Services.implements
 {
     using barbershop.Models.ResponseDTOs;
     using barbershop.Repositorys.implements;
+    using System;
+    using System.Threading.Tasks;
 
     public class AppointmentServiceService
     {
@@ -13,6 +15,8 @@ namespace barbershop.Services.implements
         {
             appointmentServiceRepository = new AppointmentServiceRepository();
         }
+
+       
         // TODO: Implement service methods for AppointmentService
     }
 }

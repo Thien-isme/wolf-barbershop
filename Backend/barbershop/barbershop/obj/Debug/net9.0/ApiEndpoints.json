@@ -16,6 +16,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "barbershop.Controllers.AppointmentController",
+    "Method": "GetTimeBookedOfBarber",
+    "RelativePath": "api/Appointment/GetTimeBookedOfBarber",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "barberId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "appointmentDate",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "barbershop.Controllers.BranchController",
     "Method": "AddBranch",
     "RelativePath": "api/Branch/add",
@@ -177,6 +198,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.EmployeeImgHairController",
+    "Method": "GetHairIsOutstanding",
+    "RelativePath": "api/EmployeeImgHair/GetHairIsOutstanding",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

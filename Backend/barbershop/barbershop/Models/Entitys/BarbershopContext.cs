@@ -79,6 +79,7 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.CreatedAt)
                 .HasPrecision(0)
                 .HasColumnName("created_at");
+            entity.Property(e => e.IsActive).HasColumnName("is_active");
             entity.Property(e => e.Note).HasColumnName("note");
             entity.Property(e => e.Status)
                 .HasMaxLength(255)
@@ -205,6 +206,9 @@ public partial class BarbershopContext : DbContext
                 .IsRequired()
                 .HasDefaultValueSql("('1')")
                 .HasColumnName("is_active");
+            entity.Property(e => e.IsOutstanding)
+                .HasDefaultValue(false)
+                .HasColumnName("is_outstanding");
 
             entity.HasOne(d => d.Employee).WithMany(p => p.EmployeeImgHairs)
                 .HasForeignKey(d => d.EmployeeId)

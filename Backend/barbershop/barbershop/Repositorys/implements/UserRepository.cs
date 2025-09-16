@@ -1,4 +1,5 @@
 using barbershop.Models.Entitys;
+using Microsoft.EntityFrameworkCore;
 
 namespace barbershop.Repositorys.implements
 {
@@ -8,6 +9,14 @@ namespace barbershop.Repositorys.implements
         public UserRepository()
         {
             _context = new BarbershopContext();
+        }
+
+
+        public async Task<User?> FindByPhone(string phone)
+        {
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Phone == phone);
+            return user;
         }
 
         public async Task<User?> AddUser(User user)

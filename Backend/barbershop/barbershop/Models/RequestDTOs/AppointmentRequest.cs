@@ -6,13 +6,13 @@ namespace barbershop.Models.RequestDTOs
     {
         public string? FullName { get; set; }
         public string? Phone { get; set; }
-        public long UserId { get; set; }
-
-        public int? BarberId { get; set; }
+        //public long UserId { get; set; }
+        public int BarberId { get; set; }
+        public int BranchId { get; set; }
 
         public List<int>? servicesId { get; set; } = new List<int>();
 
-        public DateOnly? AppointmentDate { get; set; }
+        public DateTime? AppointmentDate { get; set; }
         public TimeOnly? AppointmentTime { get; set; }
 
         public int? VoucherId { get; set; }

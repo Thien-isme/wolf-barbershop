@@ -23,6 +23,8 @@ public partial class Appointment
 
     public string? Note { get; set; }
 
+    public bool? IsActive { get; set; }
+
     public virtual ICollection<AppointmentService> AppointmentServices { get; set; } = new List<AppointmentService>();
 
     public virtual Employee Barber { get; set; } = null!;

@@ -36,6 +36,36 @@
         }
       }
     },
+    "/api/Appointment/GetTimeBookedOfBarber": {
+      "get": {
+        "tags": [
+          "Appointment"
+        ],
+        "parameters": [
+          {
+            "name": "barberId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "appointmentDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Branch/add": {
       "post": {
         "tags": [
@@ -269,6 +299,18 @@
         }
       }
     },
+    "/api/EmployeeImgHair/GetHairIsOutstanding": {
+      "get": {
+        "tags": [
+          "EmployeeImgHair"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Product/products": {
       "get": {
         "tags": [
@@ -330,14 +372,13 @@
             "type": "string",
             "nullable": true
           },
-          "userId": {
-            "type": "integer",
-            "format": "int64"
-          },
           "barberId": {
             "type": "integer",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
+          },
+          "branchId": {
+            "type": "integer",
+            "format": "int32"
           },
           "servicesId": {
             "type": "array",
@@ -349,7 +390,7 @@
           },
           "appointmentDate": {
             "type": "string",
-            "format": "date",
+            "format": "date-time",
             "nullable": true
           },
           "appointmentTime": {

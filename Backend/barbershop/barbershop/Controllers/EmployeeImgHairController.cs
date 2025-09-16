@@ -18,6 +18,13 @@ namespace barbershop.Controllers
              return Ok(response);
         }
 
+        [HttpGet("GetHairIsOutstanding")]
+        public async Task<IActionResult> GetHairIsOutstanding()
+        {
+             var response = await employeeImgHairService.GetHairIsOutstanding();
+             return Ok(response);
+        }
+
 
 
 

@@ -34,6 +34,25 @@ namespace barbershop.Services.implements
             }
             return baseResponse;
         }
-        // TODO: Implement service methods for EmployeeImgHair
-    }
+
+        public async Task<BaseResponse?> GetHairIsOutstanding()
+        {
+            try
+            {
+                List<EmployeeImgHair> imgHairs = await employeeImgHairRepository.GetHairIsOutstanding();
+                baseResponse.Status = 200;
+                baseResponse.MessageShow = "Lấy ảnh mẫu nổi bật thành công";
+                baseResponse.Data = imgHairs;
+            }
+            catch (Exception ex)
+            {
+                baseResponse.Status = 500;
+                baseResponse.MessageShow = "Hệ thống có lỗi, Vui lòng thử lại trong giây lát!";
+                baseResponse.MessageHide = ex.Message;
+                baseResponse.Data = null;
+            }
+            return baseResponse;
+        }
+            // TODO: Implement service methods for EmployeeImgHair
+        }
 }

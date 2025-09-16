@@ -18,6 +18,14 @@ namespace barbershop.Repositorys.implements
                 .OrderByDescending(eih => eih.EmployeeImgHairId)
                 .ToListAsync();
         }
+
+        public async Task<List<EmployeeImgHair>?> GetHairIsOutstanding()
+        {
+            return await _context.EmployeeImgHairs
+                .Where(eih => eih.IsOutstanding == true && eih.IsActive == true)
+                .OrderByDescending(eih => eih.EmployeeImgHairId)
+                .ToListAsync();
+        }
         // TODO: Implement repository methods for EmployeeImgHair
     }
 }

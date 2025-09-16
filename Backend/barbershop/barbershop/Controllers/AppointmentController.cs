@@ -13,14 +13,19 @@ namespace barbershop.Controllers
         private readonly UserService userService = new UserService();
         // TODO: Implement API methods
 
-
-
-
         [HttpPost("create")]
         public async Task<IActionResult> CreateAppointment([FromBody] AppointmentRequest appointmentRequest)
         {
             var createdAppointment = await appointmentService.CreateAppointmentAsync(appointmentRequest);
             return Ok(createdAppointment);
         }
+
+        [HttpGet("GetTimeBookedOfBarber")]
+        public async Task<IActionResult> GetTimeBookedOfBarber(int barberId, DateOnly appointmentDate)
+        {
+            var bookedTimes = await appointmentService.GetTimeBookedOfBarber(barberId, appointmentDate);
+            return Ok(bookedTimes);
+        }
+
     }
 }

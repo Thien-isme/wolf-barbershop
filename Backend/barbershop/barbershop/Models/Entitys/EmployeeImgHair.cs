@@ -13,5 +13,7 @@ public partial class EmployeeImgHair
 
     public bool? IsActive { get; set; }
 
+    public bool? IsOutstanding { get; set; }
+
     public virtual Employee Employee { get; set; } = null!;
 }
