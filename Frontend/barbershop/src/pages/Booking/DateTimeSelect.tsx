@@ -7,12 +7,14 @@ const DateTimeSelect = ({
   selectedTime,
   setSelectedTime,
   timeSlots,
+  disabledTimes = [],
 }: {
   selectedDate: dayjs.Dayjs | null;
   setSelectedDate: (date: dayjs.Dayjs | null) => void;
   selectedTime: string | null;
   setSelectedTime: (time: string) => void;
   timeSlots: string[];
+  disabledTimes?: string[];
 }) => (
   <>
     <Card
@@ -52,6 +54,26 @@ const DateTimeSelect = ({
         placeholder="Chọn ngày"
       />
     </Card>
+    {/* Chú thích trạng thái */}
+    <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 12 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        <div style={{ width: 18, height: 18, background: '#1677ff', borderRadius: 4 }} />
+        <span style={{ color: 'white', fontSize: 14 }}>Đang chọn</span>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        <div style={{ width: 18, height: 18, background: '#fff', borderRadius: 4, border: '2px solid #ccc' }} />
+        <span style={{ color: 'white', fontSize: 14 }}>Có thể chọn</span>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        <div style={{
+          width: 18, height: 18, background: '#888', borderRadius: 4,
+          display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}>
+          <span style={{ color: '#fff', fontWeight: 700 }}>X</span>
+        </div>
+        <span style={{ color: 'white', fontSize: 14 }}>Không thể chọn</span>
+      </div>
+    </div>
     <Card
       style={{ background: '#222', border: 'none', marginBottom: 24 }}
       bodyStyle={{ padding: 16, position: 'relative' }}
@@ -66,26 +88,46 @@ const DateTimeSelect = ({
           gap: 16,
         }}
       >
-        {timeSlots.map(slot => (
-          <Button
-            key={slot}
-            type={selectedTime === slot ? 'primary' : 'default'}
-            onClick={() => setSelectedTime(slot)}
-            style={{
-              background: selectedTime === slot ? '#1677ff' : '#fff',
-              color: selectedTime === slot ? '#fff' : '#111',
-              fontWeight: 700,
-              fontSize: 18,
-              borderRadius: 16,
-              border: 'none',
-              height: 48,
-              boxShadow: selectedTime === slot ? '0 0 0 2px #1677ff33' : undefined,
-            }}
-            block
-          >
-            {slot}
-          </Button>
-        ))}
+        {timeSlots.map(slot => {
+          const isDisabled = disabledTimes.includes(slot);
+          const isSelected = selectedTime === slot;
+          return (
+            <Button
+              key={slot}
+              type="default"
+              onClick={() => !isDisabled && setSelectedTime(slot)}
+              disabled={isDisabled}
+              style={{
+                background: isSelected
+                  ? '#1677ff'
+                  : isDisabled
+                    ? '#888'
+                    : '#fff',
+                color: isSelected
+                  ? '#fff'
+                  : isDisabled
+                    ? '#fff'
+                    : '#111',
+                fontWeight: 700,
+                fontSize: 18,
+                borderRadius: 16,
+                border: 'none',
+                height: 48,
+                boxShadow: isSelected ? '0 0 0 2px #d0021b33' : undefined,
+                opacity: isDisabled ? 0.8 : 1,
+                cursor: isDisabled ? 'not-allowed' : 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+              block
+            >
+              {isDisabled
+                ? <span style={{ fontWeight: 700 }}>X</span>
+                : slot}
+            </Button>
+          );
+        })}
       </div>
     </Card>
   </>

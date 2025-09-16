@@ -3,84 +3,28 @@
   "WorkspaceRootPath": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\voucherdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\voucherdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\services\\implements\\appointmentservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:services\\implements\\appointmentservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\skilldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\skilldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\entitys\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\entitys\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\servicetypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\servicetypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\entitys\\voucher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\entitys\\voucher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\servicedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\servicedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\requestdtos\\appointmentrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\requestdtos\\appointmentrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\roledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\roledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\reviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\reviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\producttypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\producttypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\paymentsmethoddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\paymentsmethoddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\paymentservicedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\paymentservicedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\paymentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\paymentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\inventorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\inventorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\employeeskilldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\employeeskilldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\employeeimghairdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\employeeimghairdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\branchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\branchdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\baseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\baseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\barberdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\barberdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\appointmentservicedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\appointmentservicedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\controllers\\branchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:controllers\\branchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -90,270 +34,89 @@
       "DocumentGroups": [
         {
           "DockedWidth": 204,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "User.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\Entitys\\User.cs",
+              "RelativeDocumentMoniker": "Models\\Entitys\\User.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\Entitys\\User.cs",
+              "RelativeToolTip": "Models\\Entitys\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-15T16:59:16.606Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "VoucherDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\VoucherDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\VoucherDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\VoucherDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\VoucherDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:07:52.296Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\UserDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\UserDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\UserDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\UserDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:07:45.427Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SkillDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\SkillDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\SkillDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\SkillDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\SkillDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:07:41.183Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ServiceTypeDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ServiceTypeDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\ServiceTypeDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ServiceTypeDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\ServiceTypeDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
+              "Title": "Voucher.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\Entitys\\Voucher.cs",
+              "RelativeDocumentMoniker": "Models\\Entitys\\Voucher.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\Entitys\\Voucher.cs",
+              "RelativeToolTip": "Models\\Entitys\\Voucher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:07:36.411Z",
+              "WhenOpened": "2025-09-15T17:01:48.342Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ServiceDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ServiceDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\ServiceDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ServiceDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\ServiceDTO.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAUAAAAEAAAAAAAAAA==",
+              "Title": "AppointmentRequest.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\RequestDTOs\\AppointmentRequest.cs",
+              "RelativeDocumentMoniker": "Models\\RequestDTOs\\AppointmentRequest.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\RequestDTOs\\AppointmentRequest.cs",
+              "RelativeToolTip": "Models\\RequestDTOs\\AppointmentRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:07:21.583Z",
+              "WhenOpened": "2025-09-15T16:57:40.348Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppointmentServices.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Services\\implements\\AppointmentServices.cs",
+              "RelativeDocumentMoniker": "Services\\implements\\AppointmentServices.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Services\\implements\\AppointmentServices.cs",
+              "RelativeToolTip": "Services\\implements\\AppointmentServices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAkAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-15T16:53:44.372Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "RoleDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\RoleDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\RoleDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\RoleDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\RoleDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
+              "Title": "BranchController.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\BranchController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BranchController.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\BranchController.cs",
+              "RelativeToolTip": "Controllers\\BranchController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:07:15.421Z",
+              "WhenOpened": "2025-09-15T16:52:14.414Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ReviewDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ReviewDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\ReviewDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ReviewDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\ReviewDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "AppointmentController.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\AppointmentController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AppointmentController.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\AppointmentController.cs",
+              "RelativeToolTip": "Controllers\\AppointmentController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:07:10.568Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ProductTypeDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ProductTypeDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\ProductTypeDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ProductTypeDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\ProductTypeDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:07:04.333Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ProductDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ProductDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\ProductDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ProductDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\ProductDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:06:51.613Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "PaymentsMethodDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\PaymentsMethodDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\PaymentsMethodDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\PaymentsMethodDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\PaymentsMethodDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:06:43.396Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PaymentServiceDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\PaymentServiceDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\PaymentServiceDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\PaymentServiceDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\PaymentServiceDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:06:04.411Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "PaymentDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\PaymentDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\PaymentDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\PaymentDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\PaymentDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:05:59.181Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "InventoryDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\InventoryDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\InventoryDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\InventoryDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\InventoryDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:05:52.88Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "EmployeeSkillDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\EmployeeSkillDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\EmployeeSkillDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\EmployeeSkillDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\EmployeeSkillDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:05:45.567Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "EmployeeImgHairDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\EmployeeImgHairDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\EmployeeImgHairDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\EmployeeImgHairDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\EmployeeImgHairDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:04:39.442Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "EmployeeDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\EmployeeDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\EmployeeDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\EmployeeDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\EmployeeDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:04:34.364Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "BranchDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\BranchDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\BranchDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\BranchDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\BranchDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:04:27.21Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "BaseResponse.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\BaseResponse.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\BaseResponse.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\BaseResponse.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\BaseResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:04:24.614Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "BarberDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\BarberDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\BarberDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\BarberDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\BarberDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:03:55.37Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "AppointmentServiceDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\AppointmentServiceDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\AppointmentServiceDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\AppointmentServiceDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\AppointmentServiceDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T16:03:31.457Z",
+              "WhenOpened": "2025-09-15T16:32:22.242Z",
               "EditorCaption": ""
             }
           ]

@@ -5,6 +5,37 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Appointment/create": {
+      "post": {
+        "tags": [
+          "Appointment"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppointmentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppointmentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppointmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Branch/add": {
       "post": {
         "tags": [
@@ -286,5 +317,58 @@
       }
     }
   },
-  "components": { }
+  "components": {
+    "schemas": {
+      "AppointmentRequest": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "barberId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "servicesId": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "appointmentDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "appointmentTime": {
+            "type": "string",
+            "format": "time",
+            "nullable": true
+          },
+          "voucherId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
 }

@@ -1,9 +1,10 @@
 import { Button } from 'antd';
 
-const BookingButton = () => (
+const BookingButton = ({ loading }: { loading?: boolean }) => (
   <Button
     type="primary"
     htmlType="submit"
+    loading={loading}
     icon={<span className="anticon anticon-calendar" style={{ marginRight: 8 }}>📅</span>}
     style={{
       width: '100%',

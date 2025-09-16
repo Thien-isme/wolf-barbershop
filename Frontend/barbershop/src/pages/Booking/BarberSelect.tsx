@@ -1,6 +1,6 @@
 import { Form, Radio, Space, Card, Row, Col, Image, Typography } from 'antd';
-import type { EmployeeDTO } from '../../types/employeeDTO';
-import type { EmployeeImgHairDTO } from '../../types/employeeImgHairDTO';
+import type { EmployeeDTO } from '../../types/ResponseDTOs/employeeDTO';
+import type { EmployeeImgHairDTO } from '../../types/ResponseDTOs/employeeImgHairDTO';
 
 const BarberSelect = ({
   barbers,

@@ -1,13 +1,26 @@
 using barbershop.Models.Entitys;
+using barbershop.Services.implements;
 using Microsoft.AspNetCore.Mvc;
-
+using barbershop.Services.implements;
+using barbershop.Models.RequestDTOs;
 namespace barbershop.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class AppointmentController : ControllerBase
     {
-    private readonly AppointmentService appointmentService = new AppointmentService();
-    // TODO: Implement API methods
+        private readonly AppointmentServices appointmentService = new AppointmentServices();
+        private readonly UserService userService = new UserService();
+        // TODO: Implement API methods
+
+
+
+
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateAppointment([FromBody] AppointmentRequest appointmentRequest)
+        {
+            var createdAppointment = await appointmentService.CreateAppointmentAsync(appointmentRequest);
+            return Ok(createdAppointment);
+        }
     }
 }

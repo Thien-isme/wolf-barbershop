@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "barbershop.Controllers.AppointmentController",
+    "Method": "CreateAppointment",
+    "RelativePath": "api/Appointment/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "appointmentRequest",
+        "Type": "barbershop.Models.RequestDTOs.AppointmentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "barbershop.Controllers.BranchController",
     "Method": "AddBranch",
     "RelativePath": "api/Branch/add",

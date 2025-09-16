@@ -3,7 +3,7 @@ import { UploadOutlined, CloseOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import styles from "./AddBarberModalWolf.module.css";
 import { getBranchs } from "../../../api/branchApi";
-import type { BranchDTO } from "../../../types/branchDTO";
+import type { BranchDTO } from "../../../types/ResponseDTOs/branchDTO";
 import { addBarber } from "../../../api/barbersApi";
 
 

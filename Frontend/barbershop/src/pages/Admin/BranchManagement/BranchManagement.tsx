@@ -5,7 +5,7 @@ import SidebarLayout from "../Sidebar/AdminSidebarLayout";
 import styles from "./BranchManagement.module.css";
 import AddBranchModal from "./AddBranchModal"; // Import modal component
 import { getBranchs } from "../../../api/branchApi";
-import type { BranchDTO } from "../../../types/branchDTO";
+import type { BranchDTO } from "../../../types/ResponseDTOs/branchDTO";
 export default function BranchManagement() {
   const [branches, setBranches] = useState<BranchDTO[]>([]);
   const [modalOpen, setModalOpen] = useState(false);

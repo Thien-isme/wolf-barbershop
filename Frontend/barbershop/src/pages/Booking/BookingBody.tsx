@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { Card, Typography, Form } from 'antd';
+import { Card, Typography, Form, message } from 'antd';
 import dayjs from 'dayjs';
 
 import CustomerInfo from './CustomerInfo';
@@ -9,15 +9,17 @@ import ServiceSelect from './ServiceSelect';
 import DateTimeSelect from './DateTimeSelect';
 import VoucherNote from './VoucherNote';
 import BookingButton from './BookingButton';
-import type { BranchDTO } from '../../types/branchDTO';
+import type { BranchDTO } from '../../types/ResponseDTOs/branchDTO';
 import {getBranchs} from '../../api/branchApi';
 import { getBarbersInBranch } from '../../api/barbersApi';
-import type { EmployeeDTO } from '../../types/employeeDTO';
-import type { EmployeeImgHairDTO } from '../../types/employeeImgHairDTO';
+import type { EmployeeDTO } from '../../types/ResponseDTOs/employeeDTO';
+import type { EmployeeImgHairDTO } from '../../types/ResponseDTOs/employeeImgHairDTO';
 import { getEmployeeImgHair } from '../../api/employeeImgHairApi';
-import type { ServiceTypeDTO } from '../../types/serviceTypeDTO';
+import type { ServiceTypeDTO } from '../../types/ResponseDTOs/serviceTypeDTO';
 import { getServices } from '../../api/serviceApi';
-
+import { createAppointment } from '../../api/appointmentApi';
+import type { AppointmentRequestDTO } from '../../types/RequestDTOs/AppointmentRequestDTO';
+import {getTimeBookedOfBarber} from '../../api/appointmentApi';
 const { Title } = Typography;
 
 const BookingBody: React.FC = () => {
@@ -33,13 +35,8 @@ const BookingBody: React.FC = () => {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [timeSlots, setTimeSlots] = useState<string[]>([]);
-  const defaultTimeSlots = [
-    "10:00", "10:30", "11:00", "11:30",
-    "12:00", "12:30", "13:00", "13:30",
-    "14:00", "14:30", "15:00", "15:30",
-    "16:00", "16:30", "17:00", "17:30",
-    "18:00", "18:30", "19:00", "19:30"
-  ];
+  const [bookedTimes, setBookedTimes] = useState<string[]>([]);
+ 
 
   useEffect(() => {
     const fetchBranches = async () => {
@@ -129,6 +126,76 @@ const BookingBody: React.FC = () => {
   };
 
 
+  const handleSubmit = async (formValues: any) => {
+    if (!selectedBranch || !selectedBarber || !selectedDate || 
+        !selectedTime || selectedServices.length === 0) {
+      message.error('Vui lòng điền đầy đủ thông tin!');
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const bookingData: AppointmentRequestDTO = {
+        phone: formValues.phone,
+        fullName: formValues.name,
+        barberId: selectedBarber,
+        branchId: selectedBranch,
+        appointmentDate: selectedDate.format('YYYY-MM-DD'),
+        appointmentTime: selectedTime,
+        servicesId: selectedServices,
+        voucherId: formValues.voucherId,
+        note: formValues.note
+      };
+
+      console.log('Booking Data:', bookingData);
+      const response = await createAppointment(bookingData);
+      
+
+      if (response.data) {
+        message.success('Đặt lịch thành công!');
+        // Reset form
+        form.resetFields();
+        setSelectedBranch(null);
+        setSelectedBarber(null);
+        setSelectedServices([]);
+        setSelectedDate(null);
+        setSelectedTime(null);
+      }
+    } catch (error) {
+      console.error('Error creating booking:', error);
+      message.error('Đặt lịch thất bại. Vui lòng thử lại!');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedBarber && selectedDate) {
+      const fetchBookedTimes = async () => {
+        try {
+          setLoading(true);
+          const res = await getTimeBookedOfBarber(
+            selectedBarber,
+            selectedDate.format('YYYY-MM-DD')
+          );
+
+          const formattedTimes = Array.isArray(res.data)
+          ? res.data.map((time: string) => time.slice(0, 5)) // Giữ lại phần "HH:mm"
+          : [];
+
+          console.log('Booked times:', formattedTimes);
+          setBookedTimes(formattedTimes);
+        } catch (error) {
+          console.error('Error fetching booked times:', error);
+        } finally {
+          setLoading(false);
+          setSelectedTime(null); // Reset selected time when booked times are updated
+        }
+      };
+      fetchBookedTimes();
+    }
+  }, [selectedBarber, selectedDate]);
 
   return (
     <Card className="booking-card" style={{ maxWidth: 700, margin: '0 auto', background: '#1f1f1f', color: 'white' }}>
@@ -142,7 +209,12 @@ const BookingBody: React.FC = () => {
           Đặt lịch cắt tóc tại WOLF BarberShop
         </Title>
       </div>
-      <Form form={form} layout="vertical" style={{ color: 'white' }}>
+      <Form 
+        form={form} 
+        layout="vertical" 
+        style={{ color: 'white' }}
+        onFinish={handleSubmit}
+      >
         <Typography.Text style={{ color: 'white', marginBottom: 16, display: 'block' }}>
           Quý khách vui lòng cho biết thông tin
         </Typography.Text>
@@ -169,10 +241,11 @@ const BookingBody: React.FC = () => {
           setSelectedDate={setSelectedDate}
           selectedTime={selectedTime}
           setSelectedTime={setSelectedTime}
-          timeSlots={timeSlots.length > 0 ? timeSlots : defaultTimeSlots}
+          timeSlots={timeSlots}
+          disabledTimes={bookedTimes} // bookedTimes là mảng ["11:46:00", ...]
         />
         <VoucherNote form={form} />
-        <BookingButton />
+        <BookingButton loading={loading} />
       </Form>
     </Card>
   );
