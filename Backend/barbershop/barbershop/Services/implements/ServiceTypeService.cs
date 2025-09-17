@@ -17,7 +17,7 @@ namespace barbershop.Services.implements
             serviceTypeRepository = new ServiceTypeRepository();
         }
 
-        public async Task<BaseResponse?> GetAllTypeServices()
+        public async Task<BaseResponse?> GetAllServiceTypes()
         {
             try
             {

@@ -9,6 +9,13 @@ namespace barbershop.Controllers
     public class ServiceController : ControllerBase
     {
     private readonly ServiceService serviceService = new ServiceService();
-    // TODO: Implement API methods
+        // TODO: Implement API methods
+        [HttpGet("GetAllServices")]
+        public async Task<IActionResult> GetAllServices()
+        {
+             // Placeholder for actual service call
+             var response = await serviceService.GetAllServices();
+             return Ok(response);
+        }
     }
 }

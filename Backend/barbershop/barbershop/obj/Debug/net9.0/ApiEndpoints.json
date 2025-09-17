@@ -37,6 +37,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "barbershop.Controllers.AuthController",
+    "Method": "GoogleLogin",
+    "RelativePath": "api/AuthController/google-login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "barbershop.Models.RequestDTOs.GoogleLoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "barbershop.Controllers.BranchController",
     "Method": "AddBranch",
     "RelativePath": "api/Branch/add",
@@ -237,9 +253,19 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "barbershop.Controllers.ServiceController",
+    "Method": "GetAllServices",
+    "RelativePath": "api/Service/GetAllServices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "barbershop.Controllers.ServiceTypeController",
-    "Method": "GetAllTypeServices",
-    "RelativePath": "api/ServiceType/GetAllTypeServices",
+    "Method": "GetAllServiceTypes",
+    "RelativePath": "api/ServiceType/GetAllServiceTypes",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

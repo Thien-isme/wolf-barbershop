@@ -527,6 +527,9 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.Address)
                 .HasMaxLength(255)
                 .HasColumnName("address");
+            entity.Property(e => e.AvatarUrl)
+                .HasColumnType("text")
+                .HasColumnName("avatar_url");
             entity.Property(e => e.Cccd)
                 .HasMaxLength(255)
                 .HasColumnName("cccd");

@@ -25,6 +25,11 @@ namespace barbershop.Repositorys.implements
             await _context.SaveChangesAsync();
             return user;
         }
+
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.IsActive == true);
+        }
         // TODO: Implement repository methods for User
     }
 }

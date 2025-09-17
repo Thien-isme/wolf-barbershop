@@ -31,6 +31,8 @@ public partial class User
 
     public bool IsActive { get; set; }
 
+    public string? AvatarUrl { get; set; }
+
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();

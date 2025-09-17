@@ -177,4 +177,9 @@ F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Serilog.S
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Serilog.Sinks.Console.dll
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Serilog.Sinks.Debug.dll
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Serilog.Sinks.File.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Google.Apis.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Google.Apis.Auth.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Google.Apis.Core.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\System.Management.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Management.dll
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
