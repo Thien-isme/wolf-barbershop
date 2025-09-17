@@ -11,5 +11,12 @@ export const getEmployeeImgHair = async (data: any) => {
     }
 };
 
-
-
+export const getHairIsOutstanding = async () => {
+    try {
+        const res = await api.get(`/EmployeeImgHair/GetHairIsOutstanding`);
+        return res.data;
+    } catch (error) {
+        console.error("Lỗi khi lấy danh sách ảnh tóc nổi bật:", error);
+        throw error;
+    }
+};

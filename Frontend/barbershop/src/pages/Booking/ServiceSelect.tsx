@@ -1,5 +1,5 @@
 import { Card, Typography, Select, Button } from 'antd';
-import type { ServiceTypeDTO } from '../../types/serviceTypeDTO';
+import type { ServiceTypeDTO } from '../../types/ResponseDTOs/serviceTypeDTO';
 
 const ServiceSelect = ({
   serviceTypes,

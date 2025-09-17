@@ -1,8 +1,8 @@
 import api from "./axios";
 
-export const getServices = async () => {
+export const getAllServicesTypes = async () => {
     try {
-        const res = await api.get(`Service/GetAllServices`);
+        const res = await api.get(`ServiceType/GetAllServiceTypes`);
         return res.data;
     } catch (error) {
         // Xử lý lỗi ở đây (ví dụ: log, trả về thông báo, throw lại lỗi)

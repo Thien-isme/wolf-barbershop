@@ -16,7 +16,7 @@ import type { EmployeeDTO } from '../../types/ResponseDTOs/employeeDTO';
 import type { EmployeeImgHairDTO } from '../../types/ResponseDTOs/employeeImgHairDTO';
 import { getEmployeeImgHair } from '../../api/employeeImgHairApi';
 import type { ServiceTypeDTO } from '../../types/ResponseDTOs/serviceTypeDTO';
-import { getServices } from '../../api/serviceApi';
+import { getAllServicesTypes } from '../../api/serviceTypeApi';
 import { createAppointment } from '../../api/appointmentApi';
 import type { AppointmentRequestDTO } from '../../types/RequestDTOs/AppointmentRequestDTO';
 import {getTimeBookedOfBarber} from '../../api/appointmentApi';
@@ -55,7 +55,7 @@ const BookingBody: React.FC = () => {
     const fetchServices = async () => {
       try {
         setLoading(true);
-        const response = await getServices();
+        const response = await getAllServicesTypes();
         // Lọc các loại dịch vụ và các dịch vụ con đang hoạt động
         const activeServiceTypes = response.data
           .filter((st: ServiceTypeDTO) => st.isActive)

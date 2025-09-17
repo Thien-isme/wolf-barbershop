@@ -28,7 +28,7 @@ const accountMenu = (
   <Menu
     items={[
       { key: 'register', label: <a href="/register">Đăng ký</a> },
-      { key: 'login', label: <a href="/login">Đăng nhập</a> },
+      { key: 'login', label: <a href="/wolf-barbershop/login">Đăng nhập</a> },
     ]}
   />
 );
@@ -39,7 +39,7 @@ const BarberShopHeader = () => {
   const handleMenuClick = (e : {key: string}) => {
     switch (e.key) {
       case 'home':
-        navigate('/wolf-barbershop');
+        navigate('//');
         break;
       case 'booking':
         navigate('/booking');
@@ -79,7 +79,7 @@ const BarberShopHeader = () => {
           cursor: 'pointer', // Đổi con trỏ khi hover
           transition: 'transform 0.2s',
         }}
-        onClick={() => navigate('/wolf-barbershop')}
+        onClick={() => navigate('//')}
         onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.08)')}
         onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
       >
