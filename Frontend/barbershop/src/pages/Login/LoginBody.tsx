@@ -1,11 +1,10 @@
 import { Form, Input, Button, Checkbox, Typography, Row, Col } from 'antd';
 import { GoogleLogin } from '@react-oauth/google';
 import './LoginBody.css';
-
-import {loginWithGoogle} from '../../api/authApi';
+import { loginWithGoogle } from '../../api/authApi';
 const { Title } = Typography;
 
-const LoginBody = () => {
+const LoginBody = ({ onLoginSuccess }: { onLoginSuccess: (userInfo: any) => void }) => {
   return (
     <Row justify="center" align="middle" style={{ minHeight: '100vh', background: '#eaf6fa' }}>
       <Col>
@@ -89,21 +88,21 @@ const LoginBody = () => {
               logo_alignment="left"
               text="continue_with"
               shape="pill"
-              onSuccess={ async credentialResponse => {
-                // Xử lý credentialResponse.credential ở đây
+              prompt="select_account"
+              onSuccess={async (credentialResponse) => {
                 const token = credentialResponse.credential;
                 if (token) {
-                  // Gọi API đăng nhập với token Google
-                  const response = await loginWithGoogle(token);
-                  console.log('Login response:', response);
+                  const result = await loginWithGoogle(token);
+                  if (result) {
+                    console.log('Google login success, response: ', result);
+                    onLoginSuccess(result.data); // truyền dữ liệu lên LoginPage
+                  }
                 }
               }}
               onError={() => {
                 console.log('Google Login Failed');
               }}
-              prompt="select_account"
-              // Custom nút bằng render prop
-              render={renderProps => (
+              render={(renderProps) => (
                 <Button
                   icon={
                     <img
@@ -123,8 +122,8 @@ const LoginBody = () => {
                     marginBottom: 12,
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center', // căn giữa nội dung
-                    textAlign: 'center',      // căn giữa chữ
+                    justifyContent: 'center',
+                    textAlign: 'center',
                   }}
                   onClick={renderProps.onClick}
                   disabled={renderProps.disabled}
@@ -140,7 +139,7 @@ const LoginBody = () => {
                   alt="Facebook"
                   style={{ width: 30, height: 30, marginRight: 8 }}
                 />
-            } 
+              }
               style={{
                 width: '100%',
                 height: 44,

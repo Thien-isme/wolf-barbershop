@@ -1,4 +1,4 @@
-import { Button, Typography } from 'antd';
+import { Button } from 'antd';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,7 +10,6 @@ import OutstandingHair from './OutstandingHair';
 import ServiceTags from './ServiceTags';
 import ShortVideos from './ShortVideos';
 
-const { Title } = Typography;
 
 const sliderSettings = (slidesToShow = 3) => ({
   dots: false,

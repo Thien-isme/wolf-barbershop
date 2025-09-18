@@ -94,7 +94,7 @@ export default function AddBarberModal({ visible, onClose, onAddSuccess }: AddBa
                   listType="picture-card"
                   beforeUpload={() => false} // Ngăn upload tự động
                   onChange={info => {
-                    if (info.fileList && info.fileList[0]) {
+                    if (info.fileList && info.fileList[0] && info.fileList[0].originFileObj) {
                       setAvatarUrl(URL.createObjectURL(info.fileList[0].originFileObj));
                     } else {
                       setAvatarUrl("");

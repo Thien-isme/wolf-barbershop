@@ -1,4 +1,4 @@
-import { Form, Input, Space, type FormInstance } from 'antd';
+import { Form, Input, Space } from 'antd';
 const CustomerInfo = ( form: any ) => (
   <>
     <Space style={{ width: '100%', marginBottom: 12 }} size={170}>

@@ -11,6 +11,8 @@ import {
 } from '@ant-design/icons';
 
 import { useNavigate } from 'react-router-dom';
+import type { LoginResponseDTO } from '../../types/ResponseDTOs/loginResponseDTO';
+
 
 const { Header } = Layout;
 
@@ -33,7 +35,7 @@ const accountMenu = (
   />
 );
 
-const BarberShopHeader = () => {
+const BarberShopHeader = ({ login }: { login: LoginResponseDTO | null }) => {
   const navigate = useNavigate();
 
   const handleMenuClick = (e : {key: string}) => {
@@ -60,8 +62,11 @@ const BarberShopHeader = () => {
         break;
     }
   };
-
+  let i = 0;
   return (
+      console.log(i++),
+
+
   <Layout>
     <Header style={{
       display: 'flex',
@@ -114,15 +119,26 @@ const BarberShopHeader = () => {
       </div>
       {/* Account & Cart */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-        <Dropdown overlay={accountMenu} placement="bottomRight" trigger={['click']}>
-          <Button
-            type="text"
-            icon={<UserOutlined style={{ fontSize: 22 }} />}
-            style={{ color: '#fff' }}
-          >
-            Tài khoản
-          </Button>
-        </Dropdown>
+        {login ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <img
+              src={login.user.avatarUrl || "https://ui-avatars.com/api/?name=" + login.user.fullName}
+              alt="avatar"
+              style={{ width: 40, height: 40, borderRadius: '50%' }}
+            />
+            <span style={{ color: '#fff', fontWeight: 500 }}>{login.user.fullName}</span>
+          </div>
+        ) : (
+          <Dropdown overlay={accountMenu} placement="bottomRight" trigger={['click']}>
+            <Button
+              type="text"
+              icon={<UserOutlined style={{ fontSize: 22 }} />}
+              style={{ color: '#fff' }}
+            >
+              Tài khoản
+            </Button>
+          </Dropdown>
+        )}
         <Button
           type="primary"
           icon={<ShoppingCartOutlined style={{ fontSize: 22 }} />}

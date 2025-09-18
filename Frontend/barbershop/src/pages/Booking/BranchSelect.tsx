@@ -1,5 +1,5 @@
 import { Form, Radio, Space, Typography } from 'antd';
-import type { BranchDTO } from '../../types/branchDTO';
+import type { BranchDTO } from '../../types/ResponseDTOs/branchDTO';
 
 const BranchSelect = ({
   branches,

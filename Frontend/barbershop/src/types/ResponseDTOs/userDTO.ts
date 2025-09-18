@@ -12,5 +12,6 @@ export type UserDTO = {
   roleId?: number;
   createdAt?: Date;
   updatedAt?: Date;
+  avatarUrl?: string;
   isActive?: boolean;
 };

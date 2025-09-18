@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Input, Button, Card, Row, Col, Typography } from "antd";
-import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined, EnvironmentOutlined, UserOutlined, ClockCircleOutlined } from "@ant-design/icons";
+import { SearchOutlined, PlusOutlined, EnvironmentOutlined, UserOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import SidebarLayout from "../Sidebar/AdminSidebarLayout";
 import styles from "./BranchManagement.module.css";
 import AddBranchModal from "./AddBranchModal"; // Import modal component
