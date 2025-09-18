@@ -2,6 +2,7 @@
 using barbershop.Models.RequestDTOs;
 using barbershop.Models.ResponseDTOs;
 using barbershop.Services.implements;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace barbershop.Controllers
@@ -13,6 +14,7 @@ namespace barbershop.Controllers
         private readonly BranchService branchService = new BranchService();
 
         [HttpPost("add")]
+        [Authorize(Policy = "Manager")]
         public async Task<IActionResult> AddBranch([FromForm] BranchRequets form)
         {
             var request = new BranchRequets
@@ -35,5 +37,7 @@ namespace barbershop.Controllers
             var response = await branchService.GetAllBranchesAsync();
             return Ok(response);
         }
+
+        
     }
 }

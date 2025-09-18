@@ -15,6 +15,8 @@ public partial class BarbershopContext : DbContext
     {
     }
 
+    public virtual DbSet<AccessToken> AccessTokens { get; set; }
+
     public virtual DbSet<Appointment> Appointments { get; set; }
 
     public virtual DbSet<AppointmentService> AppointmentServices { get; set; }
@@ -39,6 +41,8 @@ public partial class BarbershopContext : DbContext
 
     public virtual DbSet<ProductType> ProductTypes { get; set; }
 
+    public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
+
     public virtual DbSet<Review> Reviews { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
@@ -59,6 +63,34 @@ public partial class BarbershopContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AccessToken>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__access_t__3213E83F95C3ECF5");
+
+            entity.ToTable("access_tokens");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.AccessToken1)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("access_token");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("created_at");
+            entity.Property(e => e.ExpiresAt)
+                .HasColumnType("datetime")
+                .HasColumnName("expires_at");
+            entity.Property(e => e.RevokedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("revoked_at");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.AccessTokens)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__access_to__user___30C33EC3");
+        });
+
         modelBuilder.Entity<Appointment>(entity =>
         {
             entity.ToTable("appointments");
@@ -414,6 +446,34 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.ProductTypeName)
                 .HasMaxLength(255)
                 .HasColumnName("product_type_name");
+        });
+
+        modelBuilder.Entity<RefreshToken>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__refresh___3213E83F397C64DC");
+
+            entity.ToTable("refresh_tokens");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("created_at");
+            entity.Property(e => e.ExpiresAt)
+                .HasColumnType("datetime")
+                .HasColumnName("expires_at");
+            entity.Property(e => e.RefreshToken1)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("refresh_token");
+            entity.Property(e => e.RevokedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("revoked_at");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.RefreshTokens)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__refresh_t__user___3493CFA7");
         });
 
         modelBuilder.Entity<Review>(entity =>

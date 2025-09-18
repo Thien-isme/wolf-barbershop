@@ -23,7 +23,6 @@ namespace barbershop.Services.implements
 
         public async Task<User> AddUser(User user)
         {
-            user.IsActive = true;
             return await userRepository.AddUser(user);
         }
         // TODO: Implement service methods for User

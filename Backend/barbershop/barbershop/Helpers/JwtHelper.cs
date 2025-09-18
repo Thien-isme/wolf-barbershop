@@ -15,7 +15,8 @@ namespace barbershop.Helpers
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserId.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email ?? ""),
-                new Claim("FullName", user.FullName ?? "")
+                new Claim("FullName", user.FullName ?? ""),
+                new Claim("RoleId", user.RoleId.ToString()),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));

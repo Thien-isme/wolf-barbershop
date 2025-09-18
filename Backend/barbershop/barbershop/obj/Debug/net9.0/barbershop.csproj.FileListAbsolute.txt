@@ -182,4 +182,5 @@ F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Google.Ap
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Google.Apis.Core.dll
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\System.Management.dll
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Management.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

@@ -1,5 +1,6 @@
 using barbershop.Models.Entitys;
 using barbershop.Services.implements;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace barbershop.Controllers

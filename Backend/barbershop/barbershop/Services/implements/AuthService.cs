@@ -14,7 +14,7 @@ namespace barbershop.Services.implements
     {
         private readonly IConfiguration _configuration;
         private readonly UserService userService = new UserService();
-
+        private readonly TokenService tokenService = new TokenService();
         public AuthService()
         {
         }
@@ -31,8 +31,8 @@ namespace barbershop.Services.implements
             {
                 // 1. Decode và xác thực Google token
                 var payload = await GoogleJsonWebSignature.ValidateAsync(token);
-
-                // 2. Kiểm tra email trong DB
+                //Console.WriteLine("Google payload: " + payload.Email);
+                //// 2. Kiểm tra email trong DB
                 var user = await userService.FindByEmail(payload.Email); // Nếu dùng email làm phone, hoặc tạo FindByEmail
                 if (user == null)
                 {
@@ -41,10 +41,15 @@ namespace barbershop.Services.implements
                     {
                         FullName = payload.Name,
                         Email = payload.Email,
-                        //AvatarUrl = payload.Picture,
+                        AvatarUrl = payload.Picture,
+                        RoleId = 1, // Mặc định role user
+                        CreateAt = DateTime.Now,
+                        IsActive = true
                     };
+
                     user = await userService.AddUser(user);
                 }
+
 
                 // Đọc cấu hình JWT
                 var secretKey = _configuration["Jwt:SecretKey"];
@@ -52,19 +57,19 @@ namespace barbershop.Services.implements
                 var audience = _configuration["Jwt:Audience"];
                 var expireDays = int.Parse(_configuration["Jwt:ExpireDays"] ?? "7");
 
-                // 4. Tạo JWT token cho user
-                var jwtToken = JwtHelper.GenerateJwtToken(user, secretKey, issuer, audience, expireDays);
-
+                // 4. Tạo JWT token cho
+                var accessToken = tokenService.GenerateAccessToken(user, secretKey, issuer, audience, expireDays);
+                var refreshToken = tokenService.GenerateRefreshToken(user, secretKey, issuer, audience, expireDays + 6);
                 // 5. Trả về token cho FE
                 response.Status = 200;
                 response.MessageShow = "Đăng nhập Google thành công";
-                response.Data = new { token = jwtToken, user };
+                response.Data = new { accessToken = accessToken, refreshToken = refreshToken, user };
             }
             catch (Exception ex)
             {
                 response.Status = 401;
                 response.MessageShow = "Token Google không hợp lệ";
-                response.MessageHide = ex.Message;
+                response.MessageHide = ex.InnerException?.Message ?? ex.Message;
                 response.Data = null;
             }
             return response;

@@ -15,7 +15,7 @@ public partial class User
 
     public string FullName { get; set; } = null!;
 
-    public string Phone { get; set; } = null!;
+    public string? Phone { get; set; }
 
     public DateOnly? Dob { get; set; }
 
@@ -33,11 +33,15 @@ public partial class User
 
     public string? AvatarUrl { get; set; }
 
+    public virtual ICollection<AccessToken> AccessTokens { get; set; } = new List<AccessToken>();
+
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+
+    public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
 
     public virtual Role Role { get; set; } = null!;
 }
