@@ -38,6 +38,22 @@
   },
   {
     "ContainingType": "barbershop.Controllers.AuthController",
+    "Method": "AutoLogin",
+    "RelativePath": "api/AuthController/auto-login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "barbershop.Models.RequestDTOs.AutoLoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.AuthController",
     "Method": "GoogleLogin",
     "RelativePath": "api/AuthController/google-login",
     "HttpMethod": "POST",

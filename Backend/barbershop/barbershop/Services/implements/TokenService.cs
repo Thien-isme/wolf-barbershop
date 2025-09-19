@@ -1,13 +1,20 @@
-﻿using barbershop.Helpers;
+﻿using Azure.Core;
+using barbershop.Helpers;
 using barbershop.Models.Entitys;
+using barbershop.Models.ResponseDTOs;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.ObjectPool;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-
+using System.Threading.Tasks;
+using AccessToken = barbershop.Models.Entitys.AccessToken;
+using RefreshToken = barbershop.Models.Entitys.RefreshToken;
+using TokenValidationResult = barbershop.Models.ResponseDTOs.TokenValidationResult;
 namespace barbershop.Services.implements
 {
     public class TokenService
@@ -24,7 +31,7 @@ namespace barbershop.Services.implements
             _configuration = configuration;
         }
 
-        public string GenerateAccessToken(User user, string secretKey, string issuer, string audience, int expireDays = 1)
+        public async Task<string> GenerateAccessToken(User user, string secretKey, string issuer, string audience, int expireDays = 1)
         {
             var claims = new[]
             {
@@ -44,10 +51,26 @@ namespace barbershop.Services.implements
                 expires: DateTime.Now.AddDays(expireDays),
                 signingCredentials: creds);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            string accessToken = new JwtSecurityTokenHandler().WriteToken(token);
+
+            // Khởi tạo DbContext mới cho mỗi request
+            using (var context = new BarbershopContext())
+            {
+                var accessTokenEntity = new AccessToken
+                {
+                    AccessToken1 = accessToken,
+                    UserId = user.UserId,
+                    CreatedAt = DateTime.UtcNow,
+                    ExpiresAt = DateTime.UtcNow.AddDays(expireDays),
+                    RevokedAt = null
+                };
+                context.AccessTokens.Add(accessTokenEntity);
+                await context.SaveChangesAsync();
+            }
+            return accessToken;
         }
 
-        public string GenerateRefreshToken(User user, string secretKey, string issuer, string audience, int expireDays = 7)
+        public async Task<string> GenerateRefreshToken(User user, string secretKey, string issuer, string audience, int expireDays = 7)
         {
             var claims = new[]
             {
@@ -67,92 +90,110 @@ namespace barbershop.Services.implements
                 expires: DateTime.Now.AddDays(expireDays),
                 signingCredentials: creds);
 
+            string refreshToken = new JwtSecurityTokenHandler().WriteToken(token);
+            
+            // Khởi tạo DbContext mới cho mỗi request
+            using (var context = new BarbershopContext())
+            {
+                var refreshTokenEntity = new RefreshToken
+                {
+                    RefreshToken1 = refreshToken,
+                    UserId = user.UserId,
+                    CreatedAt = DateTime.UtcNow,
+                    ExpiresAt = DateTime.UtcNow.AddDays(expireDays),
+                    RevokedAt = null
+                };
+                context.RefreshTokens.Add(refreshTokenEntity);
+                await context.SaveChangesAsync();
+            }
+
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-
-
-        public async Task<(string AccessToken, string RefreshToken)> GenerateTokens(User user, string secretKey, string issuer, string audience, int expireDays = 7)
+        public async Task<TokenValidationResult> ValidateAccessToken(string token)
         {
-            var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserId.ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email ?? ""),
-                new Claim("FullName", user.FullName ?? ""),
-                new Claim("roleId", user.RoleId.ToString())
-            };
+            var tokenCheck = await _context.AccessTokens
+                .FirstOrDefaultAsync(t => t.AccessToken1 == token);
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            if (tokenCheck == null)
+                return new TokenValidationResult { IsValid = false, Reason = "AccessToken not found" };
 
-            // Access Token
-            var accessTokenJwt = new JwtSecurityToken(
-                issuer: issuer,
-                audience: audience,
-                claims: claims,
-                expires: DateTime.Now.AddDays(expireDays),
-                signingCredentials: creds);
+            if (tokenCheck.ExpiresAt < DateTime.UtcNow)
+                return new TokenValidationResult { IsValid = false, Reason = "AccessToken expired" };
 
-            var accessToken = new JwtSecurityTokenHandler().WriteToken(accessTokenJwt);
+            if (tokenCheck.RevokedAt.HasValue)
+                return new TokenValidationResult { IsValid = false, Reason = "AccessToken revoked" };
 
-            // Refresh Token
-            var refreshClaims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserId.ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email ?? ""),
-                new Claim("FullName", user.FullName ?? ""),
-                new Claim("roleId", user.RoleId.ToString())
-            };
-
-            var refreshTokenJwt = new JwtSecurityToken(
-                issuer: issuer,
-                audience: audience,
-                claims: refreshClaims,
-                expires: DateTime.Now.AddDays(expireDays+6),
-                signingCredentials: creds);
-
-            var refreshToken = new JwtSecurityTokenHandler().WriteToken(refreshTokenJwt);
-
-            // Lưu access token vào DB
-            var accessTokenEntity = new AccessToken
-            {
-                UserId = user.UserId,
-                AccessToken1 = accessToken,
-                ExpiresAt = accessTokenJwt.ValidTo,
-                CreatedAt = DateTime.Now,
-                RevokedAt = null
-            };
-
-            var refreshTokenEntity = new RefreshToken
-            {
-                UserId = user.UserId,
-                RefreshToken1 = refreshToken,
-                ExpiresAt = refreshTokenJwt.ValidTo,
-                CreatedAt = DateTime.Now,
-                RevokedAt = null
-            };
-
-            _context.RefreshTokens.Add(refreshTokenEntity);
-            _context.AccessTokens.Add(accessTokenEntity);
-            await _context.SaveChangesAsync();
-
-            return (accessToken, refreshToken);
+            return new TokenValidationResult { IsValid = true, Reason = "AccessToken valid" };
         }
 
-        public async Task<bool> ValidateAccessToken(string accessToken)
+        public async Task<TokenValidationResult> ValidateRefreshToken(string token)
         {
-            var token = await _context.AccessTokens
-                .FirstOrDefaultAsync(t => t.AccessToken1 == accessToken);
-            if (token == null)
-                return false;
+            var tokenCheck = await _context.RefreshTokens
+                .FirstOrDefaultAsync(t => t.RefreshToken1 == token);
 
-            if (token.ExpiresAt < DateTime.UtcNow)
-                return false;
+            if (tokenCheck == null)
+                return new TokenValidationResult { IsValid = false, Reason = "RefreshToken not found" };
 
-            if (token.RevokedAt.HasValue)
-                return false;
+            if (tokenCheck.ExpiresAt < DateTime.UtcNow)
+                return new TokenValidationResult { IsValid = false, Reason = "RefreshToken expired" };
 
-            return true;
+            if (tokenCheck.RevokedAt.HasValue)
+                return new TokenValidationResult { IsValid = false, Reason = "RefreshToken revoked" };
+
+            return new TokenValidationResult { IsValid = true, Reason = "RefreshToken valid" };
+        }
+
+        public async Task<DecodeToken?> DecodeToken(string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            if (!handler.CanReadToken(token))
+                return null;
+
+            var jwtToken = handler.ReadJwtToken(token);
+
+            var userIdClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Sub);
+            var emailClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Email);
+            var fullNameClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "FullName");
+            var roleIdClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "RoleId");
+
+            if (userIdClaim == null || emailClaim == null || fullNameClaim == null || roleIdClaim == null)
+                return null;
+
+            //Console.WriteLine("Decoded Token - UserId: " + userIdClaim.Value);
+            //Console.WriteLine("Decoded Token - Email: " + emailClaim.Value);
+            //Console.WriteLine("Decoded Token - FullName: " + fullNameClaim.Value);
+            //Console.WriteLine("Decoded Token - RoleId: " + roleIdClaim.Value);
+            
+            DecodeToken decodedToken = new DecodeToken
+            {
+                UserId = long.Parse(userIdClaim.Value),
+                Email = emailClaim.Value,
+                FullName = fullNameClaim.Value,
+                RoleId = int.Parse(roleIdClaim.Value)
+            };
+
+            return decodedToken;
+        }
+
+
+        public string? GetLatestAccessTokenByUserId(long userId)
+        {
+            var latestToken = _context.AccessTokens
+                .Where(t => t.UserId == userId && t.RevokedAt == null && t.ExpiresAt > DateTime.UtcNow)
+                .OrderByDescending(t => t.CreatedAt)
+                .FirstOrDefault();
+
+            return latestToken?.AccessToken1;
+        }
+
+        public string? GetLatestRefreshTokenByUserId(long userId)
+        {
+            var latestToken = _context.RefreshTokens
+                .Where(t => t.UserId == userId && t.RevokedAt == null && t.ExpiresAt > DateTime.UtcNow)
+                .OrderByDescending(t => t.CreatedAt)
+                .FirstOrDefault();
+            return latestToken?.RefreshToken1;
         }
     }
 }

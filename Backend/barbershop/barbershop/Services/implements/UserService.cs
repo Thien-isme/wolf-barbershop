@@ -25,6 +25,11 @@ namespace barbershop.Services.implements
         {
             return await userRepository.AddUser(user);
         }
+
+        public async Task<User> FindById(long userId)
+        {
+            return await userRepository.GetUserByIdAsync(userId);
+        }
         // TODO: Implement service methods for User
     }
 }

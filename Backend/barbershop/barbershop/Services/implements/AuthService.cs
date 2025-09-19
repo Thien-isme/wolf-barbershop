@@ -1,4 +1,5 @@
-﻿using barbershop.Helpers;
+﻿using Azure.Core;
+using barbershop.Helpers;
 using barbershop.Models.Entitys;
 using barbershop.Models.ResponseDTOs;
 using Google.Apis.Auth;
@@ -63,7 +64,7 @@ namespace barbershop.Services.implements
                 // 5. Trả về token cho FE
                 response.Status = 200;
                 response.MessageShow = "Đăng nhập Google thành công";
-                response.Data = new { accessToken = accessToken, refreshToken = refreshToken, user };
+                response.Data = new { accessToken = accessToken.Result, refreshToken = refreshToken.Result, user };
             }
             catch (Exception ex)
             {
@@ -74,5 +75,27 @@ namespace barbershop.Services.implements
             }
             return response;
         }
+
+        public async Task<BaseResponse> AutoLogin(string token)
+        {
+            var info = tokenService.DecodeToken(token);
+
+            var user = await userService.FindById(info.Result.UserId);
+            var accessToken = tokenService.GetLatestAccessTokenByUserId(user.UserId);
+            var refreshToken = tokenService.GetLatestRefreshTokenByUserId(user.UserId);
+
+            return new BaseResponse
+            {
+                Status = 200,
+                MessageShow = "Tự động đăng nhập thành công",
+                Data = new { accessToken = accessToken, refreshToken = refreshToken, user }
+            };
+
+
+
+
+        }
+
+
     }
 }

@@ -30,6 +30,11 @@ namespace barbershop.Repositorys.implements
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.IsActive == true);
         }
+
+        public async Task<User> GetUserByIdAsync(long userId)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId && u.IsActive == true);
+        }
         // TODO: Implement repository methods for User
     }
 }
