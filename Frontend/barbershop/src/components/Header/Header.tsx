@@ -7,8 +7,10 @@ import {
   ReadOutlined,
   ShoppingCartOutlined,
   SolutionOutlined,
-  ShoppingOutlined
+  ShoppingOutlined,
+  LogoutOutlined  // Thêm icon này
 } from '@ant-design/icons';
+import { useAuth } from '../../contexts/AuthContext'; // Thêm import này
 
 import { useNavigate } from 'react-router-dom';
 import type { LoginResponseDTO } from '../../types/ResponseDTOs/loginResponseDTO';
@@ -35,8 +37,31 @@ const accountMenu = (
   />
 );
 
+// Thêm menu cho user đã đăng nhập
+const userMenu = (logout: () => void) => (
+  <Menu
+    items={[
+      {
+        key: 'changePassword',
+        icon: <UserOutlined />,
+        label: 'Đổi mật khẩu',
+        onClick: () => {
+          // TODO: Thêm xử lý đổi mật khẩu
+        }
+      },
+      {
+        key: 'logout',
+        icon: <LogoutOutlined />,
+        label: 'Đăng xuất',
+        onClick: logout
+      }
+    ]}
+  />
+);
+
 const BarberShopHeader = ({ login }: { login: LoginResponseDTO | null }) => {
   const navigate = useNavigate();
+  const { logout } = useAuth(); // Thêm hook useAuth
 
   const handleMenuClick = (e : {key: string}) => {
     switch (e.key) {
@@ -62,9 +87,7 @@ const BarberShopHeader = ({ login }: { login: LoginResponseDTO | null }) => {
         break;
     }
   };
-  let i = 0;
   return (
-      console.log(i++),
 
 
   <Layout>
@@ -119,15 +142,28 @@ const BarberShopHeader = ({ login }: { login: LoginResponseDTO | null }) => {
       </div>
       {/* Account & Cart */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        <Button
+          type="primary"
+          icon={<ShoppingCartOutlined style={{ fontSize: 22 }} />}
+        >
+          Giỏ hàng
+        </Button>
         {login ? (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <img
-              src={login.user.avatarUrl || "https://ui-avatars.com/api/?name=" + login.user.fullName}
-              alt="avatar"
-              style={{ width: 40, height: 40, borderRadius: '50%' }}
-            />
-            <span style={{ color: '#fff', fontWeight: 500 }}>{login.user.fullName}</span>
-          </div>
+          <Dropdown overlay={userMenu(logout)} placement="bottomRight" trigger={['click']}>
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: 8, 
+              cursor: 'pointer' 
+            }}>
+              <img
+                src={login.user?.avatarUrl || "https://ui-avatars.com/api/?name=" + login.user?.fullName}
+                alt="avatar"
+                style={{ width: 40, height: 40, borderRadius: '50%' }}
+              />
+              <span style={{ color: '#fff', fontWeight: 500 }}>{login.user?.fullName}</span>
+            </div>
+          </Dropdown>
         ) : (
           <Dropdown overlay={accountMenu} placement="bottomRight" trigger={['click']}>
             <Button
@@ -139,12 +175,7 @@ const BarberShopHeader = ({ login }: { login: LoginResponseDTO | null }) => {
             </Button>
           </Dropdown>
         )}
-        <Button
-          type="primary"
-          icon={<ShoppingCartOutlined style={{ fontSize: 22 }} />}
-        >
-          Giỏ hàng
-        </Button>
+        
       </div>
     </Header>
   </Layout>
