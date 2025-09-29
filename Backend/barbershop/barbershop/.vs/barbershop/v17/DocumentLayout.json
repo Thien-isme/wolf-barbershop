@@ -3,7 +3,16 @@
   "WorkspaceRootPath": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\9.0.301\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.JSModules.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\services\\implements\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:services\\implements\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -13,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 204,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -21,13 +30,41 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppointmentController.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\AppointmentController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AppointmentController.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\AppointmentController.cs",
+              "RelativeToolTip": "Controllers\\AppointmentController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-29T16:38:27.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAwwF4AAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-29T16:38:16.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Microsoft.NET.Sdk.StaticWebAssets.JSModules.targets",
-              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.301\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.JSModules.targets",
-              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.301\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.JSModules.targets",
-              "ViewState": "AgIAAJ4BAAAAAAAAAAAswLEBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2025-09-29T12:56:51.59Z",
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Services\\implements\\AuthService.cs",
+              "RelativeDocumentMoniker": "Services\\implements\\AuthService.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Services\\implements\\AuthService.cs",
+              "RelativeToolTip": "Services\\implements\\AuthService.cs",
+              "ViewState": "AgIAAGEAAAAAAAAAAAD4v3YAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-29T16:26:01.759Z",
               "EditorCaption": ""
             }
           ]

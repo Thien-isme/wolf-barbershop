@@ -56,11 +56,11 @@ namespace barbershop.Services.implements
                 var secretKey = _configuration["Jwt:SecretKey"];
                 var issuer = _configuration["Jwt:Issuer"];
                 var audience = _configuration["Jwt:Audience"];
-                var expireDays = int.Parse(_configuration["Jwt:ExpireDays"] ?? "7");
+                var expireDays = int.Parse(_configuration["Jwt:ExpireMinutes"] ?? "7");
 
                 // 4. Tạo JWT token cho
                 var accessToken = tokenService.GenerateAccessToken(user, secretKey, issuer, audience, expireDays);
-                var refreshToken = tokenService.GenerateRefreshToken(user, secretKey, issuer, audience, expireDays + 6);
+                var refreshToken = tokenService.GenerateRefreshToken(user, secretKey, issuer, audience, expireDays + 1);
                 // 5. Trả về token cho FE
                 response.Status = 200;
                 response.MessageShow = "Đăng nhập Google thành công";
@@ -90,12 +90,45 @@ namespace barbershop.Services.implements
                 MessageShow = "Tự động đăng nhập thành công",
                 Data = new { accessToken = accessToken, refreshToken = refreshToken, user }
             };
-
-
-
-
         }
 
+        public async Task<BaseResponse?> RefreshTokenAsync(string refreshToken)
+        {
+            var validationResult = await tokenService.ValidateRefreshToken(refreshToken);
+            Console.WriteLine("Refresh token validation: " + validationResult.IsValid + " - " + validationResult.Reason);
+            if (validationResult.IsValid == false)
+            {
+                return new BaseResponse
+                {
+                    Status = 401,
+                    MessageShow = "Refresh token không hợp lệ: " + validationResult.Reason,
+                    Data = null
+                };
+            }
 
+            var info = await tokenService.DecodeToken(refreshToken);
+            var UserId = info.UserId;
+            var Email = info.Email;
+            var FullName = info.FullName;
+            var RoleId = info.RoleId;
+
+            User user = new User
+            {
+                UserId = UserId,
+                Email = Email,
+                FullName = FullName,
+                RoleId = RoleId
+            };
+
+            var accessToken = await tokenService.GenerateAccessToken(user, _configuration["Jwt:SecretKey"], _configuration["Jwt:Issuer"], _configuration["Jwt:Audience"], int.Parse(_configuration["Jwt:ExpireMinutes"] ?? "7"));
+
+
+            return new BaseResponse
+            {
+                Status = 200,
+                MessageShow = "Làm mới token thành công",
+                Data = accessToken
+            };
+        }
     }
 }

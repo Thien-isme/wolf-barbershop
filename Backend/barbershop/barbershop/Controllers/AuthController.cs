@@ -4,7 +4,9 @@ using barbershop.Models.RequestDTOs;
 using Microsoft.AspNetCore.Authorization;
 namespace barbershop.Controllers
 {
-    public class AuthController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class AuthController : ControllerBase
     {
         private readonly AuthService _authService;
         private readonly TokenService _tokenService = new TokenService();
@@ -14,7 +16,7 @@ namespace barbershop.Controllers
             _authService = authService;
         }
 
-        [HttpPost("api/AuthController/google-login")]
+        [HttpPost("google-login")]
         public async Task<IActionResult> GoogleLogin([FromBody] GoogleLoginRequest request)
         {
             // request.Token là token từ FE
@@ -24,7 +26,7 @@ namespace barbershop.Controllers
             return Unauthorized();
         }
 
-        [HttpPost("api/AuthController/auto-login")]
+        [HttpPost("auto-login")]
         [Authorize]
         public async Task<IActionResult> AutoLogin([FromBody] AutoLoginDTO request)
         {
@@ -85,6 +87,15 @@ namespace barbershop.Controllers
 
             var userInfo = await _authService.AutoLogin(accessToken);
             return Ok(userInfo);
+        }
+
+        [HttpPost("refreshToken")]
+        public async Task<IActionResult> RefreshToken(String refreshToken)
+        {
+            var newTokens = await _authService.RefreshTokenAsync(refreshToken);
+            if (newTokens != null)
+                return Ok(newTokens);
+            return Unauthorized();
         }
 
     }

@@ -39,7 +39,7 @@
   {
     "ContainingType": "barbershop.Controllers.AuthController",
     "Method": "AutoLogin",
-    "RelativePath": "api/AuthController/auto-login",
+    "RelativePath": "api/Auth/auto-login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -55,7 +55,7 @@
   {
     "ContainingType": "barbershop.Controllers.AuthController",
     "Method": "GoogleLogin",
-    "RelativePath": "api/AuthController/google-login",
+    "RelativePath": "api/Auth/google-login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -64,6 +64,22 @@
         "Name": "request",
         "Type": "barbershop.Models.RequestDTOs.GoogleLoginRequest",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.AuthController",
+    "Method": "RefreshToken",
+    "RelativePath": "api/Auth/refreshToken",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "refreshToken",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

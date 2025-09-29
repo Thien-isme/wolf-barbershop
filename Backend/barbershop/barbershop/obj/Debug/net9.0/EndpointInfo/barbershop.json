@@ -66,7 +66,7 @@
         }
       }
     },
-    "/api/AuthController/google-login": {
+    "/api/Auth/google-login": {
       "post": {
         "tags": [
           "Auth"
@@ -97,7 +97,7 @@
         }
       }
     },
-    "/api/AuthController/auto-login": {
+    "/api/Auth/auto-login": {
       "post": {
         "tags": [
           "Auth"
@@ -121,6 +121,27 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/refreshToken": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [
+          {
+            "name": "refreshToken",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

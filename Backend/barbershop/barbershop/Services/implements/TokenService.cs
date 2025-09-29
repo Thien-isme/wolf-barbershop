@@ -48,7 +48,7 @@ namespace barbershop.Services.implements
                 issuer: issuer,
                 audience: audience,
                 claims: claims,
-                expires: DateTime.Now.AddDays(expireDays),
+                expires: DateTime.Now.AddMinutes(expireDays),
                 signingCredentials: creds);
 
             string accessToken = new JwtSecurityTokenHandler().WriteToken(token);
@@ -61,7 +61,7 @@ namespace barbershop.Services.implements
                     AccessToken1 = accessToken,
                     UserId = user.UserId,
                     CreatedAt = DateTime.UtcNow,
-                    ExpiresAt = DateTime.UtcNow.AddDays(expireDays),
+                    ExpiresAt = DateTime.UtcNow.AddMinutes(expireDays),
                     RevokedAt = null
                 };
                 context.AccessTokens.Add(accessTokenEntity);
@@ -87,7 +87,7 @@ namespace barbershop.Services.implements
                 issuer: issuer,
                 audience: audience,
                 claims: claims,
-                expires: DateTime.Now.AddDays(expireDays),
+                expires: DateTime.UtcNow.AddMinutes(expireDays),
                 signingCredentials: creds);
 
             string refreshToken = new JwtSecurityTokenHandler().WriteToken(token);
@@ -100,7 +100,7 @@ namespace barbershop.Services.implements
                     RefreshToken1 = refreshToken,
                     UserId = user.UserId,
                     CreatedAt = DateTime.UtcNow,
-                    ExpiresAt = DateTime.UtcNow.AddDays(expireDays),
+                    ExpiresAt = DateTime.UtcNow.AddMinutes(expireDays),
                     RevokedAt = null
                 };
                 context.RefreshTokens.Add(refreshTokenEntity);
