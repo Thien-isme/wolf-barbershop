@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\services\\implements\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:services\\implements\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\controllers\\producttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:controllers\\producttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\requestdtos\\autologindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\requestdtos\\autologindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\services\\implements\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:services\\implements\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\services\\implements\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:services\\implements\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 204,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,67 +26,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AutoLoginDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\RequestDTOs\\AutoLoginDTO.cs",
-              "RelativeDocumentMoniker": "Models\\RequestDTOs\\AutoLoginDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\RequestDTOs\\AutoLoginDTO.cs",
-              "RelativeToolTip": "Models\\RequestDTOs\\AutoLoginDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T10:50:43.791Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TokenService.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Services\\implements\\TokenService.cs",
-              "RelativeDocumentMoniker": "Services\\implements\\TokenService.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Services\\implements\\TokenService.cs",
-              "RelativeToolTip": "Services\\implements\\TokenService.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAvwHYAAABZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T10:19:40.871Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Services\\implements\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\implements\\UserService.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Services\\implements\\UserService.cs",
-              "RelativeToolTip": "Services\\implements\\UserService.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAqwBYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T08:37:34.325Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAABCAAAAAAAAAA==",
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "Controllers\\ProductController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T07:01:51.449Z",
+              "WhenOpened": "2025-09-29T12:28:17.895Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Services\\implements\\AuthService.cs",
-              "RelativeDocumentMoniker": "Services\\implements\\AuthService.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Services\\implements\\AuthService.cs",
-              "RelativeToolTip": "Services\\implements\\AuthService.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAEwEIAAABqAAAAAAAAAA==",
+              "Title": "ProductTypeController.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\ProductTypeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductTypeController.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\ProductTypeController.cs",
+              "RelativeToolTip": "Controllers\\ProductTypeController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T16:37:00.631Z",
+              "WhenOpened": "2025-09-29T12:28:12.032Z",
               "EditorCaption": ""
             }
           ]

@@ -13,10 +13,21 @@ namespace barbershop.Repositorys.implements
             _context = new BarbershopContext();
         }
 
+        //using Admin Manager
+        public async Task<List<Product>> GetAllProductsToManagementAsync()
+        {
+            return await _context.Products
+                .Include(p => p.ProductType)
+                .Include(p => p.ProductPrices)
+                .Where(p => p.ProductPrices.Any(pp => pp.IsActive == true))
+                .ToListAsync();
+        }
+
         public async Task<List<Product>> GetAllProductsAsync()
         {
             return await _context.Products
                 .Include(p => p.ProductType)
+                .Include(p => p.ProductPrices)
                 .Where(p => p.IsActive == true)
                 .ToListAsync();
         }

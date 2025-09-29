@@ -13,10 +13,10 @@ namespace barbershop.Controllers
         }
 
 
-        [HttpGet("products")]
-        public async Task<IActionResult> GetAllProducts()
+        [HttpGet("getAllProductsToManagement")]
+        public async Task<IActionResult> GetAllProductsToManagementAsync()
         {
-            var products = await productService.GetAllProductsAsync();
+            var products = await productService.GetAllProductsToManagementAsync();
             return Ok(products);
         }
 

@@ -130,6 +130,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "barbershop.Controllers.BrandController",
+    "Method": "GetAllBrands",
+    "RelativePath": "api/Brand/getAllBrands",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "barbershop.Controllers.EmployeeController",
     "Method": "AddBarber",
     "RelativePath": "api/Employee/AddBarber",
@@ -260,8 +270,18 @@
   },
   {
     "ContainingType": "barbershop.Controllers.ProductController",
-    "Method": "GetAllProducts",
-    "RelativePath": "api/Product/products",
+    "Method": "GetAllProductsToManagementAsync",
+    "RelativePath": "api/Product/getAllProductsToManagement",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.ProductTypeController",
+    "Method": "GetAllTypes",
+    "RelativePath": "api/ProductType/GetAllTypes",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

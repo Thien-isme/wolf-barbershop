@@ -216,6 +216,18 @@
         }
       }
     },
+    "/api/Brand/getAllBrands": {
+      "get": {
+        "tags": [
+          "Brand"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Employee/GetBarbers": {
       "get": {
         "tags": [
@@ -373,7 +385,7 @@
         }
       }
     },
-    "/api/Product/products": {
+    "/api/Product/getAllProductsToManagement": {
       "get": {
         "tags": [
           "Product"
@@ -400,6 +412,18 @@
               "format": "int32"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ProductType/GetAllTypes": {
+      "get": {
+        "tags": [
+          "ProductType"
         ],
         "responses": {
           "200": {
