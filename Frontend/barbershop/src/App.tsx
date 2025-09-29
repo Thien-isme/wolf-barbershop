@@ -14,6 +14,7 @@ import BarberShopHeader from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { autoLogin } from "./api/authApi";
 import { AuthProvider } from './contexts/AuthContext';
+import ProductManagement from "./pages/Admin/ProductManagement/ProductManagement";
 const clientId = "136465399071-sbg4p7qhb3qc9dbv8t6qdsf3m6ud93cu.apps.googleusercontent.com";
 
 function AppContent() {
@@ -81,6 +82,7 @@ function AppContent() {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/barber" element={<AdminBarberManagement />} />
         <Route path="/admin/branch" element={<BranchManagement />} />
+        <Route path="/admin/product" element={<ProductManagement />} />
       </Routes>
       {shouldShowHeaderFooter() && <Footer />}
     </>

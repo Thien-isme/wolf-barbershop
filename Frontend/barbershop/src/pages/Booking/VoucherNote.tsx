@@ -7,17 +7,18 @@ const VoucherNote = ({ form }: { form: any }) => {
   const [vouchers, setVouchers] = useState([]);
 
   useEffect(() => {
-    const fetchVouchers = async () => {
-      try {
-        const response = await getVoucherOfUser();
-        if (response && response.data) {
-          setVouchers(response.data);
-        }
-      } catch (error) {
-        console.error('Error fetching vouchers:', error);
+  const fetchVouchers = async () => {
+    try {
+      const response = await getVoucherOfUser();
+      if (response && response.data) {
+        setVouchers(response.data);
       }
+    } catch (error) {
+      console.error('Error fetching vouchers:', error);
     }
-    });
+  };
+  fetchVouchers(); // <--- GỌI HÀM Ở ĐÂY
+}, []);
 
   return (
   <Card

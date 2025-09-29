@@ -1,4 +1,4 @@
-import { Card, Typography } from 'antd';
+import { Typography } from 'antd';
 import Slider from 'react-slick';
 
 const { Title } = Typography;

@@ -9,7 +9,7 @@ export default function AdminSidebarLayout({ children }: { children: React.React
       <AdminSidebar />
       <Layout style={{ marginLeft: "200px" }}> {/* Thêm margin bằng với width của sidebar */}
         <Content style={{ 
-          margin: "24px",
+          // margin: "24px",
           minHeight: "280px",
           overflow: "auto" // Cho phép scroll nội dung
         }}>

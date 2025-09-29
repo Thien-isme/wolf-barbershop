@@ -1,5 +1,5 @@
 import { Menu } from "antd";
-import { UserOutlined, HomeOutlined, ShopOutlined, LogoutOutlined } from "@ant-design/icons";
+import { UserOutlined, HomeOutlined, ShopOutlined, LogoutOutlined, GiftOutlined } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from '../../../contexts/AuthContext';
 
@@ -7,6 +7,7 @@ const items = [
   { key: "dashboard", icon: <HomeOutlined />, label: "Dashboard", path: "/admin" },
   { key: "barber", icon: <UserOutlined />, label: "Barber", path: "/admin/barber" },
   { key: "branch", icon: <ShopOutlined />, label: "Chi nhánh", path: "/admin/branch" },
+  { key: "product", icon: <GiftOutlined />, label: "Sản phẩm", path: "/admin/product" },
   {
     key: "logout",
     icon: <LogoutOutlined />,

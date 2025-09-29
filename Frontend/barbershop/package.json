@@ -16,6 +16,8 @@
     "@types/styled-components": "^5.1.34",
     "antd": "^5.27.3",
     "axios": "^1.11.0",
+    "cookie": "^1.0.2",
+    "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "moment": "^2.30.1",
     "react": "^19.1.1",
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/react": "^19.1.11",
     "@types/react-dom": "^19.1.7",
     "@types/react-slick": "^0.23.13",

@@ -13,6 +13,7 @@ import type { EmployeeDTO } from "../../../types/ResponseDTOs/employeeDTO";
 function BarberItem({ barber, bubble }: { barber: EmployeeDTO, bubble?: boolean }) {
   
   return (
+     
     <Card
       style={{
         background: "#fff",
@@ -105,7 +106,13 @@ export default function BarberManagement() {
   );
 
   return (
-    <SidebarLayout>
+      <SidebarLayout>
+          <div
+            style={{
+              minHeight: "100vh",
+              padding: "32px 40px",
+            }}
+            >
       <Typography.Title
           level={2}
           style={{
@@ -177,6 +184,7 @@ export default function BarberManagement() {
         onClose={() => setShowAddModal(false)}
         onAddSuccess={handleAddBarberSuccess}
       />
+      </div>
     </SidebarLayout>
   );
 }

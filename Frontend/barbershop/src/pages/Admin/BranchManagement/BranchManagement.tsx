@@ -29,6 +29,15 @@ export default function BranchManagement() {
 
   return (
     <SidebarLayout>
+      <div
+        style={{
+          minHeight: "100vh",
+          padding: "32px 40px",
+        }}
+        >
+    
+
+
       <Typography.Title
         level={2}
         style={{
@@ -139,6 +148,7 @@ export default function BranchManagement() {
         onCancel={() => setModalOpen(false)}
         onAdd={branch => setBranches([branch, ...branches])}
       />
+        </div>
     </SidebarLayout>
   );
 }

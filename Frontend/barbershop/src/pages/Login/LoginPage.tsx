@@ -6,9 +6,7 @@ const navigate = useNavigate(); // Khởi tạo hook
   // Callback nhận response từ API login
   const handleLoginSuccess = (login: LoginResponseDTO) => {
     setLogin(login);
-    localStorage.setItem("accessToken", login.accessToken); // Lưu token vào localStorage
-    localStorage.setItem("refreshToken", login.refreshToken); // Lưu refreshToken vào localStorage
-    localStorage.setItem("user", JSON.stringify(login.user)); // Lưu user vào localStorage
+     // Lưu user vào localStorage
     if(login.user.roleId === 4) {
       // Nếu là admin, chuyển hướng đến trang quản trị
       navigate('/admin');

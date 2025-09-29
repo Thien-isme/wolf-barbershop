@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { LoginResponseDTO } from '../types/ResponseDTOs/loginResponseDTO';
-
+import Cookies from 'js-cookie';
 interface AuthContextType {
   login: LoginResponseDTO | null;
   setLogin: (login: LoginResponseDTO | null) => void;
@@ -21,9 +21,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   });
 
   const logout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("user");
+    Cookies.remove("accessToken");
+    Cookies.remove("refreshToken");
+    Cookies.remove("user");
     setLogin(null);
   };
 
