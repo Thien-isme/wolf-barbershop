@@ -10,7 +10,7 @@ namespace barbershop.Models.ResponseDTOs
 
         public int ProductTypeId { get; set; }
 
-        public decimal Price { get; set; }
+        public List<ProductPriceDTO> ProductPriceDTO { get; set; }
 
         public int Discount { get; set; }
 

@@ -23,6 +23,8 @@ public partial class BarbershopContext : DbContext
 
     public virtual DbSet<Branch> Branchs { get; set; }
 
+    public virtual DbSet<Brand> Brands { get; set; }
+
     public virtual DbSet<Employee> Employees { get; set; }
 
     public virtual DbSet<EmployeeImgHair> EmployeeImgHairs { get; set; }
@@ -39,6 +41,8 @@ public partial class BarbershopContext : DbContext
 
     public virtual DbSet<Product> Products { get; set; }
 
+    public virtual DbSet<ProductPrice> ProductPrices { get; set; }
+
     public virtual DbSet<ProductType> ProductTypes { get; set; }
 
     public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
@@ -51,9 +55,13 @@ public partial class BarbershopContext : DbContext
 
     public virtual DbSet<ServiceType> ServiceTypes { get; set; }
 
+    public virtual DbSet<Size> Sizes { get; set; }
+
     public virtual DbSet<Skill> Skills { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+
+    public virtual DbSet<UserVoucher> UserVouchers { get; set; }
 
     public virtual DbSet<Voucher> Vouchers { get; set; }
 
@@ -65,7 +73,7 @@ public partial class BarbershopContext : DbContext
     {
         modelBuilder.Entity<AccessToken>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__access_t__3213E83F95C3ECF5");
+            entity.HasKey(e => e.Id).HasName("PK__access_t__3213E83F0425D342");
 
             entity.ToTable("access_tokens");
 
@@ -88,7 +96,7 @@ public partial class BarbershopContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.AccessTokens)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__access_to__user___30C33EC3");
+                .HasConstraintName("FK__access_to__user___656C112C");
         });
 
         modelBuilder.Entity<Appointment>(entity =>
@@ -184,6 +192,34 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.WardCommune)
                 .HasMaxLength(255)
                 .HasColumnName("ward_commune");
+        });
+
+        modelBuilder.Entity<Brand>(entity =>
+        {
+            entity.HasKey(e => e.BrandId).HasName("PK__brands__5E5A8E274E626468");
+
+            entity.ToTable("brands");
+
+            entity.Property(e => e.BrandId).HasColumnName("brand_id");
+            entity.Property(e => e.BrandName)
+                .HasMaxLength(100)
+                .HasColumnName("brandName");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
+            entity.Property(e => e.Description)
+                .HasMaxLength(500)
+                .HasColumnName("description");
+            entity.Property(e => e.IsActive)
+                .HasDefaultValue(true)
+                .HasColumnName("isActive");
+            entity.Property(e => e.LogoPath)
+                .HasMaxLength(255)
+                .HasColumnName("logoPath");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
         });
 
         modelBuilder.Entity<Employee>(entity =>
@@ -421,21 +457,52 @@ public partial class BarbershopContext : DbContext
             entity.HasIndex(e => e.ProductTypeId, "IX_products_product_type_id");
 
             entity.Property(e => e.ProductId).HasColumnName("product_id");
-            entity.Property(e => e.Discount).HasColumnName("discount");
+            entity.Property(e => e.BrandId).HasColumnName("brand_id");
             entity.Property(e => e.Instruction).HasColumnName("instruction");
             entity.Property(e => e.IsActive).HasColumnName("is_active");
-            entity.Property(e => e.Price)
-                .HasColumnType("decimal(8, 2)")
-                .HasColumnName("price");
+            entity.Property(e => e.ProductImg)
+                .HasMaxLength(255)
+                .HasColumnName("product_img");
             entity.Property(e => e.ProductName)
                 .HasMaxLength(255)
                 .HasColumnName("product_name");
             entity.Property(e => e.ProductTypeId).HasColumnName("product_type_id");
+            entity.Property(e => e.SizeId).HasColumnName("size_id");
+
+            entity.HasOne(d => d.Brand).WithMany(p => p.Products)
+                .HasForeignKey(d => d.BrandId)
+                .HasConstraintName("FK_Product_Brand");
 
             entity.HasOne(d => d.ProductType).WithMany(p => p.Products)
                 .HasForeignKey(d => d.ProductTypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_products_product_type_id");
+
+            entity.HasOne(d => d.Size).WithMany(p => p.Products)
+                .HasForeignKey(d => d.SizeId)
+                .HasConstraintName("FK_Product_Size");
+        });
+
+        modelBuilder.Entity<ProductPrice>(entity =>
+        {
+            entity.HasKey(e => e.ProductPriceId).HasName("PK__product___DC88EB61EA9241FD");
+
+            entity.ToTable("product_prices");
+
+            entity.Property(e => e.ProductPriceId).HasColumnName("product_price_id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.DiscountEndDate).HasColumnType("datetime");
+            entity.Property(e => e.DiscountStartDate).HasColumnType("datetime");
+            entity.Property(e => e.DiscountedPrice).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
+            entity.Property(e => e.OriginalPrice).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.ProductId).HasColumnName("product_id");
+
+            entity.HasOne(d => d.Product).WithMany(p => p.ProductPrices)
+                .HasForeignKey(d => d.ProductId)
+                .HasConstraintName("FK__product_p__produ__797309D9");
         });
 
         modelBuilder.Entity<ProductType>(entity =>
@@ -450,7 +517,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<RefreshToken>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__refresh___3213E83F397C64DC");
+            entity.HasKey(e => e.Id).HasName("PK__refresh___3213E83F809249FD");
 
             entity.ToTable("refresh_tokens");
 
@@ -473,7 +540,7 @@ public partial class BarbershopContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.RefreshTokens)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__refresh_t__user___3493CFA7");
+                .HasConstraintName("FK__refresh_t__user___7D439ABD");
         });
 
         modelBuilder.Entity<Review>(entity =>
@@ -553,7 +620,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<ServiceType>(entity =>
         {
-            entity.HasKey(e => e.ServiceTypeId).HasName("PK__service___288B52C6B84870CB");
+            entity.HasKey(e => e.ServiceTypeId).HasName("PK__service___288B52C6BE2C3970");
 
             entity.ToTable("service_type");
 
@@ -562,6 +629,26 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.ServiceTypeName)
                 .HasMaxLength(255)
                 .HasColumnName("service_type_name");
+        });
+
+        modelBuilder.Entity<Size>(entity =>
+        {
+            entity.HasKey(e => e.SizeId).HasName("PK__sizes__0DCACE310B3F7D3F");
+
+            entity.ToTable("sizes");
+
+            entity.Property(e => e.SizeId).HasColumnName("size_id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
+            entity.Property(e => e.IsActive)
+                .HasDefaultValue(true)
+                .HasColumnName("isActive");
+            entity.Property(e => e.SizeName)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("sizeName");
         });
 
         modelBuilder.Entity<Skill>(entity =>
@@ -626,6 +713,26 @@ public partial class BarbershopContext : DbContext
                 .HasConstraintName("roles_role_id_foreign");
         });
 
+        modelBuilder.Entity<UserVoucher>(entity =>
+        {
+            entity.HasKey(e => e.UserVoucherId).HasName("PK__user_vou__6A698A79F8DA9BBF");
+
+            entity.ToTable("user_voucher");
+
+            entity.Property(e => e.UserVoucherId).HasColumnName("user_voucher_id");
+            entity.Property(e => e.Quantity).HasColumnName("quantity");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.VoucherId).HasColumnName("voucher_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.UserVouchers)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_User_voucher_User");
+
+            entity.HasOne(d => d.Voucher).WithMany(p => p.UserVouchers)
+                .HasForeignKey(d => d.VoucherId)
+                .HasConstraintName("FK_User_Voucher_Voucher");
+        });
+
         modelBuilder.Entity<Voucher>(entity =>
         {
             entity.ToTable("vouchers");
@@ -638,25 +745,37 @@ public partial class BarbershopContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("discount_type");
             entity.Property(e => e.DiscountValue)
-                .HasColumnType("decimal(8, 2)")
+                .HasColumnType("decimal(10, 2)")
                 .HasColumnName("discount_value");
             entity.Property(e => e.Expdate)
                 .HasPrecision(0)
                 .HasColumnName("expdate");
             entity.Property(e => e.IsActive).HasColumnName("is_active");
-            entity.Property(e => e.Quantity).HasColumnName("quantity");
+            entity.Property(e => e.MaxDiscount)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("max_discount");
+            entity.Property(e => e.MinOrderValue)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("min_order_value");
             entity.Property(e => e.Startdate)
                 .HasPrecision(0)
                 .HasColumnName("startdate");
+            entity.Property(e => e.Status)
+                .HasMaxLength(20)
+                .HasColumnName("status");
+            entity.Property(e => e.UsageLimit).HasColumnName("usage_limit");
+            entity.Property(e => e.UsedCount)
+                .HasDefaultValue(0)
+                .HasColumnName("used_count");
             entity.Property(e => e.VoucherCode)
                 .HasMaxLength(255)
                 .HasColumnName("voucher_code");
+            entity.Property(e => e.VoucherImg)
+                .HasColumnType("text")
+                .HasColumnName("voucher_img");
             entity.Property(e => e.VoucherName)
                 .HasMaxLength(255)
                 .HasColumnName("voucher_name");
-            entity.Property(e => e.VoucherUrl)
-                .HasMaxLength(255)
-                .HasColumnName("voucher_url");
         });
 
         OnModelCreatingPartial(modelBuilder);

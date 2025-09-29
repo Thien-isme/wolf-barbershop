@@ -25,8 +25,16 @@ namespace barbershop.Services.implements
                         ProductId = p.ProductId,
                         ProductName = p.ProductName,
                         ProductTypeId = p.ProductTypeId,
-                        Price = p.Price,
-                        Discount = p.Discount,
+                        ProductPriceDTO = p.ProductPrices.Select(pp => new ProductPriceDTO
+                        {
+                            ProductPriceId = pp.ProductPriceId,
+                            DiscountedPrice = pp.DiscountedPrice,
+                            OriginalPrice = pp.OriginalPrice,
+                            DiscountEndDate = pp.DiscountEndDate,
+                            DiscountStartDate = pp.DiscountStartDate,
+                            CreatedAt = pp.CreatedAt,
+                            IsActive = pp.IsActive,
+                        }).ToList(),
                         Instruction = p.Instruction,
                         isActive = p.IsActive,
                         ProductTypeName = p.ProductType.ProductTypeName
@@ -61,8 +69,7 @@ namespace barbershop.Services.implements
                         ProductId = product.ProductId,
                         ProductName = product.ProductName,
                         ProductTypeId = product.ProductTypeId,
-                        Price = product.Price,
-                        Discount = product.Discount,
+                        ProductPriceDTO = product.ProductPrices.Select(pp => new ProductPriceDTO { ProductPriceId = pp.ProductPriceId, DiscountedPrice = pp.DiscountedPrice, OriginalPrice = pp.OriginalPrice, DiscountEndDate = pp.DiscountEndDate, DiscountStartDate = pp.DiscountStartDate, CreatedAt = pp.CreatedAt, IsActive = pp.IsActive }).ToList(),
                         Instruction = product.Instruction,
                         isActive = product.IsActive,
                         ProductTypeName = product.ProductType?.ProductTypeName
