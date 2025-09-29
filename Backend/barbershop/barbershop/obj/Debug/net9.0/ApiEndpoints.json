@@ -307,5 +307,15 @@
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.UserVoucherController",
+    "Method": "GetVouchersOfUser",
+    "RelativePath": "api/UserVoucher/get-vouchers-of-user",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]

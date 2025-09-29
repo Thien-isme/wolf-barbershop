@@ -13,9 +13,7 @@ public partial class Voucher
 
     public string DiscountType { get; set; } = null!;
 
-    public decimal DiscountValue { get; set; }
-
-    public int Quantity { get; set; }
+    public decimal? DiscountValue { get; set; }
 
     public string? Description { get; set; }
 
@@ -23,9 +21,21 @@ public partial class Voucher
 
     public DateTime? Expdate { get; set; }
 
-    public string? VoucherUrl { get; set; }
-
     public bool? IsActive { get; set; }
 
+    public decimal? MaxDiscount { get; set; }
+
+    public decimal? MinOrderValue { get; set; }
+
+    public int? UsageLimit { get; set; }
+
+    public int? UsedCount { get; set; }
+
+    public string Status { get; set; } = null!;
+
+    public string? VoucherImg { get; set; }
+
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+
+    public virtual ICollection<UserVoucher> UserVouchers { get; set; } = new List<UserVoucher>();
 }

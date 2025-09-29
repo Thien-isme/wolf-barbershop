@@ -1,3 +1,4 @@
+using barbershop.Models.Entitys;
 using System;
 
 namespace barbershop.Models.ResponseDTOs
@@ -5,9 +6,37 @@ namespace barbershop.Models.ResponseDTOs
     public class VoucherDTO
     {
         public int VoucherId { get; set; }
-        public string VoucherCode { get; set; }
-        public decimal DiscountAmount { get; set; }
-        public DateTime ExpiryDate { get; set; }
-        public bool IsActive { get; set; }
+
+        public string VoucherName { get; set; } = null!;
+
+        public string VoucherCode { get; set; } = null!;
+
+        public string DiscountType { get; set; } = null!;
+
+        public decimal? DiscountValue { get; set; }
+
+        public string? Description { get; set; }
+
+        public DateTime? Startdate { get; set; }
+
+        public DateTime? Expdate { get; set; }
+
+        public bool? IsActive { get; set; }
+
+        public decimal? MaxDiscount { get; set; }
+
+        public decimal? MinOrderValue { get; set; }
+
+        public int? UsageLimit { get; set; }
+
+        public int? UsedCount { get; set; }
+
+        public string Status { get; set; } = null!;
+
+        public string? VoucherImg { get; set; }
+
+        //public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+
+        //public virtual ICollection<UserVoucher> UserVouchers { get; set; } = new List<UserVoucher>();
     }
 }

@@ -455,6 +455,18 @@
           }
         }
       }
+    },
+    "/api/UserVoucher/get-vouchers-of-user": {
+      "get": {
+        "tags": [
+          "UserVoucher"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {

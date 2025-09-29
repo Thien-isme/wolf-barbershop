@@ -1,6 +1,25 @@
 import { Card, Typography, Form, Select, Input } from 'antd';
+import {getVoucherOfUser} from '../../api/userVoucherApi';
+import { useEffect, useState } from 'react';
 
-const VoucherNote = ({ form }: { form: any }) => (
+
+const VoucherNote = ({ form }: { form: any }) => {
+  const [vouchers, setVouchers] = useState([]);
+
+  useEffect(() => {
+    const fetchVouchers = async () => {
+      try {
+        const response = await getVoucherOfUser();
+        if (response && response.data) {
+          setVouchers(response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching vouchers:', error);
+      }
+    }
+    });
+
+  return (
   <Card
     style={{ background: '#222', border: 'none', marginBottom: 24 }}
     bodyStyle={{ padding: 16, position: 'relative' }}
@@ -49,6 +68,7 @@ const VoucherNote = ({ form }: { form: any }) => (
       &nbsp;của Easysalon.
     </div>
   </Card>
-);
+    )
+};
 
 export default VoucherNote;

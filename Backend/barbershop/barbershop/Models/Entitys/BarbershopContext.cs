@@ -61,6 +61,8 @@ public partial class BarbershopContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<UserVoucher> UserVouchers { get; set; }
+
     public virtual DbSet<Voucher> Vouchers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -71,7 +73,7 @@ public partial class BarbershopContext : DbContext
     {
         modelBuilder.Entity<AccessToken>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__access_t__3213E83F95C3ECF5");
+            entity.HasKey(e => e.Id).HasName("PK__access_t__3213E83F0425D342");
 
             entity.ToTable("access_tokens");
 
@@ -94,7 +96,7 @@ public partial class BarbershopContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.AccessTokens)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__access_to__user___30C33EC3");
+                .HasConstraintName("FK__access_to__user___656C112C");
         });
 
         modelBuilder.Entity<Appointment>(entity =>
@@ -194,7 +196,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<Brand>(entity =>
         {
-            entity.HasKey(e => e.BrandId).HasName("PK__brands__5E5A8E2737664AA6");
+            entity.HasKey(e => e.BrandId).HasName("PK__brands__5E5A8E274E626468");
 
             entity.ToTable("brands");
 
@@ -483,7 +485,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<ProductPrice>(entity =>
         {
-            entity.HasKey(e => e.ProductPriceId).HasName("PK__product___DC88EB61142C0AE8");
+            entity.HasKey(e => e.ProductPriceId).HasName("PK__product___DC88EB61EA9241FD");
 
             entity.ToTable("product_prices");
 
@@ -500,7 +502,7 @@ public partial class BarbershopContext : DbContext
 
             entity.HasOne(d => d.Product).WithMany(p => p.ProductPrices)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__product_p__produ__4A8310C6");
+                .HasConstraintName("FK__product_p__produ__797309D9");
         });
 
         modelBuilder.Entity<ProductType>(entity =>
@@ -515,7 +517,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<RefreshToken>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__refresh___3213E83F397C64DC");
+            entity.HasKey(e => e.Id).HasName("PK__refresh___3213E83F809249FD");
 
             entity.ToTable("refresh_tokens");
 
@@ -538,7 +540,7 @@ public partial class BarbershopContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.RefreshTokens)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__refresh_t__user___3493CFA7");
+                .HasConstraintName("FK__refresh_t__user___7D439ABD");
         });
 
         modelBuilder.Entity<Review>(entity =>
@@ -618,7 +620,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<ServiceType>(entity =>
         {
-            entity.HasKey(e => e.ServiceTypeId).HasName("PK__service___288B52C6B84870CB");
+            entity.HasKey(e => e.ServiceTypeId).HasName("PK__service___288B52C6BE2C3970");
 
             entity.ToTable("service_type");
 
@@ -631,7 +633,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<Size>(entity =>
         {
-            entity.HasKey(e => e.SizeId).HasName("PK__sizes__0DCACE313429AA64");
+            entity.HasKey(e => e.SizeId).HasName("PK__sizes__0DCACE310B3F7D3F");
 
             entity.ToTable("sizes");
 
@@ -711,6 +713,26 @@ public partial class BarbershopContext : DbContext
                 .HasConstraintName("roles_role_id_foreign");
         });
 
+        modelBuilder.Entity<UserVoucher>(entity =>
+        {
+            entity.HasKey(e => e.UserVoucherId).HasName("PK__user_vou__6A698A79F8DA9BBF");
+
+            entity.ToTable("user_voucher");
+
+            entity.Property(e => e.UserVoucherId).HasColumnName("user_voucher_id");
+            entity.Property(e => e.Quantity).HasColumnName("quantity");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.VoucherId).HasColumnName("voucher_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.UserVouchers)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_User_voucher_User");
+
+            entity.HasOne(d => d.Voucher).WithMany(p => p.UserVouchers)
+                .HasForeignKey(d => d.VoucherId)
+                .HasConstraintName("FK_User_Voucher_Voucher");
+        });
+
         modelBuilder.Entity<Voucher>(entity =>
         {
             entity.ToTable("vouchers");
@@ -723,25 +745,37 @@ public partial class BarbershopContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("discount_type");
             entity.Property(e => e.DiscountValue)
-                .HasColumnType("decimal(8, 2)")
+                .HasColumnType("decimal(10, 2)")
                 .HasColumnName("discount_value");
             entity.Property(e => e.Expdate)
                 .HasPrecision(0)
                 .HasColumnName("expdate");
             entity.Property(e => e.IsActive).HasColumnName("is_active");
-            entity.Property(e => e.Quantity).HasColumnName("quantity");
+            entity.Property(e => e.MaxDiscount)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("max_discount");
+            entity.Property(e => e.MinOrderValue)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("min_order_value");
             entity.Property(e => e.Startdate)
                 .HasPrecision(0)
                 .HasColumnName("startdate");
+            entity.Property(e => e.Status)
+                .HasMaxLength(20)
+                .HasColumnName("status");
+            entity.Property(e => e.UsageLimit).HasColumnName("usage_limit");
+            entity.Property(e => e.UsedCount)
+                .HasDefaultValue(0)
+                .HasColumnName("used_count");
             entity.Property(e => e.VoucherCode)
                 .HasMaxLength(255)
                 .HasColumnName("voucher_code");
+            entity.Property(e => e.VoucherImg)
+                .HasColumnType("text")
+                .HasColumnName("voucher_img");
             entity.Property(e => e.VoucherName)
                 .HasMaxLength(255)
                 .HasColumnName("voucher_name");
-            entity.Property(e => e.VoucherUrl)
-                .HasMaxLength(255)
-                .HasColumnName("voucher_url");
         });
 
         OnModelCreatingPartial(modelBuilder);
