@@ -94,7 +94,7 @@ export default function BarberManagement() {
       }).catch(console.error);
     }, []);
 
-    console.log(barbers);
+    // console.log(barbers);
   useEffect(() => {
     setBubble(true);
     const timer = setTimeout(() => setBubble(false), 700);

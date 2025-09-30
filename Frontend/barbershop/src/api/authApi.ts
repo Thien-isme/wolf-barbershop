@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 export const loginWithGoogle = async (token: string) => {
     try {
         const res = await api.post('/Auth/google-login', { token });
-        console.log('Login with Google response:', res);
+        // console.log('Login with Google response:', res);
         Cookies.set("accessToken", res.data.data.accessToken); // Lưu token vào cookie
         Cookies.set("refreshToken", res.data.data.refreshToken); // Lưu refreshToken vào cookie
         Cookies.set("user", JSON.stringify(res.data.data.user)); // Lưu user vào cookie

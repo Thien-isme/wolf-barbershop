@@ -94,7 +94,7 @@ const LoginBody = ({ onLoginSuccess }: { onLoginSuccess: (userInfo: any) => void
                 if (token) {
                   const result = await loginWithGoogle(token);
                   if (result) {
-                    console.log('Google login success, response: ', result);
+                    // console.log('Google login success, response: ', result);
                     onLoginSuccess(result.data); // truyền dữ liệu lên LoginPage
                   }
                 }
