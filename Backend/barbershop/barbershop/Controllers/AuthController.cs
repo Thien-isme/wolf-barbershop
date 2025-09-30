@@ -1,7 +1,7 @@
-﻿using barbershop.Services.implements;
-using Microsoft.AspNetCore.Mvc;
-using barbershop.Models.RequestDTOs;
+﻿using barbershop.Models.RequestDTOs;
+using barbershop.Services.implements;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 namespace barbershop.Controllers
 {
     [ApiController]
@@ -90,9 +90,9 @@ namespace barbershop.Controllers
         }
 
         [HttpPost("refreshToken")]
-        public async Task<IActionResult> RefreshToken(String refreshToken)
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest request)
         {
-            var newTokens = await _authService.RefreshTokenAsync(refreshToken);
+            var newTokens = await _authService.RefreshTokenAsync(request.RefreshToken);
             if (newTokens != null)
                 return Ok(newTokens);
             return Unauthorized();
