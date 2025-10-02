@@ -35,6 +35,17 @@ namespace barbershop.Repositorys.implements
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId && u.IsActive == true);
         }
+
+        public async Task<User?> FindByUsername(string? username)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username && u.IsActive == true);
+        }
+
+        public async Task<User?> FindByUsernameAndPassword(string? username, string? password)
+        {
+
+            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username && u.Password == password && u.IsActive == true);
+        }
         // TODO: Implement repository methods for User
     }
 }

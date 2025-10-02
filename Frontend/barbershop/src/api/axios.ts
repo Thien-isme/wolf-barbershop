@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 
 const api = axios.create({
   baseURL: "http://localhost:5257/api", // hoặc baseURL của bạn
+  timeout: 10000, // 10 giây
 });
 
 // Add a request interceptor to attach accessToken

@@ -30,6 +30,8 @@ namespace barbershop.Services.implements
         {
             return await userRepository.GetUserByIdAsync(userId);
         }
+
+       
         // TODO: Implement service methods for User
     }
 }

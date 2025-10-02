@@ -98,5 +98,14 @@ namespace barbershop.Controllers
             return Unauthorized();
         }
 
+        [HttpPost("login-username-password")]
+        public async Task<IActionResult> LoginWithUsernameAndPassword([FromBody] LoginWithUsernameAndPassword request)
+        {
+            var res = await _authService.LoginWithUsernameAndPassword(request);
+            if (res != null)
+                return Ok(res);
+            return Unauthorized();
+        }
+
     }
 }

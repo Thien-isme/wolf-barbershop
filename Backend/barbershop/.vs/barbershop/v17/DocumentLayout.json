@@ -3,36 +3,72 @@
   "WorkspaceRootPath": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\uservouchercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\uservouchercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\uservoucherdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\models\\responsedtos\\uservoucherdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\producttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\producttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\rolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\rolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\servicetypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\servicetypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\skillcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\skillcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\uservouchercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\uservouchercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\vouchercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\vouchercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\repositorys\\implements\\uservoucherrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\repositorys\\implements\\uservoucherrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\repositorys\\implements\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\repositorys\\implements\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\services\\implements\\uservoucherservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\services\\implements\\uservoucherservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\repositorys\\implements\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\repositorys\\implements\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\repositorys\\implements\\brandrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\repositorys\\implements\\brandrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\models\\entitys\\barbershopcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\models\\entitys\\barbershopcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +78,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,33 +86,128 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "barbershop\\Controllers\\AuthController.cs",
+              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "barbershop\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAgwFgAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T09:10:30.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "barbershop\\Controllers\\ProductController.cs",
+              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "barbershop\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T09:10:28.158Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "ProductTypeController.cs",
+              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\ProductTypeController.cs",
+              "RelativeDocumentMoniker": "barbershop\\Controllers\\ProductTypeController.cs",
+              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\ProductTypeController.cs",
+              "RelativeToolTip": "barbershop\\Controllers\\ProductTypeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T09:10:27.337Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReviewController.cs",
+              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\ReviewController.cs",
+              "RelativeDocumentMoniker": "barbershop\\Controllers\\ReviewController.cs",
+              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\ReviewController.cs",
+              "RelativeToolTip": "barbershop\\Controllers\\ReviewController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T09:10:26.663Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RoleController.cs",
+              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\RoleController.cs",
+              "RelativeDocumentMoniker": "barbershop\\Controllers\\RoleController.cs",
+              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\RoleController.cs",
+              "RelativeToolTip": "barbershop\\Controllers\\RoleController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T09:10:25.96Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ServiceController.cs",
+              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\ServiceController.cs",
+              "RelativeDocumentMoniker": "barbershop\\Controllers\\ServiceController.cs",
+              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\ServiceController.cs",
+              "RelativeToolTip": "barbershop\\Controllers\\ServiceController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T09:10:18.29Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ServiceTypeController.cs",
+              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\ServiceTypeController.cs",
+              "RelativeDocumentMoniker": "barbershop\\Controllers\\ServiceTypeController.cs",
+              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\ServiceTypeController.cs",
+              "RelativeToolTip": "barbershop\\Controllers\\ServiceTypeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T09:10:16.807Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SkillController.cs",
+              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\SkillController.cs",
+              "RelativeDocumentMoniker": "barbershop\\Controllers\\SkillController.cs",
+              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\SkillController.cs",
+              "RelativeToolTip": "barbershop\\Controllers\\SkillController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T09:10:16.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "UserController.cs",
               "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "barbershop\\Controllers\\UserController.cs",
               "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\UserController.cs",
               "RelativeToolTip": "barbershop\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T09:19:20.639Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-02T09:10:15.37Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
               "Title": "UserVoucherController.cs",
               "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\UserVoucherController.cs",
               "RelativeDocumentMoniker": "barbershop\\Controllers\\UserVoucherController.cs",
               "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\UserVoucherController.cs",
               "RelativeToolTip": "barbershop\\Controllers\\UserVoucherController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T09:19:01.15Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-02T09:10:14.583Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 10,
               "Title": "VoucherController.cs",
               "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\VoucherController.cs",
               "RelativeDocumentMoniker": "barbershop\\Controllers\\VoucherController.cs",
@@ -84,73 +215,79 @@
               "RelativeToolTip": "barbershop\\Controllers\\VoucherController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T09:19:18.082Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-02T09:10:14.031Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "barbershop\\Repositorys\\implements\\ProductRepository.cs",
+              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\ProductRepository.cs",
+              "RelativeToolTip": "barbershop\\Repositorys\\implements\\ProductRepository.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwBMAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T08:47:32.882Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\UserRepository.cs",
+              "RelativeDocumentMoniker": "barbershop\\Repositorys\\implements\\UserRepository.cs",
+              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\UserRepository.cs",
+              "RelativeToolTip": "barbershop\\Repositorys\\implements\\UserRepository.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAA9wC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T08:44:51.257Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "BrandRepository.cs",
+              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\BrandRepository.cs",
+              "RelativeDocumentMoniker": "barbershop\\Repositorys\\implements\\BrandRepository.cs",
+              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\BrandRepository.cs",
+              "RelativeToolTip": "barbershop\\Repositorys\\implements\\BrandRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T08:44:41.74Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BarbershopContext.cs",
+              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Models\\Entitys\\BarbershopContext.cs",
+              "RelativeDocumentMoniker": "barbershop\\Models\\Entitys\\BarbershopContext.cs",
+              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Models\\Entitys\\BarbershopContext.cs",
+              "RelativeToolTip": "barbershop\\Models\\Entitys\\BarbershopContext.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAiwBEAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T08:44:26.849Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "appsettings.json",
               "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\appsettings.json",
               "RelativeDocumentMoniker": "barbershop\\appsettings.json",
               "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\appsettings.json",
               "RelativeToolTip": "barbershop\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAACzAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-29T09:09:21.196Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-02T08:43:50.989Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserVoucherRepository.cs",
-              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\UserVoucherRepository.cs",
-              "RelativeDocumentMoniker": "barbershop\\Repositorys\\implements\\UserVoucherRepository.cs",
-              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\UserVoucherRepository.cs",
-              "RelativeToolTip": "barbershop\\Repositorys\\implements\\UserVoucherRepository.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAUwBAAAABRAAAAAAAAAA==",
+              "DocumentIndex": 16,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "barbershop\\Controllers\\EmployeeController.cs",
+              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "barbershop\\Controllers\\EmployeeController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T09:03:59.352Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserVoucherDTO.cs",
-              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\UserVoucherDTO.cs",
-              "RelativeDocumentMoniker": "barbershop\\Models\\ResponseDTOs\\UserVoucherDTO.cs",
-              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\UserVoucherDTO.cs",
-              "RelativeToolTip": "barbershop\\Models\\ResponseDTOs\\UserVoucherDTO.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAgwBIAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T08:59:38.011Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "barbershop\\Controllers\\ProductController.cs",
-              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "barbershop\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBgAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T08:58:42.965Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UserVoucherService.cs",
-              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Services\\implements\\UserVoucherService.cs",
-              "RelativeDocumentMoniker": "barbershop\\Services\\implements\\UserVoucherService.cs",
-              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Services\\implements\\UserVoucherService.cs",
-              "RelativeToolTip": "barbershop\\Services\\implements\\UserVoucherService.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAEwCYAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T08:56:02.062Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-02T08:37:05.629Z"
             }
           ]
         },

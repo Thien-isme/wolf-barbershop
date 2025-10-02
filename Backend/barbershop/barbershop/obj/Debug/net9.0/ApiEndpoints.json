@@ -70,6 +70,22 @@
   },
   {
     "ContainingType": "barbershop.Controllers.AuthController",
+    "Method": "LoginWithUsernameAndPassword",
+    "RelativePath": "api/Auth/login-username-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "barbershop.Models.RequestDTOs.LoginWithUsernameAndPassword",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.AuthController",
     "Method": "RefreshToken",
     "RelativePath": "api/Auth/refreshToken",
     "HttpMethod": "POST",
