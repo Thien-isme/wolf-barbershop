@@ -21,7 +21,16 @@ namespace barbershop.Services.implements
     {
         private readonly IConfiguration _configuration;
         private readonly BarbershopContext _context = new BarbershopContext();
+        private readonly string secretKey;
+        private readonly string issuer;
+        private readonly string audience;
+        private readonly int expireMinutes;
+        private readonly int refreshExpireDays;
 
+        //var secretKey = _configuration["Jwt:SecretKey"];
+        //var issuer = _configuration["Jwt:Issuer"];
+        //var audience = _configuration["Jwt:Audience"];
+        //var expireDays = int.Parse(_configuration["Jwt:ExpireMinutes"] ?? "7");
         public TokenService()
         {
         }
@@ -29,9 +38,14 @@ namespace barbershop.Services.implements
         public TokenService(IConfiguration configuration)
         {
             _configuration = configuration;
+            secretKey = _configuration["Jwt:SecretKey"];
+            issuer = _configuration["Jwt:Issuer"];
+            audience = _configuration["Jwt:Audience"];
+            expireMinutes = int.Parse(_configuration["Jwt:ExpireMinutes"] ?? "60");
+            refreshExpireDays = int.Parse(_configuration["Jwt:RefreshExpireDays"] ?? "7");
         }
 
-        public async Task<string> GenerateAccessToken(User user, string secretKey, string issuer, string audience, int expireDays = 1)
+        public async Task<string> GenerateAccessToken(User user)
         {
             var claims = new[]
             {
@@ -41,6 +55,8 @@ namespace barbershop.Services.implements
                 new Claim("RoleId", user.RoleId.ToString()),
             };
 
+            Console.WriteLine("secretKey: " + secretKey);   
+
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
@@ -48,7 +64,7 @@ namespace barbershop.Services.implements
                 issuer: issuer,
                 audience: audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(expireDays),
+                expires: DateTime.UtcNow.AddMinutes(expireMinutes),
                 signingCredentials: creds);
 
             string accessToken = new JwtSecurityTokenHandler().WriteToken(token);
@@ -61,7 +77,7 @@ namespace barbershop.Services.implements
                     AccessToken1 = accessToken,
                     UserId = user.UserId,
                     CreatedAt = DateTime.UtcNow,
-                    ExpiresAt = DateTime.UtcNow.AddMinutes(expireDays),
+                    ExpiresAt = DateTime.UtcNow.AddMinutes(expireMinutes),
                     RevokedAt = null
                 };
                 context.AccessTokens.Add(accessTokenEntity);
@@ -70,7 +86,7 @@ namespace barbershop.Services.implements
             return accessToken;
         }
 
-        public async Task<string> GenerateRefreshToken(User user, string secretKey, string issuer, string audience, int expireDays = 7)
+        public async Task<string> GenerateRefreshToken(User user)
         {
             var claims = new[]
             {
@@ -91,7 +107,7 @@ namespace barbershop.Services.implements
                 signingCredentials: creds);
 
             string refreshToken = new JwtSecurityTokenHandler().WriteToken(token);
-            
+
             // Khởi tạo DbContext mới cho mỗi request
             using (var context = new BarbershopContext())
             {
@@ -100,7 +116,7 @@ namespace barbershop.Services.implements
                     RefreshToken1 = refreshToken,
                     UserId = user.UserId,
                     CreatedAt = DateTime.UtcNow,
-                    ExpiresAt = DateTime.UtcNow.AddDays(7),
+                    ExpiresAt = DateTime.UtcNow.AddDays(refreshExpireDays),
                     RevokedAt = null
                 };
                 context.RefreshTokens.Add(refreshTokenEntity);
@@ -164,7 +180,7 @@ namespace barbershop.Services.implements
             //Console.WriteLine("Decoded Token - Email: " + emailClaim.Value);
             //Console.WriteLine("Decoded Token - FullName: " + fullNameClaim.Value);
             //Console.WriteLine("Decoded Token - RoleId: " + roleIdClaim.Value);
-            
+
             DecodeToken decodedToken = new DecodeToken
             {
                 UserId = long.Parse(userIdClaim.Value),
@@ -197,4 +213,3 @@ namespace barbershop.Services.implements
         }
     }
 }
-

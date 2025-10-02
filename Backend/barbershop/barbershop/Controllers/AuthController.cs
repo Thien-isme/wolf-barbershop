@@ -9,11 +9,12 @@ namespace barbershop.Controllers
     public class AuthController : ControllerBase
     {
         private readonly AuthService _authService;
-        private readonly TokenService _tokenService = new TokenService();
+        private readonly TokenService _tokenService;
         private readonly UserService _userService = new UserService();
-        public AuthController(AuthService authService)
+        public AuthController(AuthService authService, TokenService tokenService)
         {
             _authService = authService;
+            _tokenService = tokenService;
         }
 
         [HttpPost("google-login")]
@@ -58,7 +59,7 @@ namespace barbershop.Controllers
                 Console.WriteLine("Access token expired");
                 // Nếu token hết hạn, kiểm tra refresh token
                 var refreshCheck = await _tokenService.ValidateRefreshToken(request.refreshToken);
-                Console.WriteLine("RefreshToken: "+ request.refreshToken);
+                Console.WriteLine("RefreshToken: " + request.refreshToken);
                 if (refreshCheck.IsValid == false)
                 {
                     Console.WriteLine("Refresh token invalid: " + refreshCheck.Reason);
@@ -82,7 +83,7 @@ namespace barbershop.Controllers
                 var audience = "barbershop-client"; // Đọc từ cấu hình
                 var expireDays = 1; // Đọc từ cấu hình
 
-                accessToken = await _tokenService.GenerateAccessToken(user, secretKey, issuer, audience, expireDays);
+                accessToken = await _tokenService.GenerateAccessToken(user);
             }
 
             var userInfo = await _authService.AutoLogin(accessToken);

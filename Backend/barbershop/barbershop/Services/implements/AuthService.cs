@@ -16,18 +16,16 @@ namespace barbershop.Services.implements
 {
     public class AuthService
     {
-        private readonly IConfiguration _configuration;
+        //private readonly IConfiguration _configuration;
         private readonly UserService userService = new UserService();
-        private readonly TokenService tokenService = new TokenService();
+        private readonly TokenService tokenService;
 
         private readonly UserRepository userRepository = new UserRepository();
-        public AuthService()
-        {
-        }
+        
 
-        public AuthService(IConfiguration configuration)
+        public AuthService(TokenService tokenService)
         {
-            _configuration = configuration;
+            this.tokenService = tokenService;
         }
 
         public async Task<BaseResponse> LoginWithGoogleAsync(string token)
@@ -56,24 +54,26 @@ namespace barbershop.Services.implements
                     user = await userService.AddUser(user);
                 }
 
-
-                // Đọc cấu hình JWT
-                var secretKey = _configuration["Jwt:SecretKey"];
-                var issuer = _configuration["Jwt:Issuer"];
-                var audience = _configuration["Jwt:Audience"];
-                var expireDays = int.Parse(_configuration["Jwt:ExpireMinutes"] ?? "7");
-
                 // 4. Tạo JWT token cho
-                var accessToken = tokenService.GenerateAccessToken(user, secretKey, issuer, audience, expireDays);
-                var refreshToken = tokenService.GenerateRefreshToken(user, secretKey, issuer, audience, expireDays + 1);
+                var accessToken = tokenService.GenerateAccessToken(user);
+                var refreshToken = tokenService.GenerateRefreshToken(user);
                 // 5. Trả về token cho FE
                 BaseResponse baseResponse = new BaseResponse();
                 baseResponse.Status = 200;
                 baseResponse.MessageShow = "Đăng nhập thành công";
-                baseResponse.Data = new LoginResponse { AccessToken = accessToken.Result, RefreshToken = refreshToken.Result, UserDTO = new UserDTO
+                baseResponse.Data = new LoginResponse
                 {
-                    Email = user.Email,
-                }
+                    AccessToken = accessToken.Result,
+                    RefreshToken = refreshToken.Result,
+                    UserDTO = new UserDTO
+                    {
+                        UserId = user.UserId,
+                        FullName = user.FullName,
+                        Email = user.Email,
+                        Phone = user.Phone,
+                        RoleId = user.RoleId,
+                        AvatarUrl = user.AvatarUrl
+                    }
                 };
 
                 return baseResponse;
@@ -132,7 +132,7 @@ namespace barbershop.Services.implements
                 RoleId = RoleId
             };
 
-            var accessToken = await tokenService.GenerateAccessToken(user, _configuration["Jwt:SecretKey"], _configuration["Jwt:Issuer"], _configuration["Jwt:Audience"], int.Parse(_configuration["Jwt:ExpireMinutes"] ?? "7"));
+            var accessToken = await tokenService.GenerateAccessToken(user);
 
 
             return new BaseResponse
@@ -147,8 +147,8 @@ namespace barbershop.Services.implements
         {
             try
             {
-                var usernameCheck = await userRepository.FindByUsername(request.Username);
-                if (usernameCheck == null)
+                var user = await userRepository.FindByUsername(request.Username);
+                if (user == null)
                 {
                     return new BaseResponse
                     {
@@ -158,8 +158,17 @@ namespace barbershop.Services.implements
                     };
                 }
 
-                var passwordCheck = await userRepository.FindByUsernameAndPassword(request.Username, request.Password);
-                if (passwordCheck == null)
+                if (user.Username != request.Username)
+                {
+                    return new BaseResponse
+                    {
+                        Status = 200,
+                        MessageShow = "Tên đăng nhập không đúng",
+                        Data = null
+                    };
+                }
+
+                if (user.Password != request.Password)
                 {
                     return new BaseResponse
                     {
@@ -169,21 +178,28 @@ namespace barbershop.Services.implements
                     };
                 }
 
-                // Đọc cấu hình JWT
-                var secretKey = _configuration["Jwt:SecretKey"];
-                var issuer = _configuration["Jwt:Issuer"];
-                var audience = _configuration["Jwt:Audience"];
-                var expireDays = int.Parse(_configuration["Jwt:ExpireMinutes"] ?? "7");
-
                 // 4. Tạo JWT token cho
-                var accessToken = tokenService.GenerateAccessToken(passwordCheck, secretKey, issuer, audience, expireDays);
-                var refreshToken = tokenService.GenerateRefreshToken(passwordCheck, secretKey, issuer, audience, expireDays + 1);
+                var accessToken = tokenService.GenerateAccessToken(user);
+                var refreshToken = tokenService.GenerateRefreshToken(user);
                 // 5. Trả về token cho FE
                 return new BaseResponse
                 {
                     Status = 200,
                     MessageShow = "Đăng nhập thành công",
-                    Data = new { accessToken = accessToken.Result, refreshToken = refreshToken.Result, passwordCheck },
+                    Data = new LoginResponse
+                    {
+                        AccessToken = accessToken.Result,
+                        RefreshToken = refreshToken.Result,
+                        UserDTO = new UserDTO
+                        {
+                            UserId = user.UserId,
+                            FullName = user.FullName,
+                            Email = user.Email,
+                            Phone = user.Phone,
+                            RoleId = user.RoleId,
+                            AvatarUrl = user.AvatarUrl
+                        }
+                    },
                 };
             }
             catch

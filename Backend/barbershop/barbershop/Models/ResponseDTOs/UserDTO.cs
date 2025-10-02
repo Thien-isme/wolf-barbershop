@@ -14,6 +14,7 @@ namespace barbershop.Models.ResponseDTOs
         public string? Address { get; set; }
         public string? CCCD { get; set; }
         public int? RoleId { get; set; }
+        public string? AvatarUrl { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public bool? IsActive { get; set; }
