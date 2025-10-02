@@ -2,9 +2,31 @@ import { Form, Input, Button, Checkbox, Typography, Row, Col } from 'antd';
 import { GoogleLogin } from '@react-oauth/google';
 import './LoginBody.css';
 import { loginWithGoogle } from '../../api/authApi';
+import { loginWithUsernamePassword } from '../../api/authApi';
+import { useState } from 'react';
 const { Title } = Typography;
 
 const LoginBody = ({ onLoginSuccess }: { onLoginSuccess: (userInfo: any) => void }) => {
+  const [loginError, setLoginError] = useState<string | null>(null);
+
+  // Hàm xử lý khi submit form
+  const handleFinish = async (values: any) => {
+    const { username, password } = values;
+    setLoginError(null); // reset lỗi cũ
+    // Gọi API đăng nhập ở đây, ví dụ:
+    loginWithUsernamePassword(username, password).then((response) => {
+      if (response) {
+        if (response.data == null) {
+          setLoginError(response.messageShow); // Hiển thị lỗi từ server
+          return;
+        }
+        // console.log('Login success, response: ', response);
+        onLoginSuccess(response.data); // truyền dữ liệu lên LoginPage
+      }
+    });
+    console.log('Username:', username, 'Password:', password);
+  };
+
   return (
     <Row justify="center" align="middle" style={{ minHeight: '100vh', background: '#eaf6fa' }}>
       <Col>
@@ -23,8 +45,12 @@ const LoginBody = ({ onLoginSuccess }: { onLoginSuccess: (userInfo: any) => void
           <Title level={2} style={{ color: 'white', textAlign: 'center', marginBottom: 32 }}>
             Đăng nhập
           </Title>
-          <Form layout="vertical" style={{ width: '100%' }}>
-            <Form.Item label={<span style={{ color: 'white', fontWeight: 500 }}>Tên đăng nhập</span>} name="username">
+          <Form layout="vertical" style={{ width: '100%' }} onFinish={handleFinish}>
+            <Form.Item
+              label={<span style={{ color: 'white', fontWeight: 500 }}>Tên đăng nhập</span>}
+              name="username"
+              rules={[{ required: true, message: 'Vui lòng nhập tên đăng nhập!' }]}
+            >
               <Input
                 size="large"
                 style={{
@@ -37,7 +63,13 @@ const LoginBody = ({ onLoginSuccess }: { onLoginSuccess: (userInfo: any) => void
                 placeholder="Tên đăng nhập"
               />
             </Form.Item>
-            <Form.Item label={<span style={{ color: 'white', fontWeight: 500 }}>Mật khẩu</span>} name="password">
+            <Form.Item
+              label={<span style={{ color: 'white', fontWeight: 500 }}>Mật khẩu</span>}
+              name="password"
+              rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}
+              validateStatus={loginError ? "error" : ""}
+              help={loginError}
+            >
               <Input.Password
                 size="large"
                 style={{

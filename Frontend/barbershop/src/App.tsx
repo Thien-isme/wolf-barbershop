@@ -15,29 +15,29 @@ import Footer from "./components/Footer/Footer";
 import { autoLogin } from "./api/authApi";
 import { AuthProvider } from './contexts/AuthContext';
 import ProductManagement from "./pages/Admin/ProductManagement/ProductManagement";
+import Cookies from "js-cookie";
 const clientId = "136465399071-sbg4p7qhb3qc9dbv8t6qdsf3m6ud93cu.apps.googleusercontent.com";
 
 function AppContent() {
   const {login, setLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation(); // Thêm hook này
-  const accessToken = localStorage.getItem("accessToken");
-  const refreshToken = localStorage.getItem("refreshToken");
+  const accessToken = Cookies.get("accessToken");
+  const refreshToken = Cookies.get("refreshToken");
+
   useEffect(() => {
     if (accessToken && refreshToken) {
-      try {
-        const decoded: any = jwtDecode(accessToken);
-        // Kiểm tra hạn token (exp là số giây từ epoch)
-        if (decoded.exp * 1000 > Date.now()) {
+        const decodedAccessToken: any = jwtDecode(accessToken);
+        const decodedRefreshToken: any = jwtDecode(refreshToken);
+
+        if (decodedAccessToken.exp * 1000 > Date.now() && decodedRefreshToken.exp * 1000 > Date.now()) {
           // Token còn hạn, có thể gọi API lấy thông tin user nếu cần
           fetchUserInfo(accessToken, refreshToken);
         } else {
-          // Token hết hạn, xóa khỏi localStorage
-          localStorage.removeItem("token");
+          // Token hết hạn, xóa khỏi cookies
+          Cookies.remove("accessToken");
+          Cookies.remove("refreshToken");
         }
-      } catch (e) {
-        localStorage.removeItem("token");
-      }
     }
   }, []);
 
