@@ -1,0 +1,11 @@
+@use '../../assets/styles/mixin.module.scss' as mixin; 
+
+.cartBtn {
+  @include mixin.btn(120px, 44px, 8px, #ff6600);
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+} 

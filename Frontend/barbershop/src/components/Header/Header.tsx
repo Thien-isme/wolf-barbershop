@@ -14,7 +14,7 @@ import { useAuth } from '../../contexts/AuthContext'; // Thêm import này
 
 import { useNavigate } from 'react-router-dom';
 import type { LoginResponseDTO } from '../../types/ResponseDTOs/loginResponseDTO';
-
+import cartBtnStyle from './CartButton.module.scss';
 
 const { Header } = Layout;
 
@@ -145,6 +145,7 @@ const BarberShopHeader = ({ login }: { login: LoginResponseDTO | null }) => {
         <Button
           type="primary"
           icon={<ShoppingCartOutlined style={{ fontSize: 22 }} />}
+          className={cartBtnStyle.cartBtn}
         >
           Giỏ hàng
         </Button>

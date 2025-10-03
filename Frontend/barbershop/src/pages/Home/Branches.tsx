@@ -20,7 +20,9 @@ const Branches = () => {
 
 return (
   <div style={{ background: '#fafafa', padding: '40px 0', marginBottom: 32 }}>
-    <Row gutter={32} align="middle">
+    <Row gutter={32} align="middle" 
+          style={{ maxWidth: 1200, margin: '0 auto', padding: '0 16px' }}
+    >
       <Col xs={24} md={10}>
         <Title level={2}>Khám phá hệ thống chi nhánh WOLF trên toàn quốc.</Title>
         <p>Dễ dàng tìm kiếm và trải nghiệm dịch vụ chất lượng gần nơi bạn nhất.</p>
