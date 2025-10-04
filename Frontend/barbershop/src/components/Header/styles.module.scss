@@ -1,0 +1,17 @@
+@use '../../assets/styles/mixin.module.scss' as mixin;
+
+.headerContainer {
+    display: flex;
+    justify-content: center;
+    background: #070707ff;
+    align-items: center;
+    padding: 0 40px;
+    height: 90px;
+    width: 100vw;
+    min-height: 64px;
+    margin: 0;
+}
+
+.flexItem {
+    @include mixin.flex_center(center, center, 20px);
+}

@@ -1,8 +1,15 @@
-@mixin radius_common($radius: 10px){
+@mixin radius_common($radius: 10px) {
     border-radius: $radius;
 }
 
-@mixin btn($w, $h,  $radius, $color){
+@mixin flex_center($justify: center, $align: center, $gap: 0) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap;
+}
+
+@mixin btn($w, $h, $radius, $color) {
     width: $w;
     height: $h;
     background-color: $color;
@@ -10,8 +17,3 @@
     border: none;
     cursor: pointer;
 }
-
-
-
-
-

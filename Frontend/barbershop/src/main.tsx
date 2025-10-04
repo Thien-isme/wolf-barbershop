@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.tsx'
 import 'antd/dist/reset.css';
 import MainLayout from './components/Layout/Layout';
-
+import '../src/assets/styles/main.module.scss';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <MainLayout>

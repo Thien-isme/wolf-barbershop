@@ -1,13 +1,13 @@
-import type { ProductDTO } from "./productDTO";
+import type { ProductDTO } from './productDTO';
 
 export type ProductPriceDTO = {
-  productPriceId: number;
-  productId: number;
-  originalPrice: number;
-  discountedPrice?: number;
-  discountStartDate?: string; // ISO string
-  discountEndDate?: string;   // ISO string
-  isActive?: boolean;
-  createdAt?: string;         // ISO string
-  product: ProductDTO;
+    productPriceId: number;
+    productId: number;
+    originalPrice: number;
+    discountedPrice?: number;
+    discountStartDate?: string; // ISO string
+    discountEndDate?: string; // ISO string
+    isActive?: boolean;
+    createdAt?: string; // ISO string
+    product: ProductDTO;
 };

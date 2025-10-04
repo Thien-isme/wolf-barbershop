@@ -1,0 +1,25 @@
+@use '../../../assets/styles/mixin.module' as styles;
+@use '../../../assets/styles/variables.module' as vars;
+.container {
+    @include styles.flex_center(center, center, 0);
+    min-height: 1024px;
+    background-image: url('https://res.cloudinary.com/duzh5dnul/image/upload/v1755951798/banner_lmlmue.webp');
+    background-size: cover;
+}
+
+.content {
+    padding-bottom: 750px;
+    color: #ffffff;
+}
+
+.btnContainer {
+    @include styles.flex_center(center, center, 0);
+}
+
+.customBtn {
+    background-color: vars.$orgrange_color;
+
+    &:hover {
+        background-color: vars.$green_color !important; // Màu xanh lá
+    }
+}
