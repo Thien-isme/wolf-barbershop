@@ -15,21 +15,19 @@ public partial class Product
 
     public bool? IsActive { get; set; }
 
-    public int? SizeId { get; set; }
-
     public string? ProductImg { get; set; }
 
     public int? BrandId { get; set; }
 
-    public virtual Brand? Brand { get; set; }
+    public bool? IsOutstanding { get; set; }
 
-    public virtual ICollection<Inventory> Inventories { get; set; } = new List<Inventory>();
+    public virtual Brand? Brand { get; set; }
 
     public virtual ICollection<PaymentService> PaymentServices { get; set; } = new List<PaymentService>();
 
     public virtual ICollection<ProductPrice> ProductPrices { get; set; } = new List<ProductPrice>();
 
-    public virtual ProductType ProductType { get; set; } = null!;
+    public virtual ICollection<ProductSize> ProductSizes { get; set; } = new List<ProductSize>();
 
-    public virtual Size? Size { get; set; }
+    public virtual ProductType ProductType { get; set; } = null!;
 }

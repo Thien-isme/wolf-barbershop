@@ -482,6 +482,18 @@
         }
       }
     },
+    "/api/Product/getAllProductsIsOutStanding": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/ProductType/GetAllTypes": {
       "get": {
         "tags": [

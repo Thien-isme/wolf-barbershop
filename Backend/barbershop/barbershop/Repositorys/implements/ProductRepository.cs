@@ -39,5 +39,12 @@ namespace barbershop.Repositorys.implements
                 .FirstAsync(p => p.ProductId == id);
         }
 
+        public async Task<List<Product>> GetAllProductsIsOutStandingAsync()
+        {
+            return await _context.Products
+                .Include(p => p.ProductPrices)
+                .Where(p => p.IsOutstanding == true && p.IsActive == true)
+                .ToListAsync();
+        }
     }
 }

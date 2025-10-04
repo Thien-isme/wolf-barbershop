@@ -26,5 +26,13 @@ namespace barbershop.Controllers
             var product = await productService.GetProductByIdAsync(id);
             return Ok(product);
         }
+
+
+        [HttpGet("getAllProductsIsOutStanding")]
+        public async Task<IActionResult> GetAllProductsIsOutStanding()
+        {
+            var products = await productService.GetAllProductsIsOutStandingAsync();
+            return Ok(products);
+        }
     } 
 }

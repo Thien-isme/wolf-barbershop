@@ -177,10 +177,10 @@ F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticweb
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticwebassets.build.json.cache
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticwebassets.development.json
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\barbershop.csproj.Up2Date
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\barbershop.dll
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\refint\barbershop.dll
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\barbershop.pdb
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\barbershop.genruntimeconfig.cache
 F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\ref\barbershop.dll
+F:\MyProject\BarberShop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

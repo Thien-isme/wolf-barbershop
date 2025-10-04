@@ -302,6 +302,16 @@
   },
   {
     "ContainingType": "barbershop.Controllers.ProductController",
+    "Method": "GetAllProductsIsOutStanding",
+    "RelativePath": "api/Product/getAllProductsIsOutStanding",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.ProductController",
     "Method": "GetAllProductsToManagementAsync",
     "RelativePath": "api/Product/getAllProductsToManagement",
     "HttpMethod": "GET",

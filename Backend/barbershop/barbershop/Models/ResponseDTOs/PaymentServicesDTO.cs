@@ -2,7 +2,7 @@ using System;
 
 namespace barbershop.Models.ResponseDTOs
 {
-    public class PaymentServiceDTO
+    public class PaymentServicesDTO
     {
         public int PaymentServiceId { get; set; }
         public int PaymentId { get; set; }
