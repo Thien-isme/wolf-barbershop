@@ -23,18 +23,20 @@ const Branches = () => {
         <div className={styles.container}>
             <Row gutter={32} align='middle'>
                 <Col xs={24} md={10}>
-                    <Title level={2}>
-                        Khám phá hệ thống chi nhánh WOLF trên toàn quốc.
-                    </Title>
-                    <p>
-                        Dễ dàng tìm kiếm và trải nghiệm dịch vụ chất lượng gần
-                        nơi bạn nhất.
-                    </p>
-                    <p>Hotline: 1900 4407</p>
-                    <div className={styles.flex_center}>
-                        <Button type='default' size='large'>
-                            Xem thêm
-                        </Button>
+                    <div style={{ padding: '0 20px' }}>
+                        <Title level={2}>
+                            Khám phá hệ thống chi nhánh WOLF trên toàn quốc.
+                        </Title>
+                        <p>
+                            Dễ dàng tìm kiếm và trải nghiệm dịch vụ chất lượng
+                            gần nơi bạn nhất.
+                        </p>
+                        <p>Hotline: 1900 4407</p>
+                        <div className={styles.flex_center}>
+                            <Button type='default' size='large'>
+                                Xem thêm
+                            </Button>
+                        </div>
                     </div>
                 </Col>
                 <Col xs={24} md={14} style={{ padding: '5px  ' }}>

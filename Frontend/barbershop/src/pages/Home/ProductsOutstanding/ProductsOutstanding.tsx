@@ -49,7 +49,7 @@ const ProductsOutstanding = () => {
                 {products?.slice(0, products.length).map(p => (
                     <div
                         key={p.productId}
-                        style={{ paddingLeft: '12px', paddingRight: '12px' }}
+                        style={{ marginLeft: 12, marginRight: 12 }}
                     >
                         <Card
                             className={cardItem}

@@ -16,6 +16,7 @@ import { autoLogin } from './api/authApi';
 import { AuthProvider } from './contexts/AuthContext';
 import ProductManagement from './pages/Admin/ProductManagement/ProductManagement';
 import Cookies from 'js-cookie';
+import ProductPage from './pages/User/ViewProduct/ProductPage';
 const clientId =
     '136465399071-sbg4p7qhb3qc9dbv8t6qdsf3m6ud93cu.apps.googleusercontent.com';
 
@@ -86,6 +87,7 @@ function AppContent() {
                     element={<LoginPage setLogin={setLogin} />}
                 />
                 <Route path='/booking' element={<BookingPage />} />
+                <Route path='/product' element={<ProductPage />} />
                 <Route path='/admin' element={<AdminDashboard />} />
                 <Route
                     path='/admin/barber'

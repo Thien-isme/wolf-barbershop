@@ -1,0 +1,54 @@
+@use '../../../assets/styles/mixin.module.scss' as mixin;
+
+.flexCenter {
+    @include mixin.flex_center(center, center, 0);
+    background-color: #fff;
+}
+
+.marquee {
+    overflow: hidden;
+    width: 1500px; // Sửa lại từ 1000px thành 100%
+    position: relative;
+    height: 60px;
+}
+
+.marquee2 {
+    overflow: hidden;
+    width: 100%; // Sửa lại từ 1000px thành 100%
+    position: relative;
+    height: 60px;
+}
+
+.marqueeContent {
+    display: flex;
+    gap: 16px;
+    animation: marquee 25s linear infinite;
+    width: 1000px;
+    min-width: 100%; // Đảm bảo không bị thiếu chiều rộng
+}
+
+.marqueeContentReverse {
+    display: flex;
+    gap: 16px;
+    animation: marquee2 25s linear infinite; // <-- dùng marquee2
+    width: 1000px;
+    min-width: 100%;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes marquee2 {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}

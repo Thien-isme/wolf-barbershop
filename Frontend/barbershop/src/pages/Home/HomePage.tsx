@@ -8,6 +8,9 @@ import OutstandingHair from './HairStylesOutstanding/OutstandingHair';
 import OurService from './OurService/OurService';
 import ShortVideos from './ShortVideo/ShortVideos';
 import Banner from './Banner/Banner';
+import { getServices } from '../../api/serviceApi';
+import type { ServiceDTO } from '../../types/ResponseDTOs/serviceDTO';
+import { useEffect, useState } from 'react';
 
 const sliderSettings = (slidesToShow = 3) => ({
     dots: false,
@@ -24,6 +27,20 @@ const sliderSettings = (slidesToShow = 3) => ({
     ],
 });
 const HomePage = () => {
+    const [services, setServices] = useState<ServiceDTO[]>([]);
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const res = await getServices();
+                setServices(res.data);
+            } catch (error) {
+                console.error('Error fetching services:', error);
+            }
+        };
+        fetchServices();
+    }, []);
+
     return (
         <>
             {/* Banner */}
@@ -33,11 +50,11 @@ const HomePage = () => {
                     {/* Thêm các banner khác nếu muốn */}
                 </Slider>
             </div>
-            <ServicesOutstanding />
+            <ServicesOutstanding services={services} />
             <ProductsOutstanding />
             <Branches />
             <OutstandingHair />
-            <OurService />
+            <OurService services={services} />
             <ShortVideos />
         </>
     );
