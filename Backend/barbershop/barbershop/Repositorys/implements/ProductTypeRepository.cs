@@ -11,7 +11,7 @@ namespace barbershop.Repositorys.implements
             _context = new BarbershopContext();
         }
 
-        public async Task<List<ProductType>?> GetAllTypes()
+        public async Task<List<ProductType>?> GetAllProductType()
         {
             return await _context.ProductTypes.ToListAsync();
         }

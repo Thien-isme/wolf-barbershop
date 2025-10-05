@@ -482,6 +482,18 @@
         }
       }
     },
+    "/api/Product/getAllProductsForSaleAsync": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Product/getAllProductsIsOutStanding": {
       "get": {
         "tags": [
@@ -494,7 +506,7 @@
         }
       }
     },
-    "/api/ProductType/GetAllTypes": {
+    "/api/ProductType/GetAllProductType": {
       "get": {
         "tags": [
           "ProductType"
@@ -507,6 +519,18 @@
       }
     },
     "/api/Service/GetAllServices": {
+      "get": {
+        "tags": [
+          "Service"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/GetAllServicesIsOutStanding": {
       "get": {
         "tags": [
           "Service"

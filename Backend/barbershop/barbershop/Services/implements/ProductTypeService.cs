@@ -15,11 +15,11 @@ namespace barbershop.Services.implements
             productTypeRepository = new ProductTypeRepository();
         }
 
-        public async Task<BaseResponse?> GetAllTypes()
+        public async Task<BaseResponse?> GetAllProductType()
         {
             try
             {
-                var types = await productTypeRepository.GetAllTypes();
+                var types = await productTypeRepository.GetAllProductType();
                 if (types != null)
                 {
                     baseResponse.Status = 200;

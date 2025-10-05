@@ -9,7 +9,7 @@ namespace barbershop.Models.ResponseDTOs
 
         public int ProductId { get; set; }
 
-        public decimal OriginalPrice { get; set; }
+        public decimal? OriginalPrice { get; set; }
 
         public decimal? DiscountedPrice { get; set; }
 
@@ -21,6 +21,6 @@ namespace barbershop.Models.ResponseDTOs
 
         public DateTime? CreatedAt { get; set; }
 
-        public Product Product { get; set; } = null!;
+        public Product? Product { get; set; }
     }
 }

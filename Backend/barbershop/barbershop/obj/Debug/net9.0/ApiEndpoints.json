@@ -302,6 +302,16 @@
   },
   {
     "ContainingType": "barbershop.Controllers.ProductController",
+    "Method": "GetAllProductsForSaleAsync",
+    "RelativePath": "api/Product/getAllProductsForSaleAsync",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.ProductController",
     "Method": "GetAllProductsIsOutStanding",
     "RelativePath": "api/Product/getAllProductsIsOutStanding",
     "HttpMethod": "GET",
@@ -322,8 +332,8 @@
   },
   {
     "ContainingType": "barbershop.Controllers.ProductTypeController",
-    "Method": "GetAllTypes",
-    "RelativePath": "api/ProductType/GetAllTypes",
+    "Method": "GetAllProductType",
+    "RelativePath": "api/ProductType/GetAllProductType",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -334,6 +344,16 @@
     "ContainingType": "barbershop.Controllers.ServiceController",
     "Method": "GetAllServices",
     "RelativePath": "api/Service/GetAllServices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.ServiceController",
+    "Method": "GetAllServicesIsOutStanding",
+    "RelativePath": "api/Service/GetAllServicesIsOutStanding",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

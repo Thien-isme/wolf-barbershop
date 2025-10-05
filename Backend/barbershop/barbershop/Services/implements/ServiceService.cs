@@ -34,5 +34,41 @@ namespace barbershop.Services.implements
             }
             return baseResponse;
         }
+
+        public async Task<BaseResponse>? GetAllServicesIsOutStanding()
+        {
+            try
+            {
+                var services = await serviceRepository.GetAllServicesIsOutStanding();
+
+                if(services != null)
+                {
+
+                    List<ServiceDTO> serviceDTOs = services.Select(s => new ServiceDTO
+                    {
+                        ServiceId = s.ServiceId,
+                        ServiceName = s.ServiceName,
+                        Description = s.Description,
+                        ServiceImage = s.ServiceImage,
+                        // Map other properties as needed
+                    }).ToList();
+
+                    baseResponse.Status = 200;
+                    baseResponse.MessageShow = "Lấy dịch vụ thành công";
+                    baseResponse.Data = serviceDTOs;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                baseResponse.Status = 500;
+                baseResponse.MessageShow = "Hệ thống có lỗi, Vui lòng thử lại trong giây lát!";
+                baseResponse.MessageHide = ex.Message;
+                baseResponse.Data = null;
+            }
+            return baseResponse;
+
+
+        }
     }
 }

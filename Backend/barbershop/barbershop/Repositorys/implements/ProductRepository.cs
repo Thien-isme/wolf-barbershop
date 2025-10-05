@@ -23,13 +23,17 @@ namespace barbershop.Repositorys.implements
                 .ToListAsync();
         }
 
-        public async Task<List<Product>> GetAllProductsAsync()
+        public async Task<List<Product>> GetAllProductsForSaleAsync()
         {
             return await _context.Products
                 .Include(p => p.ProductType)
+                .Include(p => p.Brand)
+                .Include(p => p.ProductSizes).ThenInclude(ps => ps.Inventories)
+                .Include(p => p.ProductSizes).ThenInclude(ps => ps.Size)
                 .Include(p => p.ProductPrices)
                 .Where(p => p.IsActive == true)
                 .ToListAsync();
+
         }
 
         public async Task<Product> GetProductByIdAsync(int id)

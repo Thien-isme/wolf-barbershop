@@ -18,5 +18,12 @@ namespace barbershop.Controllers
              var response = await serviceService.GetAllServices();
              return Ok(response);
         }
+
+        [HttpGet("GetAllServicesIsOutStanding")]
+        public async Task<IActionResult> GetAllServicesIsOutStanding()
+        {
+            var response = await serviceService.GetAllServicesIsOutStanding();
+            return Ok(response);
+        }
     }
 }

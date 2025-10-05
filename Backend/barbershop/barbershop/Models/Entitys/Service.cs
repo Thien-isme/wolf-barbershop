@@ -21,6 +21,8 @@ public partial class Service
 
     public string? ServiceImage { get; set; }
 
+    public bool? IsOutstanding { get; set; }
+
     public virtual ICollection<AppointmentService> AppointmentServices { get; set; } = new List<AppointmentService>();
 
     public virtual ICollection<PaymentService> PaymentServices { get; set; } = new List<PaymentService>();

@@ -18,6 +18,13 @@ namespace barbershop.Repositorys.implements
                         .ToListAsync();
             return services;
         }
+
+        public async Task<List<Service?>> GetAllServicesIsOutStanding()
+        {
+            return await _context.Services
+                        .Where(s => s.IsActive == true && s.IsOutstanding == true)
+                        .ToListAsync();
+        }
         // TODO: Implement repository methods for Service
     }
 }

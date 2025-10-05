@@ -624,6 +624,9 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.IsActive)
                 .HasDefaultValue(true)
                 .HasColumnName("is_active");
+            entity.Property(e => e.IsOutstanding)
+                .HasDefaultValue(false)
+                .HasColumnName("is_outstanding");
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(8, 2)")
                 .HasColumnName("price");

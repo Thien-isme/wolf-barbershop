@@ -16,10 +16,10 @@ namespace barbershop.Controllers
             productTypeService = new ProductTypeService();
         }
 
-        [HttpGet("GetAllTypes")]
-        public async Task<IActionResult> GetAllTypes()
+        [HttpGet("GetAllProductType")]
+        public async Task<IActionResult> GetAllProductType()
         {
-            var response = await productTypeService.GetAllTypes();
+            var response = await productTypeService.GetAllProductType();
             return Ok(response);
         }
 
