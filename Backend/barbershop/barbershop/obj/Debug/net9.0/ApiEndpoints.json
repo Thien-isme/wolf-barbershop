@@ -303,7 +303,7 @@
   {
     "ContainingType": "barbershop.Controllers.ProductController",
     "Method": "GetAllProductsForSaleAsync",
-    "RelativePath": "api/Product/getAllProductsForSaleAsync",
+    "RelativePath": "api/Product/getAllProductsForSale",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

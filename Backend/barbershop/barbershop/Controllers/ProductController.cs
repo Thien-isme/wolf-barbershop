@@ -27,7 +27,7 @@ namespace barbershop.Controllers
             return Ok(product);
         }
 
-        [HttpGet("getAllProductsForSaleAsync")]
+        [HttpGet("getAllProductsForSale")]
         public async Task<IActionResult> GetAllProductsForSaleAsync()
         {
             var product = await productService.GetAllProductsForSaleAsync();

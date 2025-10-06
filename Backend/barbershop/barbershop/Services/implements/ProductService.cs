@@ -159,6 +159,7 @@ namespace barbershop.Services.implements
 
         public async Task<BaseResponse> GetAllProductsForSaleAsync()
         {
+                BaseResponse baseResponse  = new BaseResponse();
             try
             {
                 var products = await productRepository.GetAllProductsForSaleAsync();

@@ -482,7 +482,7 @@
         }
       }
     },
-    "/api/Product/getAllProductsForSaleAsync": {
+    "/api/Product/getAllProductsForSale": {
       "get": {
         "tags": [
           "Product"

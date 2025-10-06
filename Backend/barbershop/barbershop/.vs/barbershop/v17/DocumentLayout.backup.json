@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\services\\implements\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:services\\implements\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\sizedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\sizedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\branddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\responsedtos\\branddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\models\\entitys\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:models\\entitys\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|f:\\myproject\\barbershop\\backend\\barbershop\\barbershop\\controllers\\brandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{230E5FF1-5AF0-D868-AA8E-A8295CA1F4CA}|barbershop.csproj|solutionrelative:controllers\\brandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,63 +26,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 204,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Brand.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\Entitys\\Brand.cs",
+              "RelativeDocumentMoniker": "Models\\Entitys\\Brand.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\Entitys\\Brand.cs",
+              "RelativeToolTip": "Models\\Entitys\\Brand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-06T15:20:21.267Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SizeDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\SizeDTO.cs",
-              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\SizeDTO.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\SizeDTO.cs",
-              "RelativeToolTip": "Models\\ResponseDTOs\\SizeDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAWAAAAAAAAAA==",
+              "Title": "BrandDTO.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\BrandDTO.cs",
+              "RelativeDocumentMoniker": "Models\\ResponseDTOs\\BrandDTO.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\BrandDTO.cs",
+              "RelativeToolTip": "Models\\ResponseDTOs\\BrandDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-05T17:15:26.333Z",
+              "WhenOpened": "2025-10-06T15:20:11.781Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ProductService.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Services\\implements\\ProductService.cs",
-              "RelativeDocumentMoniker": "Services\\implements\\ProductService.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Services\\implements\\ProductService.cs",
-              "RelativeToolTip": "Services\\implements\\ProductService.cs",
-              "ViewState": "AgIAAKMAAAAAAAAAAAAjwLsAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-05T17:14:51.863Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "ProductDTO.cs",
               "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ProductDTO.cs",
               "RelativeDocumentMoniker": "Models\\ResponseDTOs\\ProductDTO.cs",
               "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ProductDTO.cs",
               "RelativeToolTip": "Models\\ResponseDTOs\\ProductDTO.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBIAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-05T17:14:44.518Z",
+              "WhenOpened": "2025-10-06T15:18:55.929Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
-              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "Controllers\\ProductController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAowCAAAABJAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "BrandController.cs",
+              "DocumentMoniker": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\BrandController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BrandController.cs",
+              "ToolTip": "F:\\MyProject\\BarberShop\\Backend\\barbershop\\barbershop\\Controllers\\BrandController.cs",
+              "RelativeToolTip": "Controllers\\BrandController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-05T17:14:35.859Z",
+              "WhenOpened": "2025-10-06T15:06:03.596Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         },

@@ -13,7 +13,7 @@ namespace barbershop.Models.ResponseDTOs
         public string? ProductImg { get; set; }
         public int? BrandId { get; set; }
         public bool? IsOutstanding { get; set; }
-        public Brand? Brand { get; set; }
+        public BrandDTO? BrandDTO { get; set; }
         public ProductPriceDTO? ProductPriceDTO { get; set; }
         public ProductType? ProductType { get; set; }
         public List<SizeDTO>? SizeDTOs { get; set; }
