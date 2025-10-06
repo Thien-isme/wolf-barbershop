@@ -21,3 +21,15 @@ export const getAllProductsIsOutStanding = async () => {
         });
     return response;
 };
+
+export const getAllProductsForSaleAsync = async () => {
+    const response = await api
+        .get('/Product/getAllProductsForSale')
+        .then(res => res.data)
+        .catch(err => {
+            console.error('Lỗi khi lấy danh sách sản phẩm:', err);
+            throw err;
+        });
+
+    return response;
+};

@@ -1,3 +1,4 @@
+import type { BrandDTO } from './brandDTO';
 import type { InventoryDTO } from './inventoryDTO';
 import type { PaymentServiceDTO } from './paymentServiceDTO';
 import type { ProductPriceDTO } from './productPriceDTO';
@@ -12,9 +13,12 @@ export type ProductDTO = {
     isActive?: boolean;
     sizeId?: number;
     productImg?: string;
-    InventoryDTO?: InventoryDTO[];
+    brandId?: number;
+    isOutstanding?: boolean;
+    brandDTO?: BrandDTO;
+    inventoryDTO?: InventoryDTO[];
     paymentServiceDTO?: PaymentServiceDTO[];
-    productPriceDTO?: ProductPriceDTO[];
+    productPriceDTO?: ProductPriceDTO;
     productTypeDTO?: ProductTypeDTO;
     sizeDTO?: SizeDTO;
 };
