@@ -18,6 +18,7 @@ builder.Services.AddSwaggerGen(c =>
 // Đăng ký AuthService vào DI container
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<CartService>();
 
 // Cấu hình xác thực JWT
 builder.Services.AddAuthentication(options =>

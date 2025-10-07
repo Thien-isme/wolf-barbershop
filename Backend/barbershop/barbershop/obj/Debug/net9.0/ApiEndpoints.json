@@ -172,6 +172,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "barbershop.Controllers.CardController",
+    "Method": "saveToCart",
+    "RelativePath": "api/Card/SaveToCart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "saveToCartRequest",
+        "Type": "barbershop.Models.RequestDTOs.SaveToCartRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "barbershop.Controllers.EmployeeController",
     "Method": "AddBarber",
     "RelativePath": "api/Employee/AddBarber",

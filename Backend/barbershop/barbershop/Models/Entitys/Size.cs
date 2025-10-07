@@ -13,5 +13,7 @@ public partial class Size
 
     public bool? IsActive { get; set; }
 
+    public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
+
     public virtual ICollection<ProductSize> ProductSizes { get; set; } = new List<ProductSize>();
 }

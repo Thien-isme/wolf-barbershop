@@ -23,6 +23,8 @@ public partial class Product
 
     public virtual Brand? Brand { get; set; }
 
+    public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
+
     public virtual ICollection<PaymentService> PaymentServices { get; set; } = new List<PaymentService>();
 
     public virtual ICollection<ProductPrice> ProductPrices { get; set; } = new List<ProductPrice>();
