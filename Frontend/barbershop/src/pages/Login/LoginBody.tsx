@@ -6,192 +6,265 @@ import { loginWithUsernamePassword } from '../../api/authApi';
 import { useState } from 'react';
 const { Title } = Typography;
 
-const LoginBody = ({ onLoginSuccess }: { onLoginSuccess: (userInfo: any) => void }) => {
-  const [loginError, setLoginError] = useState<string | null>(null);
+const LoginBody = ({
+    onLoginSuccess,
+}: {
+    onLoginSuccess: (userInfo: any) => void;
+}) => {
+    const [loginError, setLoginError] = useState<string | null>(null);
 
-  // Hàm xử lý khi submit form
-  const handleFinish = async (values: any) => {
-    const { username, password } = values;
-    setLoginError(null); // reset lỗi cũ
-    // Gọi API đăng nhập ở đây, ví dụ:
-    loginWithUsernamePassword(username, password).then((response) => {
-      if (response) {
-        if (response.data == null) {
-          setLoginError(response.messageShow); // Hiển thị lỗi từ server
-          return;
-        }
-        // console.log('Login success, response: ', response);
-        onLoginSuccess(response.data); // truyền dữ liệu lên LoginPage
-      }
-    });
-    console.log('Username:', username, 'Password:', password);
-  };
-
-  return (
-    <Row justify="center" align="middle" style={{ minHeight: '100vh', background: '#eaf6fa' }}>
-      <Col>
-        <div
-          style={{
-            background: '#111',
-            borderRadius: 40,
-            padding: '48px 48px 32px 48px',
-            minWidth: 600,
-            boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Title level={2} style={{ color: 'white', textAlign: 'center', marginBottom: 32 }}>
-            Đăng nhập
-          </Title>
-          <Form layout="vertical" style={{ width: '100%' }} onFinish={handleFinish}>
-            <Form.Item
-              label={<span style={{ color: 'white', fontWeight: 500 }}>Tên đăng nhập</span>}
-              name="username"
-              rules={[{ required: true, message: 'Vui lòng nhập tên đăng nhập!' }]}
-            >
-              <Input
-                size="large"
-                style={{
-                  borderRadius: 24,
-                  fontSize: 18,
-                  background: '#fff',
-                  border: 'none',
-                  paddingLeft: 20,
-                }}
-                placeholder="Tên đăng nhập"
-              />
-            </Form.Item>
-            <Form.Item
-              label={<span style={{ color: 'white', fontWeight: 500 }}>Mật khẩu</span>}
-              name="password"
-              rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}
-              validateStatus={loginError ? "error" : ""}
-              help={loginError}
-            >
-              <Input.Password
-                size="large"
-                style={{
-                  borderRadius: 24,
-                  fontSize: 18,
-                  background: '#fff',
-                  border: 'none',
-                  paddingLeft: 20,
-                }}
-                placeholder="Mật khẩu"
-              />
-            </Form.Item>
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
-              <Checkbox style={{ color: 'white' }}>Lưu thông tin đăng nhập</Checkbox>
-              <div style={{ flex: 1 }} />
-              <a href="#" style={{ color: '#1890ff', fontSize: 14 }}>
-                Quên mật khẩu?
-              </a>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 16 }}>
-              <span style={{ color: 'white', fontSize: 14 }}>
-                Bạn chưa có tài khoản?{' '}
-                <a href="#" style={{ color: '#1890ff', fontWeight: 500 }}>
-                  Đăng ký
-                </a>
-              </span>
-            </div>
-            <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                style={{
-                  width: '100%',
-                  height: 44,
-                  borderRadius: 24,
-                  fontWeight: 700,
-                  fontSize: 18,
-                  background: '#ff9800',
-                  border: 'none',
-                  marginBottom: 0,
-                }}
-              >
-                Đăng nhập
-              </Button>
-            </Form.Item>
-            <GoogleLogin
-              width="100%"
-              logo_alignment="left"
-              text="continue_with"
-              shape="pill"
-              prompt="select_account"
-              onSuccess={async (credentialResponse) => {
-                const token = credentialResponse.credential;
-                if (token) {
-                  const result = await loginWithGoogle(token);
-                  if (result) {
-                    // console.log('Google login success, response: ', result);
-                    onLoginSuccess(result.data); // truyền dữ liệu lên LoginPage
-                  }
+    // Hàm xử lý khi submit form
+    const handleFinish = async (values: any) => {
+        const { username, password } = values;
+        setLoginError(null); // reset lỗi cũ
+        // Gọi API đăng nhập ở đây, ví dụ:
+        loginWithUsernamePassword(username, password).then(response => {
+            console.log('Response from loginWithUsernamePassword:', response);
+            if (response) {
+                if (response.data == null) {
+                    setLoginError(response.messageShow); // Hiển thị lỗi từ server
+                    return;
                 }
-              }}
-              onError={() => {
-                console.log('Google Login Failed');
-              }}
-              render={(renderProps) => (
-                <Button
-                  icon={
-                    <img
-                      src="https://res.cloudinary.com/duzh5dnul/image/upload/v1758119667/image_2025-09-17_213424313_ps49vr.png"
-                      alt="Google"
-                      style={{ width: 30, height: 30, marginRight: 8 }}
-                    />
-                  }
-                  style={{
-                    width: '100%',
-                    height: 44,
-                    borderRadius: 24,
-                    fontWeight: 500,
-                    fontSize: 16,
-                    background: '#fff',
-                    border: 'none',
-                    marginBottom: 12,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    textAlign: 'center',
-                  }}
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
+                // console.log('Login success, response: ', response);
+            }
+            onLoginSuccess(response.data); // truyền dữ liệu lên LoginPage
+        });
+        console.log('Username:', username, 'Password:', password);
+    };
+
+    return (
+        <Row
+            justify='center'
+            align='middle'
+            style={{ minHeight: '100vh', background: '#eaf6fa' }}
+        >
+            <Col>
+                <div
+                    style={{
+                        background: '#111',
+                        borderRadius: 40,
+                        padding: '48px 48px 32px 48px',
+                        minWidth: 600,
+                        boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
                 >
-                  Tiếp tục sử dụng dịch vụ bằng Google
-                </Button>
-              )}
-            />
-            <Button
-              icon={
-                <img
-                  src="https://res.cloudinary.com/duzh5dnul/image/upload/v1758119609/image_2025-09-17_213326733_drhnsx.png"
-                  alt="Facebook"
-                  style={{ width: 30, height: 30, marginRight: 8 }}
-                />
-              }
-              style={{
-                width: '100%',
-                height: 44,
-                borderRadius: 24,
-                fontWeight: 500,
-                fontSize: 16,
-                background: '#fff',
-                border: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              Đăng nhập bằng Facebook
-            </Button>
-          </Form>
-        </div>
-      </Col>
-    </Row>
-  );
+                    <Title
+                        level={2}
+                        style={{
+                            color: 'white',
+                            textAlign: 'center',
+                            marginBottom: 32,
+                        }}
+                    >
+                        Đăng nhập
+                    </Title>
+                    <Form
+                        layout='vertical'
+                        style={{ width: '100%' }}
+                        onFinish={handleFinish}
+                    >
+                        <Form.Item
+                            label={
+                                <span
+                                    style={{ color: 'white', fontWeight: 500 }}
+                                >
+                                    Tên đăng nhập
+                                </span>
+                            }
+                            name='username'
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Vui lòng nhập tên đăng nhập!',
+                                },
+                            ]}
+                        >
+                            <Input
+                                size='large'
+                                style={{
+                                    borderRadius: 24,
+                                    fontSize: 18,
+                                    background: '#fff',
+                                    border: 'none',
+                                    paddingLeft: 20,
+                                }}
+                                placeholder='Tên đăng nhập'
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            label={
+                                <span
+                                    style={{ color: 'white', fontWeight: 500 }}
+                                >
+                                    Mật khẩu
+                                </span>
+                            }
+                            name='password'
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Vui lòng nhập mật khẩu!',
+                                },
+                            ]}
+                            validateStatus={loginError ? 'error' : ''}
+                            help={loginError}
+                        >
+                            <Input.Password
+                                size='large'
+                                style={{
+                                    borderRadius: 24,
+                                    fontSize: 18,
+                                    background: '#fff',
+                                    border: 'none',
+                                    paddingLeft: 20,
+                                }}
+                                placeholder='Mật khẩu'
+                            />
+                        </Form.Item>
+                        <div
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                marginBottom: 8,
+                            }}
+                        >
+                            <Checkbox style={{ color: 'white' }}>
+                                Lưu thông tin đăng nhập
+                            </Checkbox>
+                            <div style={{ flex: 1 }} />
+                            <a
+                                href='#'
+                                style={{ color: '#1890ff', fontSize: 14 }}
+                            >
+                                Quên mật khẩu?
+                            </a>
+                        </div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'flex-end',
+                                marginBottom: 16,
+                            }}
+                        >
+                            <span style={{ color: 'white', fontSize: 14 }}>
+                                Bạn chưa có tài khoản?{' '}
+                                <a
+                                    href='#'
+                                    style={{
+                                        color: '#1890ff',
+                                        fontWeight: 500,
+                                    }}
+                                >
+                                    Đăng ký
+                                </a>
+                            </span>
+                        </div>
+                        <Form.Item>
+                            <Button
+                                type='primary'
+                                htmlType='submit'
+                                style={{
+                                    width: '100%',
+                                    height: 44,
+                                    borderRadius: 24,
+                                    fontWeight: 700,
+                                    fontSize: 18,
+                                    background: '#ff9800',
+                                    border: 'none',
+                                    marginBottom: 0,
+                                }}
+                            >
+                                Đăng nhập
+                            </Button>
+                        </Form.Item>
+                        <GoogleLogin
+                            width='100%'
+                            logo_alignment='left'
+                            text='continue_with'
+                            shape='pill'
+                            prompt='select_account'
+                            onSuccess={async credentialResponse => {
+                                const token = credentialResponse.credential;
+                                if (token) {
+                                    const result = await loginWithGoogle(token);
+                                    if (result) {
+                                        // console.log('Google login success, response: ', result);
+                                        onLoginSuccess(result.data); // truyền dữ liệu lên LoginPage
+                                    }
+                                }
+                            }}
+                            onError={() => {
+                                console.log('Google Login Failed');
+                            }}
+                            render={renderProps => (
+                                <Button
+                                    icon={
+                                        <img
+                                            src='https://res.cloudinary.com/duzh5dnul/image/upload/v1758119667/image_2025-09-17_213424313_ps49vr.png'
+                                            alt='Google'
+                                            style={{
+                                                width: 30,
+                                                height: 30,
+                                                marginRight: 8,
+                                            }}
+                                        />
+                                    }
+                                    style={{
+                                        width: '100%',
+                                        height: 44,
+                                        borderRadius: 24,
+                                        fontWeight: 500,
+                                        fontSize: 16,
+                                        background: '#fff',
+                                        border: 'none',
+                                        marginBottom: 12,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        textAlign: 'center',
+                                    }}
+                                    onClick={renderProps.onClick}
+                                    disabled={renderProps.disabled}
+                                >
+                                    Tiếp tục sử dụng dịch vụ bằng Google
+                                </Button>
+                            )}
+                        />
+                        <Button
+                            icon={
+                                <img
+                                    src='https://res.cloudinary.com/duzh5dnul/image/upload/v1758119609/image_2025-09-17_213326733_drhnsx.png'
+                                    alt='Facebook'
+                                    style={{
+                                        width: 30,
+                                        height: 30,
+                                        marginRight: 8,
+                                    }}
+                                />
+                            }
+                            style={{
+                                width: '100%',
+                                height: 44,
+                                borderRadius: 24,
+                                fontWeight: 500,
+                                fontSize: 16,
+                                background: '#fff',
+                                border: 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            Đăng nhập bằng Facebook
+                        </Button>
+                    </Form>
+                </div>
+            </Col>
+        </Row>
+    );
 };
 
 export default LoginBody;

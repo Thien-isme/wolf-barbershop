@@ -1,7 +1,7 @@
-import type { UserDTO } from "./userDTO";
+import type { UserDTO } from './userDTO';
 
 export type LoginResponseDTO = {
-    accessToken: string
+    accessToken: string;
     refreshToken: string;
-    user: UserDTO;
-}
+    userDTO: UserDTO;
+};

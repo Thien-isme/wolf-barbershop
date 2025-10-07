@@ -4,14 +4,10 @@ import Cookies from 'js-cookie';
 export const loginWithUsernamePassword = async (username: string, password: string) => {
     try {
         const res = await api.post('/Auth/login-username-password', { username, password });
-
         // console.log('Login with username/password response:', res.data.data);
         if(res.data.data != null) {
-        Cookies.set("accessToken", res.data.data.accessToken); // Lưu token vào cookie
-        Cookies.set("refreshToken", res.data.data.refreshToken); // Lưu refreshToken vào cookie
-        Cookies.set("user", JSON.stringify(res.data.data.user)); // Lưu user vào cookie
-        }
         return res.data;
+        }
     } catch (error) {
         console.error('Error logging in with username:', error);
     }   

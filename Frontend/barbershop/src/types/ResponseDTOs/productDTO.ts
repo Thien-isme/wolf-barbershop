@@ -20,5 +20,5 @@ export type ProductDTO = {
     paymentServiceDTO?: PaymentServiceDTO[];
     productPriceDTO?: ProductPriceDTO;
     productTypeDTO?: ProductTypeDTO;
-    sizeDTO?: SizeDTO;
+    sizeDTO?: SizeDTO[];
 };
