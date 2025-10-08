@@ -19,14 +19,13 @@ const LoginBody = ({
         setLoginError(null); // reset lỗi cũ
         // Gọi API đăng nhập ở đây, ví dụ:
         loginWithUsernamePassword(username, password).then(response => {
-            console.log('Response from loginWithUsernamePassword:', response);
             if (response) {
                 if (response.data == null) {
                     setLoginError(response.messageShow); // Hiển thị lỗi từ server
                     return;
                 }
-                // console.log('Login success, response: ', response);
             }
+            console.log('Login success, response: ', response.data);
             onLoginSuccess(response.data); // truyền dữ liệu lên LoginPage
         });
         console.log('Username:', username, 'Password:', password);

@@ -87,7 +87,7 @@ export default function AdminSidebar() {
                             marginBottom: 8,
                             cursor: 'pointer',
                         }}
-                        onClick={() => navigate('/admin')}
+                        onClick={() => navigate('/cashier')} // Điều hướng đến dashboard khi nhấp vào logo
                     />
                 </div>
                 <Menu

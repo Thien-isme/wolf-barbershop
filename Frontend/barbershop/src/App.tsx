@@ -33,13 +33,10 @@ function AppContent() {
 
     useEffect(() => {
         if (accessToken && refreshToken) {
-            const decodedAccessToken: any = jwtDecode(accessToken);
+            // const decodedAccessToken: any = jwtDecode(accessToken);
             const decodedRefreshToken: any = jwtDecode(refreshToken);
 
-            if (
-                decodedAccessToken.exp * 1000 > Date.now() &&
-                decodedRefreshToken.exp * 1000 > Date.now()
-            ) {
+            if (decodedRefreshToken.exp * 1000 > Date.now()) {
                 // Token còn hạn, có thể gọi API lấy thông tin user nếu cần
                 fetchUserInfo();
             } else {

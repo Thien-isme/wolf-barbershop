@@ -2,15 +2,12 @@ import { Layout } from 'antd';
 
 import { useAuth } from '../../contexts/AuthContext'; // Thêm import này
 
-import type { LoginResponseDTO } from '../../types/ResponseDTOs/loginResponseDTO';
 import Logo from './Logo/logo';
 import MenuContainer from './Menu/MenuContainer';
 import RightMenu from './RightHeader/RightMenu';
 
 import style from './styles.module.scss';
 import type { UserDTO } from '../../types/ResponseDTOs/userDTO';
-
-const { Header } = Layout;
 
 const BarberShopHeader = ({ login }: { login: UserDTO | null }) => {
     const { logout } = useAuth(); // Thêm hook useAuth
