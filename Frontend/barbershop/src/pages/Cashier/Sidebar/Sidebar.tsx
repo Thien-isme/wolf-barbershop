@@ -1,10 +1,9 @@
 import { Menu } from 'antd';
 import {
-    UserOutlined,
     HomeOutlined,
-    ShopOutlined,
     LogoutOutlined,
     GiftOutlined,
+    CalendarOutlined,
 } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../contexts/AuthContext';
@@ -14,25 +13,21 @@ const items = [
         key: 'dashboard',
         icon: <HomeOutlined />,
         label: 'Dashboard',
-        path: '/admin',
+        path: '/cashier',
     },
+
     {
-        key: 'barber',
-        icon: <UserOutlined />,
-        label: 'Barber',
-        path: '/admin/barber',
+        key: 'appointments',
+        icon: <CalendarOutlined />,
+        label: 'Lịch hẹn',
+        path: '/cashier/appointments',
     },
-    {
-        key: 'branch',
-        icon: <ShopOutlined />,
-        label: 'Chi nhánh',
-        path: '/admin/branch',
-    },
+
     {
         key: 'product',
         icon: <GiftOutlined />,
         label: 'Sản phẩm',
-        path: '/admin/product',
+        path: '/cashier/product',
     },
     {
         key: 'logout',

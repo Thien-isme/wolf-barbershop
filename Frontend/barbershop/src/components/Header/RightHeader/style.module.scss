@@ -1,0 +1,17 @@
+@use '../../../assets/styles/mixin.module.scss' as mixin;
+
+.loginBtn {
+    @include mixin.btn(120px, 44px, 8px, #3278f0);
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+        background: #0132ba !important; // Màu nền khi hover
+        color: #ffffff !important; // Màu chữ khi hover
+        border-color: #0132ba !important;
+    }
+}

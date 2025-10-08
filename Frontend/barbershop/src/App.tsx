@@ -17,6 +17,10 @@ import { AuthProvider } from './contexts/AuthContext';
 import ProductManagement from './pages/Admin/ProductManagement/ProductManagement';
 import Cookies from 'js-cookie';
 import ProductPage from './pages/User/ViewProduct/ProductPage';
+
+import CashierDashboard from './pages/Cashier/Dashboard/Dashboard';
+import { AppleOutlined } from '@ant-design/icons';
+import AppointmentsManagement from './pages/Cashier/AppointmentsManagement/AppointmentsManagement';
 const clientId =
     '136465399071-sbg4p7qhb3qc9dbv8t6qdsf3m6ud93cu.apps.googleusercontent.com';
 
@@ -37,29 +41,32 @@ function AppContent() {
                 decodedRefreshToken.exp * 1000 > Date.now()
             ) {
                 // Token còn hạn, có thể gọi API lấy thông tin user nếu cần
-                fetchUserInfo(accessToken, refreshToken);
+                fetchUserInfo();
             } else {
                 // Token hết hạn, xóa khỏi cookies
                 Cookies.remove('accessToken');
                 Cookies.remove('refreshToken');
+                Cookies.remove('userId');
             }
         }
     }, []);
 
-    const fetchUserInfo = async (accessToken: string, refreshToken: string) => {
+    const fetchUserInfo = async () => {
         try {
             // Ví dụ gọi API lấy user info, truyền token lên backend
-            const res = await autoLogin(accessToken, refreshToken);
-            localStorage.setItem('accessToken', res.data.accessToken); // Cập nhật accessToken mới nếu backend trả về
-            localStorage.setItem('refreshToken', res.data.refreshToken); // Cập nhật refreshToken mới nếu backend trả về
-            localStorage.setItem('user', JSON.stringify(res.data.user)); // Cập nhật user info nếu backend trả về
+            const res = await autoLogin();
             setLogin(res.data); // cập nhật thông tin user vào state
-            if (res.data.user.roleId === 4) {
+            if (res.data.roleId === 4) {
                 // Nếu là admin, chuyển hướng đến trang quản trị
                 navigate('/admin');
+            }
+
+            if (res.data.roleId === 3) {
+                // Nếu là admin, chuyển hướng đến trang quản trị
+                navigate('/cashier');
             } else {
                 // Nếu là user thường, chuyển hướng đến trang chủ
-                // navigate('/');
+                navigate('/');
             }
         } catch (error) {
             localStorage.removeItem('token');
@@ -70,8 +77,16 @@ function AppContent() {
     // Hàm kiểm tra route hiện tại
     const shouldShowHeaderFooter = () => {
         // Ẩn header & footer ở các trang admin
-        return !location.pathname.startsWith('/admin');
+        // console.log(location.pathname);
+        // console.log(!location.pathname.startsWith('/cashier'));
+        if (
+            location.pathname.startsWith('/admin') == true ||
+            location.pathname.startsWith('/cashier') == true
+        ) {
+            return false;
+        }
 
+        return true;
         // Hoặc liệt kê các route cụ thể cần ẩn
         // const hiddenRoutes = ['/login', '/admin', '/admin/barber'];
         // return !hiddenRoutes.includes(location.pathname);
@@ -95,6 +110,11 @@ function AppContent() {
                 />
                 <Route path='/admin/branch' element={<BranchManagement />} />
                 <Route path='/admin/product' element={<ProductManagement />} />
+                <Route path='/cashier' element={<CashierDashboard />} />
+                <Route
+                    path='/cashier/appointments'
+                    element={<AppointmentsManagement />}
+                />
             </Routes>
             {shouldShowHeaderFooter() && <Footer />}
         </>

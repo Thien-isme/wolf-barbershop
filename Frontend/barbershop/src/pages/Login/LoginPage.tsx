@@ -2,10 +2,11 @@ import type { LoginResponseDTO } from '../../types/ResponseDTOs/loginResponseDTO
 import LoginBody from './LoginBody';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import type { UserDTO } from '../../types/ResponseDTOs/userDTO';
 const LoginPage = ({
     setLogin,
 }: {
-    setLogin: (login: LoginResponseDTO | null) => void;
+    setLogin: (login: UserDTO | null) => void;
 }) => {
     const navigate = useNavigate(); // Khởi tạo hook
     // Callback nhận response từ API login

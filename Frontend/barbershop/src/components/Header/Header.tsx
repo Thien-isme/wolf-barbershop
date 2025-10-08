@@ -8,10 +8,11 @@ import MenuContainer from './Menu/MenuContainer';
 import RightMenu from './RightHeader/RightMenu';
 
 import style from './styles.module.scss';
+import type { UserDTO } from '../../types/ResponseDTOs/userDTO';
 
 const { Header } = Layout;
 
-const BarberShopHeader = ({ login }: { login: LoginResponseDTO | null }) => {
+const BarberShopHeader = ({ login }: { login: UserDTO | null }) => {
     const { logout } = useAuth(); // Thêm hook useAuth
     const { headerContainer, flexItem } = style;
     return (
@@ -34,7 +35,7 @@ const BarberShopHeader = ({ login }: { login: LoginResponseDTO | null }) => {
                                     <MenuContainer />
                                 </div>
                                 <div className={flexItem}>
-                                    <RightMenu />
+                                    <RightMenu login={login} />
                                 </div>
                             </div>
                         </div>
