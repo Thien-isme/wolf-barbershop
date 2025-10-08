@@ -1,4 +1,4 @@
-using barbershop.Models.Entitys;
+﻿using barbershop.Models.Entitys;
 using barbershop.Services.implements;
 using Microsoft.AspNetCore.Mvc;
 using barbershop.Services.implements;
@@ -25,6 +25,15 @@ namespace barbershop.Controllers
         {
             var bookedTimes = await appointmentService.GetTimeBookedOfBarber(barberId, appointmentDate);
             return Ok(bookedTimes);
+        }
+
+        // Lấy tất cả lịch hẹn của chi nhánh đó từ ngày hiện tại
+        [HttpGet("GetAppointmentFromToday")]
+        public async Task<IActionResult> GetAppointmentFromToday()
+        {
+            var userId = Request.Headers["Userid"].FirstOrDefault();
+            var appointments = await appointmentService.GetAppointmentFromToday(int.Parse(userId));
+            return Ok(appointments);
         }
 
     }

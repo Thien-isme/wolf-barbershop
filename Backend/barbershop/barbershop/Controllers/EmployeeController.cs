@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace barbershop.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/[controller]")]
     public class EmployeeController : ControllerBase
     {

@@ -1,4 +1,5 @@
 ﻿using barbershop.Models.RequestDTOs;
+using barbershop.Models.ResponseDTOs;
 using barbershop.Services.implements;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,67 +28,97 @@ namespace barbershop.Controllers
             return Unauthorized();
         }
 
+        //[HttpPost("auto-login")]
+        //[Authorize]
+        //public async Task<IActionResult> AutoLogin([FromBody] AutoLoginDTO request)
+        //{
+        //    Console.WriteLine("AutoLogin called");
+        //    Console.WriteLine("RefreshToken from body: " + request.refreshToken);
+        //    // Lấy token từ header Authorization
+        //    var authHeader = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
+        //    if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
+        //        return Unauthorized();
+
+        //    var accessToken = authHeader.Substring("Bearer ".Length).Trim();
+
+        //    var checkToken = await _tokenService.ValidateAccessToken(accessToken);
+        //    Console.WriteLine("Access token validation: " + checkToken.IsValid + " - " + checkToken.Reason);
+        //    if (checkToken.IsValid == false && checkToken.Reason.Equals("AccessToken not found"))
+        //    {
+        //        Console.WriteLine("Access token not found");
+        //        return Unauthorized();
+        //    }
+
+        //    if (checkToken.IsValid == false && checkToken.Reason.Equals("AccessToken revoked"))
+        //    {
+        //        Console.WriteLine("Access token revoked");
+        //        return Unauthorized();
+        //    }
+
+        //    if (checkToken.IsValid == false && checkToken.Reason.Equals("AccessToken expired"))
+        //    {
+        //        Console.WriteLine("Access token expired");
+        //        // Nếu token hết hạn, kiểm tra refresh token
+        //        var refreshCheck = await _tokenService.ValidateRefreshToken(request.refreshToken);
+        //        Console.WriteLine("RefreshToken: " + request.refreshToken);
+        //        if (refreshCheck.IsValid == false)
+        //        {
+        //            Console.WriteLine("Refresh token invalid: " + refreshCheck.Reason);
+        //            return Unauthorized();
+        //        }
+        //        // Tạo mới access token
+        //        Console.WriteLine("Refresh token valid");
+        //        //Console.WriteLine("Refresh token: "+refreshToken);
+        //        var decode = await _tokenService.DecodeToken(request.refreshToken);
+        //        if (decode == null)
+        //        {
+        //            Console.WriteLine("Decode refresh token failed");
+        //            return Unauthorized();
+        //        }
+        //        Console.WriteLine("Decode refresh token UserId: " + decode.UserId);
+        //        var user = await _userService.FindById(decode.UserId);
+        //        if (user == null)
+        //            return Unauthorized();
+        //        var secretKey = "lai_19_thanh_05_nhat_2_thien_004_@hehehe"; // Đọc từ cấu hình
+        //        var issuer = "barbershop-api"; // Đọc từ cấu hình
+        //        var audience = "barbershop-client"; // Đọc từ cấu hình
+        //        var expireDays = 1; // Đọc từ cấu hình
+
+        //        accessToken = await _tokenService.GenerateAccessToken(user);
+        //    }
         [HttpPost("auto-login")]
         [Authorize]
         public async Task<IActionResult> AutoLogin([FromBody] AutoLoginDTO request)
         {
             Console.WriteLine("AutoLogin called");
-            Console.WriteLine("RefreshToken from body: " + request.refreshToken);
-            // Lấy token từ header Authorization
-            var authHeader = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
-            if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
+            Console.WriteLine("RefreshToken from body: " + request.UserId);
+
+            //var decodeToken  = await _tokenService.DecodeToken(request.UserId);
+            //if (decodeToken == null)
+            //{
+            //    Console.WriteLine("Decode refresh token failed");
+            //    return Unauthorized();
+            //}
+
+            var user = await _userService.FindById(request.UserId);
+            if (user == null)
                 return Unauthorized();
-
-            var accessToken = authHeader.Substring("Bearer ".Length).Trim();
-
-            var checkToken = await _tokenService.ValidateAccessToken(accessToken);
-            Console.WriteLine("Access token validation: " + checkToken.IsValid + " - " + checkToken.Reason);
-            if (checkToken.IsValid == false && checkToken.Reason.Equals("AccessToken not found"))
+            return Ok(new BaseResponse
             {
-                Console.WriteLine("Access token not found");
-                return Unauthorized();
-            }
-
-            if (checkToken.IsValid == false && checkToken.Reason.Equals("AccessToken revoked"))
-            {
-                Console.WriteLine("Access token revoked");
-                return Unauthorized();
-            }
-
-            if (checkToken.IsValid == false && checkToken.Reason.Equals("AccessToken expired"))
-            {
-                Console.WriteLine("Access token expired");
-                // Nếu token hết hạn, kiểm tra refresh token
-                var refreshCheck = await _tokenService.ValidateRefreshToken(request.refreshToken);
-                Console.WriteLine("RefreshToken: " + request.refreshToken);
-                if (refreshCheck.IsValid == false)
+                Status = 200,
+                MessageShow = "Đăng nhập thành công",
+                MessageHide = "None",
+                Data = new UserDTO
                 {
-                    Console.WriteLine("Refresh token invalid: " + refreshCheck.Reason);
-                    return Unauthorized();
+                    UserId = user.UserId,
+                    FullName = user.FullName,
+                    Email = user.Email,
+                    Phone = user.Phone,
+                    RoleId = user.RoleId,
+                    AvatarUrl = user.AvatarUrl
                 }
-                // Tạo mới access token
-                Console.WriteLine("Refresh token valid");
-                //Console.WriteLine("Refresh token: "+refreshToken);
-                var decode = await _tokenService.DecodeToken(request.refreshToken);
-                if (decode == null)
-                {
-                    Console.WriteLine("Decode refresh token failed");
-                    return Unauthorized();
-                }
-                Console.WriteLine("Decode refresh token UserId: " + decode.UserId);
-                var user = await _userService.FindById(decode.UserId);
-                if (user == null)
-                    return Unauthorized();
-                var secretKey = "lai_19_thanh_05_nhat_2_thien_004_@hehehe"; // Đọc từ cấu hình
-                var issuer = "barbershop-api"; // Đọc từ cấu hình
-                var audience = "barbershop-client"; // Đọc từ cấu hình
-                var expireDays = 1; // Đọc từ cấu hình
+            });
 
-                accessToken = await _tokenService.GenerateAccessToken(user);
-            }
-
-            var userInfo = await _authService.AutoLogin(accessToken);
-            return Ok(userInfo);
         }
 
         [HttpPost("refreshToken")]

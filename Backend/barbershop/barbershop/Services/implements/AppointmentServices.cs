@@ -10,6 +10,7 @@ namespace barbershop.Services.implements
         private readonly AppointmentRepository appointmentRepository;
         private readonly UserRepository userRepository = new UserRepository();
         private readonly AppointmentServiceRepository appointmentServiceRepository = new AppointmentServiceRepository();
+        private readonly EmployeeRepository employeeRepository = new EmployeeRepository();
         public AppointmentServices()
         {
             appointmentRepository = new AppointmentRepository();
@@ -105,6 +106,18 @@ namespace barbershop.Services.implements
             {
                 // Log the exception (ex) as needed
                 return new BaseResponse(); // or handle the error as appropriate
+            }
+        }
+
+        public async Task<BaseResponse?> GetAppointmentFromToday(int userId)
+        {
+            try
+            {
+                int brandId = await employeeRepository.FindBrandIdOfCashier(userId);
+            }
+            catch
+            {
+
             }
         }
     }

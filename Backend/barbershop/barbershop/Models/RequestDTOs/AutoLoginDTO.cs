@@ -2,6 +2,6 @@
 {
     public class AutoLoginDTO
     {
-        public string refreshToken { get; set; }
+        public long UserId { get; set; }
     }
 }

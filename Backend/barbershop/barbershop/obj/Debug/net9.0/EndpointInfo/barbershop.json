@@ -652,9 +652,9 @@
       "AutoLoginDTO": {
         "type": "object",
         "properties": {
-          "refreshToken": {
-            "type": "string",
-            "nullable": true
+          "userId": {
+            "type": "integer",
+            "format": "int64"
           }
         },
         "additionalProperties": false

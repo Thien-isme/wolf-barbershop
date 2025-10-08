@@ -48,6 +48,15 @@ namespace barbershop.Repositorys.implements
                 .OrderByDescending(e => e.EmployeeId)
                 .ToListAsync();
         }
+
+        
+            public async Task<int> FindBrandIdOfCashier(int userId)
+        {
+            return await _context.Employees
+                .Where(u => u.UserId == userId && u.IsActive == true)
+                .Select(u => u.BranchId)
+                .FirstOrDefaultAsync();
+                }
         // TODO: Implement repository methods for Employee
     }
 }
