@@ -17,6 +17,16 @@
   },
   {
     "ContainingType": "barbershop.Controllers.AppointmentController",
+    "Method": "GetAppointmentFromToday",
+    "RelativePath": "api/Appointment/GetAppointmentFromToday",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.AppointmentController",
     "Method": "GetTimeBookedOfBarber",
     "RelativePath": "api/Appointment/GetTimeBookedOfBarber",
     "HttpMethod": "GET",

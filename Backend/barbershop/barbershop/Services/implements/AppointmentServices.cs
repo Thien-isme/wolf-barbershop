@@ -113,12 +113,80 @@ namespace barbershop.Services.implements
         {
             try
             {
-                int brandId = await employeeRepository.FindBrandIdOfCashier(userId);
+                int? brandId = await employeeRepository.FindBrandIdOfCashier(userId);
+                if (brandId == null)
+                {
+                    return new BaseResponse
+                    {
+                        Status = 404,
+                        MessageShow = "User is not a cashier or does not belong to any branch.",
+                        Data = null
+                    };
+                }
+
+                DateTime today = DateTime.Today;
+                DateTime nextDay = today.AddDays(1);
+                var appointments = await appointmentRepository.GetAppointmentOfBranchFromTo(brandId.Value, today, nextDay);
+                if (appointments != null)
+                {
+                    List<AppointmentDTO> appointmentDTOs = appointments.Select(a => new AppointmentDTO
+                    {
+                        AppointmentId = a.AppointmentId,
+                        UserId = a.UserId,
+                        BarberId = a.BarberId,
+                        AppointmentDate = a.AppointmentDate,
+                        AppointmentTime = a.AppointmentTime,
+                        Note = a.Note,
+                        Status = a.Status,
+                        CreatedAt = a.CreatedAt,
+                        UserDTO = new UserDTO
+                        {
+                            UserId = a.User?.UserId ?? 0,
+                            FullName = a.User?.FullName,
+                            Phone = a.User?.Phone,
+                        },
+                        EmployeeDTO = new EmployeeDTO
+                        {
+                            EmployeeId = a.Barber?.EmployeeId ?? 0,
+                            FullName = a.Barber?.User?.FullName,
+                        },
+                        ServiceDTOs = a.AppointmentServices?.Select(aps => new ServiceDTO
+                        {
+                            ServiceId = aps.ServiceId,
+                            ServiceName = aps.Service?.ServiceName,
+                            Price = aps.Service?.Price ?? 0
+                        }).ToList()
+                    }).ToList();
+
+
+
+                    return new BaseResponse
+                    {
+                        Status = 200,
+                        MessageShow = "Fetched appointments successfully",
+                        Data = appointmentDTOs
+                    };
+                }
+
+
             }
             catch
             {
-
+                return new BaseResponse
+                {
+                    Status = 500,
+                    MessageShow = "An error occurred while fetching appointments.",
+                    Data = null
+                };
             }
-        }
+
+
+            return new BaseResponse
+            {
+                Status = 404,
+                MessageShow = "No appointments found for today.",
+                Data = null
+            };
+            }
     }
 }

@@ -6,6 +6,7 @@ namespace barbershop.Models.ResponseDTOs
     {
         public int? EmployeeId { get; set; }
         public long? UserId { get; set; }
+        public string? FullName { get; set; }
         public int? BranchId { get; set; }
         public int? ExperienceYears { get; set; }
         public decimal? Rating { get; set; }

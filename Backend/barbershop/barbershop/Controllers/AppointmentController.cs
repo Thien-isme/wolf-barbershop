@@ -32,6 +32,10 @@ namespace barbershop.Controllers
         public async Task<IActionResult> GetAppointmentFromToday()
         {
             var userId = Request.Headers["Userid"].FirstOrDefault();
+            if (string.IsNullOrEmpty(userId))
+            {
+                return BadRequest("UserId header is missing.");
+            }
             var appointments = await appointmentService.GetAppointmentFromToday(int.Parse(userId));
             return Ok(appointments);
         }

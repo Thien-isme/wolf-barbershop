@@ -1,4 +1,6 @@
 using barbershop.Models.Entitys;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace barbershop.Repositorys.implements
 {
@@ -30,6 +32,23 @@ namespace barbershop.Repositorys.implements
                 .Select(a => a.AppointmentTime.Value)
                 .ToList();
             return timeBookes;
+        }
+
+        public async Task<List<Appointment>?> GetAppointmentOfBranchFromTo(int value, DateTime from, DateTime to)
+        {
+            return await _context.Appointments
+                .Where(a => a.BranchId == value
+                    && a.AppointmentDate.HasValue
+                    && a.AppointmentDate.Value >= DateOnly.FromDateTime(from)
+                    && a.AppointmentDate.Value <= DateOnly.FromDateTime(to)
+                    && a.IsActive == true)
+                .Include(a => a.User)
+                .Include(a => a.Barber)
+                    .ThenInclude(b => b.User)
+                .Include(a => a.AppointmentServices)
+                    .ThenInclude(aps => aps.Service)
+                .OrderByDescending(a => a.AppointmentId)
+                .ToListAsync();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace barbershop.Repositorys.implements
 
         public bool Save(Cart cart)
         {
-            _context.Carts.Add(cart);
+            //_context.Carts.Add(cart);
             return _context.SaveChanges() > 0;
         }
     }

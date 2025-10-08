@@ -66,6 +66,18 @@
         }
       }
     },
+    "/api/Appointment/GetAppointmentFromToday": {
+      "get": {
+        "tags": [
+          "Appointment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Auth/google-login": {
       "post": {
         "tags": [

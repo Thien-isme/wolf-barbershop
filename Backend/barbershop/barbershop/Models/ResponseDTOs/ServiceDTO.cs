@@ -22,9 +22,9 @@ namespace barbershop.Models.ResponseDTOs
         public string? ServiceImage { get; set; }
 
         public bool? IsOutstanding { get; set; }
-        public List<AppointmentServiceDTO> AppointmentServicesDTO { get; set; } = null!;
-        public List<PaymentServicesDTO> PaymentServicesDTO { get; set; } = null!;
+        public List<AppointmentServiceDTO>? AppointmentServicesDTO { get; set; } = null!;
+        public List<PaymentServicesDTO>? PaymentServicesDTO { get; set; } = null!;
 
-        public List<ServiceTypeDTO> ServiceTypeDTO { get; set; } = null!;
+        public List<ServiceTypeDTO>? ServiceTypeDTO { get; set; } = null!;
     }
 }
