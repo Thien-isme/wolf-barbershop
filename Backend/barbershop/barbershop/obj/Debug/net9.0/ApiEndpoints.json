@@ -321,6 +321,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "barbershop.Controllers.PaymentsMethodController",
+    "Method": "GetPaymentsMethods",
+    "RelativePath": "api/PaymentsMethod/GetPaymentsMethods",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "barbershop.Controllers.ProductController",
     "Method": "GetProductById",
     "RelativePath": "api/Product/{id}",

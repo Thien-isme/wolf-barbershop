@@ -9,6 +9,14 @@ namespace barbershop.Controllers
     public class PaymentsMethodController : ControllerBase
     {
     private readonly PaymentsMethodService paymentsMethodService = new PaymentsMethodService();
-    // TODO: Implement API methods
+
+        [HttpGet("GetPaymentsMethods")]
+        public async Task<IActionResult> GetPaymentsMethods()
+        {
+            var response = await paymentsMethodService.GetPaymentsMethods();
+            return Ok(response);
+        }
+
+
     }
 }

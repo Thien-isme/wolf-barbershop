@@ -1,22 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\",
+  "WorkspaceRootPath": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\services\\implements\\branchesproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\services\\implements\\branchesproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|f:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\services\\implements\\paymentsmethodservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\services\\implements\\paymentsmethodservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\repositorys\\implements\\branchesproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\repositorys\\implements\\branchesproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|f:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\paymentsmethodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\paymentsmethodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\models\\responsedtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|f:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\paymentsmethoddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\models\\responsedtos\\paymentsmethoddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|e:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\branchesproductcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\branchesproductcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|f:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\repositorys\\implements\\paymentsmethodrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\repositorys\\implements\\paymentsmethodrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|f:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\models\\entitys\\paymentsmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\models\\entitys\\paymentsmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,8 +29,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "DockedWidth": 204,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,60 +38,73 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PaymentsMethod.cs",
+              "DocumentMoniker": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Models\\Entitys\\PaymentsMethod.cs",
+              "RelativeDocumentMoniker": "barbershop\\Models\\Entitys\\PaymentsMethod.cs",
+              "ToolTip": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Models\\Entitys\\PaymentsMethod.cs",
+              "RelativeToolTip": "barbershop\\Models\\Entitys\\PaymentsMethod.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T16:13:42.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ProductDTO.cs",
-              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ProductDTO.cs",
-              "RelativeDocumentMoniker": "barbershop\\Models\\ResponseDTOs\\ProductDTO.cs",
-              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\ProductDTO.cs",
-              "RelativeToolTip": "barbershop\\Models\\ResponseDTOs\\ProductDTO.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAuwAgAAAAeAAAAAAAAAA==",
+              "Title": "PaymentsMethodDTO.cs",
+              "DocumentMoniker": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\PaymentsMethodDTO.cs",
+              "RelativeDocumentMoniker": "barbershop\\Models\\ResponseDTOs\\PaymentsMethodDTO.cs",
+              "ToolTip": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\PaymentsMethodDTO.cs",
+              "RelativeToolTip": "barbershop\\Models\\ResponseDTOs\\PaymentsMethodDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-09T08:31:11.843Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BranchesProductRepository.cs",
-              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\BranchesProductRepository.cs",
-              "RelativeDocumentMoniker": "barbershop\\Repositorys\\implements\\BranchesProductRepository.cs",
-              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\BranchesProductRepository.cs",
-              "RelativeToolTip": "barbershop\\Repositorys\\implements\\BranchesProductRepository.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAMwBQAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-09T08:05:15.815Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BranchesProductService.cs",
-              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Services\\implements\\BranchesProductService.cs",
-              "RelativeDocumentMoniker": "barbershop\\Services\\implements\\BranchesProductService.cs",
-              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Services\\implements\\BranchesProductService.cs",
-              "RelativeToolTip": "barbershop\\Services\\implements\\BranchesProductService.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAIwDkAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-09T07:33:29.061Z",
+              "WhenOpened": "2025-10-09T16:13:31.318Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "BranchesProductController.cs",
-              "DocumentMoniker": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\BranchesProductController.cs",
-              "RelativeDocumentMoniker": "barbershop\\Controllers\\BranchesProductController.cs",
-              "ToolTip": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\BranchesProductController.cs",
-              "RelativeToolTip": "barbershop\\Controllers\\BranchesProductController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABNAAAAAAAAAA==",
+              "Title": "PaymentsMethodRepository.cs",
+              "DocumentMoniker": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\PaymentsMethodRepository.cs",
+              "RelativeDocumentMoniker": "barbershop\\Repositorys\\implements\\PaymentsMethodRepository.cs",
+              "ToolTip": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\PaymentsMethodRepository.cs",
+              "RelativeToolTip": "barbershop\\Repositorys\\implements\\PaymentsMethodRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-09T07:33:19.965Z",
+              "WhenOpened": "2025-10-09T16:10:09.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PaymentsMethodService.cs",
+              "DocumentMoniker": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Services\\implements\\PaymentsMethodService.cs",
+              "RelativeDocumentMoniker": "barbershop\\Services\\implements\\PaymentsMethodService.cs",
+              "ToolTip": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Services\\implements\\PaymentsMethodService.cs",
+              "RelativeToolTip": "barbershop\\Services\\implements\\PaymentsMethodService.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAkwCUAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T16:09:22.065Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PaymentsMethodController.cs",
+              "DocumentMoniker": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\PaymentsMethodController.cs",
+              "RelativeDocumentMoniker": "barbershop\\Controllers\\PaymentsMethodController.cs",
+              "ToolTip": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\PaymentsMethodController.cs",
+              "RelativeToolTip": "barbershop\\Controllers\\PaymentsMethodController.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAlwA8AAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T16:08:45.544Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 191,
+          "DockedWidth": 187,
           "SelectedChildIndex": -1,
           "Children": [
             {

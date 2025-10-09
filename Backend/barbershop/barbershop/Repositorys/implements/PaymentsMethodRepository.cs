@@ -1,5 +1,5 @@
 using barbershop.Models.Entitys;
-
+using Microsoft.EntityFrameworkCore;
 namespace barbershop.Repositorys.implements
 {
     public class PaymentsMethodRepository
@@ -8,6 +8,13 @@ namespace barbershop.Repositorys.implements
         public PaymentsMethodRepository()
         {
             _context = new BarbershopContext();
+        }
+
+        public async Task<List<PaymentsMethod>> GetPaymentsMethods()
+        {
+            return await _context.PaymentsMethods
+                .Where(pm => pm.IsActive)
+                .ToListAsync();
         }
         // TODO: Implement repository methods for PaymentsMethod
     }
