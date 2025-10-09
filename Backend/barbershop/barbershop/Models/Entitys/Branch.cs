@@ -25,5 +25,7 @@ public partial class Branch
 
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
+    public virtual ICollection<BranchesProduct> BranchesProducts { get; set; } = new List<BranchesProduct>();
+
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 }

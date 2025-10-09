@@ -4,7 +4,7 @@ namespace barbershop.Models.ResponseDTOs
 {
     public class ProductDTO
     {
-        public int ProductId { get; set; }
+        public int? ProductId { get; set; }
         public string? ProductName { get; set; }
         public int? ProductTypeId { get; set; }
         public string? Instruction { get; set; }
@@ -17,5 +17,12 @@ namespace barbershop.Models.ResponseDTOs
         public ProductPriceDTO? ProductPriceDTO { get; set; }
         public ProductType? ProductType { get; set; }
         public List<SizeDTO>? SizeDTOs { get; set; }
+
+
+        //Thêm
+        public string? SizeName { get; set; }
+        public int? Quantity { get; set; }
+
+        public string? ProductTypeName { get; set; }
     }
 }

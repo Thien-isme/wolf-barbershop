@@ -21,6 +21,8 @@ public partial class Product
 
     public bool? IsOutstanding { get; set; }
 
+    public virtual ICollection<BranchesProduct> BranchesProducts { get; set; } = new List<BranchesProduct>();
+
     public virtual Brand? Brand { get; set; }
 
     public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();

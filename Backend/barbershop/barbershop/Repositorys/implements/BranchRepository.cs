@@ -26,5 +26,13 @@ namespace barbershop.Repositorys.implements
                 .Include(barbershop => barbershop.Employees)
                 .ToList();
         }
+
+        public async Task<int?> GetBranchIdByUserId(int userId)
+        {
+            return await _context.Employees
+                .Where(e => e.UserId == userId)
+                .Select(e => e.BranchId)
+                .FirstOrDefaultAsync();
+        }
     }
 }

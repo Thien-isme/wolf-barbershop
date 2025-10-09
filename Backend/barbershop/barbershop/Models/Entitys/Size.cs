@@ -7,11 +7,13 @@ public partial class Size
 {
     public int SizeId { get; set; }
 
-    public string SizeName { get; set; } = null!;
+    public string? SizeName { get; set; }
 
     public DateTime? CreatedAt { get; set; }
 
     public bool? IsActive { get; set; }
+
+    public virtual ICollection<BranchesProduct> BranchesProducts { get; set; } = new List<BranchesProduct>();
 
     public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
 
