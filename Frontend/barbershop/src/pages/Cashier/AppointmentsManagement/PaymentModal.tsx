@@ -1,8 +1,12 @@
 import { Modal, Table, Button, Typography, Space, Select } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import { useEffect, useState } from 'react';
 import { getAllServicesTypes } from '../../../api/serviceTypeApi';
 import type { ServiceTypeDTO } from '../../../types/ResponseDTOs/serviceTypeDTO';
-import { useEffect, useState } from 'react';
+
+import { GetAllProductInBranch } from '../../../api/branchesProductApi';
+import type { ProductDTO } from '../../../types/ResponseDTOs/productDTO';
+
 interface ServiceItem {
     key: number;
     name: string;
@@ -30,6 +34,7 @@ export default function PaymentModal({
     const [serviceTypes, setServiceTypes] = useState<ServiceTypeDTO[]>([]);
     // State lưu dịch vụ đã chọn
     const [selectedServices, setSelectedServices] = useState<ServiceItem[]>([]);
+    const [products, setProducts] = useState<ProductDTO[]>([]);
 
     useEffect(() => {
         const fetchServices = async () => {
@@ -47,6 +52,16 @@ export default function PaymentModal({
             }
         };
         fetchServices();
+
+        const fetchProducts = async () => {
+            try {
+                const response = await GetAllProductInBranch(); // Giả sử branchId = 1
+                setProducts(response.data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+        fetchProducts();
     }, []);
 
     // Khi mở modal, reset selectedServices từ record

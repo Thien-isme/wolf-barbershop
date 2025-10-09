@@ -21,4 +21,8 @@ export type ProductDTO = {
     productPriceDTO?: ProductPriceDTO;
     productTypeDTO?: ProductTypeDTO;
     sizeDTO?: SizeDTO[];
+
+    //Thêm
+    sizeName?: string;
+    quantity?: number;
 };

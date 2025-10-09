@@ -1,0 +1,11 @@
+import api from './axios';
+
+export const GetAllProductInBranch = () => {
+    return api
+        .get('/BranchesProduct/GetAllProductInBranch')
+        .then(res => res.data)
+        .catch(err => {
+            console.error('Lỗi khi lấy sản phẩm trong chi nhánh:', err);
+            throw err;
+        });
+};
