@@ -1,7 +1,7 @@
 import api from './axios';
 
-export const GetAllProductInBranch = () => {
-    return api
+export const GetAllProductInBranch = async () => {
+    return await api
         .get('/BranchesProduct/GetAllProductInBranch')
         .then(res => res.data)
         .catch(err => {

@@ -11,6 +11,7 @@ import AdminBarberManagement from './pages/Admin/BarberManagement/BarberManageme
 import BranchManagement from './pages/Admin/BranchManagement/BranchManagement';
 import LoginPage from './pages/Login/LoginPage';
 import BarberShopHeader from './components/Header/Header';
+import CashierProductManagement from './pages/Cashier/CashierProductManagement/CashierProductManagement';
 import Footer from './components/Footer/Footer';
 import { autoLogin } from './api/authApi';
 import { AuthProvider } from './contexts/AuthContext';
@@ -19,7 +20,6 @@ import Cookies from 'js-cookie';
 import ProductPage from './pages/User/ViewProduct/ProductPage';
 
 import CashierDashboard from './pages/Cashier/Dashboard/Dashboard';
-import { AppleOutlined } from '@ant-design/icons';
 import AppointmentsManagement from './pages/Cashier/AppointmentsManagement/AppointmentsManagement';
 const clientId =
     '136465399071-sbg4p7qhb3qc9dbv8t6qdsf3m6ud93cu.apps.googleusercontent.com';
@@ -111,6 +111,10 @@ function AppContent() {
                 <Route
                     path='/cashier/appointments'
                     element={<AppointmentsManagement />}
+                />
+                <Route
+                    path='/cashier/product'
+                    element={<CashierProductManagement />}
                 />
             </Routes>
             {shouldShowHeaderFooter() && <Footer />}
