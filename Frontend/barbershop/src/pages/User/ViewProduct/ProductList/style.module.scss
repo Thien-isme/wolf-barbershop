@@ -1,0 +1,11 @@
+.addToCartBtn {
+    border-color: #1890ff;
+    color: #1890ff;
+    transition: transform 0.2s, background 0.2s, color 0.2s;
+}
+
+.addToCartBtn:hover {
+    background: #1890ff !important;
+    color: #fff !important;
+    transform: scale(1.08);
+}

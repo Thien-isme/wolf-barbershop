@@ -23,7 +23,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const logout = () => {
         Cookies.remove('accessToken');
         Cookies.remove('refreshToken');
-        Cookies.remove('user');
+        Cookies.remove('userId');
         setLogin(null);
     };
 

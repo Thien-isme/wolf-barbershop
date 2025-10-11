@@ -18,7 +18,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import ProductManagement from './pages/Admin/ProductManagement/ProductManagement';
 import Cookies from 'js-cookie';
 import ProductPage from './pages/User/ViewProduct/ProductPage';
-
+import {GetProductInCartsOfUser} from './api/cartApi';
 import CashierDashboard from './pages/Cashier/Dashboard/Dashboard';
 import AppointmentsManagement from './pages/Cashier/AppointmentsManagement/AppointmentsManagement';
 const clientId =
@@ -46,6 +46,8 @@ function AppContent() {
                 Cookies.remove('userId');
             }
         }
+
+        GetProductInCartsOfUser();
     }, []);
 
     const fetchUserInfo = async () => {

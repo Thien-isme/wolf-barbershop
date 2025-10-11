@@ -3,30 +3,41 @@ import { Row, Col, Card, Button, message } from 'antd';
 import type { ProductDTO } from '../../../../types/ResponseDTOs/productDTO';
 import { SaveToCart } from '../../../../api/cartApi';
 import type { SaveToCartRequest } from '../../../../types/RequestDTOs/SaveToCartRequest';
+import Cookie from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+import styled from './style.module.scss';
 
 interface ProductBodyProps {
     products: ProductDTO[];
 }
 
 const ProductList = ({ products }: ProductBodyProps) => {
-    // Hàm xử lý thêm vào giỏ
-    const handleAddToCart = async (product: ProductDTO) => {
-        // Tạo request, ví dụ cần productId và số lượng
-        const saveToCartRequest: SaveToCartRequest = {
-            productId: product.productId,
-            sizeId:
-                product.sizeDTO && product.sizeDTO.length > 0
-                    ? product.sizeDTO[0].sizeId
-                    : -1, // hoặc -1 nếu backend quy ước
-        };
+    const navigate = useNavigate();
 
+    const handleAddToCart = (product: ProductDTO) => {
+        var userId = Cookie.get('userId');
+        
+        if(userId === undefined) {
+            navigate('/login');
+            return;
+        }
+
+        console.log(product);
         try {
-            const response = await SaveToCart(saveToCartRequest);
-            message.success(
-                response?.MessageShow || 'Thêm vào giỏ thành công!'
-            );
+            const cartItem: SaveToCartRequest = {
+                productId: product.productId!,
+                sizeId: product.sizeId! | 1,
+                quantity: 1,
+            };
+            SaveToCart(cartItem).then(res => {
+                if (res.status === 200) {
+                    message.success('Thêm vào giỏ hàng thành công');
+                } else {
+                    message.error('Thêm vào giỏ hàng thất bại');
+                }
+            });
         } catch (error) {
-            message.error('Thêm vào giỏ thất bại!');
+            message.error('Thêm vào giỏ hàng thất bại');
         }
     };
 
@@ -116,6 +127,7 @@ const ProductList = ({ products }: ProductBodyProps) => {
                                 </div>
                                 <Button
                                     type='default'
+                                    className={styled.addToCartBtn}
                                     style={{
                                         borderColor: '#1890ff',
                                         color: '#1890ff',
