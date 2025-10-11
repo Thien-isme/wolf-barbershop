@@ -314,10 +314,10 @@
         }
       }
     },
-    "/api/Card/SaveToCart": {
+    "/api/Cart/SaveToCart": {
       "post": {
         "tags": [
-          "Card"
+          "Cart"
         ],
         "requestBody": {
           "content": {
@@ -338,6 +338,18 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cart/GetProductInCartsOfUser": {
+      "get": {
+        "tags": [
+          "Cart"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -737,6 +749,10 @@
             "format": "int32"
           },
           "sizeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantity": {
             "type": "integer",
             "format": "int32"
           }

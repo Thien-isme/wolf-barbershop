@@ -192,9 +192,19 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "barbershop.Controllers.CardController",
+    "ContainingType": "barbershop.Controllers.CartController",
+    "Method": "GetProductInCarts",
+    "RelativePath": "api/Cart/GetProductInCartsOfUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.CartController",
     "Method": "saveToCart",
-    "RelativePath": "api/Card/SaveToCart",
+    "RelativePath": "api/Cart/SaveToCart",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

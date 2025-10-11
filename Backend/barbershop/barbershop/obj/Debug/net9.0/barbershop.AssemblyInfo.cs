@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("barbershop")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+006a565c3c85ab514ed012f2b07c07d782a18a72")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c598faef67c25aa81446de5ab9a7aa56de42f20")]
 [assembly: System.Reflection.AssemblyProductAttribute("barbershop")]
 [assembly: System.Reflection.AssemblyTitleAttribute("barbershop")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -8,10 +8,10 @@ namespace barbershop.Controllers
     [Authorize]
     [ApiController]
     [Route("api/[Controller]")]
-    public class CardController : ControllerBase
+    public class CartController : ControllerBase
     {
         private readonly CartService _cartService;
-        public CardController(CartService cartService)
+        public CartController(CartService cartService)
         {
             _cartService = cartService;
         }
@@ -23,7 +23,15 @@ namespace barbershop.Controllers
             Console.WriteLine("userId: " + userId);
             var response = await _cartService.SaveToCart(saveToCartRequest, userId);
             return Ok(response);
+        }
 
+        [HttpGet("GetProductInCartsOfUser")]
+        public async Task<IActionResult> GetProductInCarts()
+        {
+            var userId = Request.Headers["Userid"].FirstOrDefault();
+            Console.WriteLine("userId: " + userId);
+            var response = await _cartService.GetProductInCartsOfUser(userId);
+            return Ok(response);
         }
 
 

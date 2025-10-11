@@ -13,6 +13,8 @@ public partial class Cart
 
     public int? SizeId { get; set; }
 
+    public int? Quantity { get; set; }
+
     public bool? IsAvailable { get; set; }
 
     public virtual Product? Product { get; set; }

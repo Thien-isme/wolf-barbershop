@@ -1,4 +1,5 @@
 ﻿using barbershop.Models.Entitys;
+using Microsoft.EntityFrameworkCore;
 
 namespace barbershop.Repositorys.implements
 {
@@ -11,10 +12,32 @@ namespace barbershop.Repositorys.implements
             _context = new BarbershopContext();
         }
 
-        public bool Save(Cart cart)
+        public async Task<bool> Save(Cart cart)
         {
-            //_context.Carts.Add(cart);
-            return _context.SaveChanges() > 0;
+            _context.Carts.Add(cart);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<Cart?> GetCartByUserIdAndProductId(string? userId, int productId)
+        {
+            return await _context.Carts
+                .FirstOrDefaultAsync(c => c.UserId.ToString() == userId && c.ProductId == productId);
+        }
+
+        public async Task<bool> UpdateQuantity(Cart cart)
+        {
+            _context.Carts.Update(cart);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<List<Cart>?> GetCartsByUserId(string? userId)
+        { 
+            return await _context.Carts
+                .Include(c => c.Product)
+                    .ThenInclude(p => p.ProductPrices)
+                .Include(c => c.Size)
+                .Where(c => c.UserId.ToString() == userId)
+                .ToListAsync();
         }
     }
 }
