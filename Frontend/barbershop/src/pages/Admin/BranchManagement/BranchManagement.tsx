@@ -37,7 +37,6 @@ export default function BranchManagement() {
         >
     
 
-
       <Typography.Title
         level={2}
         style={{

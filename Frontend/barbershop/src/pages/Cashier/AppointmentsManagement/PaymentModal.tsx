@@ -1,14 +1,14 @@
-import { Modal, Table, Button, Typography, Select, Radio } from 'antd';
+import { Modal, Table, Button, Typography, Select } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useEffect, useState } from 'react';
 import { getAllServicesTypes } from '../../../api/serviceTypeApi';
 import type { ServiceTypeDTO } from '../../../types/ResponseDTOs/serviceTypeDTO';
 
-import {GetAllProductInBranch} from '../../../api/branchesProductApi';
+import { GetAllProductInBranch } from '../../../api/branchesProductApi';
 import type { ProductDTO } from '../../../types/ResponseDTOs/productDTO';
 
-import {GetPaymentsMethods} from '../../../api/paymentsMethodApi';
-import type { PaymentsMethodDTO } from '../../../types/ResponseDTOs/paymentsMethodDTO';
+// import { GetPaymentsMethods } from '../../../api/paymentsMethodApi';
+// import type { PaymentsMethodDTO } from '../../../types/ResponseDTOs/paymentsMethodDTO';
 
 interface ServiceItem {
     key: number;
@@ -40,9 +40,13 @@ export default function PaymentModal({
     // State lưu dịch vụ đã chọn
     const [selectedServices, setSelectedServices] = useState<ServiceItem[]>([]);
     const [products, setProducts] = useState<ProductDTO[]>([]);
-    const [selectedServiceValue, setSelectedServiceValue] = useState<number | undefined>(undefined);
-    const [selectedProductValue, setSelectedProductValue] = useState<string | undefined>(undefined);
-    const [paymentMethods, setPaymentMethods] = useState<PaymentsMethodDTO[]>([]);
+    const [selectedServiceValue, setSelectedServiceValue] = useState<
+        number | undefined
+    >(undefined);
+    const [selectedProductValue, setSelectedProductValue] = useState<
+        string | undefined
+    >(undefined);
+    // const [paymentMethods, setPaymentMethods] = useState<PaymentsMethodDTO[]>([]);
 
     useEffect(() => {
         const fetchServices = async () => {
@@ -73,17 +77,13 @@ export default function PaymentModal({
 
         const fetchPaymentMethods = async () => {
             try {
-                const response = await GetPaymentsMethods();
-                setPaymentMethods(response.data);
+                // const response = await GetPaymentsMethods();
+                // setPaymentMethods(response.data);
             } catch (error) {
                 console.error('Error fetching payment methods:', error);
             }
         };
         fetchPaymentMethods();
-
-
-
-
     }, []);
 
     // Khi mở modal, reset selectedServices từ record
@@ -138,10 +138,17 @@ export default function PaymentModal({
         // value format: "productId-sizeName" hoặc chỉ "productId"
         const [productIdStr, sizeName] = value.split('-');
         const productId = parseInt(productIdStr);
-        
-        const foundProduct = products.find(p => p.productId === productId && (!sizeName || p.sizeName === sizeName));
+
+        const foundProduct = products.find(
+            p =>
+                p.productId === productId &&
+                (!sizeName || p.sizeName === sizeName)
+        );
         if (foundProduct) {
-            const price = foundProduct.productPriceDTO?.discountedPrice || foundProduct.productPriceDTO?.originalPrice || 0;
+            const price =
+                foundProduct.productPriceDTO?.discountedPrice ||
+                foundProduct.productPriceDTO?.originalPrice ||
+                0;
             setSelectedServices(prev => [
                 ...prev,
                 {
@@ -312,51 +319,73 @@ export default function PaymentModal({
                         ))}
                     </Select>
                 </div>
-                
             </div>
-                <div style={{ margin: '16px 0', display: 'flex', justifyContent: 'center' }}>
-                    <div style={{ minWidth: 320 }}>
-                        <Select
-                            showSearch
-                            placeholder='Chọn sản phẩm'
-                            style={{ width: '100%' }}
-                            optionFilterProp='children'
-                            value={selectedProductValue}
-                            onSelect={handleSelectProduct}
-                            filterOption={(input, option) =>
-                                String(option?.children || '')
-                                    .toLowerCase()
-                                    .includes(input.toLowerCase())
-                            }
-                        >
-                            {Object.entries(groupedProducts).map(([typeName, productsInType]) => (
+            <div
+                style={{
+                    margin: '16px 0',
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <div style={{ minWidth: 320 }}>
+                    <Select
+                        showSearch
+                        placeholder='Chọn sản phẩm'
+                        style={{ width: '100%' }}
+                        optionFilterProp='children'
+                        value={selectedProductValue}
+                        onSelect={handleSelectProduct}
+                        filterOption={(input, option) =>
+                            String(option?.children || '')
+                                .toLowerCase()
+                                .includes(input.toLowerCase())
+                        }
+                    >
+                        {Object.entries(groupedProducts).map(
+                            ([typeName, productsInType]) => (
                                 <OptGroup key={typeName} label={typeName}>
-                                    {(productsInType as any[]).map((product: any) => (
-                                        <Option
-                                            key={`${product.productId}-${product.sizeName || ''}`}
-                                            value={`${product.productId}${product.sizeName ? '-' + product.sizeName : ''}`}
-                                        >
-                                            <span>
-                                                {product.productName}
-                                                {product.sizeName ? ` (${product.sizeName})` : ''}
-                                            </span>
-                                            <span
-                                                style={{
-                                                    float: 'right',
-                                                    color: '#888',
-                                                }}
+                                    {(productsInType as any[]).map(
+                                        (product: any) => (
+                                            <Option
+                                                key={`${product.productId}-${
+                                                    product.sizeName || ''
+                                                }`}
+                                                value={`${product.productId}${
+                                                    product.sizeName
+                                                        ? '-' + product.sizeName
+                                                        : ''
+                                                }`}
                                             >
-                                                {(product.productPriceDTO?.discountedPrice || 
-                                                  product.productPriceDTO?.originalPrice || 0)
-                                                    .toLocaleString('vi-VN')}đ
-                                            </span>
-                                        </Option>
-                                    ))}
+                                                <span>
+                                                    {product.productName}
+                                                    {product.sizeName
+                                                        ? ` (${product.sizeName})`
+                                                        : ''}
+                                                </span>
+                                                <span
+                                                    style={{
+                                                        float: 'right',
+                                                        color: '#888',
+                                                    }}
+                                                >
+                                                    {(
+                                                        product.productPriceDTO
+                                                            ?.discountedPrice ||
+                                                        product.productPriceDTO
+                                                            ?.originalPrice ||
+                                                        0
+                                                    ).toLocaleString('vi-VN')}
+                                                    đ
+                                                </span>
+                                            </Option>
+                                        )
+                                    )}
                                 </OptGroup>
-                            ))}
-                        </Select>
-                    </div>
+                            )
+                        )}
+                    </Select>
                 </div>
+            </div>
             <div style={{ textAlign: 'right', marginBottom: 8 }}>
                 <div>Tạm tính: {total.toLocaleString('vi-VN')} đ</div>
                 <div>Giảm giá: 0 đ</div>
@@ -364,7 +393,7 @@ export default function PaymentModal({
                     Tổng tiền: {total.toLocaleString('vi-VN')} đ
                 </div>
             </div>
-            
+
             <div style={{ textAlign: 'center', marginTop: 16 }}>
                 <Button type='primary' style={{ minWidth: 120 }}>
                     Tiếp tục

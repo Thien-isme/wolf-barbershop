@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Typography, Form, message } from 'antd';
+import { Card, Typography, Form } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import dayjs from 'dayjs';
@@ -268,7 +268,8 @@ const BookingPage: React.FC = () => {
                     >
                         Quý khách vui lòng cho biết thông tin
                     </Typography.Text>
-                    <CustomerInfo form={form} />
+                    {/* <CustomerInfo form={form} /> */}
+                    <CustomerInfo />
                     <Title
                         level={4}
                         style={{ color: 'white', marginBottom: 16 }}
@@ -299,7 +300,8 @@ const BookingPage: React.FC = () => {
                         timeSlots={timeSlots}
                         disabledTimes={bookedTimes} // bookedTimes là mảng ["11:46:00", ...]
                     />
-                    <VoucherNote form={form} />
+                    {/* <VoucherNote form={form} /> */}
+                    <VoucherNote />
                     <BookingButton loading={loading} />
                 </Form>
             </Card>

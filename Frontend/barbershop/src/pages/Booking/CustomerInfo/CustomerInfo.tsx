@@ -1,7 +1,7 @@
 import { Form, Input, Space } from 'antd';
 import styles from './CustomerInfo.module.css';
 
-const CustomerInfo = (form: any) => (
+const CustomerInfo = () => (
     <>
         <Space style={{ width: '100%', marginBottom: 12 }} size={170}>
             <Form.Item name='phone' style={{ flex: 1, width: '160%' }}>

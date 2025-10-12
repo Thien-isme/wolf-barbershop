@@ -90,14 +90,24 @@ const ProductsOutstanding = () => {
                                                 fontSize: 18,
                                             }}
                                         >
-                                            {p.productPriceDTO &&
-                                            p.productPriceDTO.length > 0
-                                                ? (
-                                                      p.productPriceDTO[0]
-                                                          .discountedPrice ??
-                                                      p.productPriceDTO[0]
-                                                          .originalPrice
-                                                  ).toFixed(3) + ' ₫'
+                                            {p.productPriceDTO
+                                                ? p.productPriceDTO
+                                                      .discountedPrice !==
+                                                      null &&
+                                                  p.productPriceDTO
+                                                      .discountedPrice !==
+                                                      undefined
+                                                    ? p.productPriceDTO.discountedPrice.toLocaleString() +
+                                                      ' ₫'
+                                                    : p.productPriceDTO
+                                                          .originalPrice !==
+                                                          null &&
+                                                      p.productPriceDTO
+                                                          .originalPrice !==
+                                                          undefined
+                                                    ? p.productPriceDTO.originalPrice.toLocaleString() +
+                                                      ' ₫'
+                                                    : 'Liên hệ'
                                                 : 'Liên hệ'}
                                         </div>
                                         <div

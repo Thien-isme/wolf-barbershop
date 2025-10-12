@@ -18,7 +18,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import ProductManagement from './pages/Admin/ProductManagement/ProductManagement';
 import Cookies from 'js-cookie';
 import ProductPage from './pages/User/ViewProduct/ProductPage';
-import {GetProductInCartsOfUser} from './api/cartApi';
+import { GetProductInCartsOfUser } from './api/cartApi';
 import CashierDashboard from './pages/Cashier/Dashboard/Dashboard';
 import AppointmentsManagement from './pages/Cashier/AppointmentsManagement/AppointmentsManagement';
 const clientId =
@@ -98,7 +98,8 @@ function AppContent() {
                 <Route path='/' element={<HomePage />} />
                 <Route
                     path='/login'
-                    element={<LoginPage setLogin={setLogin} />}
+                    // element={<LoginPage setLogin={setLogin} />}
+                    element={<LoginPage />}
                 />
                 <Route path='/booking' element={<BookingPage />} />
                 <Route path='/product' element={<ProductPage />} />

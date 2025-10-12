@@ -18,7 +18,7 @@ export type ProductDTO = {
     brandDTO?: BrandDTO;
     inventoryDTO?: InventoryDTO[];
     paymentServiceDTO?: PaymentServiceDTO[];
-    productPriceDTO?: ProductPriceDTO;
+    productPriceDTO?: ProductPriceDTO | null;
     productTypeDTO?: ProductTypeDTO;
     sizeDTO?: SizeDTO[];
 

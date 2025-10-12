@@ -16,8 +16,8 @@ const ProductList = ({ products }: ProductBodyProps) => {
 
     const handleAddToCart = (product: ProductDTO) => {
         var userId = Cookie.get('userId');
-        
-        if(userId === undefined) {
+
+        if (userId === undefined) {
             navigate('/login');
             return;
         }
@@ -122,7 +122,7 @@ const ProductList = ({ products }: ProductBodyProps) => {
                                                   .discountedPrice ??
                                               product.productPriceDTO
                                                   .originalPrice
-                                          ).toLocaleString('vi-VN') + 'đ'
+                                          )?.toLocaleString('vi-VN') + 'đ'
                                         : 'Liên hệ'}
                                 </div>
                                 <Button

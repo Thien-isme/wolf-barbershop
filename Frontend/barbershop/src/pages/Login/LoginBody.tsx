@@ -4,6 +4,7 @@ import './LoginBody.css';
 import { loginWithGoogle } from '../../api/authApi';
 import { loginWithUsernamePassword } from '../../api/authApi';
 import { useState } from 'react';
+// import type { GoogleLoginRenderProps } from '@react-oauth/google';
 const { Title } = Typography;
 
 const LoginBody = ({
@@ -184,7 +185,7 @@ const LoginBody = ({
                             logo_alignment='left'
                             text='continue_with'
                             shape='pill'
-                            prompt='select_account'
+                            // prompt='select_account'
                             onSuccess={async credentialResponse => {
                                 const token = credentialResponse.credential;
                                 if (token) {
@@ -198,39 +199,39 @@ const LoginBody = ({
                             onError={() => {
                                 console.log('Google Login Failed');
                             }}
-                            render={renderProps => (
-                                <Button
-                                    icon={
-                                        <img
-                                            src='https://res.cloudinary.com/duzh5dnul/image/upload/v1758119667/image_2025-09-17_213424313_ps49vr.png'
-                                            alt='Google'
-                                            style={{
-                                                width: 30,
-                                                height: 30,
-                                                marginRight: 8,
-                                            }}
-                                        />
-                                    }
-                                    style={{
-                                        width: '100%',
-                                        height: 44,
-                                        borderRadius: 24,
-                                        fontWeight: 500,
-                                        fontSize: 16,
-                                        background: '#fff',
-                                        border: 'none',
-                                        marginBottom: 12,
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        textAlign: 'center',
-                                    }}
-                                    onClick={renderProps.onClick}
-                                    disabled={renderProps.disabled}
-                                >
-                                    Tiếp tục sử dụng dịch vụ bằng Google
-                                </Button>
-                            )}
+                            // render={(renderProps: GoogleLoginRenderProps) => (
+                            //     <Button
+                            //         icon={
+                            //             <img
+                            //                 src='https://res.cloudinary.com/duzh5dnul/image/upload/v1758119667/image_2025-09-17_213424313_ps49vr.png'
+                            //                 alt='Google'
+                            //                 style={{
+                            //                     width: 30,
+                            //                     height: 30,
+                            //                     marginRight: 8,
+                            //                 }}
+                            //             />
+                            //         }
+                            //         style={{
+                            //             width: '100%',
+                            //             height: 44,
+                            //             borderRadius: 24,
+                            //             fontWeight: 500,
+                            //             fontSize: 16,
+                            //             background: '#fff',
+                            //             border: 'none',
+                            //             marginBottom: 12,
+                            //             display: 'flex',
+                            //             alignItems: 'center',
+                            //             justifyContent: 'center',
+                            //             textAlign: 'center',
+                            //         }}
+                            //         onClick={renderProps.onClick}
+                            //         disabled={renderProps.disabled}
+                            //     >
+                            //         Tiếp tục sử dụng dịch vụ bằng Google
+                            //     </Button>
+                            // )}
                         />
                         <Button
                             icon={

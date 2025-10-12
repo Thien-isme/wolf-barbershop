@@ -1,16 +1,16 @@
 import { Card, Typography, Form, Select, Input } from 'antd';
 import { getVoucherOfUser } from '../../../api/userVoucherApi';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-const VoucherNote = ({ form }: { form: any }) => {
-    const [vouchers, setVouchers] = useState([]);
+const VoucherNote = () => {
+    // const [vouchers, setVouchers] = useState([]);
 
     useEffect(() => {
         const fetchVouchers = async () => {
             try {
                 const response = await getVoucherOfUser();
                 if (response && response.data) {
-                    setVouchers(response.data);
+                    // setVouchers(response.data);
                 }
             } catch (error) {
                 console.error('Error fetching vouchers:', error);
