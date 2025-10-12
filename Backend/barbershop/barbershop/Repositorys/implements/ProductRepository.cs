@@ -19,7 +19,7 @@ namespace barbershop.Repositorys.implements
             return await _context.Products
                 .Include(p => p.ProductType)
                 .Include(p => p.ProductPrices)
-                .Where(p => p.ProductPrices.Any(pp => pp.IsActive == true))
+                //.Where(p => p.ProductPrices.Any(pp => pp.IsActive == true))
                 .ToListAsync();
         }
 

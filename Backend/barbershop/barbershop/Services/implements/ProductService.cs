@@ -27,7 +27,7 @@ namespace barbershop.Services.implements
                         ProductId = p.ProductId,
                         ProductName = p.ProductName,
                         ProductTypeId = p.ProductTypeId,
-
+                        ProductImg = p.ProductImg,
                         ProductPriceDTO = p.ProductPrices
                             .OrderByDescending(pp => pp.CreatedAt)
                             .Select(pp => new ProductPriceDTO

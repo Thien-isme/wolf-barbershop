@@ -93,6 +93,9 @@ app.UseCors(builder =>
     builder.WithOrigins("http://localhost:5173")
            .AllowAnyMethod()
            .AllowAnyHeader());
+
+
+
 //app.UseHttpsRedirection();
 
 // Thêm dòng này để bật xác thực
