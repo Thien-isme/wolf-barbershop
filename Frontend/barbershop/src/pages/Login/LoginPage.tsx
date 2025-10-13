@@ -2,7 +2,11 @@ import type { LoginResponseDTO } from '../../types/ResponseDTOs/loginResponseDTO
 import LoginBody from './LoginBody';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-const LoginPage = () => {
+const LoginPage = ({
+    setUserInfo,
+}: {
+    setUserInfo: (userInfo: any) => void;
+}) => {
     const navigate = useNavigate(); // Khởi tạo hook
     // Callback nhận response từ API login
     const handleLoginSuccess = (login: LoginResponseDTO) => {
@@ -10,7 +14,7 @@ const LoginPage = () => {
         Cookies.set('accessToken', login.accessToken); // Lưu token vào cookie
         Cookies.set('refreshToken', login.refreshToken); // Lưu refreshToken vào cookie
         Cookies.set('userId', String(login.userDTO.userId));
-
+        setUserInfo(login.userDTO);
         // Lưu user vào localStorage
         if (login.userDTO.roleId === 4) {
             // Nếu là admin, chuyển hướng đến trang quản trị

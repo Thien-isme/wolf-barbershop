@@ -26,12 +26,11 @@ const clientId =
     '136465399071-sbg4p7qhb3qc9dbv8t6qdsf3m6ud93cu.apps.googleusercontent.com';
 
 function AppContent() {
-    const { login, setLogin } = useAuth();
+    const { userInfo, setUserInfo } = useAuth();
     const navigate = useNavigate();
     const location = useLocation(); // Thêm hook này
     const accessToken = Cookies.get('accessToken');
     const refreshToken = Cookies.get('refreshToken');
-
     useEffect(() => {
         if (accessToken && refreshToken) {
             // const decodedAccessToken: any = jwtDecode(accessToken);
@@ -55,7 +54,7 @@ function AppContent() {
         try {
             // Ví dụ gọi API lấy user info, truyền token lên backend
             const res = await autoLogin();
-            setLogin(res.data); // cập nhật thông tin user vào state
+            setUserInfo(res.data); // cập nhật thông tin user vào state
             if (res.data.roleId === 4) {
                 // Nếu là admin, chuyển hướng đến trang quản trị
                 navigate('/admin');
@@ -70,7 +69,7 @@ function AppContent() {
             }
         } catch (error) {
             localStorage.removeItem('token');
-            setLogin(null);
+            setUserInfo(null);
         }
     };
 
@@ -91,17 +90,18 @@ function AppContent() {
         // const hiddenRoutes = ['/login', '/admin', '/admin/barber'];
         // return !hiddenRoutes.includes(location.pathname);
     };
-    const [userInfo, setUserInfo] = useState<UserDTO | null>(null);
 
     return (
         <>
-            {shouldShowHeaderFooter() && <BarberShopHeader login={login} />}
+            {shouldShowHeaderFooter() && (
+                <BarberShopHeader userInfo={userInfo} />
+            )}
             <Routes>
                 <Route path='/' element={<HomePage />} />
                 <Route
                     path='/login'
-                    // element={<LoginPage setLogin={setLogin} />}
-                    element={<LoginPage />}
+                    element={<LoginPage setUserInfo={setUserInfo} />}
+                    // element={<LoginPage />}
                 />
                 <Route path='/booking' element={<BookingPage />} />
                 <Route path='/product' element={<ProductPage />} />

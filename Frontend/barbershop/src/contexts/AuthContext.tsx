@@ -3,15 +3,15 @@ import type { ReactNode } from 'react';
 import Cookies from 'js-cookie';
 import type { UserDTO } from '../types/ResponseDTOs/userDTO';
 interface AuthContextType {
-    login: UserDTO | null;
-    setLogin: (login: UserDTO | null) => void;
+    userInfo: UserDTO | null;
+    setUserInfo: (userInfo: UserDTO | null) => void;
     logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-    const [login, setLogin] = useState<UserDTO | null>(() => {
+    const [userInfo, setUserInfo] = useState<UserDTO | null>(() => {
         // Khởi tạo state từ localStorage nếu có
         const user = localStorage.getItem('user');
         if (user) {
@@ -24,11 +24,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         Cookies.remove('accessToken');
         Cookies.remove('refreshToken');
         Cookies.remove('userId');
-        setLogin(null);
+        setUserInfo(null);
     };
 
     return (
-        <AuthContext.Provider value={{ login, setLogin, logout }}>
+        <AuthContext.Provider value={{ userInfo, setUserInfo, logout }}>
             {children}
         </AuthContext.Provider>
     );

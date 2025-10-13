@@ -7,7 +7,7 @@ import RightMenu from './RightHeader/RightMenu';
 import style from './styles.module.scss';
 import type { UserDTO } from '../../types/ResponseDTOs/userDTO';
 
-const BarberShopHeader = ({ login }: { login: UserDTO | null }) => {
+const BarberShopHeader = ({ userInfo }: { userInfo: UserDTO | null }) => {
     const { headerContainer, flexItem } = style;
     return (
         <Layout>
@@ -29,7 +29,7 @@ const BarberShopHeader = ({ login }: { login: UserDTO | null }) => {
                                     <MenuContainer />
                                 </div>
                                 <div className={flexItem}>
-                                    <RightMenu login={login} />
+                                    <RightMenu userInfo={userInfo} />
                                 </div>
                             </div>
                         </div>

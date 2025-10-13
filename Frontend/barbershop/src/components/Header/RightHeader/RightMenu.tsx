@@ -48,7 +48,7 @@ function isRefreshTokenValid() {
     }
 }
 
-const RightMenu = ({ login }: { login: UserDTO | null }) => {
+const RightMenu = ({ userInfo }: { userInfo: UserDTO | null }) => {
     const { logout } = useAuth();
     const navigate = useNavigate();
     const isLoggedIn = isRefreshTokenValid();
@@ -103,9 +103,9 @@ const RightMenu = ({ login }: { login: UserDTO | null }) => {
                     >
                         <img
                             src={
-                                login?.avatarUrl ||
+                                userInfo?.avatarUrl ||
                                 'https://ui-avatars.com/api/?name=' +
-                                    login?.fullName
+                                    userInfo?.fullName
                             }
                             alt='avatar'
                             style={{
@@ -115,7 +115,7 @@ const RightMenu = ({ login }: { login: UserDTO | null }) => {
                             }}
                         />
                         <span style={{ color: '#fff', fontWeight: 500 }}>
-                            {login?.fullName}
+                            {userInfo?.fullName}
                         </span>
                     </div>
                 </Dropdown>

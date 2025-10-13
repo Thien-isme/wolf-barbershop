@@ -19,7 +19,7 @@ const LoginBody = ({
         const { username, password } = values;
         setLoginError(null); // reset lỗi cũ
         // Gọi API đăng nhập ở đây, ví dụ:
-        loginWithUsernamePassword(username, password).then(response => {
+        await loginWithUsernamePassword(username, password).then(response => {
             if (response) {
                 if (response.data == null) {
                     setLoginError(response.messageShow); // Hiển thị lỗi từ server
