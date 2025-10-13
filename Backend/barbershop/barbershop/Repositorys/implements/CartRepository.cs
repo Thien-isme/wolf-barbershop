@@ -39,5 +39,12 @@ namespace barbershop.Repositorys.implements
                 .Where(c => c.UserId.ToString() == userId)
                 .ToListAsync();
         }
+
+        public async Task<int?> CountProductsInCartByUserId(string? userId)
+        {
+            return await _context.Carts
+                .Where(c => c.UserId.ToString() == userId)
+                .SumAsync(c => c.Quantity);
+        }
     }
 }

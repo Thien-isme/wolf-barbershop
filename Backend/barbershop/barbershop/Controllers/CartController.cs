@@ -35,5 +35,13 @@ namespace barbershop.Controllers
         }
 
 
+        [HttpGet("CountProductInCart")]
+        public async Task<IActionResult> CountProductInCart()
+        {
+            var userId = Request.Headers["Userid"].FirstOrDefault();
+            Console.WriteLine("userId: " + userId);
+            var response = await _cartService.CountProductInCart(userId);
+            return Ok(response);
+        }
     }
 }

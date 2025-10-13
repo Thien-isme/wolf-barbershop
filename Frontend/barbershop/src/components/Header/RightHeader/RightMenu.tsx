@@ -10,6 +10,10 @@ import Cookies from 'js-cookie'; // Thêm thư viện js-cookie
 import style from './style.module.scss';
 import type { UserDTO } from '../../../types/ResponseDTOs/userDTO';
 
+import { CountProductInCart } from '../../../api/cartApi';
+import { useEffect, useState } from 'react';
+import type { CountProductsDTO } from '../../../types/ResponseDTOs/countProductsDTO';
+
 // Menu cho user đã đăng nhập
 const userMenu = (logout: () => void) => (
     <Menu
@@ -47,16 +51,30 @@ function isRefreshTokenValid() {
 const RightMenu = ({ login }: { login: UserDTO | null }) => {
     const { logout } = useAuth();
     const isLoggedIn = isRefreshTokenValid();
+    const [cartCount, setCartCount] = useState<number>(0);
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            CountProductInCart()
+                .then((data: CountProductsDTO) => {
+                    setCartCount(data.count);
+                })
+                .catch(err => {
+                    console.error('Lỗi khi đếm sản phẩm trong giỏ hàng:', err);
+                });
+        }
+    }, [isLoggedIn]);
 
     return (
         <>
-            <Button
-                type='primary'
-                icon={<ShoppingCartOutlined style={{ fontSize: 22 }} />}
-                className={cartBtnStyle.cartBtn}
-            >
-                Giỏ hàng
-            </Button>
+            <div className={style.cartBtn}>
+                <Button
+                    type='primary'
+                    icon={<ShoppingCartOutlined style={{ fontSize: 32 }} />}
+                    className={style.cartBtn}
+                ></Button>
+                <div className={style.cartCount}>{cartCount}</div>
+            </div>
             {!isLoggedIn && (
                 <Button
                     type='text'

@@ -193,6 +193,16 @@
   },
   {
     "ContainingType": "barbershop.Controllers.CartController",
+    "Method": "CountProductInCart",
+    "RelativePath": "api/Cart/CountProductInCart",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.CartController",
     "Method": "GetProductInCarts",
     "RelativePath": "api/Cart/GetProductInCartsOfUser",
     "HttpMethod": "GET",

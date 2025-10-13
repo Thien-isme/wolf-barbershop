@@ -357,6 +357,18 @@
         }
       }
     },
+    "/api/Cart/CountProductInCart": {
+      "get": {
+        "tags": [
+          "Cart"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Employee/GetBarbers": {
       "get": {
         "tags": [

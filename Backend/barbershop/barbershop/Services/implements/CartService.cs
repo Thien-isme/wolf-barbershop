@@ -134,5 +134,43 @@ namespace barbershop.Services.implements
                 };  
 }
         }
+
+        public async Task<BaseResponse?> CountProductInCart(string? userId)
+        {
+            try
+            {
+                var count = await _cartRepository.CountProductsInCartByUserId(userId);
+
+                if(count == null)
+                {
+                    return new BaseResponse
+                    {
+                        Status = 404,
+                        MessageShow = "No products found in cart.",
+                        MessageHide = "No products found in cart.",
+                        Data = new CountProductsDTO { Count = 0 }
+                    };
+                }
+
+                return new BaseResponse
+                {
+                    Status = 200,
+                    MessageShow = "Count retrieved successfully.",
+                    MessageHide = "Count retrieved successfully.",
+                    Data = new CountProductsDTO { Count = count }
+                };
+
+
+            }
+            catch ( Exception ex){
+                return new BaseResponse
+                {
+                    Status = 500, // hoặc 500 nếu là lỗi hệ thống
+                    MessageShow = "Failed to retrieve count of products in cart.",
+                    MessageHide = ex.Message,
+                    Data = null
+                };
+            }
+        }
     }
 }
