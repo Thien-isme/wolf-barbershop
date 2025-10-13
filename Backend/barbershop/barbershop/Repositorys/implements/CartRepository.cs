@@ -44,7 +44,7 @@ namespace barbershop.Repositorys.implements
         {
             return await _context.Carts
                 .Where(c => c.UserId.ToString() == userId)
-                .SumAsync(c => c.Quantity);
+                .CountAsync();
         }
     }
 }

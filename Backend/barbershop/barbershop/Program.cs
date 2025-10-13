@@ -90,7 +90,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 app.UseCors(builder =>
-    builder.WithOrigins("http://localhost:5173")
+    builder.WithOrigins("http://localhost:5173", "https://thien-isme.github.io", "http://localhost:5174")
            .AllowAnyMethod()
            .AllowAnyHeader());
 

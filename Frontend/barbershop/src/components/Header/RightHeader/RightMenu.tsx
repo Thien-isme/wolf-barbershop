@@ -1,11 +1,11 @@
 import { Menu, Button, Dropdown } from 'antd';
 import { useAuth } from '../../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import {
     UserOutlined,
     ShoppingCartOutlined,
     LogoutOutlined,
 } from '@ant-design/icons';
-import cartBtnStyle from '../CartButton.module.scss';
 import Cookies from 'js-cookie'; // Thêm thư viện js-cookie
 import style from './style.module.scss';
 import type { UserDTO } from '../../../types/ResponseDTOs/userDTO';
@@ -50,6 +50,7 @@ function isRefreshTokenValid() {
 
 const RightMenu = ({ login }: { login: UserDTO | null }) => {
     const { logout } = useAuth();
+    const navigate = useNavigate();
     const isLoggedIn = isRefreshTokenValid();
     const [cartCount, setCartCount] = useState<number>(0);
 
@@ -79,7 +80,7 @@ const RightMenu = ({ login }: { login: UserDTO | null }) => {
                 <Button
                     type='text'
                     //   icon={<UserOutlined style={{ fontSize: 22 }} />}
-                    href='/wolf-barbershop/login'
+                    onClick={() => navigate('/login')}
                     // style={{ color: '#fff' }}
                     className={style.loginBtn}
                 >

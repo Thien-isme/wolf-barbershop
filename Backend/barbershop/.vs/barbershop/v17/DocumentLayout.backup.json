@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|f:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\services\\implements\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\services\\implements\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|f:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\models\\responsedtos\\countproductsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\models\\responsedtos\\countproductsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|f:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|f:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\repositorys\\implements\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\repositorys\\implements\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|f:\\myproject\\wolf-barbershop\\backend\\barbershop\\barbershop\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1782915A-414A-470F-BD5B-EA3F1D3604C2}|barbershop\\barbershop.csproj|solutionrelative:barbershop\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 204,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,54 +22,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CountProductsDTO.cs",
-              "DocumentMoniker": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\CountProductsDTO.cs",
-              "RelativeDocumentMoniker": "barbershop\\Models\\ResponseDTOs\\CountProductsDTO.cs",
-              "ToolTip": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Models\\ResponseDTOs\\CountProductsDTO.cs",
-              "RelativeToolTip": "barbershop\\Models\\ResponseDTOs\\CountProductsDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-13T17:03:37.61Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CartRepository.cs",
-              "DocumentMoniker": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\CartRepository.cs",
-              "RelativeDocumentMoniker": "barbershop\\Repositorys\\implements\\CartRepository.cs",
-              "ToolTip": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Repositorys\\implements\\CartRepository.cs",
-              "RelativeToolTip": "barbershop\\Repositorys\\implements\\CartRepository.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAqwC4AAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-13T17:01:36.92Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CartService.cs",
-              "DocumentMoniker": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Services\\implements\\CartService.cs",
-              "RelativeDocumentMoniker": "barbershop\\Services\\implements\\CartService.cs",
-              "ToolTip": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Services\\implements\\CartService.cs",
-              "RelativeToolTip": "barbershop\\Services\\implements\\CartService.cs",
-              "ViewState": "AgIAAJIAAAAAAAAAAAAqwKcAAAAqAAAAAAAAAA==",
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "barbershop\\Controllers\\AuthController.cs",
+              "ToolTip": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "barbershop\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBgAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-13T16:58:04.433Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CartController.cs",
-              "DocumentMoniker": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\CartController.cs",
-              "RelativeDocumentMoniker": "barbershop\\Controllers\\CartController.cs",
-              "ToolTip": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\Controllers\\CartController.cs",
-              "RelativeToolTip": "barbershop\\Controllers\\CartController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowCsAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-13T16:57:55.139Z",
+              "WhenOpened": "2025-10-13T17:50:24.616Z",
               "EditorCaption": ""
             }
           ]

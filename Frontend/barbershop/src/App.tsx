@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode'; // npm install jwt-decode
 import { useAuth } from './contexts/AuthContext'; // Thêm dòng này
@@ -21,6 +21,7 @@ import ProductPage from './pages/User/ViewProduct/ProductPage';
 import { GetProductInCartsOfUser } from './api/cartApi';
 import CashierDashboard from './pages/Cashier/Dashboard/Dashboard';
 import AppointmentsManagement from './pages/Cashier/AppointmentsManagement/AppointmentsManagement';
+import type { UserDTO } from './types/ResponseDTOs/userDTO';
 const clientId =
     '136465399071-sbg4p7qhb3qc9dbv8t6qdsf3m6ud93cu.apps.googleusercontent.com';
 
@@ -90,6 +91,7 @@ function AppContent() {
         // const hiddenRoutes = ['/login', '/admin', '/admin/barber'];
         // return !hiddenRoutes.includes(location.pathname);
     };
+    const [userInfo, setUserInfo] = useState<UserDTO | null>(null);
 
     return (
         <>
@@ -129,7 +131,7 @@ function App() {
     return (
         <GoogleOAuthProvider clientId={clientId}>
             <AuthProvider>
-                <BrowserRouter basename='/wolf-barbershop'>
+                <BrowserRouter>
                     <AppContent />
                 </BrowserRouter>
             </AuthProvider>
