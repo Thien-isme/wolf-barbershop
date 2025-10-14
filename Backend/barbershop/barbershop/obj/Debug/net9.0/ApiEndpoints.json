@@ -182,6 +182,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "barbershop.Controllers.BranchesProductController",
+    "Method": "getAllProductTypeInBranchOfCashier",
+    "RelativePath": "api/BranchesProduct/getAllProductTypeInBranchOfCashier",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "barbershop.Controllers.BrandController",
     "Method": "GetAllBrands",
     "RelativePath": "api/Brand/getAllBrands",

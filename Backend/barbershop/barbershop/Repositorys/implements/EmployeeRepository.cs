@@ -50,7 +50,7 @@ namespace barbershop.Repositorys.implements
         }
 
         
-            public async Task<int?> FindBrandIdOfCashier(int userId)
+        public async Task<int?> FindBrandIdOfCashier(int userId)
         {
             return await _context.Employees
                 .Where(u => u.UserId == userId && u.IsActive == true)

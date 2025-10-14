@@ -15,6 +15,22 @@ namespace barbershop.Repositorys.implements
         {
             return await _context.ProductTypes.ToListAsync();
         }
+
+        public async Task<List<ProductType>?> getAllProductTypeInBranch(int? branchId)
+        {
+            return await _context.ProductTypes
+                .Include(pt => pt.Products)
+                    .ThenInclude(p => p.ProductPrices)
+                .Include(pt => pt.Products)
+                    .ThenInclude(p => p.ProductSizes)
+                        .ThenInclude(p => p.Size)
+                .Include(pt => pt.Products)
+                    .ThenInclude(p => p.ProductSizes)
+                        .ThenInclude(p => p.Inventories)
+                .Where(pt => pt.Products.Any(p => p.ProductPrices.Any()
+                    && p.BranchesProducts.Any(pp => pp.BranchId == branchId && pp.Quantity > 0)))
+                    .ToListAsync();  
+        }
         // TODO: Implement repository methods for ProductType
     }
 }

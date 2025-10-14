@@ -302,6 +302,18 @@
         }
       }
     },
+    "/api/BranchesProduct/getAllProductTypeInBranchOfCashier": {
+      "get": {
+        "tags": [
+          "BranchesProduct"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Brand/getAllBrands": {
       "get": {
         "tags": [
