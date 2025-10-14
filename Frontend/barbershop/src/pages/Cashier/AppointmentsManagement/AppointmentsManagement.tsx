@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 
 import { getAppointmentFromToday } from '../../../api/appointmentApi';
 import type { AppointmentDTO } from '../../../types/ResponseDTOs/appointmentDTO';
-import PaymentModal from './PaymentModal';
+import PaymentModal from './PaymentModal/PaymentModal';
 
 const { Title } = Typography;
 

@@ -9,3 +9,13 @@ export const GetAllProductInBranch = async () => {
             throw err;
         });
 };
+
+export const GetAllProductTypeInBranchOfCashier = async () => {
+    return await api
+        .get('/BranchesProduct/GetAllProductTypeInBranchOfCashier')
+        .then(res => res.data)
+        .catch(err => {
+            console.error('Lỗi khi lấy loại sản phẩm trong chi nhánh:', err);
+            throw err;
+        });
+};

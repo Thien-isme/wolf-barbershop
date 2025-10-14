@@ -1,0 +1,21 @@
+@use '../../../../assets/styles/_variables.module.scss' as *;
+
+.btnAddService {
+    background-color: $primary_color !important;
+    color: #fff !important;
+    &:hover {
+        background-color: $primary_color_hover !important;
+        color: #fff !important;
+        scale: calc(1.08);
+    }
+}
+
+.btnAddProduct {
+    background-color: $orgrange_color !important;
+    color: #fff !important;
+    &:hover {
+        background-color: $orgrange_color_hover !important;
+        color: #fff !important;
+        scale: calc(1.08);
+    }
+}
