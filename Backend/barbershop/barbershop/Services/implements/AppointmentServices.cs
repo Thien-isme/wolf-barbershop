@@ -144,6 +144,10 @@ namespace barbershop.Services.implements
                             UserId = a.User?.UserId ?? 0,
                             FullName = a.User?.FullName,
                             Phone = a.User?.Phone,
+                            LoyaltyPointDTO = new LoyaltyPointDTO
+                            {
+                                TotalPoints = a.User?.LoyaltyPoints?.FirstOrDefault()?.TotalPoints ?? 0
+                            }
                         },
                         EmployeeDTO = new EmployeeDTO
                         {

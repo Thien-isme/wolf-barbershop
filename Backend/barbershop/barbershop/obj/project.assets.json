@@ -8595,19 +8595,19 @@
   },
   "packageFolders": {
     "C:\\Users\\thien\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "D:\\VisualStudio\\VisualStudioComponent\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\barbershop.csproj",
+      "projectUniqueName": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\barbershop.csproj",
       "projectName": "barbershop",
-      "projectPath": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\barbershop.csproj",
+      "projectPath": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\barbershop.csproj",
       "packagesPath": "C:\\Users\\thien\\.nuget\\packages\\",
-      "outputPath": "F:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\obj\\",
+      "outputPath": "E:\\MyProject\\wolf-barbershop\\Backend\\barbershop\\barbershop\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "D:\\VisualStudio\\VisualStudioComponent\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\thien\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8701,7 +8701,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

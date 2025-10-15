@@ -18,5 +18,6 @@ namespace barbershop.Models.ResponseDTOs
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public bool? IsActive { get; set; }
+        public LoyaltyPointDTO LoyaltyPointDTO { get; set; } = null!;
     }
 }

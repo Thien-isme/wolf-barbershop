@@ -43,6 +43,7 @@ namespace barbershop.Repositorys.implements
                     && a.AppointmentDate.Value <= DateOnly.FromDateTime(to)
                     && a.IsActive == true)
                 .Include(a => a.User)
+                    .ThenInclude(a => a.LoyaltyPoints)
                 .Include(a => a.Barber)
                     .ThenInclude(b => b.User)
                 .Include(a => a.AppointmentServices)

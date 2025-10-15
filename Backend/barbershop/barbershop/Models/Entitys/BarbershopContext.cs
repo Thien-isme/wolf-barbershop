@@ -37,6 +37,8 @@ public partial class BarbershopContext : DbContext
 
     public virtual DbSet<Inventory> Inventories { get; set; }
 
+    public virtual DbSet<LoyaltyPoint> LoyaltyPoints { get; set; }
+
     public virtual DbSet<Payment> Payments { get; set; }
 
     public virtual DbSet<PaymentService> PaymentServices { get; set; }
@@ -79,7 +81,7 @@ public partial class BarbershopContext : DbContext
     {
         modelBuilder.Entity<AccessToken>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__access_t__3213E83F7B99BB26");
+            entity.HasKey(e => e.Id).HasName("PK__access_t__3213E83FE1DC9EE0");
 
             entity.ToTable("access_tokens");
 
@@ -202,7 +204,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<BranchesProduct>(entity =>
         {
-            entity.HasKey(e => e.BranchesProducts).HasName("PK__branches__78799D88114E00D7");
+            entity.HasKey(e => e.BranchesProducts).HasName("PK__branches__78799D883B15F550");
 
             entity.ToTable("branches_products");
 
@@ -233,7 +235,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<Brand>(entity =>
         {
-            entity.HasKey(e => e.BrandId).HasName("PK__brands__5E5A8E27A82EC0C7");
+            entity.HasKey(e => e.BrandId).HasName("PK__brands__5E5A8E27E87EABC9");
 
             entity.ToTable("brands");
 
@@ -375,7 +377,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<Inventory>(entity =>
         {
-            entity.HasKey(e => e.InventoryId).HasName("PK__inventor__B59ACC493E9BDC74");
+            entity.HasKey(e => e.InventoryId).HasName("PK__inventor__B59ACC49B5E3E241");
 
             entity.ToTable("inventory");
 
@@ -393,6 +395,28 @@ public partial class BarbershopContext : DbContext
                 .HasForeignKey(d => d.ProductSizeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__inventory__produ__04E4BC85");
+        });
+
+        modelBuilder.Entity<LoyaltyPoint>(entity =>
+        {
+            entity.HasKey(e => e.LoyaltyPointsId).HasName("PK__loyalty___CC34CC0617EF8477");
+
+            entity.ToTable("loyalty_points");
+
+            entity.Property(e => e.LoyaltyPointsId).HasColumnName("loyalty_points_id");
+            entity.Property(e => e.LastUpdated)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("last_updated");
+            entity.Property(e => e.TotalPoints)
+                .HasDefaultValue(0)
+                .HasColumnName("total_points");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.LoyaltyPoints)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_LoyaltyPoints_Users");
         });
 
         modelBuilder.Entity<Payment>(entity =>
@@ -549,7 +573,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<ProductPrice>(entity =>
         {
-            entity.HasKey(e => e.ProductPriceId).HasName("PK__product___DC88EB61CEAE7000");
+            entity.HasKey(e => e.ProductPriceId).HasName("PK__product___DC88EB61B849F67E");
 
             entity.ToTable("product_prices");
 
@@ -571,7 +595,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<ProductSize>(entity =>
         {
-            entity.HasKey(e => e.ProductSizeId).HasName("PK__product___062A9A68C122C56C");
+            entity.HasKey(e => e.ProductSizeId).HasName("PK__product___062A9A68533C3F0F");
 
             entity.ToTable("product_sizes");
 
@@ -601,7 +625,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<RefreshToken>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__refresh___3213E83F2BE67453");
+            entity.HasKey(e => e.Id).HasName("PK__refresh___3213E83F678B3AB2");
 
             entity.ToTable("refresh_tokens");
 
@@ -707,7 +731,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<ServiceType>(entity =>
         {
-            entity.HasKey(e => e.ServiceTypeId).HasName("PK__service___288B52C68C234CE9");
+            entity.HasKey(e => e.ServiceTypeId).HasName("PK__service___288B52C6D0490518");
 
             entity.ToTable("service_type");
 
@@ -720,7 +744,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<Size>(entity =>
         {
-            entity.HasKey(e => e.SizeId).HasName("PK__sizes__0DCACE317ED7AF2E");
+            entity.HasKey(e => e.SizeId).HasName("PK__sizes__0DCACE3122F02DD3");
 
             entity.ToTable("sizes");
 
@@ -802,7 +826,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<UserVoucher>(entity =>
         {
-            entity.HasKey(e => e.UserVoucherId).HasName("PK__user_vou__6A698A7956BD8F94");
+            entity.HasKey(e => e.UserVoucherId).HasName("PK__user_vou__6A698A79E04B17BC");
 
             entity.ToTable("user_voucher");
 

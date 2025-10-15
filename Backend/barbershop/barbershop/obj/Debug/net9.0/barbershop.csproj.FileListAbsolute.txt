@@ -367,7 +367,6 @@ E:\MyProject\wolf-barbershop\Backend\barbershop\barbershop\obj\Debug\net9.0\refi
 E:\MyProject\wolf-barbershop\Backend\barbershop\barbershop\obj\Debug\net9.0\barbershop.pdb
 E:\MyProject\wolf-barbershop\Backend\barbershop\barbershop\obj\Debug\net9.0\barbershop.genruntimeconfig.cache
 E:\MyProject\wolf-barbershop\Backend\barbershop\barbershop\obj\Debug\net9.0\ref\barbershop.dll
-E:\MyProject\wolf-barbershop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 F:\MyProject\wolf-barbershop\Backend\barbershop\barbershop\bin\Debug\net9.0\appsettings.Development.json
 F:\MyProject\wolf-barbershop\Backend\barbershop\barbershop\bin\Debug\net9.0\appsettings.json
 F:\MyProject\wolf-barbershop\Backend\barbershop\barbershop\bin\Debug\net9.0\barbershop.staticwebassets.endpoints.json
@@ -554,3 +553,4 @@ F:\MyProject\wolf-barbershop\Backend\barbershop\barbershop\obj\Debug\net9.0\barb
 F:\MyProject\wolf-barbershop\Backend\barbershop\barbershop\obj\Debug\net9.0\barbershop.genruntimeconfig.cache
 F:\MyProject\wolf-barbershop\Backend\barbershop\barbershop\obj\Debug\net9.0\ref\barbershop.dll
 F:\MyProject\wolf-barbershop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+E:\MyProject\wolf-barbershop\Backend\barbershop\barbershop\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

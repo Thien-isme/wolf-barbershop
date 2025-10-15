@@ -117,24 +117,6 @@ namespace barbershop.Services.implements
                     .ToList();
 
 
-                //var response = distinctProductTypes.Select(ppt => new ProductTypeDTO
-                //{
-                //    ProductTypeId = ppt.ProductTypeId,
-                //    ProductTypeName = ppt.ProductTypeName,
-                //    ProductDTOs = ppt.Products.Select(p => new ProductDTO
-                //    {
-                //        ProductId = p.ProductId,
-                //        ProductName = p.ProductName,
-                //        ProductPriceDTO = p.ProductPrices.OrderByDescending(pp => pp.ProductPriceId).Select(pp => new ProductPriceDTO
-                //        {
-                //            DiscountedPrice = pp.DiscountedPrice,
-                //            OriginalPrice = pp.OriginalPrice
-                //        }).FirstOrDefault(),
-                //        SizeName = ppt.Size.
-                //    }).ToList()
-
-                //}).ToList();
-
                 var response = distinctProductTypes.Select(ppt => new ProductTypeDTO
                 {
                     ProductTypeId = ppt.ProductTypeId,
@@ -157,27 +139,6 @@ namespace barbershop.Services.implements
                             Quantity = bp.Quantity
                         }).ToList()
                 }).ToList();
-
-
-                //var productsResponse = product.Select(p => new ProductTypeDTO
-                //{
-                //    ProductTypeId = p.ProductTypeId,
-                //    ProductTypeName = p.ProductTypeName,
-                //    Products = p.Products.Select(prod => new ProductDTO
-                //    {
-                //        ProductId = prod.ProductId,
-                //        ProductName = prod.ProductName,
-                //        ProductImg = prod.ProductImg,
-                //        ProductPriceDTO = prod.ProductPrices
-                //        .OrderByDescending(pp => pp.ProductPriceId)
-                //        .Select(pp => new ProductPriceDTO
-                //        {
-                //            ProductPriceId = pp.ProductPriceId,
-                //            DiscountedPrice = pp.DiscountedPrice,
-                //            OriginalPrice = pp.OriginalPrice,
-                //        }).FirstOrDefault(),
-                //    }).ToList()
-                //});
 
 
                 return new BaseResponse
