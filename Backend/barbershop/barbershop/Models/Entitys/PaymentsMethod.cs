@@ -13,5 +13,5 @@ public partial class PaymentsMethod
 
     public bool IsActive { get; set; }
 
-    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace barbershop.Models.Entitys;
 
-public partial class Payment
+public partial class Invoice
 {
-    public long PaymentId { get; set; }
+    public long InvoiceId { get; set; }
 
     public bool? IsAppointment { get; set; }
 
@@ -34,6 +34,8 @@ public partial class Payment
     public virtual Employee? Casher { get; set; }
 
     public virtual User Customer { get; set; } = null!;
+
+    public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; } = new List<InvoiceDetail>();
 
     public virtual PaymentsMethod? PaymentMethod { get; set; }
 

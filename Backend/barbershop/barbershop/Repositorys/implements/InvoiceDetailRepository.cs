@@ -1,14 +1,13 @@
-using barbershop.Models.Entitys;
+﻿using barbershop.Models.Entitys;
 
 namespace barbershop.Repositorys.implements
 {
-    public class PaymentRepository
+    public class InvoiceDetailRepository
     {
         private readonly BarbershopContext _context;
-        public PaymentRepository()
+        public InvoiceDetailRepository()
         {
             _context = new BarbershopContext();
         }
-        // TODO: Implement repository methods for Payment
     }
 }

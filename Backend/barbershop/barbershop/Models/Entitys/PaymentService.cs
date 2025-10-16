@@ -21,7 +21,7 @@ public partial class PaymentService
 
     public virtual Employee Barber { get; set; } = null!;
 
-    public virtual Payment Payment { get; set; } = null!;
+    public virtual Invoice Payment { get; set; } = null!;
 
     public virtual Product Product { get; set; } = null!;
 

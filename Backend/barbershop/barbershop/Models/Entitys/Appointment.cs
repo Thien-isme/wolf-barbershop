@@ -31,7 +31,7 @@ public partial class Appointment
 
     public virtual Branch Branch { get; set; } = null!;
 
-    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
 
