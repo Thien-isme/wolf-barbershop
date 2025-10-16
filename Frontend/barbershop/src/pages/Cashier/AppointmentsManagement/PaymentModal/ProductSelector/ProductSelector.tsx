@@ -49,50 +49,41 @@ export default function ProductSelector({
                         .includes(input.toLowerCase())
                 }
             >
-                {Object.entries(groupedProducts).map(
-                    ([typeName, productsInType]) => (
-                        <OptGroup key={typeName} label={typeName}>
-                            {(productsInType as any[]).map((product: any) => (
-                                <Option
-                                    key={`${product.productId}-${
-                                        product.sizeName || ''
-                                    }`}
-                                    value={`${product.productId}${
-                                        product.sizeName
-                                            ? '-' + product.sizeName
-                                            : ''
-                                    }`}
+                {Object.entries(groupedProducts).map(([typeName, productsInType]) => (
+                    <OptGroup key={typeName} label={typeName}>
+                        {(productsInType as any[]).map((product: any) => (
+                            <Option
+                                key={`${product.productId}-${product.sizeName || ''}`}
+                                value={`${product.productId}${
+                                    product.sizeName ? '-' + product.sizeName : ''
+                                }`}
+                            >
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                    }}
                                 >
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                        }}
-                                    >
-                                        <span>
-                                            {product.productName}
-                                            {product.sizeName
-                                                ? ` (${product.sizeName})`
-                                                : ''}
-                                        </span>
-                                        <span style={{ color: '#888' }}>
-                                            {product.productPriceDTO
-                                                ? (
-                                                      product.productPriceDTO
-                                                          .discountedPrice ||
-                                                      product.productPriceDTO
-                                                          .originalPrice ||
-                                                      0
-                                                  ).toLocaleString('vi-VN')
-                                                : '0'}
-                                            đ
-                                        </span>
-                                    </div>
-                                </Option>
-                            ))}
-                        </OptGroup>
-                    )
-                )}
+                                    <span>
+                                        {product.productName}
+                                        {product.sizeName ? ` (${product.sizeName})` : ''}
+                                    </span>
+                                    <span style={{ color: '#888' }}>
+                                        {product.productPriceDTO
+                                            ? (
+                                                  product.productPriceDTO
+                                                      .discountedPrice ||
+                                                  product.productPriceDTO.originalPrice ||
+                                                  0
+                                              ).toLocaleString('vi-VN')
+                                            : '0'}
+                                        đ
+                                    </span>
+                                </div>
+                            </Option>
+                        ))}
+                    </OptGroup>
+                ))}
             </Select>
         </div>
     );

@@ -25,6 +25,12 @@ function CustomerInfo({ record }: CustomerInfoProps) {
                     <strong>Số điện thoại:</strong>{' '}
                     {record?.userDTO?.phone || 'N/A'}
                 </div>
+                <div>
+                    <strong>Số điểm:</strong>{' '}
+                    <span style={{ color: 'green' }}>
+                        {record?.userDTO?.loyaltyPointDTO?.totalPoints || 'N/A'}
+                    </span>
+                </div>
             </div>
 
             <div>
