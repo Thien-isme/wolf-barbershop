@@ -17,5 +17,7 @@ public partial class Size
 
     public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
 
+    public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; } = new List<InvoiceDetail>();
+
     public virtual ICollection<ProductSize> ProductSizes { get; set; } = new List<ProductSize>();
 }

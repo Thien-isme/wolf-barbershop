@@ -35,5 +35,21 @@ namespace barbershop.Repositorys.implements
                 .Where(bp => bp.BranchId == branchId && bp.Quantity > 0)
                 .ToListAsync();
         }
+
+        
+
+        public async Task<bool> ReduceQuantityProductSelled(int branchId, int productId, int quantity, int sizeId)
+        {
+            var productInBranch = await barbershopContext.BranchesProducts
+                .FirstOrDefaultAsync(bp => bp.BranchId == branchId && bp.ProductId == productId && bp.SizeId == sizeId);
+            if (productInBranch == null || productInBranch.Quantity < quantity)
+            {
+                return false; // Not enough stock or product not found
+            }
+            productInBranch.Quantity -= quantity;
+            barbershopContext.BranchesProducts.Update(productInBranch);
+            bool saveSuccess = await barbershopContext.SaveChangesAsync() > 0;
+            return saveSuccess;
+        }
     }
 }

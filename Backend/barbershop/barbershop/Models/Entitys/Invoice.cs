@@ -15,7 +15,7 @@ public partial class Invoice
 
     public long CustomerId { get; set; }
 
-    public int? CasherId { get; set; }
+    public int? CashierId { get; set; }
 
     public decimal Subtotal { get; set; }
 
@@ -31,7 +31,7 @@ public partial class Invoice
 
     public virtual Appointment? Appointment { get; set; }
 
-    public virtual Employee? Casher { get; set; }
+    public virtual Employee? Cashier { get; set; }
 
     public virtual User Customer { get; set; } = null!;
 

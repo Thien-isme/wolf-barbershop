@@ -9,6 +9,15 @@ namespace barbershop.Repositorys.implements
         {
             _context = new BarbershopContext();
         }
+
+        public async Task<bool> CreateInvoiceAsync(Invoice invoiceEntity)
+        {
+            await _context.Invoices.AddAsync(invoiceEntity);
+            bool saveSuccess = await _context.SaveChangesAsync() > 0;
+            return saveSuccess;
+        }
+
+        
         // TODO: Implement repository methods for Payment
     }
 }

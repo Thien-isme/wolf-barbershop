@@ -26,5 +26,11 @@ namespace barbershop.Repositorys.implements
                         .ToListAsync();
         }
         // TODO: Implement repository methods for Service
+
+        public async Task<decimal?> GetServicePriceAsync(int serviceId)
+        {
+            var service = await _context.Services.FindAsync(serviceId);
+            return service?.Price;
+        }
     }
 }

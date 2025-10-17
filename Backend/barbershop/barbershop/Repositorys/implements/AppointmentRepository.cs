@@ -51,5 +51,17 @@ namespace barbershop.Repositorys.implements
                 .OrderByDescending(a => a.AppointmentId)
                 .ToListAsync();
         }
+
+        public async Task<bool> UpdateStatus(long appointmentId, string newStatus)
+        {
+            var appointment = await _context.Appointments.FindAsync(appointmentId);
+            if (appointment == null)
+            {
+                return false;
+            }
+            appointment.Status = newStatus;
+            _context.Appointments.Update(appointment);
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }

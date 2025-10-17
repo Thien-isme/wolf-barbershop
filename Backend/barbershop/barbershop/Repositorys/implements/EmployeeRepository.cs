@@ -57,6 +57,13 @@ namespace barbershop.Repositorys.implements
                 .Select(u => u.BranchId)
                 .FirstOrDefaultAsync();
         }
+
+        public async Task<int> GetBranchIdByEmployeeId(int employeeId)
+        {
+            var employee = await _context.Employees
+                .FirstOrDefaultAsync(e => e.EmployeeId == employeeId && e.IsActive == true);
+            return employee?.BranchId ?? 0;
+        }
         // TODO: Implement repository methods for Employee
     }
 }

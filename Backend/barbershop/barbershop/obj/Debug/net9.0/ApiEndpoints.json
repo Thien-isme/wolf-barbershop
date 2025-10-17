@@ -351,9 +351,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "barbershop.Controllers.PaymentController",
+    "ContainingType": "barbershop.Controllers.InvoiceController",
     "Method": "CreateInvoice",
-    "RelativePath": "api/Payment/create-invoice",
+    "RelativePath": "api/Invoice/create-invoice",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

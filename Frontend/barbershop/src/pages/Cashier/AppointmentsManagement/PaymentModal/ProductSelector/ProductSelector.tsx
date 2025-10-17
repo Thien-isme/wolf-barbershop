@@ -53,10 +53,8 @@ export default function ProductSelector({
                     <OptGroup key={typeName} label={typeName}>
                         {(productsInType as any[]).map((product: any) => (
                             <Option
-                                key={`${product.productId}-${product.sizeName || ''}`}
-                                value={`${product.productId}${
-                                    product.sizeName ? '-' + product.sizeName : ''
-                                }`}
+                                key={`${product.productId}-${product.sizeId || 'no-size'}-${product.sizeName || 'no-name'}`}
+                                value={`${product.productId}-${product.sizeId || ''}-${product.sizeName || ''}`} // ✅ Đúng format: productId-sizeId-sizeName
                             >
                                 <div
                                     style={{

@@ -538,10 +538,10 @@
         }
       }
     },
-    "/api/Payment/create-invoice": {
+    "/api/Invoice/create-invoice": {
       "post": {
         "tags": [
-          "Payment"
+          "Invoice"
         ],
         "requestBody": {
           "content": {
@@ -769,6 +769,18 @@
             "type": "integer",
             "format": "int64"
           },
+          "customerId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "subTotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
           "serviceIds": {
             "type": "array",
             "items": {
@@ -777,11 +789,10 @@
             },
             "nullable": true
           },
-          "productIds": {
+          "products": {
             "type": "array",
             "items": {
-              "type": "integer",
-              "format": "int32"
+              "$ref": "#/components/schemas/ProductInvoiceRequest"
             },
             "nullable": true
           },
@@ -813,6 +824,28 @@
           "password": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductInvoiceRequest": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sizeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false

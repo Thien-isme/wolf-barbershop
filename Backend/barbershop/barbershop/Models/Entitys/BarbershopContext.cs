@@ -407,7 +407,7 @@ public partial class BarbershopContext : DbContext
 
             entity.HasIndex(e => e.AppointmentId, "IX_payments_appointment_id");
 
-            entity.HasIndex(e => e.CasherId, "IX_payments_casher_id");
+            entity.HasIndex(e => e.CashierId, "IX_payments_casher_id");
 
             entity.HasIndex(e => e.CustomerId, "IX_payments_customer_id");
 
@@ -417,9 +417,10 @@ public partial class BarbershopContext : DbContext
 
             entity.Property(e => e.InvoiceId).HasColumnName("invoice_id");
             entity.Property(e => e.AppointmentId).HasColumnName("appointment_id");
-            entity.Property(e => e.CasherId).HasColumnName("casher_id");
+            entity.Property(e => e.CashierId).HasColumnName("cashier_id");
             entity.Property(e => e.CreatedAt)
                 .HasPrecision(0)
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnName("created_at");
             entity.Property(e => e.CustomerId).HasColumnName("customer_id");
             entity.Property(e => e.ExpdateDate)
@@ -429,7 +430,6 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.PaymentMethodId).HasColumnName("payment_method_id");
             entity.Property(e => e.Status)
                 .HasMaxLength(255)
-                .HasDefaultValue("PENDING")
                 .HasColumnName("status");
             entity.Property(e => e.Subtotal)
                 .HasColumnType("decimal(8, 2)")
@@ -443,8 +443,8 @@ public partial class BarbershopContext : DbContext
                 .HasForeignKey(d => d.AppointmentId)
                 .HasConstraintName("FK_payments_appointment_id");
 
-            entity.HasOne(d => d.Casher).WithMany(p => p.Invoices)
-                .HasForeignKey(d => d.CasherId)
+            entity.HasOne(d => d.Cashier).WithMany(p => p.Invoices)
+                .HasForeignKey(d => d.CashierId)
                 .HasConstraintName("FK_payments_casher_id");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Invoices)
@@ -470,12 +470,13 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.InvoiceDetailId).HasColumnName("invoice_detail_id");
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.InvoiceId).HasColumnName("invoice_id");
+            entity.Property(e => e.Price)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("price");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
             entity.Property(e => e.Quantity).HasColumnName("quantity");
             entity.Property(e => e.ServiceId).HasColumnName("service_id");
-            entity.Property(e => e.TotalPrice)
-                .HasColumnType("decimal(10, 2)")
-                .HasColumnName("total_price");
+            entity.Property(e => e.SizeId).HasColumnName("sizeId");
 
             entity.HasOne(d => d.Employee).WithMany(p => p.InvoiceDetails)
                 .HasForeignKey(d => d.EmployeeId)
@@ -492,6 +493,10 @@ public partial class BarbershopContext : DbContext
             entity.HasOne(d => d.Service).WithMany(p => p.InvoiceDetails)
                 .HasForeignKey(d => d.ServiceId)
                 .HasConstraintName("FK__invoice_d__servi__339FAB6E");
+
+            entity.HasOne(d => d.Size).WithMany(p => p.InvoiceDetails)
+                .HasForeignKey(d => d.SizeId)
+                .HasConstraintName("FK__invoice_d__sizeI__3C34F16F");
         });
 
         modelBuilder.Entity<LoyaltyPoint>(entity =>
