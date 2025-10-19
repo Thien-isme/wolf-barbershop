@@ -290,7 +290,7 @@
         }
       }
     },
-    "/api/BranchesProduct/GetAllProductInBranch": {
+    "/api/BranchesProduct/getAllProductTypeInBranchOfCashier": {
       "get": {
         "tags": [
           "BranchesProduct"
@@ -302,7 +302,7 @@
         }
       }
     },
-    "/api/BranchesProduct/getAllProductTypeInBranchOfCashier": {
+    "/api/BranchesProduct/GetAllProductInBranch": {
       "get": {
         "tags": [
           "BranchesProduct"

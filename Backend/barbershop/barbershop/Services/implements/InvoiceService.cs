@@ -14,6 +14,7 @@ namespace barbershop.Services.implements
         private readonly ServiceRepository _serviceRepository = new ServiceRepository();
         private readonly BranchesProductRepository _branchesProductRepository = new BranchesProductRepository();
         private readonly EmployeeRepository _employeeRepository = new EmployeeRepository();
+        private readonly LoyaltyPointRepository _loyaltyPointRepository = new LoyaltyPointRepository();
         public InvoiceService()
         {
             _invoiceRepository = new InvoiceRepository();
@@ -79,6 +80,9 @@ namespace barbershop.Services.implements
                     await _branchesProductRepository.ReduceQuantityProductSelled(branchId, product.ProductId, product.Quantity, product.SizeId);
                 }
 
+                // Plus point for customer
+                int pointEarned = (int)(total / 10000);
+                await _loyaltyPointRepository.PlusLoyaltyPoints(customerId, pointEarned);
 
 
                 return new BaseResponse

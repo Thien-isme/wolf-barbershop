@@ -42,5 +42,7 @@ namespace barbershop.Controllers
             var products = await productService.GetAllProductsIsOutStandingAsync();
             return Ok(products);
         }
+
+        
     } 
 }

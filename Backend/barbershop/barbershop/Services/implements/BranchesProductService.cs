@@ -53,6 +53,7 @@ namespace barbershop.Services.implements
                 {
                     ProductId = bp.ProductId,
                     ProductName = bp.Product.ProductName,
+                    ProductImg = bp.Product.ProductImg,
                     ProductPriceDTO = bp.Product.ProductPrices.OrderByDescending(pp => pp.ProductPriceId).Select(pp => new ProductPriceDTO
                     {
                         DiscountedPrice = pp.DiscountedPrice,

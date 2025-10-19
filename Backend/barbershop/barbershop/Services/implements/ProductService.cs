@@ -6,7 +6,8 @@ namespace barbershop.Services.implements
 {
     public class ProductService
     {
-        readonly ProductRepository productRepository;
+        readonly private ProductRepository productRepository;
+        readonly private EmployeeRepository employeeRepository = new EmployeeRepository();
         private BaseResponse baseResponse = new BaseResponse();
         public ProductService()
         {
@@ -213,5 +214,6 @@ namespace barbershop.Services.implements
 
             return baseResponse;
         }
+
     }
 }

@@ -64,6 +64,8 @@ namespace barbershop.Repositorys.implements
                 .FirstOrDefaultAsync(e => e.EmployeeId == employeeId && e.IsActive == true);
             return employee?.BranchId ?? 0;
         }
+
+        
         // TODO: Implement repository methods for Employee
     }
 }

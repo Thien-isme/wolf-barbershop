@@ -9,7 +9,24 @@ namespace barbershop.Controllers
     public class BranchesProductController : Controller
     {
         private readonly BranchesProductService branchesProductService = new BranchesProductService();
+
         
+
+        // using when cashier sale product
+        [Authorize]
+        [HttpGet("getAllProductTypeInBranchOfCashier")]
+        public async Task<IActionResult> getAllProductTypeInBranchOfCashier()
+        {
+            var userId = Request.Headers["Userid"].ToString();
+            if (string.IsNullOrEmpty(userId))
+            {
+                return BadRequest(new { Status = 400, MessageShow = "UserId header is missing", MessageHide = "UserId header is missing", Data = (object?)null });
+            }
+            var response = await branchesProductService.getAllProductTypeInBranchOfCashier(int.Parse(userId));
+            return Ok(response);
+        }
+
+        // using for management
         [HttpGet("GetAllProductInBranch")]
         public async Task<IActionResult> GetAllProductInBranch()
         {
@@ -24,18 +41,6 @@ namespace barbershop.Controllers
             return Ok(response);
         }
 
-        [Authorize]
-        [HttpGet("getAllProductTypeInBranchOfCashier")]
-        public async Task<IActionResult> getAllProductTypeInBranchOfCashier()
-        {
-            var userId = Request.Headers["Userid"].ToString();
-            if (string.IsNullOrEmpty(userId))
-            {
-                return BadRequest(new { Status = 400, MessageShow = "UserId header is missing", MessageHide = "UserId header is missing", Data = (object?)null });
-            }
-            var response = await branchesProductService.getAllProductTypeInBranchOfCashier(int.Parse(userId));
-            return Ok(response);
-        }
 
     }
 }

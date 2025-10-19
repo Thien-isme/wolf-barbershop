@@ -50,5 +50,7 @@ namespace barbershop.Repositorys.implements
                 .Where(p => p.IsOutstanding == true && p.IsActive == true)
                 .ToListAsync();
         }
+
+     
     }
 }

@@ -432,10 +432,10 @@ public partial class BarbershopContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("status");
             entity.Property(e => e.Subtotal)
-                .HasColumnType("decimal(8, 2)")
+                .HasColumnType("decimal(18, 2)")
                 .HasColumnName("subtotal");
             entity.Property(e => e.Total)
-                .HasColumnType("decimal(8, 2)")
+                .HasColumnType("decimal(18, 2)")
                 .HasColumnName("total");
             entity.Property(e => e.VoucherId).HasColumnName("voucher_id");
 
