@@ -32,6 +32,7 @@ interface PaymentModalProps {
     visible: boolean;
     onClose: () => void;
     record: AppointmentDTO;
+    onPaymentSuccess: () => void;
 }
 
 // Interface cho Product với productId, sizeId, quantity và price
@@ -55,7 +56,12 @@ interface PaymentConfirmationPayload {
 
 const { Title } = Typography;
 
-export default function PaymentModal({ visible, onClose, record }: PaymentModalProps) {
+export default function PaymentModal({
+    visible,
+    onClose,
+    record,
+    onPaymentSuccess,
+}: PaymentModalProps) {
     const [serviceTypes, setServiceTypes] = useState<ServiceTypeDTO[]>([]);
     const [selectedServices, setSelectedServices] = useState<ServiceItem[]>([]);
     const [productTypes, setProductTypes] = useState<ProductTypeDTO[]>([]);
@@ -378,31 +384,34 @@ export default function PaymentModal({ visible, onClose, record }: PaymentModalP
 
         if (result.isConfirmed) {
             try {
-                // TODO: Gọi API thanh toán ở đây khi bạn cung cấp
-                // await paymentApi.confirmPayment(payload);
                 const response = await createInvoice(payload);
                 console.log('Payment API response:', response);
-                fetchProductType();
-                // Tạm thời log payload để test
-                // console.log(
-                //     'Calling API with payload:',
-                //     JSON.stringify(payload, null, 2)
-                // );
 
-                // Simulate API call
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                // Kiểm tra response thành công
+                if (
+                    response &&
+                    (response.status === 200 ||
+                        response.status === 201 ||
+                        response.success)
+                ) {
+                    // Gọi lại fetchProductType để cập nhật số lượng tồn kho
+                    await fetchProductType();
 
-                await Swal.fire({
-                    icon: 'success',
-                    title: 'Thành công!',
-                    text: 'Thanh toán đã được xác nhận thành công.',
-                    confirmButtonText: 'Đồng ý',
-                    confirmButtonColor: '#52c41a',
-                    timer: 2000,
-                    timerProgressBar: true,
-                });
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Thành công!',
+                        text: 'Thanh toán đã được xác nhận thành công.',
+                        confirmButtonText: 'Đồng ý',
+                        confirmButtonColor: '#52c41a',
+                        timer: 2000,
+                        timerProgressBar: true,
+                    });
 
-                onClose();
+                    // Gọi callback để refresh data ở parent component
+                    onPaymentSuccess();
+                } else {
+                    throw new Error('API response không thành công');
+                }
             } catch (error) {
                 console.error('Payment error:', error);
                 await Swal.fire({
@@ -416,54 +425,57 @@ export default function PaymentModal({ visible, onClose, record }: PaymentModalP
         }
     };
 
+    // Di chuyển console.log vào useEffect để debug
+    useEffect(() => {
+        console.log('selectedServices changed:', selectedServices);
+    }, [selectedServices]);
+
+    // SỬA RETURN STATEMENT
     return (
-        console.log('selectedServices', selectedServices),
-        (
-            <Modal open={visible} onCancel={onClose} footer={null} centered width={700}>
-                <Title level={4}>Thông tin thanh toán</Title>
+        <Modal open={visible} onCancel={onClose} footer={null} centered width={700}>
+            <Title level={4}>Thông tin thanh toán</Title>
 
-                <CustomerInfo record={record} />
+            <CustomerInfo record={record} />
 
-                <ServiceProductTable
-                    dataSource={selectedServices}
-                    onQuantityChange={handleQuantityChange}
-                    onRemoveService={handleRemoveService}
-                />
+            <ServiceProductTable
+                dataSource={selectedServices}
+                onQuantityChange={handleQuantityChange}
+                onRemoveService={handleRemoveService}
+            />
 
-                <ServiceSelector
-                    serviceTypes={serviceTypes}
-                    selectedValue={selectedServiceValue}
-                    onSelect={handleSelectService}
-                    placeholder='Chọn dịch vụ để thêm'
-                />
+            <ServiceSelector
+                serviceTypes={serviceTypes}
+                selectedValue={selectedServiceValue}
+                onSelect={handleSelectService}
+                placeholder='Chọn dịch vụ để thêm'
+            />
 
-                <ProductSelector
-                    productTypes={productTypes}
-                    selectedValue={selectedProductValue}
-                    onSelect={handleSelectProduct}
-                    placeholder='Chọn sản phẩm để thêm'
-                />
+            <ProductSelector
+                productTypes={productTypes}
+                selectedValue={selectedProductValue}
+                onSelect={handleSelectProduct}
+                placeholder='Chọn sản phẩm để thêm'
+            />
 
-                <PaymentMethod
-                    total={total}
-                    paymentMethods={paymentMethods}
-                    selectedMethodId={selectedPaymentMethodId}
-                    onSelectPaymentMethod={setSelectedPaymentMethodId}
-                />
+            <PaymentMethod
+                total={total}
+                paymentMethods={paymentMethods}
+                selectedMethodId={selectedPaymentMethodId}
+                onSelectPaymentMethod={setSelectedPaymentMethodId}
+            />
 
-                <PaymentSummary subtotal={subtotal} discount={discount} total={total} />
+            <PaymentSummary subtotal={subtotal} discount={discount} total={total} />
 
-                <div style={{ display: 'flex', justifyContent: 'center', gap: 12 }}>
-                    <Button onClick={onClose}>Hủy</Button>
-                    <Button
-                        type='primary'
-                        style={{ minWidth: 120 }}
-                        onClick={handlePaymentConfirmation}
-                    >
-                        Đã xác nhận thanh toán
-                    </Button>
-                </div>
-            </Modal>
-        )
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 12 }}>
+                <Button onClick={onClose}>Hủy</Button>
+                <Button
+                    type='primary'
+                    style={{ minWidth: 120 }}
+                    onClick={handlePaymentConfirmation}
+                >
+                    Đã xác nhận thanh toán
+                </Button>
+            </div>
+        </Modal>
     );
 }

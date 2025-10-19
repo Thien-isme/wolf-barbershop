@@ -1,5 +1,6 @@
 import api from './axios';
 
+// using for filter
 export const getAllProductType = () => {
     return api
         .get('/ProductType/GetAllProductType', {})

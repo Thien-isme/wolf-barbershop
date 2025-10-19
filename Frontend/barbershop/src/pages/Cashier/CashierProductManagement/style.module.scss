@@ -1,0 +1,54 @@
+.add-product-btn {
+    background: linear-gradient(90deg, #ff9800 0%, #222 100%) !important;
+    color: #fff !important;
+    font-weight: bold;
+    font-size: 17px;
+    border-radius: 32px;
+    border: none;
+    box-shadow: 0 4px 16px #ff9800a0, 0 0 8px #222a;
+    padding: 0 28px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+    text-shadow: 0 2px 8px #222, 0 0px 16px #ff9800 !important;
+    font-family: 'Oswald', 'Montserrat', Arial, sans-serif;
+}
+.add-product-btn:hover {
+    transform: scale(1.09);
+    background: linear-gradient(90deg, #222 0%, #ff9800 100%);
+    box-shadow: 0 8px 32px #ff9800cc, 0 0 16px #222a;
+    filter: brightness(1.1) drop-shadow(0 0 8px #ffd600);
+}
+.card {
+    padding: 10px;
+}
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px) scale(1.05);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.btnEdit {
+    padding: 5px 10px;
+    color: white !important;
+    background-color: #ffb300;
+}
+
+.btnEdit:hover {
+    background-color: #ffa000 !important;
+    transform: scale(1.07);
+}
+
+.btnStopBusiness {
+    padding: 5px 10px;
+    color: white !important;
+    background-color: #d32f2f;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btnStopBusiness:hover {
+    background-color: #b71c1c !important;
+    transform: scale(1.07);
+}

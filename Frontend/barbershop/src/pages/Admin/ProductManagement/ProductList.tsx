@@ -61,8 +61,7 @@ export default function ProductGrid({ productList }: ProductGridProps) {
                             }}
                         >
                             {item.productName?.slice(0, 30) +
-                                (item.productName &&
-                                item.productName.length > 30
+                                (item.productName && item.productName.length > 30
                                     ? '...'
                                     : '')}
                         </div>
@@ -82,20 +81,15 @@ export default function ProductGrid({ productList }: ProductGridProps) {
                         >
                             {item.productPriceDTO ? (
                                 item.productPriceDTO.discountedPrice !== null &&
-                                item.productPriceDTO.discountedPrice !==
-                                    undefined &&
+                                item.productPriceDTO.discountedPrice !== undefined &&
                                 item.productPriceDTO.discountedPrice <
-                                    (item.productPriceDTO.originalPrice ??
-                                        0) ? (
+                                    (item.productPriceDTO.originalPrice ?? 0) ? (
                                     <>
-                                        <div
-                                            style={{ display: 'flex', gap: 8 }}
-                                        >
+                                        <div style={{ display: 'flex', gap: 8 }}>
                                             <span
                                                 style={{
                                                     color: '#888',
-                                                    textDecoration:
-                                                        'line-through',
+                                                    textDecoration: 'line-through',
                                                     fontSize: 16,
                                                     fontWeight: 400,
                                                 }}
@@ -115,10 +109,8 @@ export default function ProductGrid({ productList }: ProductGridProps) {
                                             </span>
                                         </div>
                                     </>
-                                ) : item.productPriceDTO.originalPrice !==
-                                      null &&
-                                  item.productPriceDTO.originalPrice !==
-                                      undefined ? (
+                                ) : item.productPriceDTO.originalPrice !== null &&
+                                  item.productPriceDTO.originalPrice !== undefined ? (
                                     <span>
                                         {item.productPriceDTO.originalPrice.toLocaleString()}{' '}
                                         đ

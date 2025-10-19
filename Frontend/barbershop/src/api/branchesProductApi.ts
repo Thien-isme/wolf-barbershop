@@ -10,6 +10,7 @@ export const GetAllProductInBranch = async () => {
         });
 };
 
+//using when payment cashier
 export const GetAllProductTypeInBranchOfCashier = async () => {
     return await api
         .get('/BranchesProduct/GetAllProductTypeInBranchOfCashier')

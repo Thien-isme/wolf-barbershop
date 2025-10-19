@@ -3,11 +3,7 @@ import { Layout } from 'antd';
 
 const { Content } = Layout;
 
-export default function AdminSidebarLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
+export default function AdminSidebarLayout({ children }: { children: React.ReactNode }) {
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <Sidebar />

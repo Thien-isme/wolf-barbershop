@@ -60,15 +60,13 @@ export default function ProductManagement() {
 
     const filteredProducts = productList.filter(product => {
         // if (filters.branch && product.branchId !== filters.branch) return false;
-        if (filters.type && product.productTypeId !== filters.type)
-            return false;
+        if (filters.type && product.productTypeId !== filters.type) return false;
         if (filters.brand && product.brandId !== filters.brand) return false;
         if (
             filters.minPrice &&
             (!product.productPriceDTO ||
                 product.productPriceDTO.discountedPrice === undefined ||
-                product.productPriceDTO.discountedPrice <
-                    Number(filters.minPrice))
+                product.productPriceDTO.discountedPrice < Number(filters.minPrice))
         )
             return false;
 
@@ -76,8 +74,7 @@ export default function ProductManagement() {
             filters.maxPrice &&
             (!product.productPriceDTO ||
                 product.productPriceDTO.discountedPrice === undefined ||
-                product.productPriceDTO.discountedPrice >
-                    Number(filters.maxPrice))
+                product.productPriceDTO.discountedPrice > Number(filters.maxPrice))
         )
             return false;
         return true;
@@ -113,10 +110,8 @@ export default function ProductManagement() {
                                 letterSpacing: 2,
                                 color: '#fff',
                                 margin: '0 0 4px 0',
-                                textShadow:
-                                    '0 2px 12px #ff9800, 0 0px 24px #222',
-                                fontFamily:
-                                    "'Oswald', 'Montserrat', Arial, sans-serif",
+                                textShadow: '0 2px 12px #ff9800, 0 0px 24px #222',
+                                fontFamily: "'Oswald', 'Montserrat', Arial, sans-serif",
                                 lineHeight: 1.1,
                                 background:
                                     'linear-gradient(90deg, #ffd600 0%, #ff9800 100%)',
