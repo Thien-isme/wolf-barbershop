@@ -51,5 +51,19 @@ namespace barbershop.Repositorys.implements
             bool saveSuccess = await barbershopContext.SaveChangesAsync() > 0;
             return saveSuccess;
         }
+
+        public async Task<BranchesProduct?> GetBranchProductEntity(int? branchId, int productId, int? sizeId)
+        {
+            var branchProduct = await barbershopContext.BranchesProducts
+                .FirstOrDefaultAsync(bp => bp.BranchId == branchId && bp.ProductId == productId && bp.SizeId == sizeId);
+            return branchProduct;
+        }
+
+        public async Task<bool> UpdateBranchesProduct(BranchesProduct branchProduct)
+        {
+            barbershopContext.BranchesProducts.Update(branchProduct);
+            bool saveSuccess = await barbershopContext.SaveChangesAsync() > 0;
+            return saveSuccess;
+        }
     }
 }

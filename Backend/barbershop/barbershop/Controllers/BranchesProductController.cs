@@ -1,4 +1,5 @@
-﻿using barbershop.Services.implements;
+﻿using barbershop.Models.RequestDTOs;
+using barbershop.Services.implements;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +27,7 @@ namespace barbershop.Controllers
             return Ok(response);
         }
 
+        [Authorize]
         // using for management
         [HttpGet("GetAllProductInBranch")]
         public async Task<IActionResult> GetAllProductInBranch()
@@ -38,6 +40,22 @@ namespace barbershop.Controllers
             }
 
             var response = await branchesProductService.GetAllProductInBranch(int.Parse(userId));
+            return Ok(response);
+        }
+
+        [Authorize]
+        // using for management
+        [HttpPost("PlusQuantityProduct")]
+        public async Task<IActionResult> PlusQuantityProduct(PlusQuantityProductRequest plusQuantityProductRequest)
+        {
+            var userId = Request.Headers["Userid"].FirstOrDefault();
+
+            if (userId == null)
+            {
+                return BadRequest(string.Empty);
+            }
+
+            var response = await branchesProductService.PlusQuantityProduct(plusQuantityProductRequest, int.Parse(userId));
             return Ok(response);
         }
 

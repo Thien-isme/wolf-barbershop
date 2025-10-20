@@ -83,7 +83,7 @@ public partial class BarbershopContext : DbContext
     {
         modelBuilder.Entity<AccessToken>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__access_t__3213E83F905EE060");
+            entity.HasKey(e => e.Id).HasName("PK__access_t__3213E83F6747171A");
 
             entity.ToTable("access_tokens");
 
@@ -106,7 +106,7 @@ public partial class BarbershopContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.AccessTokens)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__access_to__user___787EE5A0");
+                .HasConstraintName("FK__access_to__user___7A672E12");
         });
 
         modelBuilder.Entity<Appointment>(entity =>
@@ -206,11 +206,11 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<BranchesProduct>(entity =>
         {
-            entity.HasKey(e => e.BranchesProducts).HasName("PK__branches__78799D88D947A72A");
+            entity.HasKey(e => e.BranchesProductsId).HasName("PK__branches__78799D88C4B50D78");
 
             entity.ToTable("branches_products");
 
-            entity.Property(e => e.BranchesProducts).HasColumnName("branches_products");
+            entity.Property(e => e.BranchesProductsId).HasColumnName("branches_products_id");
             entity.Property(e => e.BranchId).HasColumnName("branch_id");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
             entity.Property(e => e.Quantity).HasColumnName("quantity");
@@ -224,20 +224,20 @@ public partial class BarbershopContext : DbContext
 
             entity.HasOne(d => d.Branch).WithMany(p => p.BranchesProducts)
                 .HasForeignKey(d => d.BranchId)
-                .HasConstraintName("FK__branches___branc__7E37BEF6");
+                .HasConstraintName("FK__branches___branc__00200768");
 
             entity.HasOne(d => d.Product).WithMany(p => p.BranchesProducts)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__branches___produ__7F2BE32F");
+                .HasConstraintName("FK__branches___produ__01142BA1");
 
             entity.HasOne(d => d.Size).WithMany(p => p.BranchesProducts)
                 .HasForeignKey(d => d.SizeId)
-                .HasConstraintName("FK__branches___size___00200768");
+                .HasConstraintName("FK__branches___size___02084FDA");
         });
 
         modelBuilder.Entity<Brand>(entity =>
         {
-            entity.HasKey(e => e.BrandId).HasName("PK__brands__5E5A8E27CF8E045D");
+            entity.HasKey(e => e.BrandId).HasName("PK__brands__5E5A8E2700603ECA");
 
             entity.ToTable("brands");
 
@@ -278,7 +278,7 @@ public partial class BarbershopContext : DbContext
 
             entity.HasOne(d => d.Product).WithMany(p => p.Carts)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__carts__product_i__01142BA1");
+                .HasConstraintName("FK__carts__product_i__02FC7413");
 
             entity.HasOne(d => d.Size).WithMany(p => p.Carts)
                 .HasForeignKey(d => d.SizeId)
@@ -286,7 +286,7 @@ public partial class BarbershopContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.Carts)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__carts__user_id__02084FDA");
+                .HasConstraintName("FK__carts__user_id__03F0984C");
         });
 
         modelBuilder.Entity<Employee>(entity =>
@@ -379,7 +379,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<Inventory>(entity =>
         {
-            entity.HasKey(e => e.InventoryId).HasName("PK__inventor__B59ACC492665C466");
+            entity.HasKey(e => e.InventoryId).HasName("PK__inventor__B59ACC49FA947ECC");
 
             entity.ToTable("inventory");
 
@@ -396,7 +396,7 @@ public partial class BarbershopContext : DbContext
             entity.HasOne(d => d.ProductSize).WithMany(p => p.Inventories)
                 .HasForeignKey(d => d.ProductSizeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__inventory__produ__08B54D69");
+                .HasConstraintName("FK__inventory__produ__0A9D95DB");
         });
 
         modelBuilder.Entity<Invoice>(entity =>
@@ -420,7 +420,6 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.CashierId).HasColumnName("cashier_id");
             entity.Property(e => e.CreatedAt)
                 .HasPrecision(0)
-                .HasDefaultValueSql("(getdate())")
                 .HasColumnName("created_at");
             entity.Property(e => e.CustomerId).HasColumnName("customer_id");
             entity.Property(e => e.ExpdateDate)
@@ -430,6 +429,7 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.PaymentMethodId).HasColumnName("payment_method_id");
             entity.Property(e => e.Status)
                 .HasMaxLength(255)
+                .HasDefaultValue("PENDING")
                 .HasColumnName("status");
             entity.Property(e => e.Subtotal)
                 .HasColumnType("decimal(18, 2)")
@@ -463,7 +463,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<InvoiceDetail>(entity =>
         {
-            entity.HasKey(e => e.InvoiceDetailId).HasName("PK__invoice___84908DB65FC121BC");
+            entity.HasKey(e => e.InvoiceDetailId).HasName("PK__invoice___84908DB6215C5971");
 
             entity.ToTable("invoice_detail");
 
@@ -471,37 +471,40 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.InvoiceId).HasColumnName("invoice_id");
             entity.Property(e => e.Price)
-                .HasColumnType("decimal(10, 2)")
+                .HasColumnType("decimal(18, 2)")
                 .HasColumnName("price");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
             entity.Property(e => e.Quantity).HasColumnName("quantity");
             entity.Property(e => e.ServiceId).HasColumnName("service_id");
-            entity.Property(e => e.SizeId).HasColumnName("sizeId");
+            entity.Property(e => e.SizeId).HasColumnName("size_id");
+            entity.Property(e => e.TotalPrice)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("total_price");
 
             entity.HasOne(d => d.Employee).WithMany(p => p.InvoiceDetails)
                 .HasForeignKey(d => d.EmployeeId)
-                .HasConstraintName("FK__invoice_d__emplo__3587F3E0");
+                .HasConstraintName("FK__invoice_d__emplo__0B91BA14");
 
             entity.HasOne(d => d.Invoice).WithMany(p => p.InvoiceDetails)
                 .HasForeignKey(d => d.InvoiceId)
-                .HasConstraintName("FK__invoice_d__invoi__32AB8735");
+                .HasConstraintName("FK__invoice_d__invoi__0C85DE4D");
 
             entity.HasOne(d => d.Product).WithMany(p => p.InvoiceDetails)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__invoice_d__produ__3493CFA7");
+                .HasConstraintName("FK__invoice_d__produ__0D7A0286");
 
             entity.HasOne(d => d.Service).WithMany(p => p.InvoiceDetails)
                 .HasForeignKey(d => d.ServiceId)
-                .HasConstraintName("FK__invoice_d__servi__339FAB6E");
+                .HasConstraintName("FK__invoice_d__servi__0E6E26BF");
 
             entity.HasOne(d => d.Size).WithMany(p => p.InvoiceDetails)
                 .HasForeignKey(d => d.SizeId)
-                .HasConstraintName("FK__invoice_d__sizeI__3C34F16F");
+                .HasConstraintName("FK__invoice_d__size___2739D489");
         });
 
         modelBuilder.Entity<LoyaltyPoint>(entity =>
         {
-            entity.HasKey(e => e.LoyaltyPointsId).HasName("PK__loyalty___CC34CC067EF3250F");
+            entity.HasKey(e => e.LoyaltyPointsId).HasName("PK__loyalty___CC34CC0696B4C1DE");
 
             entity.ToTable("loyalty_points");
 
@@ -615,7 +618,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<ProductPrice>(entity =>
         {
-            entity.HasKey(e => e.ProductPriceId).HasName("PK__product___DC88EB61E6F78191");
+            entity.HasKey(e => e.ProductPriceId).HasName("PK__product___DC88EB61EAA20699");
 
             entity.ToTable("product_prices");
 
@@ -632,12 +635,12 @@ public partial class BarbershopContext : DbContext
 
             entity.HasOne(d => d.Product).WithMany(p => p.ProductPrices)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__product_p__produ__1332DBDC");
+                .HasConstraintName("FK__product_p__produ__18EBB532");
         });
 
         modelBuilder.Entity<ProductSize>(entity =>
         {
-            entity.HasKey(e => e.ProductSizeId).HasName("PK__product___062A9A686F8A252C");
+            entity.HasKey(e => e.ProductSizeId).HasName("PK__product___062A9A68F7CCCF24");
 
             entity.ToTable("product_sizes");
 
@@ -648,11 +651,11 @@ public partial class BarbershopContext : DbContext
             entity.HasOne(d => d.Product).WithMany(p => p.ProductSizes)
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__product_s__produ__14270015");
+                .HasConstraintName("FK__product_s__produ__19DFD96B");
 
             entity.HasOne(d => d.Size).WithMany(p => p.ProductSizes)
                 .HasForeignKey(d => d.SizeId)
-                .HasConstraintName("FK__product_s__size___151B244E");
+                .HasConstraintName("FK__product_s__size___1AD3FDA4");
         });
 
         modelBuilder.Entity<ProductType>(entity =>
@@ -667,7 +670,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<RefreshToken>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__refresh___3213E83F2CB98DC3");
+            entity.HasKey(e => e.Id).HasName("PK__refresh___3213E83F01913916");
 
             entity.ToTable("refresh_tokens");
 
@@ -690,7 +693,7 @@ public partial class BarbershopContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.RefreshTokens)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__refresh_t__user___17F790F9");
+                .HasConstraintName("FK__refresh_t__user___1DB06A4F");
         });
 
         modelBuilder.Entity<Review>(entity =>
@@ -773,7 +776,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<ServiceType>(entity =>
         {
-            entity.HasKey(e => e.ServiceTypeId).HasName("PK__service___288B52C6420CDE14");
+            entity.HasKey(e => e.ServiceTypeId).HasName("PK__service___288B52C6BCC3B371");
 
             entity.ToTable("service_type");
 
@@ -786,7 +789,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<Size>(entity =>
         {
-            entity.HasKey(e => e.SizeId).HasName("PK__sizes__0DCACE31F2CAB90D");
+            entity.HasKey(e => e.SizeId).HasName("PK__sizes__0DCACE31CE7459D3");
 
             entity.ToTable("sizes");
 
@@ -868,7 +871,7 @@ public partial class BarbershopContext : DbContext
 
         modelBuilder.Entity<UserVoucher>(entity =>
         {
-            entity.HasKey(e => e.UserVoucherId).HasName("PK__user_vou__6A698A796CBF9555");
+            entity.HasKey(e => e.UserVoucherId).HasName("PK__user_vou__6A698A79FA817E11");
 
             entity.ToTable("user_voucher");
 

@@ -1,6 +1,7 @@
 ﻿using barbershop.Models.ResponseDTOs;
 using barbershop.Models.Entitys;
 using barbershop.Repositorys.implements;
+using barbershop.Models.RequestDTOs;
 
 namespace barbershop.Services.implements
 {
@@ -149,6 +150,60 @@ namespace barbershop.Services.implements
                     MessageHide = "Lấy danh sách loại sản phẩm thành công!",
                     Data = response
                 };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse
+                {
+                    Status = 500,
+                    MessageShow = "Hệ thống có lỗi, Vui lòng thử lại trong giây lát!",
+                    MessageHide = ex.Message,
+                    Data = null
+                };
+            }
+        }
+
+        public async Task<BaseResponse> PlusQuantityProduct(PlusQuantityProductRequest plusQuantityProductRequest, int userId)
+        {
+            try
+            {
+                var branchId = await employeeRepository.FindBrandIdOfCashier(userId);
+
+                var branchProduct = await branchesProductRepository.GetBranchProductEntity(branchId, plusQuantityProductRequest.ProductId, plusQuantityProductRequest.SizeId);
+                if (branchProduct == null)
+                {
+                    return new BaseResponse
+                    {
+                        Status = 404,
+                        MessageShow = "Sản phẩm không tồn tại trong chi nhánh!",
+                        MessageHide = "Sản phẩm không tồn tại trong chi nhánh!",
+                        Data = null
+                    };
+                }
+                var newQuantity = branchProduct.Quantity + plusQuantityProductRequest.Quantity;
+                branchProduct.Quantity = newQuantity;
+                var isUpdateSuccess = await branchesProductRepository.UpdateBranchesProduct(branchProduct);
+
+                if (isUpdateSuccess == true)
+                {
+                    return new BaseResponse
+                    {
+                        Status = 200,
+                        MessageShow = "Cập nhật số lượng sản phẩm thành công!",
+                        MessageHide = "Cập nhật số lượng sản phẩm thành công!",
+                        Data = null
+                    };
+                }
+                else
+                {
+                    return new BaseResponse
+                    {
+                        Status = 500,
+                        MessageShow = "Cập nhật số lượng sản phẩm thất bại!",
+                        MessageHide = "Cập nhật số lượng sản phẩm thất bại!",
+                        Data = null
+                    };
+                }
             }
             catch (Exception ex)
             {

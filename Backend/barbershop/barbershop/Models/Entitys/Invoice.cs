@@ -17,11 +17,11 @@ public partial class Invoice
 
     public int? CashierId { get; set; }
 
-    public decimal Subtotal { get; set; }
+    public decimal? Subtotal { get; set; }
 
     public int? VoucherId { get; set; }
 
-    public decimal Total { get; set; }
+    public decimal? Total { get; set; }
 
     public string Status { get; set; } = null!;
 
