@@ -43,10 +43,29 @@ namespace barbershop.Controllers
             return Ok(response);
         }
 
-        [Authorize]
         // using for management
+        // Tăng số lượng sản phẩm trong kho
+        [Authorize]
         [HttpPost("PlusQuantityProduct")]
-        public async Task<IActionResult> PlusQuantityProduct(PlusQuantityProductRequest plusQuantityProductRequest)
+        public async Task<IActionResult> PlusQuantityProduct(PlusOrSubQuantityProductRequest plusQuantityProductRequest)
+        {
+            var userId = Request.Headers["Userid"].FirstOrDefault();
+
+            if (userId == null)
+            {
+                return BadRequest(string.Empty);
+            }
+
+            var response = await branchesProductService.PlusQuantityProduct(plusQuantityProductRequest, int.Parse(userId));
+            return Ok(response);
+        }
+
+
+        // using for management
+        // Giảm số lượng sản phẩm trong kho
+        [Authorize]
+        [HttpPost("SubQuantityProduct")]
+        public async Task<IActionResult> SubQuantityProduct(PlusOrSubQuantityProductRequest plusQuantityProductRequest)
         {
             var userId = Request.Headers["Userid"].FirstOrDefault();
 

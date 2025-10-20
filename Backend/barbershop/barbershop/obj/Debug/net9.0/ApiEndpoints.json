@@ -201,7 +201,23 @@
     "Parameters": [
       {
         "Name": "plusQuantityProductRequest",
-        "Type": "barbershop.Models.RequestDTOs.PlusQuantityProductRequest",
+        "Type": "barbershop.Models.RequestDTOs.PlusOrSubQuantityProductRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.BranchesProductController",
+    "Method": "SubQuantityProduct",
+    "RelativePath": "api/BranchesProduct/SubQuantityProduct",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "plusQuantityProductRequest",
+        "Type": "barbershop.Models.RequestDTOs.PlusOrSubQuantityProductRequest",
         "IsRequired": true
       }
     ],

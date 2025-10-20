@@ -323,17 +323,48 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PlusQuantityProductRequest"
+                "$ref": "#/components/schemas/PlusOrSubQuantityProductRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/PlusQuantityProductRequest"
+                "$ref": "#/components/schemas/PlusOrSubQuantityProductRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/PlusQuantityProductRequest"
+                "$ref": "#/components/schemas/PlusOrSubQuantityProductRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/BranchesProduct/SubQuantityProduct": {
+      "post": {
+        "tags": [
+          "BranchesProduct"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusOrSubQuantityProductRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusOrSubQuantityProductRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusOrSubQuantityProductRequest"
               }
             }
           }
@@ -859,7 +890,7 @@
         },
         "additionalProperties": false
       },
-      "PlusQuantityProductRequest": {
+      "PlusOrSubQuantityProductRequest": {
         "type": "object",
         "properties": {
           "productId": {

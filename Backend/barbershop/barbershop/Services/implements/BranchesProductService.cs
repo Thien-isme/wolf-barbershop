@@ -60,6 +60,7 @@ namespace barbershop.Services.implements
                         DiscountedPrice = pp.DiscountedPrice,
                         OriginalPrice = pp.OriginalPrice
                     }).FirstOrDefault(),
+                    SizeId = bp.SizeId,
                     SizeName = bp.Size.SizeName,
                     Quantity = bp.Quantity,
                     ProductTypeId = bp.Product.ProductTypeId,
@@ -75,13 +76,13 @@ namespace barbershop.Services.implements
                     Data = ProductDTOs
                 };
             }
-            catch
+            catch (Exception ex)
             {
                 return new BaseResponse
                 {
                     Status = 500,
                     MessageShow = "Hệ thống có lỗi, Vui lòng thử lại trong giây lát!",
-                    MessageHide = "None",
+                    MessageHide = ex.Message,
                     Data = null
                 };
             }
@@ -163,7 +164,7 @@ namespace barbershop.Services.implements
             }
         }
 
-        public async Task<BaseResponse> PlusQuantityProduct(PlusQuantityProductRequest plusQuantityProductRequest, int userId)
+        public async Task<BaseResponse> PlusQuantityProduct(PlusOrSubQuantityProductRequest plusQuantityProductRequest, int userId)
         {
             try
             {

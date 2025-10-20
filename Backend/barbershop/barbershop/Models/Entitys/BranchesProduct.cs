@@ -5,7 +5,7 @@ namespace barbershop.Models.Entitys;
 
 public partial class BranchesProduct
 {
-    public int BranchesProductsId { get; set; }
+    public int BranchesProductId { get; set; }
 
     public int? BranchId { get; set; }
 

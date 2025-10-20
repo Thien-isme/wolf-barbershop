@@ -1,6 +1,6 @@
 ﻿namespace barbershop.Models.RequestDTOs
 {
-    public class PlusQuantityProductRequest
+    public class PlusOrSubQuantityProductRequest
     {
         public int ProductId { get; set; }
         public int? SizeId { get; set; }

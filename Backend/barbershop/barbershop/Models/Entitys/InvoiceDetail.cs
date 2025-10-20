@@ -15,11 +15,9 @@ public partial class InvoiceDetail
 
     public int? Quantity { get; set; }
 
-    public decimal? TotalPrice { get; set; }
+    public decimal? Price { get; set; }
 
     public int? EmployeeId { get; set; }
-
-    public decimal? Price { get; set; }
 
     public int? SizeId { get; set; }
 
