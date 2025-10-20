@@ -8,11 +8,13 @@ import { GetAllProductInBranch } from '../../../api/branchesProductApi';
 import type { ProductDTO } from '../../../types/ResponseDTOs/productDTO';
 import { getAllBrands } from '../../../api/brandApi';
 import type { BrandDTO } from '../../../types/ResponseDTOs/brandDTO';
-import CashierProductFilter from './CashierProductFilter';
-import CashierProductTable from './CashierProductList';
+import CashierProductFilter from './CashierProductFilter/CashierProductFilter';
+import CashierProductTable from './CashierProductList/CashierProductList';
 
 import { getBranchs } from '../../../api/branchApi';
 import type { BranchDTO } from '../../../types/ResponseDTOs/branchDTO';
+
+// add quantity
 const { Title } = Typography;
 
 import styled from './style.module.scss';
