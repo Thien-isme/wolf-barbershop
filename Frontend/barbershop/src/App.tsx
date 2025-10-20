@@ -54,13 +54,12 @@ function AppContent() {
             // Ví dụ gọi API lấy user info, truyền token lên backend
             const res = await autoLogin();
             setUserInfo(res.data); // cập nhật thông tin user vào state
+            console.log('Auto login successful, user data:111111', res.data);
             if (res.data.roleId === 4) {
                 // Nếu là admin, chuyển hướng đến trang quản trị
                 navigate('/admin');
-            }
-
-            if (res.data.roleId === 3) {
-                // Nếu là admin, chuyển hướng đến trang quản trị
+            } else if (res.data.roleId === 3) {
+                // Nếu là cashier, chuyển hướng đến trang cashier
                 navigate('/cashier');
             } else {
                 // Nếu là user thường, chuyển hướng đến trang chủ
@@ -92,9 +91,7 @@ function AppContent() {
 
     return (
         <>
-            {shouldShowHeaderFooter() && (
-                <BarberShopHeader userInfo={userInfo} />
-            )}
+            {shouldShowHeaderFooter() && <BarberShopHeader userInfo={userInfo} />}
             <Routes>
                 <Route path='/' element={<HomePage />} />
                 <Route
@@ -105,10 +102,7 @@ function AppContent() {
                 <Route path='/booking' element={<BookingPage />} />
                 <Route path='/product' element={<ProductPage />} />
                 <Route path='/admin' element={<AdminDashboard />} />
-                <Route
-                    path='/admin/barber'
-                    element={<AdminBarberManagement />}
-                />
+                <Route path='/admin/barber' element={<AdminBarberManagement />} />
                 <Route path='/admin/branch' element={<BranchManagement />} />
                 <Route path='/admin/product' element={<ProductManagement />} />
                 <Route path='/cashier' element={<CashierDashboard />} />
@@ -116,10 +110,7 @@ function AppContent() {
                     path='/cashier/appointments'
                     element={<AppointmentsManagement />}
                 />
-                <Route
-                    path='/cashier/product'
-                    element={<CashierProductManagement />}
-                />
+                <Route path='/cashier/product' element={<CashierProductManagement />} />
             </Routes>
             {shouldShowHeaderFooter() && <Footer />}
         </>

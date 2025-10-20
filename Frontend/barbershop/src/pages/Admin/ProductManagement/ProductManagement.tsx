@@ -87,14 +87,14 @@ export default function ProductManagement() {
                     background: '#f5f5f7',
                     minHeight: '100vh',
                     padding: '32px 40px',
-                    display: 'flex',
-                    justifyContent: 'center',
+                    // display: 'flex',
+                    // justifyContent: 'center',
                 }}
             >
                 <div
                     style={{
                         width: '100%',
-                        minWidth: 1560,
+                        minWidth: 1200,
                         margin: '0 auto',
                         padding: '0 0px',
                     }}

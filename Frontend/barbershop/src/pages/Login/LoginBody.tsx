@@ -7,11 +7,7 @@ import { useState } from 'react';
 // import type { GoogleLoginRenderProps } from '@react-oauth/google';
 const { Title } = Typography;
 
-const LoginBody = ({
-    onLoginSuccess,
-}: {
-    onLoginSuccess: (userInfo: any) => void;
-}) => {
+const LoginBody = ({ onLoginSuccess }: { onLoginSuccess: (userInfo: any) => void }) => {
     const [loginError, setLoginError] = useState<string | null>(null);
 
     // Hàm xử lý khi submit form
@@ -29,7 +25,7 @@ const LoginBody = ({
             console.log('Login success, response: ', response.data);
             onLoginSuccess(response.data); // truyền dữ liệu lên LoginPage
         });
-        console.log('Username:', username, 'Password:', password);
+        // console.log('Username:', username, 'Password:', password);
     };
 
     return (
@@ -68,9 +64,7 @@ const LoginBody = ({
                     >
                         <Form.Item
                             label={
-                                <span
-                                    style={{ color: 'white', fontWeight: 500 }}
-                                >
+                                <span style={{ color: 'white', fontWeight: 500 }}>
                                     Tên đăng nhập
                                 </span>
                             }
@@ -96,9 +90,7 @@ const LoginBody = ({
                         </Form.Item>
                         <Form.Item
                             label={
-                                <span
-                                    style={{ color: 'white', fontWeight: 500 }}
-                                >
+                                <span style={{ color: 'white', fontWeight: 500 }}>
                                     Mật khẩu
                                 </span>
                             }
@@ -135,10 +127,7 @@ const LoginBody = ({
                                 Lưu thông tin đăng nhập
                             </Checkbox>
                             <div style={{ flex: 1 }} />
-                            <a
-                                href='#'
-                                style={{ color: '#1890ff', fontSize: 14 }}
-                            >
+                            <a href='#' style={{ color: '#1890ff', fontSize: 14 }}>
                                 Quên mật khẩu?
                             </a>
                         </div>

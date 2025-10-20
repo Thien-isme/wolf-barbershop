@@ -2,11 +2,7 @@ import type { LoginResponseDTO } from '../../types/ResponseDTOs/loginResponseDTO
 import LoginBody from './LoginBody';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-const LoginPage = ({
-    setUserInfo,
-}: {
-    setUserInfo: (userInfo: any) => void;
-}) => {
+const LoginPage = ({ setUserInfo }: { setUserInfo: (userInfo: any) => void }) => {
     const navigate = useNavigate(); // Khởi tạo hook
     // Callback nhận response từ API login
     const handleLoginSuccess = (login: LoginResponseDTO) => {
@@ -16,12 +12,11 @@ const LoginPage = ({
         Cookies.set('userId', String(login.userDTO.userId));
         setUserInfo(login.userDTO);
         // Lưu user vào localStorage
+        console.log('User role ID:', login.userDTO.roleId);
         if (login.userDTO.roleId === 4) {
             // Nếu là admin, chuyển hướng đến trang quản trị
             navigate('/admin');
-        }
-
-        if (login.userDTO.roleId === 3) {
+        } else if (login.userDTO.roleId === 3) {
             // Nếu là cashier, chuyển hướng đến trang cashier
             navigate('/cashier');
         } else {
