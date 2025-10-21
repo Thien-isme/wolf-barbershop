@@ -21,6 +21,7 @@ import ProductPage from './pages/User/ViewProduct/ProductPage';
 import { GetProductInCartsOfUser } from './api/cartApi';
 import CashierDashboard from './pages/Cashier/Dashboard/Dashboard';
 import AppointmentsManagement from './pages/Cashier/AppointmentsManagement/AppointmentsManagement';
+import InvoiceManagement from './pages/Cashier/Invoice/InvoiceManagement';
 const clientId =
     '136465399071-sbg4p7qhb3qc9dbv8t6qdsf3m6ud93cu.apps.googleusercontent.com';
 
@@ -111,6 +112,7 @@ function AppContent() {
                     element={<AppointmentsManagement />}
                 />
                 <Route path='/cashier/product' element={<CashierProductManagement />} />
+                <Route path='/cashier/invoice' element={<InvoiceManagement />} />
             </Routes>
             {shouldShowHeaderFooter() && <Footer />}
         </>

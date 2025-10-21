@@ -16,4 +16,5 @@ export type UserDTO = {
     avatarUrl?: string;
     isActive?: boolean;
     loyaltyPointDTO?: LoyaltyPointDTO;
+    loyaltyPointDTOPoints?: number;
 };

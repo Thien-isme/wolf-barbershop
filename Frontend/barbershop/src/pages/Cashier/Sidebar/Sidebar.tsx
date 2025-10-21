@@ -15,19 +15,23 @@ const items = [
         label: 'Dashboard',
         path: '/cashier',
     },
-
     {
         key: 'appointments',
         icon: <CalendarOutlined />,
         label: 'Lịch hẹn',
         path: '/cashier/appointments',
     },
-
     {
         key: 'product',
         icon: <GiftOutlined />,
         label: 'Sản phẩm',
         path: '/cashier/product',
+    },
+    {
+        key: 'invoice',
+        icon: <GiftOutlined />,
+        label: 'Tạo hóa đơn',
+        path: '/cashier/invoice',
     },
     {
         key: 'logout',

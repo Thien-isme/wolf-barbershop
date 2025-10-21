@@ -1,5 +1,4 @@
-import { Button, Typography } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { Typography } from 'antd';
 import SidebarLayout from '../Sidebar/SidebarLayout';
 import { getAllProductType } from '../../../api/productTypeApi';
 import type { ProductTypeDTO } from '../../../types/ResponseDTOs/productTypeDTO';
@@ -16,10 +15,6 @@ import type { BranchDTO } from '../../../types/ResponseDTOs/branchDTO';
 
 // add quantity
 const { Title } = Typography;
-
-import styled from './style.module.scss';
-
-const brandColor = '#ffb300'; // vàng đồng
 
 export default function ProductManagement() {
     const [productTypes, setProductTypes] = useState<ProductTypeDTO[]>([]);
@@ -123,7 +118,7 @@ export default function ProductManagement() {
                     }}
                 >
                     {/* Header */}
-                    <div style={{ flex: 1, textAlign: 'center' }}>
+                    <div style={{ flex: 1, textAlign: 'center', marginBottom: 24 }}>
                         <Title
                             level={1}
                             style={{
@@ -144,30 +139,6 @@ export default function ProductManagement() {
                         >
                             Quản lý sản phẩm
                         </Title>
-                    </div>
-
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'flex-end',
-                            alignItems: 'flex-end',
-                            marginBottom: '32px',
-                            position: 'relative',
-                        }}
-                    >
-                        <Button
-                            type='primary'
-                            icon={<PlusOutlined />}
-                            className={styled['add-product-btn']}
-                            onMouseEnter={e =>
-                                (e.currentTarget.style.background = '#ffa000')
-                            }
-                            onMouseLeave={e =>
-                                (e.currentTarget.style.background = brandColor)
-                            }
-                        >
-                            Thêm mới sản phẩm
-                        </Button>
                     </div>
 
                     {/* Filters */}

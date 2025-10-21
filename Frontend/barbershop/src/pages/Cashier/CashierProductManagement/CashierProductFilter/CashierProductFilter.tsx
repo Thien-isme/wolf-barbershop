@@ -1,9 +1,9 @@
 import { Select, Space, Input, Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { useState, useEffect } from 'react';
-import type { ProductTypeDTO } from '../../../types/ResponseDTOs/productTypeDTO';
-import type { BrandDTO } from '../../../types/ResponseDTOs/brandDTO';
-import type { BranchDTO } from '../../../types/ResponseDTOs/branchDTO';
+import type { ProductTypeDTO } from '../../../../types/ResponseDTOs/productTypeDTO';
+import type { BrandDTO } from '../../../../types/ResponseDTOs/brandDTO';
+import type { BranchDTO } from '../../../../types/ResponseDTOs/branchDTO';
 
 const borderColor = '#e0e0e0';
 
