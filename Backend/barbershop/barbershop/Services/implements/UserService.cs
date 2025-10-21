@@ -1,4 +1,4 @@
-using barbershop.Models.Entitys;
+﻿using barbershop.Models.Entitys;
 
 namespace barbershop.Services.implements
 {
@@ -31,7 +31,50 @@ namespace barbershop.Services.implements
             return await userRepository.GetUserByIdAsync(userId);
         }
 
-       
+        public async Task<BaseResponse> GetUsersToCreateInvoice()
+        {
+            try
+            {
+                var users = await userRepository.GetUsersToCreateInvoice();
+
+                if (users != null && users.Count > 0)
+                {
+                    return new BaseResponse
+                    {
+                        Status = 200,
+                        MessageShow = "Lấy danh sách người dùng thành công!",
+                        Data = users.Select(u => new UserDTO
+                        {
+                            UserId = u.UserId,
+                            FullName = u.FullName,
+                            Phone = u.Phone,
+                            LoyaltyPointDTOPoints = u.LoyaltyPoint != null ? u.LoyaltyPoint.TotalPoints : 0
+                        }).ToList()
+                    };
+                }
+                else
+                {
+                    return new BaseResponse
+                    {
+                        Status = 404,
+                        MessageShow = "Không tìm thấy người dùng nào để tạo hóa đơn!",
+                        Data = null
+                    };
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse
+                {
+                    Status = 500,
+                    MessageShow = "Hệ thống có lỗi, Vui lòng thử lại trong giây lát!",
+                    MessageHide = ex.Message
+                };
+
+            }
+
+        }
         // TODO: Implement service methods for User
     }
 }

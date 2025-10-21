@@ -495,6 +495,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "barbershop.Controllers.UserController",
+    "Method": "GetUsersToCreateInvoice",
+    "RelativePath": "api/User/GetUsersToCreateInvoice",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "barbershop.Controllers.UserVoucherController",
     "Method": "GetVouchersOfUser",
     "RelativePath": "api/UserVoucher/get-vouchers-of-user",

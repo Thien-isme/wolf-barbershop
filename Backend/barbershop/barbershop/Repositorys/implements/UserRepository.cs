@@ -47,7 +47,15 @@ namespace barbershop.Repositorys.implements
             return await _context.Users.FirstOrDefaultAsync(u => u.Username == username && u.Password == password && u.IsActive == true);
         }
 
-        
+        public async Task<List<User>> GetUsersToCreateInvoice()
+        {
+            return await _context.Users
+                .Include(u => u.LoyaltyPoint)
+                .Where(u => u.IsActive == true && u.RoleId == 1)
+                .ToListAsync();
+        }
+
+
         // TODO: Implement repository methods for User
     }
 }

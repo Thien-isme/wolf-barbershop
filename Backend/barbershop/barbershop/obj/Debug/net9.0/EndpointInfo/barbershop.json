@@ -750,6 +750,18 @@
         }
       }
     },
+    "/api/User/GetUsersToCreateInvoice": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/UserVoucher/get-vouchers-of-user": {
       "get": {
         "tags": [

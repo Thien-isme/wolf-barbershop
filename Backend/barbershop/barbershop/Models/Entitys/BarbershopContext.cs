@@ -505,6 +505,8 @@ public partial class BarbershopContext : DbContext
 
             entity.ToTable("loyalty_points");
 
+            entity.HasIndex(e => e.UserId, "uq_user_loyalty").IsUnique();
+
             entity.Property(e => e.LoyaltyPointsId).HasColumnName("loyalty_points_id");
             entity.Property(e => e.LastUpdated)
                 .HasDefaultValueSql("(getdate())")
@@ -515,8 +517,8 @@ public partial class BarbershopContext : DbContext
                 .HasColumnName("total_points");
             entity.Property(e => e.UserId).HasColumnName("user_id");
 
-            entity.HasOne(d => d.User).WithMany(p => p.LoyaltyPoints)
-                .HasForeignKey(d => d.UserId)
+            entity.HasOne(d => d.User).WithOne(p => p.LoyaltyPoint)
+                .HasForeignKey<LoyaltyPoint>(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_LoyaltyPoints_Users");
         });

@@ -146,7 +146,7 @@ namespace barbershop.Services.implements
                             Phone = a.User?.Phone,
                             LoyaltyPointDTO = new LoyaltyPointDTO
                             {
-                                TotalPoints = a.User?.LoyaltyPoints?.FirstOrDefault()?.TotalPoints ?? 0
+                                TotalPoints = a.User?.LoyaltyPoint?.TotalPoints ?? 0
                             }
                         },
                         EmployeeDTO = new EmployeeDTO
