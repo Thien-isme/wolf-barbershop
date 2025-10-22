@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 import {
     Card,
     Button,
     Radio,
     Space,
-    Avatar,
     message,
     AutoComplete,
     Input,
     Select,
+    Typography,
+    Image,
+    Modal,
 } from 'antd';
+import styles from './style.module.scss';
+import barberIcon from '../../../../assets/symbol.png';
 import { GetUsersToCreateInvoice } from '../../../../api/userApi';
 import type { UserDTO } from '../../../../types/ResponseDTOs/userDTO';
 import { getAllServicesTypes } from '../../../../api/serviceTypeApi';
@@ -19,8 +24,13 @@ import type { ProductTypeDTO } from '../../../../types/ResponseDTOs/productTypeD
 import ServiceProductTable from '../../AppointmentsManagement/PaymentModal/ServiceProductTable/ServiceProductTable';
 import ServiceSelector from '../../AppointmentsManagement/PaymentModal/ServiceSelector/ServiceSelector';
 import ProductSelector from '../../AppointmentsManagement/PaymentModal/ProductSelector/ProductSelector';
-
-const { Option } = Select;
+import { GetPaymentsMethods } from '../../../../api/paymentsMethodApi';
+import type { PaymentMethodDTO } from '../../../../types/ResponseDTOs/paymentMethodDTO';
+import { getBranchIdOfCashier, getBarbersInBranch } from '../../../../api/employeeApi';
+import type { EmployeeDTO } from '../../../../types/ResponseDTOs/employeeDTO';
+import { MdLocationOn } from 'react-icons/md';
+import PaymentMethod from '../../AppointmentsManagement/PaymentModal/PaymentMethod/PaymentMethod';
+import { createInvoice } from '../../../../api/invoiceApi';
 
 interface ServiceItem {
     key: number;
@@ -34,14 +44,10 @@ interface ServiceItem {
     sizeId?: number;
 }
 
-interface BarberInfo {
-    barberId: number;
-    barberName: string;
-    barberAvatar?: string;
-}
-
 function InvoiceManagementBody() {
-    const [paymentMethod, setPaymentMethod] = useState<'cash' | 'bank'>('cash');
+    const [selectedPaymentMethodId, setSelectedPaymentMethodId] = useState<
+        number | undefined
+    >(undefined);
     const [customers, setCustomers] = useState<UserDTO[]>([]);
     const [customerPhone, setCustomerPhone] = useState<string>('');
     const [customerName, setCustomerName] = useState<string>('');
@@ -49,13 +55,12 @@ function InvoiceManagementBody() {
     const [customerOptions, setCustomerOptions] = useState<UserDTO[]>([]);
     const [isNewCustomer, setIsNewCustomer] = useState<boolean>(false);
 
-    // State cho Barber
-    const [barbers, setBarbers] = useState<BarberInfo[]>([]);
-    const [selectedBarber, setSelectedBarber] = useState<BarberInfo | null>(null);
+    const [barbers, setBarbers] = useState<EmployeeDTO[]>([]);
+    const [selectedBarber, setSelectedBarber] = useState<EmployeeDTO | null>(null);
 
-    // State cho Service và Product
     const [serviceTypes, setServiceTypes] = useState<ServiceTypeDTO[]>([]);
     const [productTypes, setProductTypes] = useState<ProductTypeDTO[]>([]);
+    const [paymentMethods, setPaymentMethods] = useState<PaymentMethodDTO[]>([]);
     const [selectedServices, setSelectedServices] = useState<ServiceItem[]>([]);
     const [selectedServiceValue, setSelectedServiceValue] = useState<number | undefined>(
         undefined
@@ -63,6 +68,15 @@ function InvoiceManagementBody() {
     const [selectedProductValue, setSelectedProductValue] = useState<string | undefined>(
         undefined
     );
+
+    const [bubble, setBubble] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        setBubble(true);
+        const timer = setTimeout(() => setBubble(false), 700);
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -78,29 +92,15 @@ function InvoiceManagementBody() {
 
         const fetchBarbers = async () => {
             try {
-                // TODO: Thay bằng API thực của bạn
-                // const data = await GetBarbersByBranch();
-                // setBarbers(data.data || []);
-
-                // Mock data tạm thời
-                const mockBarbers: BarberInfo[] = [
-                    {
-                        barberId: 1,
-                        barberName: 'Nguyễn Văn A',
-                        barberAvatar: 'https://via.placeholder.com/80?text=Barber+A',
-                    },
-                    {
-                        barberId: 2,
-                        barberName: 'Trần Văn B',
-                        barberAvatar: 'https://via.placeholder.com/80?text=Barber+B',
-                    },
-                    {
-                        barberId: 3,
-                        barberName: 'Lê Văn C',
-                        barberAvatar: 'https://via.placeholder.com/80?text=Barber+C',
-                    },
-                ];
-                setBarbers(mockBarbers);
+                const cashierId = Cookies.get('userId');
+                if (!cashierId) {
+                    throw new Error('Không tìm thấy UserId trong cookie');
+                }
+                const response = await getBranchIdOfCashier(Number(cashierId));
+                const branchId = response.data.branchId;
+                const data = await getBarbersInBranch(branchId);
+                console.log('Barbers in branch:', data.data);
+                setBarbers(data.data || []);
             } catch (error) {
                 console.error('Failed to fetch barbers:', error);
                 message.error('Không thể tải danh sách barber');
@@ -128,13 +128,23 @@ function InvoiceManagementBody() {
             }
         };
 
+        const fetchPaymentsMethods = async () => {
+            try {
+                const data = await GetPaymentsMethods();
+                setPaymentMethods(data.data || []);
+            } catch (error) {
+                console.error('Lỗi khi lấy phương thức thanh toán:', error);
+                message.error('Không thể tải danh sách phương thức thanh toán');
+            }
+        };
+
         fetchUsers();
         fetchBarbers();
         fetchServiceTypes();
         fetchProductTypes();
+        fetchPaymentsMethods();
     }, []);
 
-    // Tìm kiếm khách hàng theo SĐT
     const handleSearchCustomer = (searchText: string) => {
         setCustomerPhone(searchText);
 
@@ -161,7 +171,6 @@ function InvoiceManagementBody() {
         }
     };
 
-    // Chọn khách hàng từ danh sách
     const handleSelectCustomer = (value: string) => {
         setCustomerPhone(value);
 
@@ -173,20 +182,17 @@ function InvoiceManagementBody() {
         }
     };
 
-    // Xử lý thay đổi tên khách hàng (cho khách mới)
     const handleCustomerNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCustomerName(e.target.value);
     };
 
-    // Chọn Barber
     const handleSelectBarber = (barberId: number) => {
-        const barber = barbers.find(b => b.barberId === barberId);
+        const barber = barbers.find(b => b.employeeId === barberId);
         if (barber) {
             setSelectedBarber(barber);
         }
     };
 
-    // Hàm xử lý chọn dịch vụ
     const handleSelectService = (serviceId: number) => {
         let foundService: any = null;
 
@@ -202,7 +208,7 @@ function InvoiceManagementBody() {
             setSelectedServices(prev => [
                 ...prev,
                 {
-                    key: Date.now(), // Sử dụng timestamp để đảm bảo unique
+                    key: selectedServices.length + 1, // Sử dụng index để đảm bảo unique
                     name: foundService.serviceName,
                     type: 'DV',
                     quantity: 1,
@@ -269,7 +275,7 @@ function InvoiceManagementBody() {
                 0;
 
             const newServiceItem = {
-                key: Date.now(),
+                key: selectedServices.length + 1, // Sử dụng index để đảm bảo unique
                 name: foundProduct.productName || '',
                 type: 'SP',
                 quantity: 1,
@@ -332,6 +338,11 @@ function InvoiceManagementBody() {
             return;
         }
 
+        if (!selectedPaymentMethodId) {
+            message.warning('Vui lòng chọn phương thức thanh toán');
+            return;
+        }
+
         // TODO: Gọi API tạo hóa đơn
         console.log('Payment data:', {
             customer: selectedCustomer,
@@ -340,7 +351,7 @@ function InvoiceManagementBody() {
             customerName,
             barber: selectedBarber,
             services: selectedServices,
-            paymentMethod,
+            paymentMethodId: selectedPaymentMethodId,
             total,
         });
 
@@ -369,10 +380,10 @@ function InvoiceManagementBody() {
                         <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 12 }}>
                             Thông tin khách hàng
                         </h3>
-                        <div style={{ marginBottom: 12 }}>
+                        <div style={{ flex: 1, marginBottom: 12 }}>
                             <strong>SĐT:</strong>
                             <AutoComplete
-                                style={{ width: '100%', marginTop: 4 }}
+                                style={{ width: '70%', marginTop: 4, marginLeft: 8 }}
                                 options={customerOptions.map(customer => ({
                                     value: customer.phone || '',
                                     label: `${customer.phone} - ${customer.fullName}`,
@@ -385,11 +396,15 @@ function InvoiceManagementBody() {
                                 filterOption={false}
                             />
                         </div>
-                        <div>
-                            <strong>Tên:</strong>
+                        <div style={{ flex: 1, marginTop: 9 }}>
+                            <strong>Tên: </strong>
                             {isNewCustomer || !selectedCustomer ? (
                                 <Input
-                                    style={{ width: '100%', marginTop: 4 }}
+                                    style={{
+                                        width: '70%',
+                                        marginTop: -9,
+                                        marginLeft: 8,
+                                    }}
                                     value={customerName}
                                     onChange={handleCustomerNameChange}
                                     placeholder='Nhập tên khách hàng'
@@ -410,6 +425,12 @@ function InvoiceManagementBody() {
                                 </div>
                             )}
                         </div>
+                        <div style={{ marginTop: 9 }}>
+                            <strong>Điểm:</strong>
+                            <span style={{ marginLeft: 8 }}>
+                                {selectedCustomer?.loyaltyPointDTOPoints || 0} điểm
+                            </span>
+                        </div>
                     </div>
 
                     {/* Barber được chọn */}
@@ -417,41 +438,47 @@ function InvoiceManagementBody() {
                         <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 12 }}>
                             Barber được chọn
                         </h3>
-                        <Select
-                            style={{ width: '100%', marginBottom: 12 }}
-                            placeholder='Chọn Barber'
-                            value={selectedBarber?.barberId}
-                            onChange={handleSelectBarber}
-                            options={barbers.map(barber => ({
-                                value: barber.barberId,
-                                label: barber.barberName,
-                            }))}
-                        />
-                        {selectedBarber && (
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'flex-end',
-                                    gap: 12,
-                                    marginTop: 12,
-                                }}
-                            >
-                                <div>
-                                    <div style={{ fontWeight: 500 }}>
-                                        Tên: {selectedBarber.barberName}
-                                    </div>
+                        <div style={{ display: 'flex', gap: 24 }}>
+                            <Select
+                                style={{ width: '40%', marginTop: 4 }}
+                                placeholder='Chọn Barber'
+                                value={selectedBarber?.employeeId}
+                                onChange={handleSelectBarber}
+                                options={barbers.map(barber => ({
+                                    value: barber.employeeId,
+                                    label: barber.userDTO?.userName || 'Unknown',
+                                }))}
+                            />
+                            {selectedBarber && (
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'flex-end',
+                                        gap: 12,
+                                        marginTop: 12,
+                                    }}
+                                >
+                                    {/* <Avatar
+                                        size={80}
+                                        src={
+                                            selectedBarber.avatarUrl ||
+                                            'https://via.placeholder.com/80?text=Barber'
+                                        }
+                                        style={{ border: '2px solid #1890ff' }}
+                                    /> */}
+                                    <Image
+                                        width={80}
+                                        height={120}
+                                        src={
+                                            selectedBarber.avatarUrl ||
+                                            'https://via.placeholder.com/80?text=Barber'
+                                        }
+                                        style={{}}
+                                    />
                                 </div>
-                                <Avatar
-                                    size={80}
-                                    src={
-                                        selectedBarber.barberAvatar ||
-                                        'https://via.placeholder.com/80?text=Barber'
-                                    }
-                                    style={{ border: '2px solid #1890ff' }}
-                                />
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
                 </div>
 
@@ -510,22 +537,12 @@ function InvoiceManagementBody() {
                     </div>
                 </div>
 
-                {/* Chọn phương thức thanh toán */}
-                <div style={{ marginBottom: 32 }}>
-                    <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 12 }}>
-                        Chọn phương thức thanh toán
-                    </h3>
-                    <Radio.Group
-                        value={paymentMethod}
-                        onChange={e => setPaymentMethod(e.target.value)}
-                    >
-                        <Space direction='vertical' size={8}>
-                            <Radio value='cash'>Tiền mặt</Radio>
-                            <Radio value='bank'>Chuyển khoản ngân hàng</Radio>
-                        </Space>
-                    </Radio.Group>
-                </div>
-
+                <PaymentMethod
+                    total={total}
+                    paymentMethods={paymentMethods}
+                    selectedMethodId={selectedPaymentMethodId}
+                    onSelectPaymentMethod={setSelectedPaymentMethodId}
+                />
                 {/* Nút thanh toán */}
                 <div style={{ textAlign: 'center' }}>
                     <Button

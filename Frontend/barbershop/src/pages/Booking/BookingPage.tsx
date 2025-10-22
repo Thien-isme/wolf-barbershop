@@ -13,7 +13,7 @@ import VoucherNote from './VoucherNote/VoucherNote';
 import BookingButton from './BookingButton/BookingButton';
 import type { BranchDTO } from '../../types/ResponseDTOs/branchDTO';
 import { getBranchs } from '../../api/branchApi';
-import { getBarbersInBranch } from '../../api/barbersApi';
+import { getBarbersInBranch } from '../../api/employeeApi';
 import type { EmployeeDTO } from '../../types/ResponseDTOs/employeeDTO';
 import type { EmployeeImgHairDTO } from '../../types/ResponseDTOs/employeeImgHairDTO';
 import { getEmployeeImgHair } from '../../api/employeeImgHairApi';
@@ -31,9 +31,7 @@ const BookingPage: React.FC = () => {
     const [form] = Form.useForm();
     const [branches, setBranches] = useState<BranchDTO[]>([]);
     const [barbers, setBarbers] = useState<EmployeeDTO[]>([]);
-    const [employeeImgHairs, setEmployeeImgHairs] = useState<
-        EmployeeImgHairDTO[]
-    >([]);
+    const [employeeImgHairs, setEmployeeImgHairs] = useState<EmployeeImgHairDTO[]>([]);
     const [serviceTypes, setServiceTypes] = useState<ServiceTypeDTO[]>([]);
     const [selectedBranch, setSelectedBranch] = useState<number | null>(null);
     const [selectedBarber, setSelectedBarber] = useState<number | null>(null);
@@ -246,10 +244,7 @@ const BookingPage: React.FC = () => {
                         alt='Wolf Barbershop Logo'
                         style={{ width: 550, marginBottom: 16 }}
                     />
-                    <Title
-                        level={2}
-                        style={{ color: 'white', marginBottom: 24 }}
-                    >
+                    <Title level={2} style={{ color: 'white', marginBottom: 24 }}>
                         Đặt lịch cắt tóc tại WOLF BarberShop
                     </Title>
                 </div>
@@ -270,10 +265,7 @@ const BookingPage: React.FC = () => {
                     </Typography.Text>
                     {/* <CustomerInfo form={form} /> */}
                     <CustomerInfo />
-                    <Title
-                        level={4}
-                        style={{ color: 'white', marginBottom: 16 }}
-                    >
+                    <Title level={4} style={{ color: 'white', marginBottom: 16 }}>
                         Thông tin dịch vụ
                     </Title>
                     <BranchSelect

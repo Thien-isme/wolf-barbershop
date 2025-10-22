@@ -6,7 +6,7 @@ import { MdLocationOn } from 'react-icons/md';
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import styles from './BarberManagement.module.css';
 import AddBarberModal from './AddBarberModal';
-import { getBarbers } from '../../../api/barbersApi';
+import { getBarbers } from '../../../api/employeeApi';
 import type { EmployeeDTO } from '../../../types/ResponseDTOs/employeeDTO';
 
 function BarberItem({ barber, bubble }: { barber: EmployeeDTO; bubble?: boolean }) {
