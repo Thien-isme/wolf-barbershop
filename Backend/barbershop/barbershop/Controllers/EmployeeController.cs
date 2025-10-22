@@ -38,7 +38,6 @@ namespace barbershop.Controllers
         [HttpGet("GetBarbersInBranch")]
         public async Task<IActionResult> GetBarbersInBranch(int branchId)
         {
-            
             var barbers = await employeeService.GetBarbersInBranch(branchId);
             return Ok(barbers);
         }
@@ -47,6 +46,13 @@ namespace barbershop.Controllers
         public async Task<IActionResult> AddBarber([FromForm] AddBarberRequest request)
         {
             var response = await employeeService.AddBarber(request, request.Avatar);
+            return Ok(response);
+        }
+
+        [HttpGet("GetBranchIdOfCashier")]
+        public async Task<IActionResult> GetBranchIdOfCashier(int cashierId)
+        {
+            var response = await employeeService.getBranchIdOfCashier(cashierId);
             return Ok(response);
         }
 

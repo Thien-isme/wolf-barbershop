@@ -357,6 +357,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "barbershop.Controllers.EmployeeController",
+    "Method": "GetBranchIdOfCashier",
+    "RelativePath": "api/Employee/GetBranchIdOfCashier",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cashierId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "barbershop.Controllers.EmployeeImgHairController",
     "Method": "GetAllByEmployeeId",
     "RelativePath": "api/EmployeeImgHair/GetAllByEmployeeId",

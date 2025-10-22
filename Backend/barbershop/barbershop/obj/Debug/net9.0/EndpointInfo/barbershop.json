@@ -566,6 +566,28 @@
         }
       }
     },
+    "/api/Employee/GetBranchIdOfCashier": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "parameters": [
+          {
+            "name": "cashierId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/EmployeeImgHair/GetAllByEmployeeId": {
       "get": {
         "tags": [

@@ -202,5 +202,36 @@ namespace barbershop.Services.implements
 
             return baseResponse;
         }
+
+        public async Task<BaseResponse> getBranchIdOfCashier(int cashierId)
+        {
+            try
+            {
+                var branchId = await employeeRepository.FindBrandIdOfCashier(cashierId);
+                if (branchId != null)
+                {
+                    baseResponse.Status = 200;
+                    baseResponse.MessageShow = "Branch ID retrieved successfully.";
+                    baseResponse.Data = new
+                    {
+                        branchId = branchId,
+                    };
+                }
+                else
+                {
+                    baseResponse.Status = 404;
+                    baseResponse.MessageShow = "Cashier not found or inactive.";
+                    baseResponse.Data = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                baseResponse.Status = 500;
+                baseResponse.MessageShow = "An error occurred while retrieving branch ID.";
+                baseResponse.MessageHide = ex.Message;
+                baseResponse.Data = null;
+            }
+            return baseResponse;
+        }
     }
 }
