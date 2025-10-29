@@ -27,11 +27,7 @@ api.interceptors.response.use(
     response => response,
     async error => {
         const originalRequest = error.config;
-        if (
-            error.response &&
-            error.response.status === 401 &&
-            !originalRequest._retry
-        ) {
+        if (error.response && error.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
             const refreshToken = Cookies.get('refreshToken');
             try {
@@ -50,9 +46,7 @@ api.interceptors.response.use(
                 api.defaults.headers.common[
                     'Authorization'
                 ] = `Bearer ${data.accessToken}`;
-                originalRequest.headers[
-                    'Authorization'
-                ] = `Bearer ${data.accessToken}`;
+                originalRequest.headers['Authorization'] = `Bearer ${data.accessToken}`;
                 return api(originalRequest);
             } catch (refreshError) {
                 console.log('Refresh token failed, redirecting to login.');

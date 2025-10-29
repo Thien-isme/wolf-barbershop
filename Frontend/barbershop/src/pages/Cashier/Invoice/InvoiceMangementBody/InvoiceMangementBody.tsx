@@ -13,8 +13,6 @@ import {
     Image,
     Modal,
 } from 'antd';
-import styles from './style.module.scss';
-import barberIcon from '../../../../assets/symbol.png';
 import { GetUsersToCreateInvoice } from '../../../../api/userApi';
 import type { UserDTO } from '../../../../types/ResponseDTOs/userDTO';
 import { getAllServicesTypes } from '../../../../api/serviceTypeApi';
@@ -28,10 +26,8 @@ import { GetPaymentsMethods } from '../../../../api/paymentsMethodApi';
 import type { PaymentMethodDTO } from '../../../../types/ResponseDTOs/paymentMethodDTO';
 import { getBranchIdOfCashier, getBarbersInBranch } from '../../../../api/employeeApi';
 import type { EmployeeDTO } from '../../../../types/ResponseDTOs/employeeDTO';
-import { MdLocationOn } from 'react-icons/md';
 import PaymentMethod from '../../AppointmentsManagement/PaymentModal/PaymentMethod/PaymentMethod';
-import { createInvoice } from '../../../../api/invoiceApi';
-
+import { createInvoiceNoBooking } from '../../../../api/invoiceApi';
 interface ServiceItem {
     key: number;
     name: string;
@@ -344,16 +340,34 @@ function InvoiceManagementBody() {
         }
 
         // TODO: Gọi API tạo hóa đơn
-        console.log('Payment data:', {
-            customer: selectedCustomer,
+
+        const payload = {
             isNewCustomer,
             customerPhone,
             customerName,
-            barber: selectedBarber,
-            services: selectedServices,
+            barberId: selectedBarber.employeeId,
+            products: selectedServices
+                .filter(s => s.type === 'SP')
+                .map(s => ({
+                    productId: s.productId,
+                    quantity: s.quantity,
+                    sizeId: s.sizeId,
+                    price: s.price,
+                })),
+            serviceIds: selectedServices
+                .filter(s => s.type === 'DV')
+                .map(s => s.serviceId),
             paymentMethodId: selectedPaymentMethodId,
             total,
-        });
+        };
+
+        createInvoiceNoBooking(payload)
+            .then(() => {
+                console.log('Invoice created successfully');
+            })
+            .catch(error => {
+                console.error('Error creating invoice:', error);
+            });
 
         message.success('Khách hàng đã thanh toán thành công!');
     };

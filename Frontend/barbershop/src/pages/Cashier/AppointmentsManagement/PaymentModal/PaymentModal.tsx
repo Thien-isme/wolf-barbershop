@@ -14,7 +14,7 @@ import type { AppointmentDTO } from '../../../../types/ResponseDTOs/appointmentD
 import { GetPaymentsMethods } from '../../../../api/paymentsMethodApi';
 import type { PaymentMethodDTO } from '../../../../types/ResponseDTOs/paymentMethodDTO';
 import PaymentMethod from './PaymentMethod/PaymentMethod';
-import { createInvoice } from '../../../../api/invoiceApi';
+import { createInvoiceAppointed } from '../../../../api/invoiceApi';
 
 interface ServiceItem {
     key: number;
@@ -384,7 +384,7 @@ export default function PaymentModal({
 
         if (result.isConfirmed) {
             try {
-                const response = await createInvoice(payload);
+                const response = await createInvoiceAppointed(payload);
                 console.log('Payment API response:', response);
 
                 // Kiểm tra response thành công
