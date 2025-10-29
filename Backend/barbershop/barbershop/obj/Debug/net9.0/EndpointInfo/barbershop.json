@@ -622,7 +622,7 @@
         }
       }
     },
-    "/api/Invoice/create-invoice": {
+    "/api/Invoice/create-invoice-appointed": {
       "post": {
         "tags": [
           "Invoice"
@@ -642,6 +642,37 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateInvoiceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Invoice/create-invoice-no-booking": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvoiceNoBookingRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvoiceNoBookingRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvoiceNoBookingRequest"
               }
             }
           }
@@ -854,6 +885,52 @@
           "userId": {
             "type": "integer",
             "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateInvoiceNoBookingRequest": {
+        "type": "object",
+        "properties": {
+          "barberId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isNewCustomer": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "paymentMethodId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "serviceIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductInvoiceRequest"
+            },
+            "nullable": true
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false

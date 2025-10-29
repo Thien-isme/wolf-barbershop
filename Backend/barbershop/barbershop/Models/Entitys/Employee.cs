@@ -29,9 +29,9 @@ public partial class Employee
 
     public virtual ICollection<EmployeeSkill> EmployeeSkills { get; set; } = new List<EmployeeSkill>();
 
-    public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; } = new List<InvoiceDetail>();
+    public virtual ICollection<Invoice> InvoiceBarbers { get; set; } = new List<Invoice>();
 
-    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
+    public virtual ICollection<Invoice> InvoiceCashiers { get; set; } = new List<Invoice>();
 
     public virtual ICollection<PaymentService> PaymentServices { get; set; } = new List<PaymentService>();
 

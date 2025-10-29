@@ -13,12 +13,22 @@ namespace barbershop.Controllers
     {
         private readonly InvoiceService invoiceService = new InvoiceService();
         // TODO: Implement API methods
-        [HttpPost("create-invoice")]
+        [HttpPost("create-invoice-appointed")]
         [Authorize(Policy = "Cashier")]
         public async Task<IActionResult> CreateInvoice([FromBody] CreateInvoiceRequest invoice)
         {
             var cashierId = Request.Headers["Userid"].FirstOrDefault();
             var response = await invoiceService.CreateInvoice(invoice, cashierId);
+            return Ok(response);
+        }
+
+        //using when customer walk in without booking
+        [HttpPost("create-invoice-no-booking")]
+        [Authorize(Policy = "Cashier")]
+        public async Task<IActionResult> CreateInvoiceNoBooking([FromBody] CreateInvoiceNoBookingRequest invoice)
+        {
+            var cashierId = Request.Headers["Userid"].FirstOrDefault();
+            var response = await invoiceService.CreateInvoiceNoBooking(invoice, cashierId);
             return Ok(response);
         }
     }

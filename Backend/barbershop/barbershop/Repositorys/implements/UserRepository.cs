@@ -21,7 +21,7 @@ namespace barbershop.Repositorys.implements
 
         public async Task<User?> AddUser(User user)
         {
-            _context.Users.Add(user);
+             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return user;
         }
@@ -54,6 +54,11 @@ namespace barbershop.Repositorys.implements
                 .Where(u => u.IsActive == true && u.RoleId == 1)
                 .ToListAsync();
         }
+
+        //public async Task<User> AddUserAsync(User newUser)
+        //{
+        //    User user = await _context.Users.AddAsync(newUser);
+        //}
 
 
         // TODO: Implement repository methods for User

@@ -29,7 +29,11 @@ public partial class Invoice
 
     public DateTime? ExpdateDate { get; set; }
 
+    public int? BarberId { get; set; }
+
     public virtual Appointment? Appointment { get; set; }
+
+    public virtual Employee? Barber { get; set; }
 
     public virtual Employee? Cashier { get; set; }
 

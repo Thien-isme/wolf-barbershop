@@ -17,11 +17,7 @@ public partial class InvoiceDetail
 
     public decimal? Price { get; set; }
 
-    public int? EmployeeId { get; set; }
-
     public int? SizeId { get; set; }
-
-    public virtual Employee? Employee { get; set; }
 
     public virtual Invoice? Invoice { get; set; }
 

@@ -401,7 +401,7 @@
   {
     "ContainingType": "barbershop.Controllers.InvoiceController",
     "Method": "CreateInvoice",
-    "RelativePath": "api/Invoice/create-invoice",
+    "RelativePath": "api/Invoice/create-invoice-appointed",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -409,6 +409,22 @@
       {
         "Name": "invoice",
         "Type": "barbershop.Models.RequestDTOs.CreateInvoiceRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.InvoiceController",
+    "Method": "CreateInvoiceNoBooking",
+    "RelativePath": "api/Invoice/create-invoice-no-booking",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoice",
+        "Type": "barbershop.Models.RequestDTOs.CreateInvoiceNoBookingRequest",
         "IsRequired": true
       }
     ],

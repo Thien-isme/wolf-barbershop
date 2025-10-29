@@ -417,6 +417,7 @@ public partial class BarbershopContext : DbContext
 
             entity.Property(e => e.InvoiceId).HasColumnName("invoice_id");
             entity.Property(e => e.AppointmentId).HasColumnName("appointment_id");
+            entity.Property(e => e.BarberId).HasColumnName("barber_id");
             entity.Property(e => e.CashierId).HasColumnName("cashier_id");
             entity.Property(e => e.CreatedAt)
                 .HasPrecision(0)
@@ -443,7 +444,11 @@ public partial class BarbershopContext : DbContext
                 .HasForeignKey(d => d.AppointmentId)
                 .HasConstraintName("FK_payments_appointment_id");
 
-            entity.HasOne(d => d.Cashier).WithMany(p => p.Invoices)
+            entity.HasOne(d => d.Barber).WithMany(p => p.InvoiceBarbers)
+                .HasForeignKey(d => d.BarberId)
+                .HasConstraintName("FK_Employee_invoices");
+
+            entity.HasOne(d => d.Cashier).WithMany(p => p.InvoiceCashiers)
                 .HasForeignKey(d => d.CashierId)
                 .HasConstraintName("FK_payments_casher_id");
 
@@ -468,7 +473,6 @@ public partial class BarbershopContext : DbContext
             entity.ToTable("invoice_detail");
 
             entity.Property(e => e.InvoiceDetailId).HasColumnName("invoice_detail_id");
-            entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.InvoiceId).HasColumnName("invoice_id");
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(10, 2)")
@@ -477,10 +481,6 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.Quantity).HasColumnName("quantity");
             entity.Property(e => e.ServiceId).HasColumnName("service_id");
             entity.Property(e => e.SizeId).HasColumnName("sizeId");
-
-            entity.HasOne(d => d.Employee).WithMany(p => p.InvoiceDetails)
-                .HasForeignKey(d => d.EmployeeId)
-                .HasConstraintName("FK__invoice_d__emplo__3587F3E0");
 
             entity.HasOne(d => d.Invoice).WithMany(p => p.InvoiceDetails)
                 .HasForeignKey(d => d.InvoiceId)
