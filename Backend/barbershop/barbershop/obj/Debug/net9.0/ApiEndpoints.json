@@ -216,7 +216,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "plusQuantityProductRequest",
+        "Name": "subQuantityProductRequest",
         "Type": "barbershop.Models.RequestDTOs.PlusOrSubQuantityProductRequest",
         "IsRequired": true
       }

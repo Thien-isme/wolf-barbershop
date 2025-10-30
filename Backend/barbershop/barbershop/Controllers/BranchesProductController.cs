@@ -65,7 +65,7 @@ namespace barbershop.Controllers
         // Giảm số lượng sản phẩm trong kho
         [Authorize]
         [HttpPost("SubQuantityProduct")]
-        public async Task<IActionResult> SubQuantityProduct(PlusOrSubQuantityProductRequest plusQuantityProductRequest)
+        public async Task<IActionResult> SubQuantityProduct(PlusOrSubQuantityProductRequest subQuantityProductRequest)
         {
             var userId = Request.Headers["Userid"].FirstOrDefault();
 
@@ -74,7 +74,7 @@ namespace barbershop.Controllers
                 return BadRequest(string.Empty);
             }
 
-            var response = await branchesProductService.PlusQuantityProduct(plusQuantityProductRequest, int.Parse(userId));
+            var response = await branchesProductService.SubQuantityProduct(subQuantityProductRequest, int.Parse(userId));
             return Ok(response);
         }
 

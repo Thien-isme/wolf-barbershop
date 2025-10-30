@@ -217,5 +217,72 @@ namespace barbershop.Services.implements
                 };
             }
         }
+
+        public async Task<BaseResponse> SubQuantityProduct(PlusOrSubQuantityProductRequest subQuantityProductRequest, int userId)
+        {
+            try
+            {
+                var branchId = await employeeRepository.FindBrandIdOfCashier(userId);
+
+                var product = await branchesProductRepository.GetBranchProductEntity(branchId, subQuantityProductRequest.ProductId, subQuantityProductRequest.SizeId);
+                if (product == null)
+                {
+                    return new BaseResponse
+                    {
+                        Status = 404,
+                        MessageShow = "Sản phẩm không tồn tại trong chi nhánh!",
+                        MessageHide = "Sản phẩm không tồn tại trong chi nhánh!",
+                        Data = null
+                    };
+                }
+
+                if(product.Quantity < subQuantityProductRequest.Quantity)
+                {
+                    return new BaseResponse
+                    {
+                        Status = 400,
+                        MessageShow = "Số lượng sản phẩm trong kho không đủ để thực hiện thao tác!",
+                        MessageHide = "Số lượng sản phẩm trong kho không đủ để thực hiện thao tác!",
+                        Data = null
+                    };
+                }
+
+
+                var newQuantity = product.Quantity - subQuantityProductRequest.Quantity;
+                product.Quantity = newQuantity;
+                var isUpdateSuccess = await branchesProductRepository.UpdateBranchesProduct(product);
+
+                if (isUpdateSuccess == true)
+                {
+                    return new BaseResponse
+                    {
+                        Status = 200,
+                        MessageShow = "Đã giảm " + subQuantityProductRequest.Quantity +  " sản phẩm trong kho thành công",
+                        MessageHide = "Cập nhật số lượng sản phẩm thành công",
+                        Data = null
+                    };
+                }
+                else
+                {
+                    return new BaseResponse
+                    {
+                        Status = 500,
+                        MessageShow = "Cập nhật số lượng sản phẩm thất bại!",
+                        MessageHide = "Cập nhật số lượng sản phẩm thất bại!",
+                        Data = null
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse
+                {
+                    Status = 500,
+                    MessageShow = "Hệ thống có lỗi, Vui lòng thử lại trong giây lát!",
+                    MessageHide = ex.Message,
+                    Data = null
+                };
+            }
+        }
     }
 }
