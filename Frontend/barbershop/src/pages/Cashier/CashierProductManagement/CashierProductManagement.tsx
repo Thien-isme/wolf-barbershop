@@ -30,16 +30,20 @@ export default function ProductManagement() {
         searchName: '',
     });
 
+    // reloadProducts: tải lại danh sách sản phẩm
+    const reloadProducts = async () => {
+        try {
+            const res = await GetAllProductInBranch(); // hoặc API thực của bạn
+            setProductList(res.data || []);
+        } catch (error) {
+            console.error('Failed to load products', error);
+        }
+    };
+
     useEffect(() => {
         getAllProductType().then(res => {
             if (res?.data) {
                 setProductTypes(res.data);
-            }
-        });
-
-        GetAllProductInBranch().then(res => {
-            if (res?.data) {
-                setProductList(res.data);
             }
         });
 
@@ -54,6 +58,9 @@ export default function ProductManagement() {
                 setBranches(res.data);
             }
         });
+
+        // load products on mount
+        reloadProducts();
     }, []);
 
     const filteredProducts = productList.filter(product => {
@@ -161,7 +168,7 @@ export default function ProductManagement() {
                         Hiển thị {filteredProducts.length} / {productList.length} sản phẩm
                     </div>
 
-                    <CashierProductTable productList={filteredProducts} />
+                    <CashierProductTable productList={filteredProducts} reloadProducts={reloadProducts} />
 
                     {/* Hiển thị message khi không có kết quả */}
                     {filteredProducts.length === 0 && (

@@ -1,18 +1,6 @@
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import {
-    Card,
-    Button,
-    Radio,
-    Space,
-    message,
-    AutoComplete,
-    Input,
-    Select,
-    Typography,
-    Image,
-    Modal,
-} from 'antd';
+import { Card, Button, message, AutoComplete, Input, Select, Image } from 'antd';
 import { GetUsersToCreateInvoice } from '../../../../api/userApi';
 import type { UserDTO } from '../../../../types/ResponseDTOs/userDTO';
 import { getAllServicesTypes } from '../../../../api/serviceTypeApi';
@@ -64,15 +52,6 @@ function InvoiceManagementBody() {
     const [selectedProductValue, setSelectedProductValue] = useState<string | undefined>(
         undefined
     );
-
-    const [bubble, setBubble] = useState(true);
-    const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        setBubble(true);
-        const timer = setTimeout(() => setBubble(false), 700);
-        return () => clearTimeout(timer);
-    }, []);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -382,7 +361,14 @@ function InvoiceManagementBody() {
         >
             <Card
                 title={
-                    <div style={{ fontSize: 20, fontWeight: 600, textAlign: 'center' }}>
+                    <div
+                        style={{
+                            color: '#000000ff',
+                            fontSize: 20,
+                            fontWeight: 600,
+                            textAlign: 'center',
+                        }}
+                    >
                         Tạo hóa đơn
                     </div>
                 }

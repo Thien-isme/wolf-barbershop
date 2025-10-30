@@ -24,7 +24,8 @@ import AppointmentsManagement from './pages/Cashier/AppointmentsManagement/Appoi
 import InvoiceManagement from './pages/Cashier/Invoice/InvoiceManagement';
 const clientId =
     '136465399071-sbg4p7qhb3qc9dbv8t6qdsf3m6ud93cu.apps.googleusercontent.com';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function AppContent() {
     const { userInfo, setUserInfo } = useAuth();
     const navigate = useNavigate();
@@ -125,6 +126,16 @@ function App() {
             <AuthProvider>
                 <BrowserRouter>
                     <AppContent />
+                    <ToastContainer
+                        position='bottom-right' // Các vị trí: top-right, top-center, bottom-left, v.v.
+                        autoClose={3000} // Tự đóng sau 3 giây
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        pauseOnHover
+                        draggable
+                        theme='colored'
+                    />
                 </BrowserRouter>
             </AuthProvider>
         </GoogleOAuthProvider>

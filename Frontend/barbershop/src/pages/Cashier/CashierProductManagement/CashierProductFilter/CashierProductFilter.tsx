@@ -48,7 +48,6 @@ export default function ProductFilter({
 
     const handleReset = () => {
         setFilters({
-            branch: undefined,
             type: undefined,
             brand: undefined,
             minPrice: '',
@@ -73,26 +72,6 @@ export default function ProductFilter({
                 flexWrap: 'wrap',
             }}
         >
-            <Select
-                placeholder='CHI NHÁNH'
-                value={filters.branch}
-                onChange={value => setFilters({ ...filters, branch: value })}
-                style={{
-                    width: 180,
-                    borderRadius: 12,
-                    border: `1px solid ${borderColor}`,
-                    background: '#f8f8fa',
-                }}
-                dropdownStyle={{
-                    borderRadius: 12,
-                    boxShadow: '0 2px 8px #eee',
-                }}
-                options={branches.map(branch => ({
-                    value: branch.branchId,
-                    label: branch.branchName,
-                }))}
-            />
-
             <Select
                 placeholder='DANH MỤC'
                 value={filters.type}
@@ -189,7 +168,7 @@ export default function ProductFilter({
                 onChange={e => setSearchValue(e.target.value)} // Update state riêng
                 prefix={<SearchOutlined style={{ color: '#999' }} />}
                 style={{
-                    width: 220,
+                    width: 250,
                     borderRadius: 12,
                     border: `1px solid ${borderColor}`,
                     background: '#f8f8fa',

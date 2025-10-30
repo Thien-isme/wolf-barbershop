@@ -5,6 +5,7 @@ import {
     PlusQuantityProduct,
     SubQuantityProduct,
 } from '../../../../api/branchesProductApi';
+import { toast } from 'react-toastify';
 
 interface ProductQuantityModalProps {
     visible: boolean;
@@ -79,10 +80,10 @@ export default function ProductQuantityModal({
     const handleReduce = async () => {
         if (productData && adjustValue > 0) {
             if (adjustValue > productData.currentQuantity) {
-                Modal.warning({
-                    title: 'Cảnh báo',
-                    content: 'Số lượng giảm không được lớn hơn số lượng hiện tại!',
-                });
+                console.log('adjustValue', adjustValue);
+                toast.error(
+                    'Số lượng giảm không được lớn hơn số lượng hiện có trong kho'
+                );
                 return;
             }
 
@@ -90,34 +91,26 @@ export default function ProductQuantityModal({
                 const plusOrSubQuantityRequest: PlusOrSubQuantityRequest = {
                     productId: productData.productId,
                     sizeId: productData.sizeId || undefined,
-                    quantity: -adjustValue,
+                    quantity: adjustValue,
                 };
 
                 var res = await SubQuantityProduct(plusOrSubQuantityRequest);
                 console.log('res', res);
+                console.log('status', res.status);
                 if (res.status === 200) {
-                    Modal.success({
-                        title: 'Thành công',
-                        content: `Đã giảm ${adjustValue} sản phẩm khỏi kho`,
-                    });
+                    toast.success(res.messageShow);
                     handleClose();
                     onSuccess?.();
                 } else {
-                    Modal.error({
-                        title: 'Lỗi',
-                        content:
-                            res.message ||
-                            'Không thể giảm số lượng sản phẩm. Vui lòng thử lại!',
-                    });
+                    toast.error(
+                        res.messageShow ||
+                            'Không thể giảm số lượng sản phẩm. Vui lòng thử lại!'
+                    );
                 }
-
                 handleClose();
                 onSuccess?.();
             } catch (error) {
-                Modal.error({
-                    title: 'Lỗi',
-                    content: 'Không thể giảm số lượng sản phẩm. Vui lòng thử lại!',
-                });
+                toast.error('Không thể giảm số lượng sản phẩm. Vui lòng thử lại!');
             }
         }
     };
@@ -234,8 +227,8 @@ export default function ProductQuantityModal({
                             type='primary'
                             size='large'
                             style={{
-                                background: '#ff9800',
-                                borderColor: '#ff9800',
+                                background: '#4CAF50', // Màu xanh lá
+                                borderColor: '#4CAF50',
                                 borderRadius: 20,
                                 minWidth: 100,
                             }}
@@ -248,8 +241,8 @@ export default function ProductQuantityModal({
                             type='primary'
                             size='large'
                             style={{
-                                background: '#ff9800',
-                                borderColor: '#ff9800',
+                                background: '#f44336', // Màu đỏ
+                                borderColor: '#f44336',
                                 borderRadius: 20,
                                 minWidth: 100,
                             }}

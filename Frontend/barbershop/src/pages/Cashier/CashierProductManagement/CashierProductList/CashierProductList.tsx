@@ -6,12 +6,11 @@ import ProductQuantityModal from '../ProductQuantityModal/ProductQuantityModal';
 
 interface ProductTableProps {
     productList: ProductDTO[];
+    reloadProducts: () => void;
 }
 
-export default function ProductTable({ productList }: ProductTableProps) {
+export default function ProductTable({ productList, reloadProducts }: ProductTableProps) {
     // State để quản lý quantity tạm thời trước khi gọi API
-    const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
-
     // State cho modal
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<{
@@ -51,7 +50,7 @@ export default function ProductTable({ productList }: ProductTableProps) {
     // Xử lý sau khi thành công (reload data hoặc update state)
     const handleSuccess = () => {
         // TODO: Reload danh sách sản phẩm hoặc update state
-        console.log('Success! Reload product list here');
+        reloadProducts();
     };
 
     // Chuẩn bị data cho table - SỬ DỤNG ĐÚNG STRUCTURE TỪ API
@@ -67,8 +66,6 @@ export default function ProductTable({ productList }: ProductTableProps) {
         originalPrice: product.productPriceDTO?.originalPrice,
         discountedPrice: product.productPriceDTO?.discountedPrice,
         currentQuantity: product.quantity || 0,
-        temporaryQuantity:
-            quantities[`${product.productId}-${product.sizeName || 'no-size'}`] || 0,
     }));
 
     const columns: ColumnsType<(typeof tableData)[0]> = [

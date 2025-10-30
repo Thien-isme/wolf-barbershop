@@ -1,4 +1,5 @@
 import api from './axios';
+import { toast } from 'react-toastify';
 import type { PlusOrSubQuantityRequest } from '../types/RequestDTOs/PlusOrSubQuantityRequest';
 export const GetAllProductInBranch = async () => {
     return await api
@@ -40,7 +41,7 @@ export const SubQuantityProduct = async (
         .post('/BranchesProduct/SubQuantityProduct', plusOrSubQuantityRequest)
         .then(res => res.data)
         .catch(err => {
-            console.error('Lỗi khi giảm số lượng sản phẩm:', err);
+            toast.error('Không thể giảm số lượng sản phẩm. Vui lòng thử lại!');
             throw err;
         });
 };
