@@ -761,6 +761,111 @@
         }
       }
     },
+    "/api/Product/add": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ProductName": {
+                    "type": "string"
+                  },
+                  "BrandId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "ProductTypeId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "OriginalPrice": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "HasDiscount": {
+                    "type": "boolean"
+                  },
+                  "DiscountedPrice": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "DiscountStartDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "DiscountEndDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "HasSize": {
+                    "type": "boolean"
+                  },
+                  "SizeIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  },
+                  "Images": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "ProductName": {
+                  "style": "form"
+                },
+                "BrandId": {
+                  "style": "form"
+                },
+                "ProductTypeId": {
+                  "style": "form"
+                },
+                "OriginalPrice": {
+                  "style": "form"
+                },
+                "HasDiscount": {
+                  "style": "form"
+                },
+                "DiscountedPrice": {
+                  "style": "form"
+                },
+                "DiscountStartDate": {
+                  "style": "form"
+                },
+                "DiscountEndDate": {
+                  "style": "form"
+                },
+                "HasSize": {
+                  "style": "form"
+                },
+                "SizeIds": {
+                  "style": "form"
+                },
+                "Images": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/ProductType/GetAllProductType": {
       "get": {
         "tags": [
@@ -801,6 +906,18 @@
       "get": {
         "tags": [
           "ServiceType"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Size/sizes": {
+      "get": {
+        "tags": [
+          "Size"
         ],
         "responses": {
           "200": {

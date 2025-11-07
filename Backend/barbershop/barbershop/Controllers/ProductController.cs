@@ -1,4 +1,5 @@
-﻿using barbershop.Services.implements;
+﻿using barbershop.Models.RequestDTOs;
+using barbershop.Services.implements;
 using Microsoft.AspNetCore.Mvc;
 
 namespace barbershop.Controllers
@@ -43,6 +44,13 @@ namespace barbershop.Controllers
             return Ok(products);
         }
 
-        
+        [HttpPost("add")]
+        public async Task<IActionResult> AddNewProduct([FromForm] AddProductRequest request)
+        {
+            var products = await productService.AddNewProduct(request);
+            return Ok(products);
+        }
+
+
     } 
 }

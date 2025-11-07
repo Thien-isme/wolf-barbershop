@@ -9,7 +9,7 @@ public partial class Product
 
     public string ProductName { get; set; } = null!;
 
-    public int ProductTypeId { get; set; }
+    public int? ProductTypeId { get; set; }
 
     public string? Instruction { get; set; }
 
@@ -31,9 +31,11 @@ public partial class Product
 
     public virtual ICollection<PaymentService> PaymentServices { get; set; } = new List<PaymentService>();
 
+    public virtual ICollection<ProductImg> ProductImgs { get; set; } = new List<ProductImg>();
+
     public virtual ICollection<ProductPrice> ProductPrices { get; set; } = new List<ProductPrice>();
 
     public virtual ICollection<ProductSize> ProductSizes { get; set; } = new List<ProductSize>();
 
-    public virtual ProductType ProductType { get; set; } = null!;
+    public virtual ProductType? ProductType { get; set; }
 }

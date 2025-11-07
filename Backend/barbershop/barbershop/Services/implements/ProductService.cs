@@ -1,13 +1,19 @@
 ﻿using barbershop.Models.Entitys;
+using barbershop.Models.RequestDTOs;
 using barbershop.Models.ResponseDTOs;
 using barbershop.Repositorys.implements;
+using Google.Apis.Logging;
 
 namespace barbershop.Services.implements
 {
     public class ProductService
     {
+        readonly private BarbershopContext _context = new BarbershopContext();
         readonly private ProductRepository productRepository;
         readonly private EmployeeRepository employeeRepository = new EmployeeRepository();
+        readonly private ProductSizeRepository productSizeRepository = new ProductSizeRepository();
+        readonly private ProductImgRepository productImgRepository = new ProductImgRepository();
+        readonly private ProductPriceRepository productPriceRepository = new ProductPriceRepository();
         private BaseResponse baseResponse = new BaseResponse();
         public ProductService()
         {
@@ -213,6 +219,88 @@ namespace barbershop.Services.implements
             }
 
             return baseResponse;
+        }
+
+        public async Task<BaseResponse?> AddNewProduct(AddProductRequest request)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                Product product = new Product
+                {
+                    ProductName = request.ProductName,
+                    ProductTypeId = request.ProductTypeId,
+                    BrandId = request.BrandId,
+                    //Instruction = request.Instruction,
+                    //ProductImg = request.ProductImg,
+                    IsActive = true,
+                    //IsOutstanding = request.IsOutstanding,
+                };
+
+                product = await productRepository.Add(product);
+
+                if (request.HasSize == true)
+                {
+                    foreach (var sizeId in request.SizeIds)
+                    {
+                        ProductSize productSize = new ProductSize
+                        {
+                            ProductId = product.ProductId,
+                            SizeId = sizeId,
+                        };
+
+                        await productSizeRepository.Add(productSize);
+                    }
+                }
+
+                if (request.OriginalPrice != null && request.OriginalPrice > 0)
+                {
+                    ProductPrice productPrice = new ProductPrice
+                    {
+                        ProductId = product.ProductId,
+                        OriginalPrice = request.OriginalPrice,
+                        DiscountedPrice = request.DiscountedPrice,
+                        DiscountStartDate = request.DiscountStartDate,
+                        DiscountEndDate = request.DiscountEndDate,
+                        IsActive = true,
+                        CreatedAt = DateTime.Now,
+                    };
+                    await productPriceRepository.Add(productPrice);
+                }
+
+                if (request.Images != null && request.Images.Count > 0)
+                {
+                    foreach (var image in request.Images)
+                    {
+                        // Here you would normally upload the image to a storage service
+                        // and get the URL. For simplicity, we'll just use the file name.
+                        ProductImg productImg = new ProductImg
+                        {
+                            ProductId = product.ProductId,
+                            ImgUrl = await CloudinaryHelper.UploadImageAsync(image),
+                        };
+                        await productImgRepository.Add(productImg);
+                    }
+                }
+
+
+                return new BaseResponse
+                {
+                    Status = StatusCodes.Status200OK,
+                    MessageShow = "Thêm sản phẩm thành công",
+                    Data = product,
+                };
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return new BaseResponse
+                {
+                    Status = StatusCodes.Status500InternalServerError,
+                    MessageHide = "Lỗi hệ thống: " + ex.Message,
+                    Data = null
+                };
+            }
         }
 
     }

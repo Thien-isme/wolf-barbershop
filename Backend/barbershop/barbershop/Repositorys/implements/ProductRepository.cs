@@ -51,6 +51,13 @@ namespace barbershop.Repositorys.implements
                 .ToListAsync();
         }
 
-     
+        public async Task<Product> Add(Product product)
+        {
+            var productAdded = _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+            return productAdded.Entity;
+        }
+
+
     }
 }

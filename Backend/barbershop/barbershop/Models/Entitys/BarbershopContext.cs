@@ -49,6 +49,8 @@ public partial class BarbershopContext : DbContext
 
     public virtual DbSet<Product> Products { get; set; }
 
+    public virtual DbSet<ProductImg> ProductImgs { get; set; }
+
     public virtual DbSet<ProductPrice> ProductPrices { get; set; }
 
     public virtual DbSet<ProductSize> ProductSizes { get; set; }
@@ -614,8 +616,27 @@ public partial class BarbershopContext : DbContext
 
             entity.HasOne(d => d.ProductType).WithMany(p => p.Products)
                 .HasForeignKey(d => d.ProductTypeId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_products_product_type_id");
+        });
+
+        modelBuilder.Entity<ProductImg>(entity =>
+        {
+            entity.HasKey(e => e.ProductImg1).HasName("PK__product___41022A385AAF482B");
+
+            entity.ToTable("product_img");
+
+            entity.Property(e => e.ProductImg1).HasColumnName("product_img");
+            entity.Property(e => e.ImgUrl)
+                .HasColumnType("text")
+                .HasColumnName("img_url");
+            entity.Property(e => e.IsActive)
+                .HasDefaultValue(true)
+                .HasColumnName("is_active");
+            entity.Property(e => e.ProductId).HasColumnName("product_id");
+
+            entity.HasOne(d => d.Product).WithMany(p => p.ProductImgs)
+                .HasForeignKey(d => d.ProductId)
+                .HasConstraintName("FK__product_i__produ__0880433F");
         });
 
         modelBuilder.Entity<ProductPrice>(entity =>
@@ -630,9 +651,9 @@ public partial class BarbershopContext : DbContext
                 .HasColumnType("datetime");
             entity.Property(e => e.DiscountEndDate).HasColumnType("datetime");
             entity.Property(e => e.DiscountStartDate).HasColumnType("datetime");
-            entity.Property(e => e.DiscountedPrice).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.DiscountedPrice).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.IsActive).HasDefaultValue(true);
-            entity.Property(e => e.OriginalPrice).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.OriginalPrice).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
 
             entity.HasOne(d => d.Product).WithMany(p => p.ProductPrices)

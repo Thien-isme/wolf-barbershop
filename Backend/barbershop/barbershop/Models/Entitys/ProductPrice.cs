@@ -9,7 +9,7 @@ public partial class ProductPrice
 
     public int ProductId { get; set; }
 
-    public decimal OriginalPrice { get; set; }
+    public decimal? OriginalPrice { get; set; }
 
     public decimal? DiscountedPrice { get; set; }
 
