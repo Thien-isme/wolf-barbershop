@@ -33,3 +33,19 @@ export const getAllProductsForSaleAsync = async () => {
 
     return response;
 };
+
+export const addNewProduct = async (productData: FormData) => {
+    const response = await api
+        .post('/Product/add', productData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+        .then(res => res.data)
+        .catch(err => {
+            console.error('Lỗi khi thêm sản phẩm:', err);
+            throw err;
+        });
+
+    return response;
+};

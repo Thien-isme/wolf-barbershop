@@ -10,6 +10,7 @@ import { getAllBrands } from '../../../api/brandApi';
 import type { BrandDTO } from '../../../types/ResponseDTOs/brandDTO';
 import ProductFilter from './ProductFilter';
 import ProductGrid from './ProductList';
+import AddProductModal from './AddProductModal/AddProductModal';
 
 import { getBranchs } from '../../../api/branchApi';
 import type { BranchDTO } from '../../../types/ResponseDTOs/branchDTO';
@@ -31,6 +32,7 @@ export default function ProductManagement() {
         minPrice: '',
         maxPrice: '',
     });
+    const [isAddModalVisible, setIsAddModalVisible] = useState(false);
 
     useEffect(() => {
         getAllProductType().then(res => {
@@ -57,6 +59,14 @@ export default function ProductManagement() {
             }
         });
     }, []);
+
+    const handleAddProductSuccess = () => {
+        getAllProductsToManagement().then(res => {
+            if (res?.data) {
+                setProductList(res.data);
+            }
+        });
+    };
 
     const filteredProducts = productList.filter(product => {
         // if (filters.branch && product.branchId !== filters.branch) return false;
@@ -135,6 +145,7 @@ export default function ProductManagement() {
                             type='primary'
                             icon={<PlusOutlined />}
                             className={styled['add-product-btn']}
+                            onClick={() => setIsAddModalVisible(true)}
                             onMouseEnter={e =>
                                 (e.currentTarget.style.background = '#ffa000')
                             }
@@ -157,6 +168,13 @@ export default function ProductManagement() {
 
                     {/* Products Grid */}
                     <ProductGrid productList={filteredProducts} />
+                    <AddProductModal
+                        visible={isAddModalVisible}
+                        onClose={() => setIsAddModalVisible(false)}
+                        productTypes={productTypes}
+                        brands={brands}
+                        onAddProductSuccess={() => handleAddProductSuccess()}
+                    />
                 </div>
             </div>
         </SidebarLayout>

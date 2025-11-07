@@ -109,19 +109,16 @@ export default function ProductFilter({
             />
 
             <Space>
-                <span style={{ fontWeight: 500, color: '#222' }}>
-                    Khoảng giá:
-                </span>
+                <span style={{ fontWeight: 500, color: '#222' }}>Khoảng giá:</span>
                 <Input
                     placeholder='0đ'
                     value={filters.minPrice}
-                    onChange={e =>
-                        setFilters({ ...filters, minPrice: e.target.value })
-                    }
+                    onChange={e => setFilters({ ...filters, minPrice: e.target.value })}
                     style={{
                         width: 100,
                         borderRadius: 12,
                         border: `1px solid ${borderColor}`,
+                        color: '#b8a5a5ff',
                         background: '#f8f8fa',
                         textAlign: 'center',
                         fontWeight: 500,
@@ -131,13 +128,12 @@ export default function ProductFilter({
                 <Input
                     placeholder='2.000.000đ'
                     value={filters.maxPrice}
-                    onChange={e =>
-                        setFilters({ ...filters, maxPrice: e.target.value })
-                    }
+                    onChange={e => setFilters({ ...filters, maxPrice: e.target.value })}
                     style={{
                         width: 120,
                         borderRadius: 12,
                         border: `1px solid ${borderColor}`,
+                        color: '#b8a5a5ff',
                         background: '#f8f8fa',
                         textAlign: 'center',
                         fontWeight: 500,

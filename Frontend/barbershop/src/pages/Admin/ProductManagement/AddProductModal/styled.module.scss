@@ -1,0 +1,80 @@
+.listPictureCard {
+    :global(.ant-upload-list.ant-upload-list-picture-card) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    :global(.ant-upload-list-item-container) {
+        margin: 0 !important;
+    }
+}
+
+.sizeCheckboxGroup {
+    display: flex;
+    gap: 16px;
+
+    :global(.ant-checkbox-wrapper) {
+        margin: 0;
+
+        .ant-checkbox {
+            display: none;
+        }
+
+        span:last-child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            &:hover {
+                border-color: #ffb300;
+                color: #ffb300;
+            }
+        }
+    }
+
+    :global(.ant-checkbox-wrapper-checked) {
+        span:last-child {
+            background: #ffb300;
+            border-color: #ffb300;
+            color: white;
+        }
+    }
+}
+
+.sizeSelector {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+
+    .sizeBox {
+        width: 45px;
+        height: 45px;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s;
+
+        &:hover {
+            border-color: #ffb300;
+            color: #ffb300;
+        }
+
+        &.selected {
+            background-color: #ffb300;
+            border-color: #ffb300;
+            color: white;
+        }
+    }
+}

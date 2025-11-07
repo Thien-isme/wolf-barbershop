@@ -39,7 +39,7 @@ function BarberItem({ barber, bubble }: { barber: EmployeeDTO; bubble?: boolean 
                         style={{ width: 35, height: 35, objectFit: 'contain' }}
                     />
                     <span style={{ color: '#fff', fontSize: 24 }}>
-                        {barber.userDTO?.fullName}
+                        {barber?.nickName || barber.userDTO?.fullName}
                     </span>
                     <img
                         src={barberIcon}
@@ -84,7 +84,7 @@ function BarberItem({ barber, bubble }: { barber: EmployeeDTO; bubble?: boolean 
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                     <MdLocationOn style={{ width: 18, height: 18, color: '#ffd600' }} />
                     <span style={{ color: '#ffd600', fontSize: 16 }}>
-                        {barber.branchId}
+                        {barber.locationDetail || 'Đang cập nhật...'}
                     </span>
                 </span>
             </Typography.Text>

@@ -12,4 +12,6 @@ export type EmployeeDTO = {
     employeeRoleId?: number;
     userDTO?: UserDTO;
     fullName?: string;
+    nickName?: string;
+    locationDetail?: string;
 };
