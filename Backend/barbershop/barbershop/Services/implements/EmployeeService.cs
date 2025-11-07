@@ -32,11 +32,13 @@ namespace barbershop.Services.implements
                         UserId = b.UserId,
                         BranchId = b.BranchId,
                         //ExperienceYears = b.ExperienceYears,
+                        NickName = b.NickName,
                         Rating = b.Rating,
                         QuantityRate = b.QuantityRate,
                         IsActive = b.IsActive,
                         AvatarUrl = b.AvatarUrl,
-                        UserDTO =  new UserDTO
+                        LocationDetail = b.Branch?.LocationDetail,
+                        UserDTO = new UserDTO
                         {
                             UserId = b.User.UserId,
                             UserName = b.User.FullName,
@@ -103,6 +105,7 @@ namespace barbershop.Services.implements
                 {
                     UserId = user.UserId, // chỉ cần gán UserId
                     BranchId = request.BranchId.Value,
+                    NickName = request.NickName,
                     ExperienceYears = request.ExperienceYears ?? 0,
                     Rating = 0.0m,
                     QuantityRate = 0,
@@ -123,6 +126,7 @@ namespace barbershop.Services.implements
                     UserId = user.UserId,
                     BranchId = employee.BranchId,
                     ExperienceYears = employee.ExperienceYears,
+                    NickName = employee.NickName,
                     Rating = employee.Rating,
                     QuantityRate = employee.QuantityRate,
                     IsActive = employee.IsActive,
@@ -165,6 +169,7 @@ namespace barbershop.Services.implements
                         UserId = b.UserId,
                         BranchId = b.BranchId,
                         //ExperienceYears = b.ExperienceYears,
+                        NickName = b.NickName,
                         Rating = b.Rating,
                         QuantityRate = b.QuantityRate,
                         IsActive = b.IsActive,

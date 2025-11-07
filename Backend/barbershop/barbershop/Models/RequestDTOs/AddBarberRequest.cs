@@ -3,6 +3,7 @@
     public class AddBarberRequest
     {
             public string? FullName { get; set; }
+            public string? NickName { get; set; }
             public string? Phone { get; set; }
             public DateOnly? Dob { get; set; } // hoặc DateTime nếu bạn muốn parse ngày tháng
             public string? CCCD { get; set; }

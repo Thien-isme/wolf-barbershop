@@ -16,6 +16,7 @@ namespace barbershop.Services.implements
         private readonly EmployeeRepository _employeeRepository = new EmployeeRepository();
         private readonly LoyaltyPointRepository _loyaltyPointRepository = new LoyaltyPointRepository();
         private readonly UserRepository _userRepository = new UserRepository();
+        private readonly BarbershopContext _context = new BarbershopContext();
         public InvoiceService()
         {
             _invoiceRepository = new InvoiceRepository();
@@ -24,6 +25,7 @@ namespace barbershop.Services.implements
 
         public async Task<BaseResponse> CreateInvoice(CreateInvoiceRequest invoice, string? cashierId)
         {
+            using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
                 long appointmentId = invoice.AppointmentId;
@@ -95,6 +97,7 @@ namespace barbershop.Services.implements
                 };
 
             } catch (Exception ex) {
+                await transaction.RollbackAsync();
                 return new BaseResponse
                 {
                     Status = 500,

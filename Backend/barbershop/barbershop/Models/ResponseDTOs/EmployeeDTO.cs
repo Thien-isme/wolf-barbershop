@@ -14,6 +14,8 @@ namespace barbershop.Models.ResponseDTOs
         public bool IsActive { get; set;    }
         public string? AvatarUrl { get; set; }
         public int? EmployeeRoleId { get; set; }
+        public string? NickName { get; set; }
+        public string? LocationDetail { get; set; }
         public UserDTO? UserDTO { get; set; }
     }
 }

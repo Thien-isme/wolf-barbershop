@@ -491,6 +491,9 @@
                   "FullName": {
                     "type": "string"
                   },
+                  "NickName": {
+                    "type": "string"
+                  },
                   "Phone": {
                     "type": "string"
                   },
@@ -526,6 +529,9 @@
               },
               "encoding": {
                 "FullName": {
+                  "style": "form"
+                },
+                "NickName": {
                   "style": "form"
                 },
                 "Phone": {

@@ -15,6 +15,7 @@ namespace barbershop.Repositorys.implements
         {
             return await _context.Employees
             .Include(e => e.User)
+            .Include(e => e.Branch)
             .OrderByDescending(e => e.EmployeeId)
             .ToListAsync();
         }

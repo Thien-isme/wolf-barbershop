@@ -21,6 +21,8 @@ public partial class Employee
 
     public long? UserId { get; set; }
 
+    public string? NickName { get; set; }
+
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
     public virtual Branch? Branch { get; set; }

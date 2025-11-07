@@ -304,6 +304,9 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.IsActive)
                 .HasDefaultValue(true)
                 .HasColumnName("is_active");
+            entity.Property(e => e.NickName)
+                .HasMaxLength(50)
+                .HasColumnName("nick_name");
             entity.Property(e => e.QuantityRate)
                 .HasDefaultValue(0)
                 .HasColumnName("quantity_rate");

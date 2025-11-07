@@ -283,6 +283,11 @@
         "IsRequired": false
       },
       {
+        "Name": "NickName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "Phone",
         "Type": "System.String",
         "IsRequired": false
