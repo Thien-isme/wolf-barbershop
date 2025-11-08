@@ -1,11 +1,7 @@
 import { Menu, Button, Dropdown } from 'antd';
 import { useAuth } from '../../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import {
-    UserOutlined,
-    ShoppingCartOutlined,
-    LogoutOutlined,
-} from '@ant-design/icons';
+import { UserOutlined, ShoppingCartOutlined, LogoutOutlined } from '@ant-design/icons';
 import Cookies from 'js-cookie'; // Thêm thư viện js-cookie
 import style from './style.module.scss';
 import type { UserDTO } from '../../../types/ResponseDTOs/userDTO';
@@ -73,7 +69,8 @@ const RightMenu = ({ userInfo }: { userInfo: UserDTO | null }) => {
                     type='primary'
                     icon={<ShoppingCartOutlined style={{ fontSize: 32 }} />}
                     className={style.cartBtn}
-                ></Button>
+                    onClick={() => navigate('/cart')}
+                />
                 <div className={style.cartCount}>{cartCount}</div>
             </div>
             {!isLoggedIn && (
@@ -104,8 +101,7 @@ const RightMenu = ({ userInfo }: { userInfo: UserDTO | null }) => {
                         <img
                             src={
                                 userInfo?.avatarUrl ||
-                                'https://ui-avatars.com/api/?name=' +
-                                    userInfo?.fullName
+                                'https://ui-avatars.com/api/?name=' + userInfo?.fullName
                             }
                             alt='avatar'
                             style={{

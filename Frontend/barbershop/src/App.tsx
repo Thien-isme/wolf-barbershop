@@ -26,6 +26,7 @@ const clientId =
     '136465399071-sbg4p7qhb3qc9dbv8t6qdsf3m6ud93cu.apps.googleusercontent.com';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CartPage from './pages/User/Cart/CartPage';
 function AppContent() {
     const { userInfo, setUserInfo } = useAuth();
     const navigate = useNavigate();
@@ -114,6 +115,9 @@ function AppContent() {
                 />
                 <Route path='/cashier/product' element={<CashierProductManagement />} />
                 <Route path='/cashier/invoice' element={<InvoiceManagement />} />
+
+                {/* User Cart */}
+                <Route path='/cart' element={<CartPage />} />
             </Routes>
             {shouldShowHeaderFooter() && <Footer />}
         </>

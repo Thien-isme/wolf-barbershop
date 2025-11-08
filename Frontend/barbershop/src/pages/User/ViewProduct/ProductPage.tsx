@@ -47,8 +47,7 @@ function ProductPage() {
         // Lọc theo brand
         if (
             filter.brands.length &&
-            (product.brandId === undefined ||
-                !filter.brands.includes(product.brandId))
+            (product.brandId === undefined || !filter.brands.includes(product.brandId))
         ) {
             return false;
         }
