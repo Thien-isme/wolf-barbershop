@@ -11,13 +11,18 @@ const BranchSelect = ({
     onChange: (branchId: number) => void;
 }) => (
     <>
-        <Typography.Title
-            level={5}
-            style={{ color: 'white', marginBottom: 16 }}
-        >
+        <Typography.Title level={5} style={{ color: 'white', marginBottom: 16 }}>
             Chọn chi nhánh
         </Typography.Title>
-        <Form.Item name='branch'>
+        <Form.Item
+            name='branch'
+            rules={[
+                {
+                    required: true,
+                    message: 'Vui lòng chọn một chi nhánh',
+                },
+            ]}
+        >
             <Radio.Group
                 style={{ width: '100%' }}
                 value={selectedBranch ?? undefined}

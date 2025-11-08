@@ -14,13 +14,18 @@ const BarberSelect = ({
     employeeImgHairs: EmployeeImgHairDTO[];
 }) => (
     <>
-        <Typography.Title
-            level={5}
-            style={{ color: 'white', marginBottom: 16 }}
-        >
+        <Typography.Title level={5} style={{ color: 'white', marginBottom: 16 }}>
             Chọn kỹ thuật viên
         </Typography.Title>
-        <Form.Item name='barber'>
+        <Form.Item
+            name='barber'
+            rules={[
+                {
+                    required: true,
+                    message: 'Vui lòng chọn kỹ thuật viên',
+                },
+            ]}
+        >
             <div style={{ display: 'flex', gap: '20px' }}>
                 <div style={{ flex: '0 0 180px' }}>
                     <Radio.Group
@@ -42,7 +47,7 @@ const BarberSelect = ({
                                         marginBottom: '8px',
                                     }}
                                 >
-                                    {barber.userDTO?.fullName}
+                                    {barber.nickName}
                                 </Radio>
                             ))}
                         </Space>
@@ -64,9 +69,8 @@ const BarberSelect = ({
                     >
                         <img
                             src={
-                                barbers?.find(
-                                    b => b.employeeId === selectedBarber
-                                )?.avatarUrl || 'default-avatar.jpg'
+                                barbers?.find(b => b.employeeId === selectedBarber)
+                                    ?.avatarUrl || 'default-avatar.jpg'
                             }
                             alt='Barber Avatar'
                             style={{
@@ -118,11 +122,7 @@ const BarberSelect = ({
                                                     cursor: 'pointer',
                                                 }}
                                                 preview={{
-                                                    mask: (
-                                                        <span>
-                                                            Xem chi tiết
-                                                        </span>
-                                                    ),
+                                                    mask: <span>Xem chi tiết</span>,
                                                 }}
                                             />
                                         </Card>

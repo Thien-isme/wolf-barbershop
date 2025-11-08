@@ -11,9 +11,7 @@ const ServiceSelect = ({
     setSelectedServices: (ids: number[]) => void;
 }) => {
     const selectedServiceObjects = selectedServices
-        .map(id =>
-            serviceTypes.flatMap(t => t.services).find(s => s.serviceId === id)
-        )
+        .map(id => serviceTypes.flatMap(t => t.services).find(s => s.serviceId === id))
         .filter(Boolean);
 
     const totalPrice = selectedServiceObjects.reduce(
@@ -25,6 +23,14 @@ const ServiceSelect = ({
         0
     );
 
+    // Tạo hàm format tiền
+    const formatCurrency = (amount: number) => {
+        return amount.toLocaleString('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        });
+    };
+
     return (
         <Card
             style={{
@@ -35,10 +41,7 @@ const ServiceSelect = ({
             }}
             bodyStyle={{ padding: 16, position: 'relative' }}
         >
-            <Typography.Title
-                level={5}
-                style={{ color: 'white', marginBottom: 8 }}
-            >
+            <Typography.Title level={5} style={{ color: 'white', marginBottom: 8 }}>
                 Chọn dịch vụ
             </Typography.Title>
             <Select
@@ -71,7 +74,7 @@ const ServiceSelect = ({
                                 >
                                     <span>{service.serviceName}</span>
                                     <span style={{ fontWeight: 600 }}>
-                                        {service.price}k
+                                        {formatCurrency(service.price)}
                                     </span>
                                 </div>
                             </Select.Option>
@@ -117,7 +120,7 @@ const ServiceSelect = ({
                                     fontSize: 18,
                                 }}
                             >
-                                {found.price}k
+                                {formatCurrency(found.price)}
                             </span>
                             <Button
                                 danger
@@ -132,9 +135,7 @@ const ServiceSelect = ({
                                 }}
                                 onClick={() =>
                                     setSelectedServices(
-                                        selectedServices.filter(
-                                            sid => sid !== id
-                                        )
+                                        selectedServices.filter(sid => sid !== id)
                                     )
                                 }
                             >
@@ -153,10 +154,7 @@ const ServiceSelect = ({
                     }}
                 >
                     Tạm tính:{' '}
-                    <span style={{ fontWeight: 700 }}>
-                        {' '}
-                        {totalPrice.toLocaleString()} vnđ
-                    </span>
+                    <span style={{ fontWeight: 700 }}> {formatCurrency(totalPrice)}</span>
                 </div>
                 <div
                     style={{
@@ -166,10 +164,7 @@ const ServiceSelect = ({
                     }}
                 >
                     Tổng tiền:{' '}
-                    <span style={{ fontWeight: 700 }}>
-                        {' '}
-                        {totalPrice.toLocaleString()} vnđ
-                    </span>
+                    <span style={{ fontWeight: 700 }}> {formatCurrency(totalPrice)}</span>
                 </div>
                 <div
                     style={{
@@ -179,9 +174,7 @@ const ServiceSelect = ({
                     }}
                 >
                     Thời lượng dự kiến:{' '}
-                    <span style={{ fontWeight: 700 }}>
-                        {totalDuration} Phút
-                    </span>
+                    <span style={{ fontWeight: 700 }}>{totalDuration} Phút</span>
                 </div>
             </div>
         </Card>
