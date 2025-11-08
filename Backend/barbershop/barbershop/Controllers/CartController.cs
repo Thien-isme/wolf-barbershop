@@ -43,5 +43,27 @@ namespace barbershop.Controllers
             var response = await _cartService.CountProductInCart(userId);
             return Ok(response);
         }
+
+        [HttpPatch("PlusQuantityInCart")]
+        public async Task<IActionResult> UpdateQuantityInCart(PlusOrSubQuantityProductInCartRequest request)
+        {
+            var response = await _cartService.PlusQuantityInCart(request);
+            return Ok(response);
+        }
+
+
+        [HttpPatch("SubQuantityInCart")]
+        public async Task<IActionResult> SubQuantityInCart(PlusOrSubQuantityProductInCartRequest request)
+        {
+            var response = await _cartService.SubQuantityInCart(request);
+            return Ok(response);
+        }
+
+        [HttpDelete("RemoveProductInCart")]
+        public async Task<IActionResult> RemoveProductInCart(long cartId)
+        {
+            var response = await _cartService.RemoveProductInCart(cartId);
+            return Ok(response);
+        }
     }
 }

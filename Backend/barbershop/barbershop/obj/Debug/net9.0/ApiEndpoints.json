@@ -255,6 +255,38 @@
   },
   {
     "ContainingType": "barbershop.Controllers.CartController",
+    "Method": "UpdateQuantityInCart",
+    "RelativePath": "api/Cart/PlusQuantityInCart",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "barbershop.Models.RequestDTOs.PlusOrSubQuantityProductInCartRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.CartController",
+    "Method": "RemoveProductInCart",
+    "RelativePath": "api/Cart/RemoveProductInCart",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cartId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.CartController",
     "Method": "saveToCart",
     "RelativePath": "api/Cart/SaveToCart",
     "HttpMethod": "POST",
@@ -264,6 +296,22 @@
       {
         "Name": "saveToCartRequest",
         "Type": "barbershop.Models.RequestDTOs.SaveToCartRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.CartController",
+    "Method": "SubQuantityInCart",
+    "RelativePath": "api/Cart/SubQuantityInCart",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "barbershop.Models.RequestDTOs.PlusOrSubQuantityProductInCartRequest",
         "IsRequired": true
       }
     ],
