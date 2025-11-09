@@ -6,7 +6,7 @@ import type { SaveToCartRequest } from '../../../../types/RequestDTOs/SaveToCart
 import Cookie from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import styled from './style.module.scss';
-
+import Swal from 'sweetalert2';
 interface ProductBodyProps {
     products: ProductDTO[];
 }
@@ -31,7 +31,12 @@ const ProductList = ({ products }: ProductBodyProps) => {
             };
             SaveToCart(cartItem).then(res => {
                 if (res.status === 200) {
-                    message.success('Thêm vào giỏ hàng thành công');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Thêm vào giỏ hàng thành công',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
                 } else {
                     message.error('Thêm vào giỏ hàng thất bại');
                 }
@@ -116,26 +121,60 @@ const ProductList = ({ products }: ProductBodyProps) => {
                                         marginBottom: 12,
                                     }}
                                 >
-                                    {product.productPriceDTO
-                                        ? (
-                                              product.productPriceDTO
-                                                  .discountedPrice ??
-                                              product.productPriceDTO
-                                                  .originalPrice
-                                          )?.toLocaleString('vi-VN') + 'đ'
-                                        : 'Liên hệ'}
+                                    {product.productPriceDTO ? (
+                                        <>
+                                            {product.productPriceDTO.discountedPrice ? (
+                                                <>
+                                                    <span
+                                                        style={{
+                                                            textDecoration:
+                                                                'line-through',
+                                                            color: '#999',
+                                                            fontSize: 14,
+                                                            marginRight: 8,
+                                                        }}
+                                                    >
+                                                        {product.productPriceDTO.originalPrice?.toLocaleString(
+                                                            'vi-VN'
+                                                        )}
+                                                        đ
+                                                    </span>
+                                                    <span>
+                                                        {product.productPriceDTO.discountedPrice?.toLocaleString(
+                                                            'vi-VN'
+                                                        )}
+                                                        đ
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <span>
+                                                    {product.productPriceDTO.originalPrice?.toLocaleString(
+                                                        'vi-VN'
+                                                    )}
+                                                    đ
+                                                </span>
+                                            )}
+                                        </>
+                                    ) : (
+                                        'Liên hệ'
+                                    )}
                                 </div>
-                                <Button
-                                    type='default'
-                                    className={styled.addToCartBtn}
-                                    style={{
-                                        borderColor: '#1890ff',
-                                        color: '#1890ff',
-                                    }}
-                                    onClick={() => handleAddToCart(product)}
-                                >
-                                    Thêm vào giỏ
-                                </Button>
+
+                                {product.productPriceDTO &&
+                                    (product.productPriceDTO.originalPrice ||
+                                        product.productPriceDTO.discountedPrice) && (
+                                        <Button
+                                            type='default'
+                                            className={styled.addToCartBtn}
+                                            style={{
+                                                borderColor: '#1890ff',
+                                                color: '#1890ff',
+                                            }}
+                                            onClick={() => handleAddToCart(product)}
+                                        >
+                                            Thêm vào giỏ
+                                        </Button>
+                                    )}
                             </Card>
                         </Col>
                     ))}

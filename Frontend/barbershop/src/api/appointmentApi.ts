@@ -1,5 +1,5 @@
 import api from './axios';
-
+import type { UpdateStatusAppointmentRequest } from '../types/RequestDTOs/updateStatusAppointmentRequest';
 export const createAppointment = async (data: any) => {
     try {
         const res = await api.post('/Appointment/create', data);
@@ -28,6 +28,19 @@ export const getAppointmentFromToday = async () => {
         return res.data;
     } catch (error) {
         console.error('Lỗi khi lấy lịch hẹn từ hôm nay:', error);
+        throw error;
+    }
+};
+
+export const UpdateStatusAppointment = async (data: UpdateStatusAppointmentRequest) => {
+    try {
+        const res = await api.patch(
+            `/Appointment/UpdateStatusAppointment?appointmentId=${data.appointmentId}`,
+            { NewStatus: data.status }
+        );
+        return res.data;
+    } catch (error) {
+        console.error('Lỗi khi cập nhật trạng thái lịch hẹn:', error);
         throw error;
     }
 };

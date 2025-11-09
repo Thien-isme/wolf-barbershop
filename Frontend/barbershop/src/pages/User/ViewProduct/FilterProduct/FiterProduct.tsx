@@ -20,12 +20,7 @@ interface FilterProps {
     >;
 }
 
-function FilterProduct({
-    productTypes,
-    brands,
-    filter,
-    setFilter,
-}: FilterProps) {
+function FilterProduct({ productTypes, brands, filter, setFilter }: FilterProps) {
     const productTypeNames = productTypes;
     const brandNames = brands;
     return (
@@ -39,9 +34,7 @@ function FilterProduct({
                 }}
             >
                 <div style={{ marginBottom: 24 }}>
-                    <div style={{ fontWeight: 600, marginBottom: 8 }}>
-                        Khoảng giá
-                    </div>
+                    <div style={{ fontWeight: 600, marginBottom: 8 }}>Khoảng giá</div>
                     <Slider
                         range
                         min={0}
@@ -107,10 +100,7 @@ function FilterProduct({
                             }
                         >
                             {productTypeNames.map(c => (
-                                <Checkbox
-                                    key={c.productTypeId}
-                                    value={c.productTypeId}
-                                >
+                                <Checkbox key={c.productTypeId} value={c.productTypeId}>
                                     {c.productTypeName}
                                 </Checkbox>
                             ))}

@@ -136,14 +136,16 @@ const BookingPage: React.FC = () => {
     };
 
     const handleSubmit = async (formValues: any) => {
-        if (!formValues.phone) {
-            toast.error('Vui lòng nhập số điện thoại!');
-            return;
-        }
         if (!formValues.name) {
             toast.error('Vui lòng nhập họ và tên!');
             return;
         }
+
+        if (!formValues.phone) {
+            toast.error('Vui lòng nhập số điện thoại!');
+            return;
+        }
+
         if (!selectedBranch) {
             toast.error('Vui lòng chọn chi nhánh!');
             return;
@@ -152,16 +154,18 @@ const BookingPage: React.FC = () => {
             toast.error('Vui lòng chọn thợ cắt!');
             return;
         }
+
+        if (selectedServices.length === 0) {
+            toast.error('Vui lòng chọn dịch vụ!');
+            return;
+        }
+
         if (!selectedDate) {
             toast.error('Vui lòng chọn ngày!');
             return;
         }
         if (!selectedTime) {
             toast.error('Vui lòng chọn giờ!');
-            return;
-        }
-        if (selectedServices.length === 0) {
-            toast.error('Vui lòng chọn dịch vụ!');
             return;
         }
 

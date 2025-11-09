@@ -20,7 +20,7 @@ import Cookies from 'js-cookie';
 import ProductPage from './pages/User/ViewProduct/ProductPage';
 import { GetProductInCartsOfUser } from './api/cartApi';
 import CashierDashboard from './pages/Cashier/Dashboard/Dashboard';
-import AppointmentsManagement from './pages/Cashier/AppointmentsManagement/AppointmentsManagement';
+import AppointmentsPage from './pages/Cashier/AppointmentsManagement/AppointmentsPage';
 import InvoiceManagement from './pages/Cashier/Invoice/InvoiceManagement';
 const clientId =
     '136465399071-sbg4p7qhb3qc9dbv8t6qdsf3m6ud93cu.apps.googleusercontent.com';
@@ -109,10 +109,7 @@ function AppContent() {
                 <Route path='/admin/branch' element={<BranchManagement />} />
                 <Route path='/admin/product' element={<ProductManagement />} />
                 <Route path='/cashier' element={<CashierDashboard />} />
-                <Route
-                    path='/cashier/appointments'
-                    element={<AppointmentsManagement />}
-                />
+                <Route path='/cashier/appointments' element={<AppointmentsPage />} />
                 <Route path='/cashier/product' element={<CashierProductManagement />} />
                 <Route path='/cashier/invoice' element={<InvoiceManagement />} />
 

@@ -3,14 +3,18 @@ import { Table, DatePicker, Space, Button, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import SidebarLayout from '../Sidebar/SidebarLayout';
 import dayjs from 'dayjs';
-
-import { getAppointmentFromToday } from '../../../api/appointmentApi';
+import Swal from 'sweetalert2';
+import {
+    getAppointmentFromToday,
+    UpdateStatusAppointment,
+} from '../../../api/appointmentApi';
+import type { UpdateStatusAppointmentRequest } from '../../../types/RequestDTOs/updateStatusAppointmentRequest';
 import type { AppointmentDTO } from '../../../types/ResponseDTOs/appointmentDTO';
 import PaymentModal from './PaymentModal/PaymentModal';
 
 const { Title } = Typography;
 
-export default function AppointmentsManagement() {
+export default function AppointmentsPage() {
     const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs>(dayjs());
     const [appointments, setAppointments] = useState<AppointmentDTO[]>([]);
     const [modalVisible, setModalVisible] = useState<boolean>(false); // ✅ Rõ ràng type
@@ -78,9 +82,27 @@ export default function AppointmentsManagement() {
         }
     };
 
+    const handleUpdateStatus = async (appointmentId: number) => {
+        try {
+            const requestData: UpdateStatusAppointmentRequest = {
+                appointmentId,
+                status: 'CANCELLED',
+            };
+            const response = await UpdateStatusAppointment(requestData);
+            if (response.status === 200) {
+                fetchAppointments(); // Refresh danh sách sau khi cập nhật
+                Swal.fire('Thành công', 'Lịch hẹn đã được hủy thành công.', 'success');
+            } else {
+                console.error('Cập nhật trạng thái lịch hẹn thất bại:', response);
+            }
+        } catch (error) {
+            console.error('Lỗi khi cập nhật trạng thái lịch hẹn:', error);
+        }
+    };
+
     // Cập nhật tableData và thêm sort cho columns
     const tableData = appointments.map(a => ({
-        key: a.appointmentId,
+        appointmentId: a.appointmentId,
         appointmentDate: a.appointmentDate,
         appointmentTime: a.appointmentTime?.slice(0, 5) ?? '',
         customerName: a.userDTO?.fullName ?? '',
@@ -206,7 +228,7 @@ export default function AppointmentsManagement() {
             key: 'action',
             render: (_, record) => {
                 const appointment = appointments.find(
-                    a => a.appointmentId === record.key
+                    a => a.appointmentId === record.appointmentId
                 );
                 const status = appointment?.status;
 
@@ -251,7 +273,7 @@ export default function AppointmentsManagement() {
                             size='small'
                             onClick={() => {
                                 const item = appointments.find(
-                                    a => a.appointmentId === record.key
+                                    a => a.appointmentId === record.appointmentId
                                 );
                                 if (item) {
                                     // ✅ Kiểm tra null safety
@@ -266,7 +288,22 @@ export default function AppointmentsManagement() {
                             danger
                             size='small'
                             onClick={() => {
-                                console.log('Hủy appointment:', record.key);
+                                if (record.appointmentId) {
+                                    Swal.fire({
+                                        title: 'Xác nhận hủy lịch hẹn',
+                                        text: 'Bạn có chắc chắn muốn hủy lịch hẹn này?',
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#d33',
+                                        cancelButtonColor: '#3085d6',
+                                        confirmButtonText: 'Có, hủy lịch!',
+                                        cancelButtonText: 'Không',
+                                    }).then(result => {
+                                        if (result.isConfirmed && record.appointmentId) {
+                                            handleUpdateStatus(record.appointmentId);
+                                        }
+                                    });
+                                }
                             }}
                         >
                             Huỷ
