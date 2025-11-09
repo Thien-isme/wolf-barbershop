@@ -192,5 +192,51 @@ namespace barbershop.Services.implements
                 Data = null
             };
             }
+
+        public async Task<BaseResponse>? UpdateStatusAppointment(long appointmentId, UpdateStatusAppointmentRequest request)
+        {
+            try
+            {
+                var appointment = await appointmentRepository.GetAppointmentById(appointmentId);
+                if (appointment == null)
+                {
+                    return new BaseResponse
+                    {
+                        Status = 404,
+                        MessageShow = "Appointment not found.",
+                        Data = null
+                    };
+                }
+
+                // Update the appointment status
+                appointment.Status = request.NewStatus;
+                var isUpdated = await appointmentRepository.UpdateStatus(appointment.AppointmentId, appointment.Status);
+                if (isUpdated)
+                {
+                    return new BaseResponse
+                    {
+                        Status = 200,
+                        MessageShow = "Appointment status updated successfully.",
+                        Data = null
+                    };
+                }
+
+                return new BaseResponse
+                {
+                    Status = 400,
+                    MessageShow = "Failed to update appointment status.",
+                    Data = null
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse {
+                    Status = 500,
+                    MessageShow = "An error occurred while updating the appointment status.",
+                    MessageHide = ex.Message,
+                    Data = null
+                };
+            }
+        }
     }
 }

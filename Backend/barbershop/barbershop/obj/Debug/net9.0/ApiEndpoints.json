@@ -47,6 +47,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "barbershop.Controllers.AppointmentController",
+    "Method": "UpdateStatusAppointment",
+    "RelativePath": "api/Appointment/UpdateStatusAppointment",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "appointmentId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "request",
+        "Type": "barbershop.Models.RequestDTOs.UpdateStatusAppointmentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "barbershop.Controllers.AuthController",
     "Method": "AutoLogin",
     "RelativePath": "api/Auth/auto-login",

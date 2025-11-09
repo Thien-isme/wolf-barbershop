@@ -40,5 +40,11 @@ namespace barbershop.Controllers
             return Ok(appointments);
         }
 
+        [HttpPatch("UpdateStatusAppointment")]
+        public async Task<IActionResult> UpdateStatusAppointment(long appointmentId, [FromBody] UpdateStatusAppointmentRequest request)
+        {
+            var result = await appointmentService.UpdateStatusAppointment(appointmentId, request);
+            return Ok(result);
+        }
     }
 }

@@ -63,5 +63,14 @@ namespace barbershop.Repositorys.implements
             _context.Appointments.Update(appointment);
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<Appointment?> GetAppointmentById(long appointmentId)
+        {
+            return await _context.Appointments
+                .Include(a => a.User)
+                .Include(a => a.Barber)
+                .Include(a => a.AppointmentServices)
+                .FirstOrDefaultAsync(a => a.AppointmentId == appointmentId);
+        }
     }
 }
