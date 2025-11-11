@@ -16,6 +16,8 @@ import { getBranchIdOfCashier, getBarbersInBranch } from '../../../../api/employ
 import type { EmployeeDTO } from '../../../../types/ResponseDTOs/employeeDTO';
 import PaymentMethod from '../../AppointmentsManagement/PaymentModal/PaymentMethod/PaymentMethod';
 import { createInvoiceNoBooking } from '../../../../api/invoiceApi';
+import Swal from 'sweetalert2';
+
 interface ServiceItem {
     key: number;
     name: string;
@@ -294,61 +296,132 @@ function InvoiceManagementBody() {
     // Xử lý thanh toán
     const handlePayment = () => {
         if (!customerPhone) {
-            message.warning('Vui lòng nhập số điện thoại khách hàng');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Thông báo',
+                text: 'Vui lòng nhập số điện thoại khách hàng',
+                confirmButtonColor: '#4169E1',
+            });
             return;
         }
 
         if (isNewCustomer && !customerName.trim()) {
-            message.warning('Vui lòng nhập tên khách hàng');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Thông báo',
+                text: 'Vui lòng nhập tên khách hàng',
+                confirmButtonColor: '#4169E1',
+            });
             return;
         }
 
         if (!selectedBarber) {
-            message.warning('Vui lòng chọn Barber');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Thông báo',
+                text: 'Vui lòng chọn Barber',
+                confirmButtonColor: '#4169E1',
+            });
             return;
         }
 
         if (selectedServices.length === 0) {
-            message.warning('Vui lòng chọn ít nhất một dịch vụ hoặc sản phẩm');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Thông báo',
+                text: 'Vui lòng chọn ít nhất một dịch vụ hoặc sản phẩm',
+                confirmButtonColor: '#4169E1',
+            });
             return;
         }
 
         if (!selectedPaymentMethodId) {
-            message.warning('Vui lòng chọn phương thức thanh toán');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Thông báo',
+                text: 'Vui lòng chọn phương thức thanh toán',
+                confirmButtonColor: '#4169E1',
+            });
             return;
         }
 
-        // TODO: Gọi API tạo hóa đơn
+        // Hiển thị dialog xác nhận
+        Swal.fire({
+            title: 'Xác nhận thanh toán',
+            html: `
+            <div style="text-align: left;">
+                <p><strong>Khách hàng:</strong> ${customerName} (${customerPhone})</p>
+                <p><strong>Barber:</strong> ${selectedBarber.userDTO?.userName}</p>
+                <p><strong>Tổng tiền:</strong> <span style="color: #ff5722; font-weight: bold;">${total.toLocaleString(
+                    'vi-VN'
+                )}đ</span></p>
+                <p style="margin-top: 12px; color: #666;">Bạn có chắc chắn khách hàng đã thanh toán?</p>
+            </div>
+        `,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#4169E1',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Có, xác nhận thanh toán',
+            cancelButtonText: 'Hủy',
+        }).then(async result => {
+            if (result.isConfirmed) {
+                try {
+                    const payload = {
+                        isNewCustomer,
+                        customerPhone,
+                        customerName,
+                        barberId: selectedBarber.employeeId,
+                        products: selectedServices
+                            .filter(s => s.type === 'SP')
+                            .map(s => ({
+                                productId: s.productId,
+                                quantity: s.quantity,
+                                sizeId: s.sizeId,
+                                price: s.price,
+                            })),
+                        serviceIds: selectedServices
+                            .filter(s => s.type === 'DV')
+                            .map(s => s.serviceId),
+                        paymentMethodId: selectedPaymentMethodId,
+                        total,
+                    };
 
-        const payload = {
-            isNewCustomer,
-            customerPhone,
-            customerName,
-            barberId: selectedBarber.employeeId,
-            products: selectedServices
-                .filter(s => s.type === 'SP')
-                .map(s => ({
-                    productId: s.productId,
-                    quantity: s.quantity,
-                    sizeId: s.sizeId,
-                    price: s.price,
-                })),
-            serviceIds: selectedServices
-                .filter(s => s.type === 'DV')
-                .map(s => s.serviceId),
-            paymentMethodId: selectedPaymentMethodId,
-            total,
-        };
+                    await createInvoiceNoBooking(payload);
 
-        createInvoiceNoBooking(payload)
-            .then(() => {
-                console.log('Invoice created successfully');
-            })
-            .catch(error => {
-                console.error('Error creating invoice:', error);
-            });
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Thành công!',
+                        text: 'Hóa đơn đã được tạo và thanh toán thành công!',
+                        confirmButtonColor: '#4169E1',
+                    }).then(() => {
+                        // Reset form
+                        setCustomerPhone('');
+                        setCustomerName('');
+                        setSelectedCustomer(null);
+                        setSelectedBarber(null);
+                        setSelectedServices([]);
+                        setSelectedPaymentMethodId(undefined);
+                        setIsNewCustomer(false);
+                    });
+                } catch (error) {
+                    console.error('Error creating invoice:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!',
+                        text: 'Có lỗi xảy ra khi tạo hóa đơn. Vui lòng thử lại.',
+                        confirmButtonColor: '#4169E1',
+                    });
+                }
+            }
+        });
+    };
 
-        message.success('Khách hàng đã thanh toán thành công!');
+    // Thêm hàm xử lý input SĐT
+    const handlePhoneInput = (value: string) => {
+        // Chỉ cho phép nhập số
+        const numbersOnly = value.replace(/[^0-9]/g, '');
+        handleSearchCustomer(numbersOnly);
     };
 
     return (
@@ -388,7 +461,7 @@ function InvoiceManagementBody() {
                                     value: customer.phone || '',
                                     label: `${customer.phone} - ${customer.fullName}`,
                                 }))}
-                                onSearch={handleSearchCustomer}
+                                onSearch={handlePhoneInput} // Sửa từ handleSearchCustomer
                                 onSelect={handleSelectCustomer}
                                 value={customerPhone}
                                 placeholder='Nhập số điện thoại khách hàng'

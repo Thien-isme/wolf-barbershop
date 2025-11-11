@@ -25,4 +25,5 @@ export type ProductDTO = {
     //Thêm
     sizeName?: string;
     quantity?: number;
+    branchesProductId?: number;
 };

@@ -45,3 +45,15 @@ export const SubQuantityProduct = async (
             throw err;
         });
 };
+
+export const RemoveProductInBranch = async (branchesProductId: number) => {
+    return await api
+        .patch(
+            `/BranchesProduct/RemoveProductInBranch?branchesProductId=${branchesProductId}`
+        )
+        .then(res => res.data)
+        .catch(err => {
+            console.error('Lỗi khi xóa sản phẩm trong chi nhánh:', err);
+            throw err;
+        });
+};

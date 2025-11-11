@@ -3,6 +3,8 @@ import type { ColumnsType } from 'antd/es/table';
 import type { ProductDTO } from '../../../../types/ResponseDTOs/productDTO';
 import { useState } from 'react';
 import ProductQuantityModal from '../ProductQuantityModal/ProductQuantityModal';
+import { RemoveProductInBranch } from '../../../../api/branchesProductApi';
+import Swal from 'sweetalert2';
 
 interface ProductTableProps {
     productList: ProductDTO[];
@@ -53,9 +55,40 @@ export default function ProductTable({ productList, reloadProducts }: ProductTab
         reloadProducts();
     };
 
+    const handleRemove = async (record: (typeof tableData)[0]) => {
+        Swal.fire({
+            title: 'Xác nhận xóa',
+            text: `Bạn có chắc chắn muốn xóa sản phẩm "${record.productName}"?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Có, xóa!',
+            cancelButtonText: 'Không',
+        }).then(async result => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await RemoveProductInBranch(record.key as number);
+                    if (response.status === 200) {
+                        Swal.fire(
+                            'Đã xóa!',
+                            'Sản phẩm đã được xóa thành công.',
+                            'success'
+                        );
+                        reloadProducts();
+                    } else {
+                        Swal.fire('Lỗi!', 'Có lỗi xảy ra khi xóa sản phẩm.', 'error');
+                    }
+                } catch (error) {
+                    Swal.fire('Lỗi!', 'Có lỗi xảy ra khi xóa sản phẩm.', 'error');
+                }
+            }
+        });
+    };
+
     // Chuẩn bị data cho table - SỬ DỤNG ĐÚNG STRUCTURE TỪ API
     const tableData = productList.map(product => ({
-        key: `${product.productId}-${product.sizeName || 'no-size'}`,
+        key: product.branchesProductId,
         productId: product.productId,
         productName: product.productName,
         productImg: product.productImg,
@@ -208,9 +241,21 @@ export default function ProductTable({ productList, reloadProducts }: ProductTab
             width: 100,
             align: 'center',
             render: (_, record) => (
-                <Button type='primary' onClick={() => showModal(record)}>
-                    Điều chỉnh số lượng
-                </Button>
+                <>
+                    <Button type='primary' onClick={() => showModal(record)}>
+                        Điều chỉnh số lượng
+                    </Button>
+                    <Button
+                        style={{
+                            backgroundColor: '#ff3300ff',
+                            color: '#fff',
+                            marginLeft: 8,
+                        }}
+                        onClick={() => handleRemove(record)}
+                    >
+                        Xóa khỏi danh sách
+                    </Button>
+                </>
             ),
         },
     ];

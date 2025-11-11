@@ -19,7 +19,7 @@ import ProductManagement from './pages/Admin/ProductManagement/ProductManagement
 import Cookies from 'js-cookie';
 import ProductPage from './pages/User/ViewProduct/ProductPage';
 import { GetProductInCartsOfUser } from './api/cartApi';
-import CashierDashboard from './pages/Cashier/Dashboard/Dashboard';
+import { CashierDashboard } from './pages/Cashier/Dashboard/Dashboard';
 import AppointmentsPage from './pages/Cashier/AppointmentsManagement/AppointmentsPage';
 import InvoiceManagement from './pages/Cashier/Invoice/InvoiceManagement';
 const clientId =

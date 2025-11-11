@@ -34,7 +34,9 @@ export default function ProductManagement() {
     const reloadProducts = async () => {
         try {
             const res = await GetAllProductInBranch(); // hoặc API thực của bạn
-            setProductList(res.data || []);
+            const products = res.data as ProductDTO[];
+            const activeProducts = products.filter(product => product.isActive);
+            setProductList(activeProducts);
         } catch (error) {
             console.error('Failed to load products', error);
         }
@@ -168,7 +170,10 @@ export default function ProductManagement() {
                         Hiển thị {filteredProducts.length} / {productList.length} sản phẩm
                     </div>
 
-                    <CashierProductTable productList={filteredProducts} reloadProducts={reloadProducts} />
+                    <CashierProductTable
+                        productList={filteredProducts}
+                        reloadProducts={reloadProducts}
+                    />
 
                     {/* Hiển thị message khi không có kết quả */}
                     {filteredProducts.length === 0 && (
