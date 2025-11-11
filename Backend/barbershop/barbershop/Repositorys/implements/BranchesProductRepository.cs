@@ -12,6 +12,21 @@ namespace barbershop.Repositorys.implements
             barbershopContext = new BarbershopContext();
         }
 
+        public async void BeginTransaction()
+        {
+            await barbershopContext.Database.BeginTransactionAsync();
+        }
+
+        public async Task CommitTransaction()
+        {
+            await barbershopContext.Database.CommitTransactionAsync();
+        }
+
+        public async Task RollbackTransaction()
+        {
+            await barbershopContext.Database.RollbackTransactionAsync();
+        }
+
         public async Task<List<BranchesProduct>?> GetAllProductInBranch(int branchId)
         {
             return barbershopContext.BranchesProducts
@@ -20,7 +35,7 @@ namespace barbershop.Repositorys.implements
                 .Include(bp => bp.Product)
                     .ThenInclude(p => p.ProductType)
                 .Include(bp => bp.Size)
-                .Where(bp => bp.BranchId == branchId && bp.Quantity > 0)
+                .Where(bp => bp.BranchId == branchId)
                 .ToList();
         }
 
@@ -64,6 +79,19 @@ namespace barbershop.Repositorys.implements
             barbershopContext.BranchesProducts.Update(branchProduct);
             bool saveSuccess = await barbershopContext.SaveChangesAsync() > 0;
             return saveSuccess;
+        }
+
+        public async Task<bool> RemoveProductInBranch(int branchesProductId)
+        {
+            var branchProduct = await barbershopContext.BranchesProducts.FindAsync(branchesProductId);
+            if (branchProduct == null)
+            {
+                return false;
+            }
+
+            branchProduct.IsActive = false;
+            barbershopContext.BranchesProducts.Update(branchProduct);
+            return await barbershopContext.SaveChangesAsync() > 0;
         }
     }
 }

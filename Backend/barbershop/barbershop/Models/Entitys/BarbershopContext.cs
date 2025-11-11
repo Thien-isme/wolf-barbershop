@@ -214,6 +214,9 @@ public partial class BarbershopContext : DbContext
 
             entity.Property(e => e.BranchesProductId).HasColumnName("branches_product_id");
             entity.Property(e => e.BranchId).HasColumnName("branch_id");
+            entity.Property(e => e.IsActive)
+                .HasDefaultValue(true)
+                .HasColumnName("is_active");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
             entity.Property(e => e.Quantity).HasColumnName("quantity");
             entity.Property(e => e.SizeId)

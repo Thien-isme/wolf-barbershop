@@ -78,6 +78,21 @@ namespace barbershop.Controllers
             return Ok(response);
         }
 
+        [Authorize]
+        [HttpPatch("RemoveProductInBranch")]
+        public async Task<IActionResult> RemoveProductInBranch(int branchesProductId)
+        {
+            var userId = Request.Headers["Userid"].FirstOrDefault();
+
+            if (userId == null)
+            {
+                return BadRequest(string.Empty);
+            }
+
+            var response = await branchesProductService.RemoveProductInBranch(branchesProductId);
+            return Ok(response);
+        }
+
 
     }
 }

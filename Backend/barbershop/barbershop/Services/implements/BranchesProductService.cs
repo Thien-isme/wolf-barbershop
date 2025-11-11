@@ -65,7 +65,8 @@ namespace barbershop.Services.implements
                     Quantity = bp.Quantity,
                     ProductTypeId = bp.Product.ProductTypeId,
                     ProductTypeName = bp.Product.ProductType.ProductTypeName,
-
+                    BranchesProductId = bp.BranchesProductId,
+                    IsActive = bp.IsActive
                 }).ToList();
 
                 return new BaseResponse
@@ -283,6 +284,47 @@ namespace barbershop.Services.implements
                     Data = null
                 };
             }
+        }
+
+        public async Task<BaseResponse?> RemoveProductInBranch(int branchesProductId)
+        {
+            try
+            {
+                branchesProductRepository.BeginTransaction();
+                var isDeleteSuccess = await branchesProductRepository.RemoveProductInBranch(branchesProductId);
+                if (isDeleteSuccess == true)
+                {
+                    await branchesProductRepository.CommitTransaction();
+                    return new BaseResponse
+                    {
+                        Status = 200,
+                        MessageShow = "Xóa sản phẩm trong chi nhánh thành công!",
+                        MessageHide = "Xóa sản phẩm trong chi nhánh thành công!",
+                        Data = null
+                    };
+                }
+                else
+                {
+                    await branchesProductRepository.RollbackTransaction();
+                    return new BaseResponse
+                    {
+                        Status = 500,
+                        MessageShow = "Xóa sản phẩm trong chi nhánh thất bại!",
+                        MessageHide = "Xóa sản phẩm trong chi nhánh thất bại!",
+                        Data = null
+                    };
+                }
+            }
+            catch(Exception ex)
+            {
+                return new BaseResponse
+                {
+                    Status = 500,
+                    MessageShow = "Hệ thống có lỗi, Vui lòng thử lại trong giây lát!",
+                    MessageHide = ex.Message,
+                    Data = null
+                };
+            } 
         }
     }
 }

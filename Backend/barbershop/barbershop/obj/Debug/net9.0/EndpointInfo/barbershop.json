@@ -417,6 +417,28 @@
         }
       }
     },
+    "/api/BranchesProduct/RemoveProductInBranch": {
+      "patch": {
+        "tags": [
+          "BranchesProduct"
+        ],
+        "parameters": [
+          {
+            "name": "branchesProductId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Brand/getAllBrands": {
       "get": {
         "tags": [

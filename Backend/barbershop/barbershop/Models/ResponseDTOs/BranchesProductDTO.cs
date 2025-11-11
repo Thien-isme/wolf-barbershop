@@ -13,6 +13,7 @@ namespace barbershop.Models.ResponseDTOs
         public int? Quantity { get; set; }
 
         public int? SizeId { get; set; }
+        public bool? IsActive { get; set; }
 
         public DateTime? UpdateAt { get; set; }
 
@@ -21,5 +22,6 @@ namespace barbershop.Models.ResponseDTOs
         public  ProductDTO? ProductDTO { get; set; }
 
         public  SizeDTO? SizeDTO { get; set; }
+
     }
 }

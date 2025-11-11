@@ -24,5 +24,6 @@ namespace barbershop.Models.ResponseDTOs
         public int? Quantity { get; set; }
 
         public string? ProductTypeName { get; set; }
+        public int? BranchesProductId { get; set; }
     }
 }

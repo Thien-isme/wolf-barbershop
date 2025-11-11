@@ -17,6 +17,8 @@ public partial class BranchesProduct
 
     public DateTime? UpdateAt { get; set; }
 
+    public bool? IsActive { get; set; }
+
     public virtual Branch? Branch { get; set; }
 
     public virtual Product? Product { get; set; }

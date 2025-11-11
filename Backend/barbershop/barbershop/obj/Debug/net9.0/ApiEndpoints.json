@@ -230,6 +230,22 @@
   },
   {
     "ContainingType": "barbershop.Controllers.BranchesProductController",
+    "Method": "RemoveProductInBranch",
+    "RelativePath": "api/BranchesProduct/RemoveProductInBranch",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "branchesProductId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.BranchesProductController",
     "Method": "SubQuantityProduct",
     "RelativePath": "api/BranchesProduct/SubQuantityProduct",
     "HttpMethod": "POST",
