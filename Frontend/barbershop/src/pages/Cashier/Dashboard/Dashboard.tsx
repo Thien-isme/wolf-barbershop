@@ -22,9 +22,7 @@ interface DashboardData {
 
 // Dữ liệu mặc định
 const DEFAULT_DATA: DashboardData = {
-    revenueByDay: [
-        5_200_000, 6_100_000, 4_800_000, 7_300_000, 8_500_000, 9_200_000, 5_900_000,
-    ],
+    revenueByDay: [5_200_000, 6_100_000, 4_800_000, 7_300_000, 8_500_000, 9_200_000],
     totalBookings: 168,
     totalCustomers: 142,
     totalBarbers: 8,
@@ -82,7 +80,7 @@ export const CashierDashboard: React.FC = () => {
                     <Row gutter={[16, 16]} style={{ marginBottom: '24px' }}>
                         <Col xs={24} sm={12} lg={6}>
                             <MetricCard
-                                title='Tổng Lượt Đặt Lịch Trước'
+                                title='Tổng Lượt Đặt Lịch Trong Tuần'
                                 value={data.totalBookings}
                                 icon={<ShoppingOutlined style={{ color: '#1677ff' }} />}
                             />
@@ -111,9 +109,21 @@ export const CashierDashboard: React.FC = () => {
                             />
                         </Col>
                     </Row>
-
-                    {/* Second Row - Top Barber Card */}
                     <Row gutter={[16, 16]} style={{ marginBottom: '24px' }}>
+                        <Col xs={24} sm={12} lg={6}>
+                            <MetricCard
+                                title='Tổng Lượt Đặt Lịch Hôm Nay'
+                                value={data.totalBookings}
+                                icon={<ShoppingOutlined style={{ color: '#1677ff' }} />}
+                            />
+                        </Col>
+                        <Col xs={24} sm={12} lg={6}>
+                            <MetricCard
+                                title='Tổng Khách Phục Vụ Hôm Nay'
+                                value={data.totalCustomers}
+                                icon={<UserOutlined style={{ color: '#52c41a' }} />}
+                            />
+                        </Col>
                         <Col xs={24} sm={12} lg={6}>
                             <TopBarberCard
                                 name={data.topBarber.name}
