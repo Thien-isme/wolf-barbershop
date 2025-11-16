@@ -61,10 +61,10 @@ namespace barbershop.Services.implements
                         OriginalPrice = pp.OriginalPrice
                     }).FirstOrDefault(),
                     SizeId = bp.SizeId,
-                    SizeName = bp.Size.SizeName,
+                    SizeName = bp.Size?.SizeName,
                     Quantity = bp.Quantity,
                     ProductTypeId = bp.Product.ProductTypeId,
-                    ProductTypeName = bp.Product.ProductType.ProductTypeName,
+                    ProductTypeName = bp.Product?.ProductType?.ProductTypeName,
                     BranchesProductId = bp.BranchesProductId,
                     IsActive = bp.IsActive
                 }).ToList();

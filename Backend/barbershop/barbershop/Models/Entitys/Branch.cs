@@ -28,4 +28,6 @@ public partial class Branch
     public virtual ICollection<BranchesProduct> BranchesProducts { get; set; } = new List<BranchesProduct>();
 
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
+
+    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 }

@@ -34,10 +34,10 @@ namespace barbershop.Repositorys.implements
             return timeBookes;
         }
 
-        public async Task<List<Appointment>?> GetAppointmentOfBranchFromTo(int value, DateTime from, DateTime to)
+        public async Task<List<Appointment>?> GetAppointmentOfBranchFromTo(int branchId, DateTime from, DateTime to)
         {
             return await _context.Appointments
-                .Where(a => a.BranchId == value
+                .Where(a => a.BranchId == branchId
                     && a.AppointmentDate.HasValue
                     && a.AppointmentDate.Value >= DateOnly.FromDateTime(from)
                     && a.AppointmentDate.Value <= DateOnly.FromDateTime(to)
@@ -71,6 +71,24 @@ namespace barbershop.Repositorys.implements
                 .Include(a => a.Barber)
                 .Include(a => a.AppointmentServices)
                 .FirstOrDefaultAsync(a => a.AppointmentId == appointmentId);
+        }
+
+        public async Task<int?> GetTotalBookingFromToAsync(int? branchId, DateOnly from, DateOnly to)
+        {
+            return await _context.Appointments
+                .Where(a => a.BranchId == branchId
+                    && a.AppointmentDate >= from
+                    && a.AppointmentDate <= to)
+                .CountAsync();
+
+        }
+
+        public async Task<int?> findBarberIdOfAppointment(long appointmentId)
+        {
+            return await _context.Appointments
+                .Where(a => a.AppointmentId == appointmentId)
+                .Select(a => a.BarberId)
+                .FirstOrDefaultAsync();
         }
     }
 }

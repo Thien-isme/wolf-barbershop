@@ -1,3 +1,4 @@
+using barbershop.Repositorys.implements;
 using barbershop.Services.implements;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -19,6 +20,13 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<CartService>();
+
+// Register repositories and dashboard service (add these before `var app = builder.Build();`)
+builder.Services.AddScoped<AppointmentRepository>();
+builder.Services.AddScoped<EmployeeRepository>();
+builder.Services.AddScoped<InvoiceRepository>();
+builder.Services.AddScoped<BranchesProductRepository>();
+builder.Services.AddScoped<DashboardService>();
 
 // Cấu hình xác thực JWT
 builder.Services.AddAuthentication(options =>

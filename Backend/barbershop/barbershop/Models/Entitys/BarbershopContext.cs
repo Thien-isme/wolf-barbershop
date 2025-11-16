@@ -426,6 +426,7 @@ public partial class BarbershopContext : DbContext
             entity.Property(e => e.InvoiceId).HasColumnName("invoice_id");
             entity.Property(e => e.AppointmentId).HasColumnName("appointment_id");
             entity.Property(e => e.BarberId).HasColumnName("barber_id");
+            entity.Property(e => e.BranchId).HasColumnName("branch_id");
             entity.Property(e => e.CashierId).HasColumnName("cashier_id");
             entity.Property(e => e.CreatedAt)
                 .HasPrecision(0)
@@ -455,6 +456,10 @@ public partial class BarbershopContext : DbContext
             entity.HasOne(d => d.Barber).WithMany(p => p.InvoiceBarbers)
                 .HasForeignKey(d => d.BarberId)
                 .HasConstraintName("FK_Employee_invoices");
+
+            entity.HasOne(d => d.Branch).WithMany(p => p.Invoices)
+                .HasForeignKey(d => d.BranchId)
+                .HasConstraintName("FK_Invoices_Branch");
 
             entity.HasOne(d => d.Cashier).WithMany(p => p.InvoiceCashiers)
                 .HasForeignKey(d => d.CashierId)

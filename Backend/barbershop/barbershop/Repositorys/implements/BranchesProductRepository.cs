@@ -53,7 +53,7 @@ namespace barbershop.Repositorys.implements
 
         
 
-        public async Task<bool> ReduceQuantityProductSelled(int branchId, int productId, int quantity, int sizeId)
+        public async Task<bool> ReduceQuantityProductSelled(int? branchId, int productId, int quantity, int sizeId)
         {
             var productInBranch = await barbershopContext.BranchesProducts
                 .FirstOrDefaultAsync(bp => bp.BranchId == branchId && bp.ProductId == productId && bp.SizeId == sizeId);
@@ -92,6 +92,13 @@ namespace barbershop.Repositorys.implements
             branchProduct.IsActive = false;
             barbershopContext.BranchesProducts.Update(branchProduct);
             return await barbershopContext.SaveChangesAsync() > 0;
+        }
+
+        public async Task<int?> GetTotalProductInBranchAsync(int? brandId) { 
+            var totalProducts = await barbershopContext.BranchesProducts
+                .Where(bp => bp.BranchId == brandId && bp.IsActive == true)
+                .CountAsync();
+            return totalProducts;
         }
     }
 }

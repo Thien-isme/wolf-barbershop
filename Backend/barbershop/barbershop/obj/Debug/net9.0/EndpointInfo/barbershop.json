@@ -590,6 +590,18 @@
         }
       }
     },
+    "/dashboard/getInfoDashboard": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Employee/GetBarbers": {
       "get": {
         "tags": [

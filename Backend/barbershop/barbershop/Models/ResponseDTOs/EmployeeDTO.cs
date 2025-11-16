@@ -17,5 +17,9 @@ namespace barbershop.Models.ResponseDTOs
         public string? NickName { get; set; }
         public string? LocationDetail { get; set; }
         public UserDTO? UserDTO { get; set; }
+
+
+        // Thêm
+        public int? TotalSlot { get; set; }
     }
 }

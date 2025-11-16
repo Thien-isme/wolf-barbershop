@@ -66,7 +66,23 @@ namespace barbershop.Repositorys.implements
             return employee?.BranchId ?? 0;
         }
 
-        
+        public async Task<int?> GetTotalBarberInBranchAsync(int? brandId)
+        {
+            if (brandId == null) return null;
+
+            return await _context.Employees
+                .Join(_context.EmployeeSkills, e => e.EmployeeId, es => es.EmployeeId, (e, es) => new { e, es })
+                .Where(x => x.e.BranchId == brandId && x.e.IsActive == true && x.es.SkillId == 1)
+                .CountAsync();
+        }
+
+        public async Task<Employee?> GetEmployeeById(int? employeeId)
+        {
+            return await _context.Employees
+                .Include(e => e.User)
+                .FirstOrDefaultAsync(e => e.EmployeeId == employeeId && e.IsActive == true);
+        }
+
         // TODO: Implement repository methods for Employee
     }
 }

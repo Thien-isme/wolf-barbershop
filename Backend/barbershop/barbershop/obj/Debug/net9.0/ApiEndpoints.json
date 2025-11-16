@@ -711,5 +711,15 @@
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "barbershop.Controllers.DashboardController",
+    "Method": "GetInfoDashboard",
+    "RelativePath": "dashboard/getInfoDashboard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]

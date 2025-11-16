@@ -34,6 +34,8 @@ namespace barbershop.Services.implements
                 decimal total = invoice.Total;
                 List<int> serviceIds = invoice.ServiceIds;
                 List<ProductInvoiceRequest> products = invoice.Products;
+                int? barberId = await _appointmentRepository.findBarberIdOfAppointment(appointmentId);
+                int? branchId = await _employeeRepository.GetBranchIdByEmployeeId(int.Parse(cashierId!));
 
                 // Create invoice entity
                 Invoice invoiceEntity = new Invoice
@@ -46,6 +48,8 @@ namespace barbershop.Services.implements
                     PaymentMethodId = invoice.PaymentMethodId,
                     IsAppointment = appointmentId > 0 ? true : false,
                     Status = "PAID",
+                    BarberId = barberId,
+                    BranchId = branchId,
                 };
                 await _invoiceRepository.CreateInvoiceAsync(invoiceEntity);
 
@@ -67,7 +71,7 @@ namespace barbershop.Services.implements
                 }
 
                 // Find branch id from appointment
-                var branchId = await _employeeRepository.GetBranchIdByEmployeeId(int.Parse(cashierId!));
+                //var branchId = await _employeeRepository.GetBranchIdByEmployeeId(int.Parse(cashierId!));
                 // Create invoice details for products AND update quantity for products in branch's
                 foreach (var product in products)
                 {

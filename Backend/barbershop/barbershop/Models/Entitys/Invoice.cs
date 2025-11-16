@@ -31,9 +31,13 @@ public partial class Invoice
 
     public int? BarberId { get; set; }
 
+    public int? BranchId { get; set; }
+
     public virtual Appointment? Appointment { get; set; }
 
     public virtual Employee? Barber { get; set; }
+
+    public virtual Branch? Branch { get; set; }
 
     public virtual Employee? Cashier { get; set; }
 
